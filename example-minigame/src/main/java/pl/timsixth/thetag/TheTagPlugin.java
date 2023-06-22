@@ -10,6 +10,7 @@ import pl.timsixth.gui.libray.manager.registration.ActionRegistrationImpl;
 import pl.timsixth.gui.libray.model.action.custom.impl.NoneClickAction;
 import pl.timsixth.minigameapi.MiniGame;
 import pl.timsixth.minigameapi.cosmetics.CosmeticsManager;
+import pl.timsixth.thetag.bstats.Metrics;
 import pl.timsixth.thetag.command.AdminTheTagCommand;
 import pl.timsixth.thetag.command.TheTagCommand;
 import pl.timsixth.thetag.config.ConfigFile;
@@ -100,6 +101,8 @@ public class TheTagPlugin extends MiniGame {
         cosmeticsManager.addCosmetic(new WinFireworkCosmetic());
         cosmeticsManager.addCosmetic(new WalkHeartCosmetic());
         cosmeticsManager.addCosmetic(new HitHeartCosmetic());
+
+        new Metrics(this, 18831);
 
         if (!initPlaceHolderApi()) {
             Bukkit.getLogger().warning("[TheTag] Please download PlaceholderAPI, if you want to use placeholders.");
