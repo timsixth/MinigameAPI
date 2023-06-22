@@ -17,8 +17,8 @@ Maven
 </repositories>
 
 <dependency>
-	<groupId>com.github.timsixth</groupId>
-	<artifactId>MinigameAPI</artifactId>
+	<groupId>com.github.timsixth.MinigameAPI</groupId>
+	<artifactId>library</artifactId>
 	<version>Tag</version>
 </dependency>
 ```
