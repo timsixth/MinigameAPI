@@ -54,7 +54,7 @@ public interface UserCosmetics extends User {
     /**
      * Gets all user cosmetics
      *
-     * @return map with all cosmetics (cosmetic => enabled)
+     * @return map with all cosmetics
      */
     Map<Cosmetic, Boolean> getCosmetics();
 

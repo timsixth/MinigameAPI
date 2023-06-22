@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
  * Template method for {@link DbModel}
  * Every DbModel must extends {@link AbstractDbModel}
  * <p>
- * In subclass constructor you must call init() method, <br/>
+ * In subclass constructor you must call init() method,
  * because superclass must get values from fields and validate id.
  * This system is important to save, update and delete data.
  *
