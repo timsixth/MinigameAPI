@@ -16,6 +16,10 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * @see AbstractSqlDataBaseLoader
+ * @see UserCosmeticsDbModel
+ */
 @RequiredArgsConstructor
 public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmeticsDbModel> {
 
@@ -24,11 +28,19 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
 
     private final CosmeticsManager cosmeticsManager;
 
+    /**
+     * Loads data from table
+     */
     @Override
     public void load() {
         load(TABLE_NAME);
     }
 
+    /**
+     * Loads data from database
+     *
+     * @param tableName table with data to load
+     */
     @Override
     public void load(String tableName) {
         List<UserCosmeticsDbModel> userCosmeticsList = loadUuids();
@@ -39,6 +51,11 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
         });
     }
 
+    /**
+     * Load uuid from database
+     *
+     * @return list of {@link UserCosmeticsDbModel}
+     */
     private List<UserCosmeticsDbModel> loadUuids() {
         QueryBuilder queryBuilder = new QueryBuilder();
         List<UserCosmeticsDbModel> userCosmeticsList = new ArrayList<>();
@@ -59,6 +76,12 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
         return userCosmeticsList;
     }
 
+    /**
+     * Loads cosmetics
+     *
+     * @param uuid user uuid
+     * @return map with his cosmetics
+     */
     private Map<Cosmetic, Boolean> getCosmetics(UUID uuid) {
         QueryBuilder queryBuilder = new QueryBuilder();
         Map<Cosmetic, Boolean> cosmeticAndStatus = new HashMap<>();

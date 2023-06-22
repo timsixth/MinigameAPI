@@ -30,6 +30,7 @@ public class FileUtil {
 
     /**
      * Deletes file
+     *
      * @param configurationFile the configuration file
      * @return true if everything was succeeded otherwise false
      */
@@ -41,6 +42,11 @@ public class FileUtil {
         return file.delete();
     }
 
+    /**
+     * Creates data folder
+     *
+     * @param miniGame minigame instance
+     */
     private static void createDataFolder(MiniGame miniGame) {
         if (!miniGame.getDataFolder().mkdir()) {
             miniGame.getDataFolder().mkdirs();

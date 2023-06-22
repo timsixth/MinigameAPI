@@ -7,6 +7,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import pl.timsixth.minigameapi.configuration.type.DefaultGameConfiguration;
 import pl.timsixth.minigameapi.game.GameManager;
 
+/**
+ * Listener which is blocking breaking blocks when player is playing in game
+ */
 @RequiredArgsConstructor
 public class BlockBreakListener implements Listener {
 

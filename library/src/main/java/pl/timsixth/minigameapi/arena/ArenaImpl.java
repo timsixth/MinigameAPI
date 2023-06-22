@@ -12,9 +12,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Implementation of {@link Arena}
+ *
+ * @see SingleFileModel
+ * @see SingleFile
+ * @see ArenaFileModel
+ */
 @Getter
 @Setter
-//@SerializableAs("T-MiniGameApiArena")
 @SingleFile(fileName = "arenas.yml", primarySection = "arenas")
 public class ArenaImpl extends SingleFileModel implements ArenaFileModel {
 
@@ -45,6 +51,11 @@ public class ArenaImpl extends SingleFileModel implements ArenaFileModel {
         return Optional.of(locations.get(name));
     }
 
+    /**
+     * This method is important to bukkit serialization system
+     *
+     * @return map to serialize
+     */
     @Override
     @NonNull
     public Map<String, Object> serialize() {
@@ -57,8 +68,13 @@ public class ArenaImpl extends SingleFileModel implements ArenaFileModel {
         return data;
     }
 
-
+    /**
+     * This method is important to bukkit serialization system
+     *
+     * @param args to bukkit deserialization
+     * @return this object
+     */
     public static ArenaImpl deserialize(Map<String, Object> args) {
-        return new ArenaImpl((String) args.get("name"),(Location) args.get("lobbyLocation"), (Map<String, Location>) args.get("locations"));
+        return new ArenaImpl((String) args.get("name"), (Location) args.get("lobbyLocation"), (Map<String, Location>) args.get("locations"));
     }
 }

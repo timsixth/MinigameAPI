@@ -9,6 +9,11 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
+/**
+ * The implementation of {@link ArenaManager}
+ *
+ * Every manager which works on loaded data must have injected loader
+ */
 @RequiredArgsConstructor
 public class ArenaManagerImpl implements ArenaManager<ArenaFileModel> {
 
@@ -40,12 +45,22 @@ public class ArenaManagerImpl implements ArenaManager<ArenaFileModel> {
         return areasNames.get(ThreadLocalRandom.current().nextInt(areasNames.size()));
     }
 
+    /**
+     * Adds new arena to list and save to file
+     *
+     * @param type every class which implemented {@link ArenaFileModel}
+     */
     @Override
     public void addArena(ArenaFileModel type) {
         this.arenaFileLoader.addObject(type);
         type.save();
     }
 
+    /**
+     * Removes new arena to list and deletes from file
+     *
+     * @param type every class which implemented {@link ArenaFileModel}
+     */
     @Override
     public void removeArena(ArenaFileModel type) {
         this.arenaFileLoader.removeObject(type);

@@ -3,6 +3,12 @@ package pl.timsixth.minigameapi.file;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pl.timsixth.minigameapi.util.FileUtil;
 
+/**
+ * Represents every file model which is saving in many files
+ *
+ * @see FileModel
+ * @see AbstractFileModel
+ */
 public abstract class ManyFilesModel extends AbstractFileModel {
 
     @Override

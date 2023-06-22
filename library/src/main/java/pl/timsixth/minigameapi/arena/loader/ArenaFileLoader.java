@@ -11,13 +11,25 @@ import pl.timsixth.minigameapi.util.ConfigurationSectionUtil;
 
 import java.io.File;
 
+/**
+ * @see AbstractFileLoader
+ * @see ArenaFileModel
+ */
 public class ArenaFileLoader extends AbstractFileLoader<ArenaFileModel> {
-
+    /**
+     * Loads arena from arenas.yml file
+     */
     @Override
     public void load() {
         load("arenas.yml", "arenas");
     }
 
+    /**
+     * Loads data from file
+     *
+     * @param fileName       file to load
+     * @param primarySection main section in file, This section is important to loading
+     */
     @Override
     public void load(String fileName, String primarySection) {
         File file = new File(MiniGame.getInstance().getDataFolder(), fileName);

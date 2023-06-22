@@ -8,16 +8,40 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Represents every game
+ */
 public interface Game {
-
+    /**
+     * Gets arena which is using to play this game
+     *
+     * @return arena which is using to play this game
+     */
     Arena getArena();
 
+    /**
+     * @return list of all playing users
+     */
     List<UserGame> getPlayingUsers();
 
+    /**
+     * @return current game state
+     */
     GameState getState();
 
+    /**
+     * Sets new game state
+     *
+     * @param gameState new game state
+     */
     void setState(GameState gameState);
 
+    /**
+     * Gets {@link UserGame} by name
+     *
+     * @param uuid user uuid
+     * @return Optional of user
+     */
     Optional<UserGame> getUserGame(UUID uuid);
 
     /**
@@ -27,9 +51,20 @@ public interface Game {
      */
     void sendMessage(String message);
 
+    /**
+     * @return amount of rounds
+     */
     int getRounds();
 
+    /**
+     * Sets new rounds amount
+     *
+     * @param rounds new round amount
+     */
     void setRounds(int rounds);
 
+    /**
+     * Adds one round to rounds
+     */
     void addRound();
 }

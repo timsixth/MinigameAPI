@@ -10,7 +10,9 @@ import pl.timsixth.minigameapi.game.user.UserGame;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
+/**
+ * Implementation of {@link GameManager}
+ */
 public class GameManagerImpl implements GameManager {
 
     @Getter

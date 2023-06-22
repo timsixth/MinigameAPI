@@ -1,6 +1,13 @@
 package pl.timsixth.minigameapi.model;
 
+/**
+ * Represents every model which can be deleted
+ */
 public interface Deletable {
-
-   boolean delete();
+    /**
+     * Deletes model from file or table
+     *
+     * @return true operation is succeeded otherwise false
+     */
+    boolean delete();
 }

@@ -7,8 +7,10 @@ import pl.timsixth.minigameapi.cosmetics.user.loader.UserCosmeticsLoader;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
+/**
+ * Every manager which works on loaded data must have injected loader
+ */
 @RequiredArgsConstructor
 public class UserCosmeticsManagerImpl implements UserCosmeticsManager<UserCosmeticsDbModel> {
 

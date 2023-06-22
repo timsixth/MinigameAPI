@@ -1,5 +1,6 @@
 package pl.timsixth.thetag.cosmetics.hit;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -27,6 +28,6 @@ public class HitHeartCosmetic implements HitParticleCosmetic {
         double y = location.getY() + 1;
         location.setY(y);
 
-        player.spawnParticle(getParticle(), location, 15);
+        Bukkit.getOnlinePlayers().forEach(onlinePlayer -> onlinePlayer.spawnParticle(getParticle(), location, 20));
     }
 }

@@ -13,7 +13,14 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface SingleFile {
+    /**
+     * @return file name
+     */
     String fileName();
+
+    /**
+     * @return primary section in file
+     */
     String primarySection();
 
 }

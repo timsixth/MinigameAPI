@@ -5,7 +5,16 @@ import pl.timsixth.minigameapi.model.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractLoader<T extends Model> implements Loader<T>{
+/**
+ * Template method for {@link Loader}
+ *
+ * @param <T> every class which implemented {@link Model}
+ *
+ * @see Loaders
+ * @see pl.timsixth.minigameapi.loader.file.FileLoader
+ * @see pl.timsixth.minigameapi.loader.database.SqlDataBaseLoader
+ */
+public abstract class AbstractLoader<T extends Model> implements Loader<T> {
 
     private final List<T> objects = new ArrayList<>();
 

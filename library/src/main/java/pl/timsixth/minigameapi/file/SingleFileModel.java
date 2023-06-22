@@ -7,6 +7,12 @@ import pl.timsixth.minigameapi.util.ConfigurationSectionUtil;
 
 import java.io.File;
 
+/**
+ * Represents every file model which is saving in single files
+ *
+ * @see FileModel
+ * @see AbstractFileModel
+ */
 public abstract class SingleFileModel extends AbstractFileModel {
 
     @Override

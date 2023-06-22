@@ -7,7 +7,7 @@ arena:
   arenaCreated: '&aArena has been created'
   arenaExists: '&cArena already exists'
   arenaDoesNotExists: '&cArena does not exists'
-  setGameSpawn: '&aYou has set game spawn'
+  setGameSpawn: '&aYou have set game spawn'
   arenaCurrentlyPlaying: '&cThis arena is currently playing'
   arenaList: '&aArena list'
   emptyArenaList: '&cArena list is empty'

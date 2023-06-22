@@ -1,5 +1,6 @@
 package pl.timsixth.thetag.cosmetics.walk;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -18,8 +19,7 @@ public class WalkHeartCosmetic implements ParticleCosmetic {
         double y = location.getY() + 2;
 
         location.setY(y);
-
-        player.spawnParticle(getParticle(), location, 20);
+        Bukkit.getOnlinePlayers().forEach(onlinePlayer -> onlinePlayer.spawnParticle(getParticle(), location, 20));
     }
 
     @Override

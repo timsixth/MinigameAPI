@@ -10,7 +10,12 @@ import pl.timsixth.minigameapi.database.AbstractDbModel;
 import pl.timsixth.minigameapi.database.annoations.Id;
 
 import java.util.*;
-
+/**
+ * Implementation of {@link UserCosmetics}
+ *
+ * @see AbstractDbModel
+ * @see UserCosmeticsDbModel
+ */
 @Getter
 @Setter
 @ToString

@@ -6,7 +6,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import pl.timsixth.minigameapi.configuration.type.DefaultGameConfiguration;
 import pl.timsixth.minigameapi.game.GameManager;
-
+/**
+ * Listener which is blocking placing blocks when player is playing in game
+ */
 @RequiredArgsConstructor
 public class BlockPlaceListener implements Listener {
 

@@ -11,6 +11,16 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Template method for {@link DbModel}
+ * Every DbModel must extends {@link AbstractDbModel}
+ * <p>
+ * In subclass constructor you must call init() method, <br/>
+ * because superclass must get values from fields and validate id.
+ * This system is important to save, update and delete data.
+ *
+ * @see DbModel
+ */
 public abstract class AbstractDbModel implements DbModel {
 
     private final Map<String, Object> data = new LinkedHashMap<>();
@@ -60,6 +70,11 @@ public abstract class AbstractDbModel implements DbModel {
         return true;
     }
 
+    /**
+     * Gets correct value of id
+     *
+     * @return correct id value
+     */
     protected final Object getId() {
         Object id = idValue;
 
@@ -69,6 +84,11 @@ public abstract class AbstractDbModel implements DbModel {
         return id;
     }
 
+    /**
+     * Executes async query
+     *
+     * @param query query to execute
+     */
     protected void executeUpdate(String query) {
         ISQLDataBase sqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
 
@@ -80,8 +100,8 @@ public abstract class AbstractDbModel implements DbModel {
     }
 
     /**
-     * Saves fields and field's values to map <br>
-     * Please call this method after initialized every fields
+     * Saves fields and field's values to map.
+     * Please call this method after initialized every field.
      */
     protected void init() {
         Class<? extends AbstractDbModel> aClass = this.getClass();
@@ -107,6 +127,11 @@ public abstract class AbstractDbModel implements DbModel {
         }
     }
 
+    /**
+     * Save value from subclass field to map
+     *
+     * @param declaredField field to get value
+     */
     private void setValue(Field declaredField) {
         try {
             Object value = declaredField.get(this);
@@ -121,6 +146,9 @@ public abstract class AbstractDbModel implements DbModel {
         }
     }
 
+    /**
+     * Updates fields values in map after every action
+     */
     private void updateValues() {
         Class<? extends AbstractDbModel> aClass = this.getClass();
 

@@ -13,12 +13,24 @@ import java.sql.SQLException;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * @see AbstractSqlDataBaseLoader
+ * @see UserCoinsDbModel
+ */
 public class UserCoinsLoader extends AbstractSqlDataBaseLoader<UserCoinsDbModel> {
+    /**
+     * Loads data from table
+     */
     @Override
     public void load() {
         load(MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_coins");
     }
 
+    /**
+     * Loads data from database
+     *
+     * @param tableName table with data to load
+     */
     @Override
     public void load(String tableName) {
         ISQLDataBase currentSqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();

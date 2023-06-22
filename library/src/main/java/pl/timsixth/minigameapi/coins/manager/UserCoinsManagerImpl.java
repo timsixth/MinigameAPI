@@ -8,6 +8,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * The implementation of {@link UserCoinsManager}
+ * @see UserCoinsDbModel
+ *
+ * Every manager which works on loaded data must have injected loader
+ */
 @RequiredArgsConstructor
 public class UserCoinsManagerImpl implements UserCoinsManager<UserCoinsDbModel> {
 

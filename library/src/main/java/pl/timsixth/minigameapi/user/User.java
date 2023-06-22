@@ -1,16 +1,24 @@
 package pl.timsixth.minigameapi.user;
 
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.model.Model;
 
 import java.util.UUID;
 
-public interface User  {
-
+/**
+ * Represents every user
+ */
+public interface User {
+    /**
+     * @return user's uuid
+     */
     UUID getUuid();
 
+    /**
+     * Converts user to player
+     *
+     * @return bukkit player
+     */
     default Player toPlayer() {
         return Bukkit.getPlayer(getUuid());
     }

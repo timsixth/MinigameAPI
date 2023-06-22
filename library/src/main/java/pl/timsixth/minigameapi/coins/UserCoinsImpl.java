@@ -8,6 +8,12 @@ import pl.timsixth.minigameapi.database.annoations.Id;
 
 import java.util.UUID;
 
+/**
+ * Implementation of {@link UserCoins}
+ *
+ * @see AbstractDbModel
+ * @see UserCoinsDbModel
+ */
 @Getter
 @ToString
 public class UserCoinsImpl extends AbstractDbModel implements UserCoinsDbModel {

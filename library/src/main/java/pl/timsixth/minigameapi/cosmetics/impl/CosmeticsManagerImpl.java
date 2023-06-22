@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The implementation of {@link CosmeticsManager}
+ *
+ * Every cosmetics must be registered in main class
+ */
 @Getter
 public class CosmeticsManagerImpl implements CosmeticsManager {
 

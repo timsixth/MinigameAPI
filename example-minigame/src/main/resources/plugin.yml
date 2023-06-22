@@ -4,6 +4,7 @@ version: '1.0.0'
 description: The tag minigame
 website: https://timsixth.pl/
 api-version: 1.13
+author: timsixth
 depend:
   - T-MiniGameAPI
 softdepend:

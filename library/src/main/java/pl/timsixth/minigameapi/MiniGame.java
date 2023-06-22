@@ -35,6 +35,9 @@ import pl.timsixth.minigameapi.listener.BlockPlaceListener;
 import pl.timsixth.minigameapi.listener.PlayerDropItemListener;
 import pl.timsixth.minigameapi.loader.Loaders;
 
+/**
+ * Represents every minigame
+ */
 @Getter
 @Setter
 public class MiniGame extends JavaPlugin {
@@ -67,11 +70,17 @@ public class MiniGame extends JavaPlugin {
         initManagers();
     }
 
+    /**
+     * Initializes configurators
+     */
     private void initConfigurators() {
         if (defaultGameConfigurator == null) defaultGameConfigurator = new GameConfigurator();
         if (defaultPluginConfigurator == null) defaultPluginConfigurator = new PluginConfigurator();
     }
 
+    /**
+     * Initializes managers
+     */
     private void initManagers() {
         arenaManager = new ArenaManagerImpl(arenaFileLoader);
         gameManager = new GameManagerImpl();
@@ -79,6 +88,9 @@ public class MiniGame extends JavaPlugin {
         userCosmeticsManager = new UserCosmeticsManagerImpl(userCosmeticsLoader);
     }
 
+    /**
+     * Initializes loaders
+     */
     private void initLoaders() {
         cosmeticsManager = new CosmeticsManagerImpl();
 
@@ -88,12 +100,18 @@ public class MiniGame extends JavaPlugin {
         userCosmeticsLoader = new UserCosmeticsLoader(cosmeticsManager);
     }
 
+    /**
+     * Loads data
+     */
     private void loadData() {
         loaders.registerLoaders(arenaFileLoader, userCoinsLoader, userCosmeticsLoader);
 
         loaders.load(arenaFileLoader, userCoinsLoader);
     }
 
+    /**
+     * Initializes migrations
+     */
     private void initMigrations() {
         Migrations migrations = DatabasesApiPlugin.getApi().getMigrations();
         CreateUserCoinsTableMigration createUserCoinsTableMigration = new CreateUserCoinsTableMigration();
@@ -111,6 +129,9 @@ public class MiniGame extends JavaPlugin {
         loaders.unregisterLoaders();
     }
 
+    /**
+     * Registers game listeners
+     */
     protected void registerGameListeners() {
         Listener[] listeners = {
                 new BlockBreakListener(getDefaultGameConfiguration(), gameManager),
@@ -123,10 +144,16 @@ public class MiniGame extends JavaPlugin {
         }
     }
 
+    /**
+     * @return default game configuration {@link DefaultGameConfiguration}
+     */
     public DefaultGameConfiguration getDefaultGameConfiguration() {
         return defaultGameConfigurator.configure();
     }
 
+    /**
+     * @return default plugin configuration {@link DefaultPluginConfiguration}
+     */
     public DefaultPluginConfiguration getDefaultPluginConfiguration() {
         return defaultPluginConfigurator.configure();
     }
