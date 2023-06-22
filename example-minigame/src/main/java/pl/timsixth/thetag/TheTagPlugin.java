@@ -1,0 +1,158 @@
+package pl.timsixth.thetag;
+
+import lombok.Getter;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
+import pl.timsixth.databasesapi.DatabasesApiPlugin;
+import pl.timsixth.databasesapi.database.migration.Migrations;
+import pl.timsixth.gui.libray.manager.registration.ActionRegistration;
+import pl.timsixth.gui.libray.manager.registration.ActionRegistrationImpl;
+import pl.timsixth.gui.libray.model.action.custom.impl.NoneClickAction;
+import pl.timsixth.minigameapi.MiniGame;
+import pl.timsixth.minigameapi.cosmetics.CosmeticsManager;
+import pl.timsixth.thetag.command.AdminTheTagCommand;
+import pl.timsixth.thetag.command.TheTagCommand;
+import pl.timsixth.thetag.config.ConfigFile;
+import pl.timsixth.thetag.config.Messages;
+import pl.timsixth.thetag.config.Settings;
+import pl.timsixth.thetag.configurators.MyGameConfigurator;
+import pl.timsixth.thetag.configurators.MyPluginConfigurator;
+import pl.timsixth.thetag.cosmetics.defeat.DefeatLightningCosmetic;
+import pl.timsixth.thetag.cosmetics.hit.HitHeartCosmetic;
+import pl.timsixth.thetag.cosmetics.walk.WalkHeartCosmetic;
+import pl.timsixth.thetag.cosmetics.win.WinFireworkCosmetic;
+import pl.timsixth.thetag.expansion.TheTagExpansion;
+import pl.timsixth.thetag.game.GameLogic;
+import pl.timsixth.thetag.gui.BuyOrActiveCosmeticAction;
+import pl.timsixth.thetag.gui.OpenMenuAction;
+import pl.timsixth.thetag.gui.RestAllCosmeticsAction;
+import pl.timsixth.thetag.gui.RestAllCosmeticsCategoryAction;
+import pl.timsixth.thetag.listener.*;
+import pl.timsixth.thetag.loader.StatsLoader;
+import pl.timsixth.thetag.manager.MenuManager;
+import pl.timsixth.thetag.manager.MyGameManager;
+import pl.timsixth.thetag.manager.ScoreboardManager;
+import pl.timsixth.thetag.manager.StatisticsManager;
+import pl.timsixth.thetag.migrations.CreateStatisticsTable;
+import pl.timsixth.thetag.tabcompleter.AdminTheTagCommandTabCompleter;
+import pl.timsixth.thetag.tabcompleter.TheTagCommandTabCompleter;
+
+public class TheTagPlugin extends MiniGame {
+
+    @Getter
+    private Messages messages;
+    @Getter
+    private Settings settings;
+    private ConfigFile configFile;
+    private GameLogic gameLogic;
+    private StatisticsManager statisticsManager;
+    @Getter
+    private MenuManager menuManager;
+    private ActionRegistration actionRegistration;
+
+    @Override
+    public void onEnable() {
+        setDefaultGameConfigurator(new MyGameConfigurator());
+        setDefaultPluginConfigurator(new MyPluginConfigurator());
+
+        super.onEnable();
+
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+
+        initConfiguration();
+
+        StatsLoader statsLoader = new StatsLoader();
+
+        statisticsManager = new StatisticsManager(statsLoader);
+        ScoreboardManager scoreboardManager = new ScoreboardManager(settings);
+
+        setGameManager(new MyGameManager(settings, this, messages, scoreboardManager, statisticsManager, getUserCosmeticsManager()));
+
+        gameLogic = new GameLogic(getGameManager(), statisticsManager, messages, getArenaManager(), settings, getUserCosmeticsManager());
+
+        actionRegistration = new ActionRegistrationImpl();
+        actionRegistration.register(
+                new NoneClickAction(),
+                new BuyOrActiveCosmeticAction(),
+                new OpenMenuAction(),
+                new RestAllCosmeticsAction(),
+                new RestAllCosmeticsCategoryAction()
+        );
+
+        menuManager = new MenuManager(actionRegistration, configFile);
+
+        super.registerGameListeners();
+
+        registerCommands();
+        registerTabCompleters();
+        registerListeners();
+        registerActions();
+
+        Migrations migrations = DatabasesApiPlugin.getApi().getMigrations();
+        migrations.addMigration(new CreateStatisticsTable());
+        migrations.migrateAll();
+
+        getLoaders().registerLoaders(statsLoader);
+
+        CosmeticsManager cosmeticsManager = getCosmeticsManager();
+        cosmeticsManager.addCosmetic(new DefeatLightningCosmetic());
+        cosmeticsManager.addCosmetic(new WinFireworkCosmetic());
+        cosmeticsManager.addCosmetic(new WalkHeartCosmetic());
+        cosmeticsManager.addCosmetic(new HitHeartCosmetic());
+
+        if (!initPlaceHolderApi()) {
+            Bukkit.getLogger().warning("[TheTag] Please download PlaceholderAPI, if you want to use placeholders.");
+        }
+
+        getLoaders().loadAll();
+        menuManager.load();
+    }
+
+    private void initConfiguration() {
+        configFile = new ConfigFile(this);
+        settings = new Settings(this);
+        messages = new Messages(configFile);
+    }
+
+    private void registerListeners() {
+        Listener[] listeners = {
+                new EntityDamageByEntityListener(getGameManager(), settings, gameLogic),
+                new InventoryClickListener(getGameManager()),
+                new PlayerQuitListener(gameLogic),
+                new PlayerKickListener(gameLogic),
+                new FoodLevelChangeListener(getGameManager()),
+                new pl.timsixth.gui.libray.listener.InventoryClickListener(menuManager),
+                new PlayerJoinListener(getUserCoinsManager()),
+                new PlayerMoveListener(getGameManager(), gameLogic),
+                new PlayerInteractListener(settings, messages, getGameManager())
+        };
+
+        for (Listener listener : listeners) {
+            Bukkit.getPluginManager().registerEvents(listener, this);
+        }
+    }
+
+    private void registerCommands() {
+        getCommand("thetag").setExecutor(new TheTagCommand(getArenaManager(), getGameManager(), messages, statisticsManager, gameLogic, getUserCoinsManager(), menuManager));
+        getCommand("thetagadmin").setExecutor(new AdminTheTagCommand(settings, messages, getArenaManager(), getUserCoinsManager(), menuManager, configFile));
+    }
+
+    private void registerTabCompleters() {
+        getCommand("thetag").setTabCompleter(new TheTagCommandTabCompleter(getArenaManager()));
+        getCommand("thetagadmin").setTabCompleter(new AdminTheTagCommandTabCompleter(getArenaManager(), getUserCoinsManager()));
+    }
+
+    private boolean initPlaceHolderApi() {
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
+            return false;
+        }
+        new TheTagExpansion(statisticsManager, getUserCoinsManager()).register();
+
+        return true;
+    }
+
+    private void registerActions() {
+        actionRegistration.register(new BuyOrActiveCosmeticAction(), new NoneClickAction(), new RestAllCosmeticsCategoryAction(), new RestAllCosmeticsAction());
+    }
+}

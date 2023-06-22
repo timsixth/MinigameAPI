@@ -1,0 +1,33 @@
+guis:
+  defeat_cosmetics:
+    displayname: '&a&lDefeat cosmetics'
+    size: 9
+    empty_slots:
+      material: BLACK_STAINED_GLASS_PANE
+    slots:
+      0:
+        material: NETHER_STAR
+        displayname: '&a&lLightning effect'
+        price: 5000
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'DEFEAT_LIGHTNING'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
+      7:
+        material: BARRIER
+        displayname: '&cReturn to main menu'
+        click_action:
+          type: OPEN_MENU
+          args:
+            - 'main_cosmetics'
+      8:
+        material: RED_DYE
+        displayname: '&cDisable all active defeat effects'
+        id: 1
+        click_action:
+          type: RESET_ALL_COSMETICS_CATEGORY
+          args:
+            - 'DEFEAT'

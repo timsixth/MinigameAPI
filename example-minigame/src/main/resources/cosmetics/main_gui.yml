@@ -1,0 +1,42 @@
+guis:
+  main_cosmetics:
+    displayname: '&a&lCosmetics'
+    size: 27
+    empty_slots:
+      material: BLACK_STAINED_GLASS_PANE
+    slots:
+      10:
+        material: DIAMOND_SWORD
+        displayname: '&a&lHit effects'
+        click_action:
+          type: OPEN_MENU
+          args:
+            - 'hit_cosmetics'
+      12:
+        material: DIAMOND_BOOTS
+        displayname: '&a&lWalk effects'
+        click_action:
+          type: OPEN_MENU
+          args:
+            - 'walk_cosmetics'
+      14:
+        material: LEGACY_FIREWORK
+        displayname: '&a&lWin effects'
+        click_action:
+          type: OPEN_MENU
+          args:
+            - 'win_cosmetics'
+      16:
+        material: PLAYER_HEAD
+        displayname: '&a&lDefeat effects'
+        click_action:
+          type: OPEN_MENU
+          args:
+            - 'defeat_cosmetics'
+      22:
+        material: BARRIER
+        displayname: '&cDisable all active effect'
+        click_action:
+          type: RESET_ALL_COSMETICS
+          args:
+            - ''
