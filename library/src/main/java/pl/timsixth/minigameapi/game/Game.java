@@ -1,7 +1,9 @@
 package pl.timsixth.minigameapi.game;
 
+import org.bukkit.entity.Player;
 import pl.timsixth.minigameapi.arena.Arena;
 import pl.timsixth.minigameapi.game.state.GameState;
+import pl.timsixth.minigameapi.game.team.Team;
 import pl.timsixth.minigameapi.game.user.UserGame;
 
 import java.util.List;
@@ -67,4 +69,25 @@ public interface Game {
      * Adds one round to rounds
      */
     void addRound();
+
+    /**
+     * @return teams in game
+     */
+    List<Team> getTeams();
+
+    /**
+     * Gets team by name
+     *
+     * @param name team's name
+     * @return Optional of team
+     */
+    Optional<Team> getTeamByName(String name);
+
+    /**
+     * Gets team by player
+     *
+     * @param player player to get team
+     * @return Optional of team
+     */
+    Optional<Team> getTeamByPlayer(Player player);
 }

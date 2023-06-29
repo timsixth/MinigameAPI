@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import pl.timsixth.minigameapi.arena.Arena;
 import pl.timsixth.minigameapi.game.Game;
 import pl.timsixth.minigameapi.game.state.GameState;
+import pl.timsixth.minigameapi.game.team.Team;
 import pl.timsixth.minigameapi.game.user.UserGame;
 
 import java.util.ArrayList;
@@ -26,10 +27,12 @@ public class GameImpl implements Game {
     private List<UserGame> playingUsers;
     private GameState state;
     private int rounds;
+    private List<Team> teams;
 
     public GameImpl(Arena arena) {
         this.arena = arena;
-        playingUsers = new ArrayList<>();
+        this.playingUsers = new ArrayList<>();
+        this.teams = new ArrayList<>();
     }
 
     @Override
@@ -56,5 +59,24 @@ public class GameImpl implements Game {
     @Override
     public void addRound() {
         rounds++;
+    }
+
+    @Override
+    public Optional<Team> getTeamByName(String name) {
+        return teams.stream()
+                .filter(team -> team.getName().equalsIgnoreCase(name))
+                .findAny();
+    }
+
+    @Override
+    public Optional<Team> getTeamByPlayer(Player player) {
+        for (Team team : teams) {
+            for (UserGame user : team.getUsers()) {
+                if (user.getUuid().equals(player.getUniqueId())) {
+                    return Optional.of(team);
+                }
+            }
+        }
+        return Optional.empty();
     }
 }
