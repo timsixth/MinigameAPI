@@ -45,4 +45,10 @@ public interface UserGame extends User {
      * @param playing toggle playing true or false
      */
     void setPlaying(boolean playing);
+
+    /**
+     * @param points to check
+     * @return true if player has points otherwise false
+     */
+    boolean hasPoints(int points);
 }

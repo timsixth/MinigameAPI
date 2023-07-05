@@ -29,4 +29,9 @@ public class UserGameImpl implements UserGame {
         points--;
         return points;
     }
+
+    @Override
+    public boolean hasPoints(int points) {
+        return this.points >= points;
+    }
 }
