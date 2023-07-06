@@ -5,7 +5,7 @@ Library works from 1.13.2 to 1.20.x.
 This version is pre-release, not for comercial use, may be has bugs. 
 Please report every bugs in issues section.<br>
 
-JavaDocs: https://timsixth.pl/javadocs/minigame_api/0.2.0/
+JavaDocs: https://timsixth.pl/javadocs/minigame_api/0.3.0/
 
 ## Getting started
 
