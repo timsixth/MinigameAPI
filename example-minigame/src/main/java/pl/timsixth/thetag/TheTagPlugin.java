@@ -37,6 +37,7 @@ import pl.timsixth.thetag.manager.StatisticsManager;
 import pl.timsixth.thetag.migrations.CreateStatisticsTable;
 import pl.timsixth.thetag.tabcompleter.AdminTheTagCommandTabCompleter;
 import pl.timsixth.thetag.tabcompleter.TheTagCommandTabCompleter;
+import pl.timsixth.thetag.version.VersionChecker;
 
 public class TheTagPlugin extends MiniGame {
 
@@ -89,6 +90,8 @@ public class TheTagPlugin extends MiniGame {
         registerTabCompleters();
         registerListeners();
         registerActions();
+
+        new VersionChecker(this).checkVersion();
 
         Migrations migrations = DatabasesApiPlugin.getApi().getMigrations();
         migrations.addMigration(new CreateStatisticsTable());
