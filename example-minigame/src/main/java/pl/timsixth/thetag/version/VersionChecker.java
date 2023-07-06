@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public final class VersionChecker {
 
-    private static final String API_URL = "https://timsixth.pl/api/version_checker.php?pluginName=";
+    private static final String API_URL = "https://timsixth.pl/api/plugins/%s/currentVersion";
     private String currentVersion;
     private final Plugin plugin;
 
@@ -33,7 +33,7 @@ public final class VersionChecker {
     }
 
     private String getNewestVersion() throws IOException {
-        JsonObject jsonObject = (JsonObject) HttpConnectionUtil.connect(API_URL + plugin.getDescription().getName(), "GET");
+        JsonObject jsonObject = (JsonObject) HttpConnectionUtil.connect(String.format(API_URL, plugin.getDescription().getName()), "GET");
         JsonElement jsonElement = jsonObject.get("currentVersion");
 
         if (jsonElement == null) {
