@@ -1,7 +1,9 @@
 package pl.timsixth.thetag.util;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import com.google.gson.stream.JsonReader;
 import lombok.experimental.UtilityClass;
 
 import java.io.BufferedReader;
@@ -40,7 +42,7 @@ public class HttpConnectionUtil {
 
         String jsonString = stringBuilder.toString();
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setLenient().create();
         JsonElement jsonElement = gson.fromJson(jsonString, JsonElement.class);
 
         return jsonElement.getAsJsonObject();
