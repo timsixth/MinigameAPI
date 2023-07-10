@@ -20,14 +20,12 @@ public class UserGameImpl implements UserGame {
 
     @Override
     public int addPoints(int points) {
-        points++;
-        return points;
+        return this.points += points;
     }
 
     @Override
     public int removePoints(int points) {
-        points--;
-        return points;
+        return this.points -= points;
     }
 
     @Override
