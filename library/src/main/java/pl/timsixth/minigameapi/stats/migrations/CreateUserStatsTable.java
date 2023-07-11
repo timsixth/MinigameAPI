@@ -36,7 +36,7 @@ public class CreateUserStatsTable implements ICreationMigration {
         }
     }
 
-    private ITable createTableUserStats(DataType idDataType) {
+    protected ITable createTableUserStats(DataType idDataType) {
         return currentSqlDataBase.getTableCreator()
                 .createColumn("id", idDataType, 11, false)
                 .primaryKey("id", true)
