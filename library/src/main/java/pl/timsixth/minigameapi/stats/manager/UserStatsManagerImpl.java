@@ -1,5 +1,7 @@
 package pl.timsixth.minigameapi.stats.manager;
 
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserStatsManagerImpl<T extends UserStatsDbModel> extends AbstractUserStatsManager<T> {
 
+    @Getter(AccessLevel.PROTECTED)
     private final SqlDataBaseLoader<T> userStatsSqlDataBaseLoader;
 
     @Override
