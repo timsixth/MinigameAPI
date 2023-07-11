@@ -34,6 +34,11 @@ import pl.timsixth.minigameapi.listener.BlockBreakListener;
 import pl.timsixth.minigameapi.listener.BlockPlaceListener;
 import pl.timsixth.minigameapi.listener.PlayerDropItemListener;
 import pl.timsixth.minigameapi.loader.Loaders;
+import pl.timsixth.minigameapi.stats.loader.DefaultUserStatsLoader;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManagerImpl;
+import pl.timsixth.minigameapi.stats.migrations.CreateUserStatsTable;
+import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
 
 /**
  * Represents every minigame
@@ -48,12 +53,14 @@ public class MiniGame extends JavaPlugin {
     private ArenaManager<ArenaFileModel> arenaManager;
     private UserCoinsManager<UserCoinsDbModel> userCoinsManager;
     private UserCosmeticsManager<UserCosmeticsDbModel> userCosmeticsManager;
+    private UserStatsManager<UserStatsDbModel> userStatsManager;
     private CosmeticsManager cosmeticsManager;
     private GameManager gameManager;
 
     private ArenaFileLoader arenaFileLoader;
     private UserCoinsLoader userCoinsLoader;
     private UserCosmeticsLoader userCosmeticsLoader;
+    private DefaultUserStatsLoader userStatsLoader;
 
     private Loaders loaders;
 
@@ -86,6 +93,9 @@ public class MiniGame extends JavaPlugin {
         gameManager = new GameManagerImpl();
         userCoinsManager = new UserCoinsManagerImpl(userCoinsLoader);
         userCosmeticsManager = new UserCosmeticsManagerImpl(userCosmeticsLoader);
+
+        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem())
+            userStatsManager = new UserStatsManagerImpl<>(userStatsLoader);
     }
 
     /**
@@ -98,6 +108,8 @@ public class MiniGame extends JavaPlugin {
         arenaFileLoader = new ArenaFileLoader();
         userCoinsLoader = new UserCoinsLoader();
         userCosmeticsLoader = new UserCosmeticsLoader(cosmeticsManager);
+
+        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem()) userStatsLoader = new DefaultUserStatsLoader();
     }
 
     /**
@@ -105,6 +117,11 @@ public class MiniGame extends JavaPlugin {
      */
     private void loadData() {
         loaders.registerLoaders(arenaFileLoader, userCoinsLoader, userCosmeticsLoader);
+
+        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem()) {
+            loaders.registerLoader(userStatsLoader);
+            loaders.load(userStatsLoader);
+        }
 
         loaders.load(arenaFileLoader, userCoinsLoader);
     }
@@ -116,6 +133,13 @@ public class MiniGame extends JavaPlugin {
         Migrations migrations = DatabasesApiPlugin.getApi().getMigrations();
         CreateUserCoinsTableMigration createUserCoinsTableMigration = new CreateUserCoinsTableMigration();
         CreateUserCosmeticsTableMigration createUserCosmeticsTableMigration = new CreateUserCosmeticsTableMigration();
+
+        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem()) {
+            CreateUserStatsTable createUserStatsTable = new CreateUserStatsTable();
+            migrations.addMigration(createUserStatsTable);
+
+            migrations.migrate(createUserStatsTable);
+        }
 
         migrations.addMigration(createUserCoinsTableMigration);
         migrations.addMigration(createUserCosmeticsTableMigration);

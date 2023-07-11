@@ -7,8 +7,9 @@ public class PluginConfigurator implements Configurator<DefaultPluginConfigurati
     @Override
     public DefaultPluginConfiguration configure() {
         return DefaultPluginConfiguration.builder()
-                .useDataBase(false)
+                .useDataBase(true)
                 .tablesPrefix("minigames_")
+                .useDefaultStatsSystem(true)
                 .build();
     }
 }

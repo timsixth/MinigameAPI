@@ -13,4 +13,5 @@ public class DefaultPluginConfiguration implements Configuration {
 
     private boolean useDataBase;
     private String tablesPrefix;
+    private boolean useDefaultStatsSystem;
 }
