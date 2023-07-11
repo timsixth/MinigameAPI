@@ -3,13 +3,14 @@ package pl.timsixth.thetag.task;
 import lombok.AllArgsConstructor;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.timsixth.minigameapi.game.Game;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.game.GameLogic;
 import pl.timsixth.thetag.game.state.DrawingTheTagGameState;
 import pl.timsixth.thetag.manager.ScoreboardManager;
-import pl.timsixth.thetag.manager.StatisticsManager;
 
 @AllArgsConstructor
 public class StartGameCountDown extends BukkitRunnable {
@@ -20,7 +21,7 @@ public class StartGameCountDown extends BukkitRunnable {
     private final Messages messages;
     private final ScoreboardManager scoreboardManager;
     private final GameLogic gameLogic;
-    private final StatisticsManager statisticsManager;
+    private final UserStatsManager<UserStatsDbModel> statisticsManager;
     private int gameTimer;
 
     @Override
@@ -30,7 +31,7 @@ public class StartGameCountDown extends BukkitRunnable {
             gameTimer--;
             if (gameTimer == 0) {
                 game.setRounds(1);
-                game.setState(new DrawingTheTagGameState(gameLogic, game, theTagPlugin, settings, messages, scoreboardManager,statisticsManager));
+                game.setState(new DrawingTheTagGameState(gameLogic, game, theTagPlugin, settings, messages, scoreboardManager, statisticsManager));
 
                 cancel();
                 gameTimer = settings.getStartTimer();

@@ -1,4 +1,4 @@
-package pl.timsixth.thetag.game;
+package pl.timsixth.thetag.model;
 
 import lombok.Getter;
 import lombok.Setter;

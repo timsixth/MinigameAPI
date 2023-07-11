@@ -7,7 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
-import pl.timsixth.thetag.manager.StatisticsManager;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TheTagExpansion extends PlaceholderExpansion {
 
-    private final StatisticsManager statisticsManager;
+    private final UserStatsManager<UserStatsDbModel> statisticsManager;
     private final UserCoinsManager<UserCoinsDbModel> userCoinsManager;
 
     @Override

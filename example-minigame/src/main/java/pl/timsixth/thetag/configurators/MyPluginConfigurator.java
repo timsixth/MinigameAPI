@@ -10,6 +10,7 @@ public class MyPluginConfigurator extends PluginConfigurator {
         return DefaultPluginConfiguration.builder()
                 .tablesPrefix("thetag_")
                 .useDataBase(true)
+                .useDefaultStatsSystem(true)
                 .build();
     }
 }

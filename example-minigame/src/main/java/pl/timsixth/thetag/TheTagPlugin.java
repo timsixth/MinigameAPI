@@ -3,8 +3,6 @@ package pl.timsixth.thetag;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
-import pl.timsixth.databasesapi.DatabasesApiPlugin;
-import pl.timsixth.databasesapi.database.migration.Migrations;
 import pl.timsixth.gui.libray.manager.registration.ActionRegistration;
 import pl.timsixth.gui.libray.manager.registration.ActionRegistrationImpl;
 import pl.timsixth.gui.libray.model.action.custom.impl.NoneClickAction;
@@ -29,12 +27,9 @@ import pl.timsixth.thetag.gui.OpenMenuAction;
 import pl.timsixth.thetag.gui.RestAllCosmeticsAction;
 import pl.timsixth.thetag.gui.RestAllCosmeticsCategoryAction;
 import pl.timsixth.thetag.listener.*;
-import pl.timsixth.thetag.loader.StatsLoader;
 import pl.timsixth.thetag.manager.MenuManager;
 import pl.timsixth.thetag.manager.MyGameManager;
 import pl.timsixth.thetag.manager.ScoreboardManager;
-import pl.timsixth.thetag.manager.StatisticsManager;
-import pl.timsixth.thetag.migrations.CreateStatisticsTable;
 import pl.timsixth.thetag.tabcompleter.AdminTheTagCommandTabCompleter;
 import pl.timsixth.thetag.tabcompleter.TheTagCommandTabCompleter;
 import pl.timsixth.thetag.version.VersionChecker;
@@ -47,7 +42,6 @@ public class TheTagPlugin extends MiniGame {
     private Settings settings;
     private ConfigFile configFile;
     private GameLogic gameLogic;
-    private StatisticsManager statisticsManager;
     @Getter
     private MenuManager menuManager;
     private ActionRegistration actionRegistration;
@@ -64,14 +58,11 @@ public class TheTagPlugin extends MiniGame {
 
         initConfiguration();
 
-        StatsLoader statsLoader = new StatsLoader();
-
-        statisticsManager = new StatisticsManager(statsLoader);
         ScoreboardManager scoreboardManager = new ScoreboardManager(settings);
 
-        setGameManager(new MyGameManager(settings, this, messages, scoreboardManager, statisticsManager, getUserCosmeticsManager()));
+        setGameManager(new MyGameManager(settings, this, messages, scoreboardManager, getUserStatsManager(), getUserCosmeticsManager()));
 
-        gameLogic = new GameLogic(getGameManager(), statisticsManager, messages, getArenaManager(), settings, getUserCosmeticsManager());
+        gameLogic = new GameLogic(getGameManager(), getUserStatsManager(), messages, getArenaManager(), settings, getUserCosmeticsManager());
 
         actionRegistration = new ActionRegistrationImpl();
         actionRegistration.register(
@@ -92,12 +83,6 @@ public class TheTagPlugin extends MiniGame {
         registerActions();
 
         new VersionChecker(this).checkVersion();
-
-        Migrations migrations = DatabasesApiPlugin.getApi().getMigrations();
-        migrations.addMigration(new CreateStatisticsTable());
-        migrations.migrateAll();
-
-        getLoaders().registerLoaders(statsLoader);
 
         CosmeticsManager cosmeticsManager = getCosmeticsManager();
         cosmeticsManager.addCosmetic(new DefeatLightningCosmetic());
@@ -140,7 +125,7 @@ public class TheTagPlugin extends MiniGame {
     }
 
     private void registerCommands() {
-        getCommand("thetag").setExecutor(new TheTagCommand(getArenaManager(), getGameManager(), messages, statisticsManager, gameLogic, getUserCoinsManager(), menuManager));
+        getCommand("thetag").setExecutor(new TheTagCommand(getArenaManager(), getGameManager(), messages, getUserStatsManager(), gameLogic, getUserCoinsManager(), menuManager));
         getCommand("thetagadmin").setExecutor(new AdminTheTagCommand(settings, messages, getArenaManager(), getUserCoinsManager(), menuManager, configFile));
     }
 
@@ -153,7 +138,7 @@ public class TheTagPlugin extends MiniGame {
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
             return false;
         }
-        new TheTagExpansion(statisticsManager, getUserCoinsManager()).register();
+        new TheTagExpansion(getUserStatsManager(), getUserCoinsManager()).register();
 
         return true;
     }

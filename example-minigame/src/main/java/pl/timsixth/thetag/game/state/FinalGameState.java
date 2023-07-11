@@ -6,13 +6,14 @@ import org.bukkit.potion.PotionEffect;
 import pl.timsixth.minigameapi.game.Game;
 import pl.timsixth.minigameapi.game.state.GameState;
 import pl.timsixth.minigameapi.game.user.UserGame;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.game.GameLogic;
-import pl.timsixth.thetag.game.MyUserGame;
+import pl.timsixth.thetag.model.MyUserGame;
 import pl.timsixth.thetag.manager.ScoreboardManager;
-import pl.timsixth.thetag.manager.StatisticsManager;
 import pl.timsixth.thetag.task.StartFinalCountDown;
 
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class FinalGameState implements GameState {
     private final Messages messages;
     private final Settings settings;
     private final ScoreboardManager scoreboardManager;
-    private final StatisticsManager statisticsManager;
+    private final UserStatsManager<UserStatsDbModel> statisticsManager;
     private final GameLogic gameLogic;
 
     @Override

@@ -3,6 +3,7 @@ package pl.timsixth.minigameapi.stats.model;
 import lombok.Getter;
 import pl.timsixth.minigameapi.MiniGame;
 import pl.timsixth.minigameapi.database.AbstractDbModel;
+import pl.timsixth.minigameapi.database.annoations.Id;
 
 import java.util.UUID;
 
@@ -16,10 +17,10 @@ import java.util.UUID;
 @Getter
 public class DefaultUserStats extends AbstractDbModel implements UserStatsDbModel {
 
+    @Id
     private final UUID uuid;
     private final String name;
     private final String arenaName;
-
     private int wins;
     private int defeats;
 

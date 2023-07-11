@@ -3,12 +3,13 @@ package pl.timsixth.thetag.game.state;
 import lombok.RequiredArgsConstructor;
 import pl.timsixth.minigameapi.game.Game;
 import pl.timsixth.minigameapi.game.state.GameState;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.game.GameLogic;
 import pl.timsixth.thetag.manager.ScoreboardManager;
-import pl.timsixth.thetag.manager.StatisticsManager;
 
 @RequiredArgsConstructor
 public class WaitingGameState implements GameState {
@@ -19,7 +20,7 @@ public class WaitingGameState implements GameState {
     private final TheTagPlugin theTagPlugin;
     private final ScoreboardManager scoreboardManager;
     private final GameLogic gameLogic;
-    private final StatisticsManager statisticsManager;
+    private final UserStatsManager<UserStatsDbModel> statisticsManager;
 
     @Override
     public void run() {

@@ -8,13 +8,14 @@ import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.game.Game;
 import pl.timsixth.minigameapi.game.state.GameState;
 import pl.timsixth.minigameapi.game.user.UserGame;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.stats.model.DefaultUserStats;
+import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.cosmetics.CosmeticCategory;
 import pl.timsixth.thetag.game.GameLogic;
-import pl.timsixth.thetag.manager.StatisticsManager;
-import pl.timsixth.thetag.model.UserStats;
 import pl.timsixth.thetag.util.ItemUtil;
 import pl.timsixth.thetag.util.PlayerUtil;
 
@@ -26,7 +27,7 @@ public class WinGameState implements GameState {
     private final Game game;
     private final TheTagPlugin theTagPlugin;
     private final Messages messages;
-    private final StatisticsManager statisticsManager;
+    private final UserStatsManager<UserStatsDbModel> statisticsManager;
     private final Settings settings;
     private final GameLogic gameLogic;
 
@@ -43,17 +44,16 @@ public class WinGameState implements GameState {
             ItemUtil.clearPlayerInventory(player);
             player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
 
-            Optional<UserStats> userStatsOptional = statisticsManager.getUser(player.getUniqueId(), game.getArena().getName());
-            UserStats userStats;
+            Optional<UserStatsDbModel> userStatsOptional = statisticsManager.getUser(player.getUniqueId(), game.getArena().getName());
+            UserStatsDbModel userStats;
             if (!userStatsOptional.isPresent()) {
-                userStats = new UserStats(player.getUniqueId(), player.getName(), game.getArena().getName());
+                userStats = new DefaultUserStats(player.getUniqueId(), player.getName(), game.getArena().getName());
                 statisticsManager.addNewUser(userStats);
 
             } else {
                 userStats = userStatsOptional.get();
             }
             userStats.addWin();
-            userStats.addGamePlayed();
 
             UserCoinsManager<UserCoinsDbModel> userCoinsManager = theTagPlugin.getUserCoinsManager();
 

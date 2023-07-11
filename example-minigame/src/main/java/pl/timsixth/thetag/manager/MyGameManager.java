@@ -10,11 +10,13 @@ import pl.timsixth.minigameapi.game.Game;
 import pl.timsixth.minigameapi.game.impl.GameImpl;
 import pl.timsixth.minigameapi.game.impl.GameManagerImpl;
 import pl.timsixth.minigameapi.game.user.UserGame;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.game.GameLogic;
-import pl.timsixth.thetag.game.MyUserGame;
+import pl.timsixth.thetag.model.MyUserGame;
 import pl.timsixth.thetag.game.state.*;
 import pl.timsixth.thetag.util.ItemUtil;
 import pl.timsixth.thetag.util.PlayerUtil;
@@ -29,10 +31,10 @@ public class MyGameManager extends GameManagerImpl {
     private final TheTagPlugin theTagPlugin;
     private final Messages messages;
     private final ScoreboardManager scoreboardManager;
-    private final StatisticsManager statisticsManager;
+    private final UserStatsManager<UserStatsDbModel> statisticsManager;
     private final GameLogic gameLogic;
 
-    public MyGameManager(Settings settings, TheTagPlugin theTagPlugin, Messages messages, ScoreboardManager scoreboardManager, StatisticsManager statisticsManager, UserCosmeticsManager<UserCosmeticsDbModel> userCosmeticsManager) {
+    public MyGameManager(Settings settings, TheTagPlugin theTagPlugin, Messages messages, ScoreboardManager scoreboardManager, UserStatsManager<UserStatsDbModel> statisticsManager, UserCosmeticsManager<UserCosmeticsDbModel> userCosmeticsManager) {
         this.settings = settings;
         this.theTagPlugin = theTagPlugin;
         this.messages = messages;

@@ -11,7 +11,7 @@ import pl.timsixth.minigameapi.game.Game;
 import pl.timsixth.minigameapi.game.user.UserGame;
 import pl.timsixth.minigameapi.util.ChatUtil;
 import pl.timsixth.thetag.config.Settings;
-import pl.timsixth.thetag.game.MyUserGame;
+import pl.timsixth.thetag.model.MyUserGame;
 
 import java.util.HashMap;
 import java.util.List;

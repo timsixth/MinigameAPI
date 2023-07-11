@@ -13,7 +13,7 @@ import pl.timsixth.minigameapi.game.user.UserGame;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.cosmetics.CosmeticCategory;
 import pl.timsixth.thetag.game.GameLogic;
-import pl.timsixth.thetag.game.MyUserGame;
+import pl.timsixth.thetag.model.MyUserGame;
 
 import java.util.Optional;
 

@@ -15,11 +15,12 @@ import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.game.Game;
 import pl.timsixth.minigameapi.game.GameManager;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
 import pl.timsixth.minigameapi.util.ChatUtil;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.game.GameLogic;
 import pl.timsixth.thetag.manager.MenuManager;
-import pl.timsixth.thetag.manager.StatisticsManager;
 import pl.timsixth.thetag.util.PlayerUtil;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class TheTagCommand implements CommandExecutor {
     private final ArenaManager<ArenaFileModel> arenaManager;
     private final GameManager gameManager;
     private final Messages messages;
-    private final StatisticsManager statisticsManager;
+    private final UserStatsManager<UserStatsDbModel> statisticsManager;
     private final GameLogic gameLogic;
     private final UserCoinsManager<UserCoinsDbModel> userCoinsManager;
     private final MenuManager menuManager;

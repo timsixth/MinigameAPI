@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.timsixth.minigameapi.game.Game;
 import pl.timsixth.minigameapi.game.user.UserGame;
+import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
@@ -12,7 +14,6 @@ import pl.timsixth.thetag.game.GameLogic;
 import pl.timsixth.thetag.game.state.DrawingTheTagGameState;
 import pl.timsixth.thetag.game.state.WinGameState;
 import pl.timsixth.thetag.manager.ScoreboardManager;
-import pl.timsixth.thetag.manager.StatisticsManager;
 
 @AllArgsConstructor
 public class StartNextDrawingCountDown extends BukkitRunnable {
@@ -22,7 +23,7 @@ public class StartNextDrawingCountDown extends BukkitRunnable {
     private final TheTagPlugin theTagPlugin;
     private final Messages messages;
     private final ScoreboardManager scoreboardManager;
-    private final StatisticsManager statisticsManager;
+    private final UserStatsManager<UserStatsDbModel> statisticsManager;
     private final GameLogic gameLogic;
     private int gameTimer;
 
