@@ -1,6 +1,6 @@
 name: T-MiniGameAPI
 main: pl.timsixth.minigameapi.MiniGameApiPlugin
-version: '0.3.1'
+version: '0.4.0'
 author: timsixth
 website: https://timsixth.pl/
 api-version: 1.13

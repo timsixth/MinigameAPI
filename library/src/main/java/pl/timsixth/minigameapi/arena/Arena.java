@@ -1,6 +1,7 @@
 package pl.timsixth.minigameapi.arena;
 
 import org.bukkit.Location;
+import pl.timsixth.minigameapi.arena.exception.LocationNotFoundException;
 
 import java.util.Map;
 import java.util.Optional;
@@ -60,4 +61,15 @@ public interface Arena {
      * @return Optional of location
      */
     Optional<Location> getLocation(String name);
+
+    /**
+     * Gets location by name
+     *
+     * @param name location id
+     * @return location
+     * @throws pl.timsixth.minigameapi.arena.exception.LocationNotFoundException when can not find location
+     */
+    default Location getLocationByName(String name) {
+        return getLocation(name).orElseThrow(() -> new LocationNotFoundException(name));
+    }
 }
