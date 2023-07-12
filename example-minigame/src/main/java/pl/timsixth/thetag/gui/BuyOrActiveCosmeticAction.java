@@ -59,7 +59,8 @@ public class BuyOrActiveCosmeticAction extends AbstractAction implements ClickAc
                     userCosmeticsDbModel.disableCosmetic(cosmetic);
                     PlayerUtil.sendMessage(player, messages.getDisabledCosmetic());
                 } else {
-                    if (userCosmeticsDbModel.getActiveCosmeticsByCategory(cosmetic.getName()).size() == 1) {
+                    String category = cosmetic.getName().split("_")[0];
+                    if (userCosmeticsDbModel.getActiveCosmeticsByCategory(category).size() == 1) {
                         PlayerUtil.sendMessage(player, messages.getPleaseResetCosmetic());
                         event.setCancelled(true);
                         return;
