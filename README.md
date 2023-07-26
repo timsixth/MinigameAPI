@@ -7,6 +7,16 @@ Please report every bugs in issues section.<br>
 
 JavaDocs: https://timsixth.pl/javadocs/minigame_api/0.5.2/
 
+## Library features:
+- Arena managment system
+- Game managment system
+- Game cosmetics system
+- Teams in game
+- Advenced loading system from SQL databases (MySQL or SQLite) or YAML files
+- Game statiscics system
+- Coins system
+- Simple minigame configuration
+
 ## Getting started
 
 Maven
