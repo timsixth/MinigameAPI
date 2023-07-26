@@ -24,11 +24,14 @@
     </repositories>
 
     <artifactId>example-minigame</artifactId>
+    <version>1.2.1</version>
+    <name>T-TheTag</name>
+
     <dependencies>
         <dependency>
             <groupId>pl.timsixth</groupId>
             <artifactId>library</artifactId>
-            <version>0.2.0</version>
+            <version>0.5.2</version>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>
@@ -46,6 +49,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jar.finalName>${project.name}-${project.version}</jar.finalName>
     </properties>
     <build>
         <plugins>
