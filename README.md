@@ -16,7 +16,7 @@ JavaDocs: https://timsixth.pl/javadocs/minigame_api/0.5.2/
 - Game statiscics system
 - Coins system
 - Simple minigame configuration
-- Integration with T-DataBasesAPI (Thanks to this plugin managment of SQL databases is really simple)
+- Integration with T-DataBasesAPI (Thanks to this plugin, you can manage of SQL databases is really simple)
 - Simple saving, deleting and updating system (You don't have write query to database or use YAML spigot API to execute these actions) 
 
 ## Getting started
