@@ -2,22 +2,22 @@
 Flexible, modern and easy to use library to creating minigames in minecraft. <br>
 Library works from 1.13.2 to 1.20.x.
 <br>
-This version is pre-release, not for comercial use, may be has bugs. 
+This version is pre-release, not for commercial use, may be it has bugs. 
 Please report every bugs in issues section.<br>
 
 JavaDocs: https://timsixth.pl/javadocs/minigame_api/0.5.2/
 
 ## Library features:
-- Arena managment system
-- Game managment system
+- Arena management system
+- Game management system
 - Game cosmetics system
 - Teams in game
-- Advenced loading system from SQL databases (MySQL or SQLite) or YAML files
-- Game statiscics system
+- Advanced loading system from SQL databases (MySQL or SQLite) or YAML files
+- Game statistics system
 - Coins system
 - Simple minigame configuration
 - Integration with T-DataBasesAPI (Thanks to this plugin management of SQL databases is really simple)
-- Simple saving, deleting and updating system (You don't have write query to database or use YAML spigot API to execute these actions) 
+- Simple saving, deleting and updating system (You don't have to write query to database or use YAML spigot API to execute these actions) 
 
 ## Getting started
 
