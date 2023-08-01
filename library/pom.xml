@@ -10,8 +10,11 @@
     </parent>
 
     <artifactId>library</artifactId>
-    <version>0.5.2</version>
+    <version>0.6.0</version>
     <name>MinigameAPI</name>
+    <build>
+        <finalName>${project.name}-${project.version}</finalName>
+    </build>
 
     <repositories>
         <repository>
@@ -32,7 +35,6 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jar.finalName>${project.name}-${project.version}</jar.finalName>
     </properties>
 
 </project>
