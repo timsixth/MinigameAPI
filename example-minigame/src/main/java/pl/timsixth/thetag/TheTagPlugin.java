@@ -14,6 +14,7 @@ import pl.timsixth.thetag.command.TheTagCommand;
 import pl.timsixth.thetag.config.ConfigFile;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
+import pl.timsixth.thetag.configurators.MyCommandConfigurator;
 import pl.timsixth.thetag.configurators.MyGameConfigurator;
 import pl.timsixth.thetag.configurators.MyPluginConfigurator;
 import pl.timsixth.thetag.cosmetics.defeat.DefeatLightningCosmetic;
@@ -57,6 +58,8 @@ public class TheTagPlugin extends MiniGame {
         saveConfig();
 
         initConfiguration();
+
+        setDefaultCommandConfigurator(new MyCommandConfigurator(messages));
 
         ScoreboardManager scoreboardManager = new ScoreboardManager(settings);
 
