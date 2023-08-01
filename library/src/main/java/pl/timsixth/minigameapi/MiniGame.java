@@ -17,8 +17,10 @@ import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.coins.manager.UserCoinsManagerImpl;
 import pl.timsixth.minigameapi.coins.migrations.CreateUserCoinsTableMigration;
 import pl.timsixth.minigameapi.configuration.Configurator;
+import pl.timsixth.minigameapi.configuration.configurators.CommandConfigurator;
 import pl.timsixth.minigameapi.configuration.configurators.GameConfigurator;
 import pl.timsixth.minigameapi.configuration.configurators.PluginConfigurator;
+import pl.timsixth.minigameapi.configuration.type.DefaultCommandConfiguration;
 import pl.timsixth.minigameapi.configuration.type.DefaultGameConfiguration;
 import pl.timsixth.minigameapi.configuration.type.DefaultPluginConfiguration;
 import pl.timsixth.minigameapi.cosmetics.CosmeticsManager;
@@ -49,6 +51,7 @@ public class MiniGame extends JavaPlugin {
 
     private Configurator<DefaultGameConfiguration> defaultGameConfigurator;
     private Configurator<DefaultPluginConfiguration> defaultPluginConfigurator;
+    private Configurator<DefaultCommandConfiguration> defaultCommandConfigurator;
 
     private ArenaManager<ArenaFileModel> arenaManager;
     private UserCoinsManager<UserCoinsDbModel> userCoinsManager;
@@ -83,6 +86,7 @@ public class MiniGame extends JavaPlugin {
     private void initConfigurators() {
         if (defaultGameConfigurator == null) defaultGameConfigurator = new GameConfigurator();
         if (defaultPluginConfigurator == null) defaultPluginConfigurator = new PluginConfigurator();
+        if (defaultCommandConfigurator == null) defaultCommandConfigurator = new CommandConfigurator();
     }
 
     /**
@@ -180,5 +184,9 @@ public class MiniGame extends JavaPlugin {
      */
     public DefaultPluginConfiguration getDefaultPluginConfiguration() {
         return defaultPluginConfigurator.configure();
+    }
+
+    public DefaultCommandConfiguration getDefaultCommandConfiguration() {
+        return defaultCommandConfigurator.configure();
     }
 }
