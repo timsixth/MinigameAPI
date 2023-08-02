@@ -100,16 +100,17 @@ public abstract class ParentCommand implements CommandExecutor {
             }
         }
 
-        return executeCommand(sender);
+        return executeCommand(sender, args);
     }
 
     /**
      * Executes command
      *
      * @param commandSender Source of the command
+     * @param args Passed command arguments
      * @return true if a valid command, otherwise false
      */
-    protected abstract boolean executeCommand(CommandSender commandSender);
+    protected abstract boolean executeCommand(CommandSender commandSender, String[] args);
 
     /**
      * Gets sub commands
