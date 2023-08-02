@@ -5,7 +5,7 @@ Library works from 1.13.2 to 1.20.x.
 This version is pre-release, not for commercial use, may be it has bugs. 
 Please report every bugs in issues section.<br>
 
-JavaDocs: https://timsixth.pl/javadocs/minigame_api/0.5.2/
+JavaDocs: https://timsixth.pl/javadocs/minigame_api/0.6.0/
 
 ## Library features:
 - Arena management system
@@ -17,7 +17,8 @@ JavaDocs: https://timsixth.pl/javadocs/minigame_api/0.5.2/
 - Coins system
 - Simple minigame configuration
 - Integration with T-DataBasesAPI (Thanks to this plugin management of SQL databases is really simple)
-- Simple saving, deleting and updating system (You don't have to write query to database or use YAML spigot API to execute these actions) 
+- Simple saving, deleting and updating system (You don't have to write query to database or use YAML spigot API to execute these actions)
+- Commands API (You can create parent commands and subcommands in separate classes)
 
 ## Getting started
 
