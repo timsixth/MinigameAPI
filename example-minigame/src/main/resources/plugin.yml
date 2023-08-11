@@ -1,6 +1,6 @@
 name: T-TheTag
 main: pl.timsixth.thetag.TheTagPlugin
-version: '1.3'
+version: '1.4'
 description: The tag minigame
 website: https://timsixth.pl/
 api-version: 1.13

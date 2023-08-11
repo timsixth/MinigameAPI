@@ -35,7 +35,7 @@ public class AdminTheTagCommand extends ParentCommand {
     }
 
     @Override
-    protected boolean executeCommand(CommandSender sender) {
+    protected boolean executeCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
 
         for (String message : messages.getAdminHelp()) {

@@ -16,6 +16,50 @@ guis:
         lore:
           - '&7Price &a{PRICE} &7coins'
           - '&7Right click to buy effect'
+      1:
+        material: WATER_BUCKET
+        displayname: '&a&lDrip water effect'
+        price: 3000
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'WALK_DRIP_WATER'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
+      2:
+        material: LAVA_BUCKET
+        displayname: '&a&lDrip lava effect'
+        price: 3500
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'WALK_DRIP_LAVA'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
+      3:
+        material: WHITE_WOOL
+        displayname: '&a&lCloud effect'
+        price: 4000
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'WALK_CLOUD'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
+      4:
+        material: JUKEBOX
+        displayname: '&a&lNOte effect'
+        price: 2000
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'WALK_NOTE'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
       7:
         material: BARRIER
         displayname: '&cReturn to main menu'
