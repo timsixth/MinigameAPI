@@ -9,9 +9,10 @@ import pl.timsixth.minigameapi.configuration.Configuration;
  */
 @Builder
 @Getter
-public class DefaultPluginConfiguration implements Configuration {
+public class PluginConfiguration implements Configuration {
 
     private boolean useDataBase;
     private String tablesPrefix;
     private boolean useDefaultStatsSystem;
+    private boolean useBoostersSystem;
 }

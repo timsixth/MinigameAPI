@@ -1,16 +1,16 @@
 package pl.timsixth.minigameapi.configuration.configurators;
 
 import pl.timsixth.minigameapi.configuration.Configurator;
-import pl.timsixth.minigameapi.configuration.type.DefaultGameConfiguration;
+import pl.timsixth.minigameapi.configuration.type.GameConfiguration;
 
-public class GameConfigurator implements Configurator<DefaultGameConfiguration> {
+public class DefaultGameConfigurator implements Configurator<GameConfiguration> {
 
     /**
      * @return default configuration for game
      */
     @Override
-    public DefaultGameConfiguration configure() {
-        return DefaultGameConfiguration.builder()
+    public GameConfiguration configure() {
+        return GameConfiguration.builder()
                 .blockBreaking(true)
                 .blocksPlacing(true)
                 .useTeams(false)

@@ -9,7 +9,7 @@ import pl.timsixth.minigameapi.configuration.Configuration;
  */
 @Builder
 @Getter
-public class DefaultCommandConfiguration implements Configuration {
+public class CommandConfiguration implements Configuration {
 
     private String doNotHavePermissionMessage;
     private String onlyPlayersMessage;

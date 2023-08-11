@@ -2,7 +2,7 @@ package pl.timsixth.minigameapi.loader;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pl.timsixth.minigameapi.configuration.type.DefaultPluginConfiguration;
+import pl.timsixth.minigameapi.configuration.type.PluginConfiguration;
 import pl.timsixth.minigameapi.loader.database.SqlDataBaseLoader;
 import pl.timsixth.minigameapi.model.Model;
 
@@ -16,7 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public final class Loaders {
 
-    private final DefaultPluginConfiguration defaultPluginConfiguration;
+    private final PluginConfiguration pluginConfiguration;
 
     @Getter
     private final Map<Loader<? extends Model>, Boolean> loaders = new HashMap<>();
@@ -73,7 +73,7 @@ public final class Loaders {
             if (this.loaders.get(loader)) continue;
 
             if (loader instanceof SqlDataBaseLoader) {
-                if (defaultPluginConfiguration.isUseDataBase()) {
+                if (pluginConfiguration.isUseDataBase()) {
                     loader.load();
                 }
             } else {

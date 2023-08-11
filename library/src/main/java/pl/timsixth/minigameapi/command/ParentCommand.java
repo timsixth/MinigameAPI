@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.configuration.type.DefaultCommandConfiguration;
+import pl.timsixth.minigameapi.configuration.type.CommandConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public abstract class ParentCommand implements CommandExecutor {
     private final boolean hasArguments;
     private final boolean onlyPlayers;
     private final boolean usePermission;
-    private final DefaultCommandConfiguration defaultCommandConfiguration;
+    private final CommandConfiguration commandConfiguration;
 
     /**
      * All args constructor
@@ -31,14 +31,14 @@ public abstract class ParentCommand implements CommandExecutor {
      * @param hasArguments                true if command has sub commands otherwise false
      * @param onlyPlayers                 true if command can be used by only players otherwise false
      * @param usePermission               true if command has permission otherwise false
-     * @param defaultCommandConfiguration command messages configuration
+     * @param commandConfiguration command messages configuration
      */
-    public ParentCommand(String permission, boolean hasArguments, boolean onlyPlayers, boolean usePermission, DefaultCommandConfiguration defaultCommandConfiguration) {
+    public ParentCommand(String permission, boolean hasArguments, boolean onlyPlayers, boolean usePermission, CommandConfiguration commandConfiguration) {
         this.permission = permission;
         this.hasArguments = hasArguments;
         this.onlyPlayers = onlyPlayers;
         this.usePermission = usePermission;
-        this.defaultCommandConfiguration = defaultCommandConfiguration;
+        this.commandConfiguration = commandConfiguration;
         this.subCommands = new ArrayList<>();
     }
 
@@ -48,13 +48,13 @@ public abstract class ParentCommand implements CommandExecutor {
      * @param permission                  command permission
      * @param onlyPlayers                 true if command can be used by only players otherwise false
      * @param usePermission               true if command has permission otherwise false
-     * @param defaultCommandConfiguration command messages configuration
+     * @param commandConfiguration command messages configuration
      */
-    public ParentCommand(String permission, boolean onlyPlayers, boolean usePermission, DefaultCommandConfiguration defaultCommandConfiguration) {
+    public ParentCommand(String permission, boolean onlyPlayers, boolean usePermission, CommandConfiguration commandConfiguration) {
         this.permission = permission;
         this.onlyPlayers = onlyPlayers;
         this.usePermission = usePermission;
-        this.defaultCommandConfiguration = defaultCommandConfiguration;
+        this.commandConfiguration = commandConfiguration;
         this.hasArguments = false;
     }
 
@@ -78,14 +78,14 @@ public abstract class ParentCommand implements CommandExecutor {
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String[] args) {
         if (onlyPlayers) {
             if (!(sender instanceof Player)) {
-                Bukkit.getLogger().info(defaultCommandConfiguration.getOnlyPlayersMessage());
+                Bukkit.getLogger().info(commandConfiguration.getOnlyPlayersMessage());
                 return true;
             }
         }
 
         if (usePermission) {
             if (!sender.hasPermission(permission)) {
-                sender.sendMessage(defaultCommandConfiguration.getDoNotHavePermissionMessage());
+                sender.sendMessage(commandConfiguration.getDoNotHavePermissionMessage());
                 return true;
             }
         }
