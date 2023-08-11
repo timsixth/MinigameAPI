@@ -6,10 +6,10 @@ import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import pl.timsixth.minigameapi.cosmetics.ParticleCosmetic;
 
-public class WalkCloudCosmetic implements ParticleCosmetic {
+public class WalkSlimeCosmetic implements ParticleCosmetic {
     @Override
     public String getName() {
-        return "WALK_CLOUD";
+        return "WALK_SLIME";
     }
 
     @Override
@@ -23,6 +23,6 @@ public class WalkCloudCosmetic implements ParticleCosmetic {
 
     @Override
     public Particle getParticle() {
-        return Particle.CLOUD;
+        return Particle.SLIME;
     }
 }

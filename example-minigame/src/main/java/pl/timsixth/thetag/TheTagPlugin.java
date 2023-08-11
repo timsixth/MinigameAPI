@@ -92,7 +92,7 @@ public class TheTagPlugin extends MiniGame {
         cosmeticsManager.addCosmetic(new WinFireworkCosmetic());
 
         cosmeticsManager.addCosmetic(new WalkHeartCosmetic());
-        cosmeticsManager.addCosmetic(new WalkCloudCosmetic());
+        cosmeticsManager.addCosmetic(new WalkSlimeCosmetic());
         cosmeticsManager.addCosmetic(new WalkNoteCosmetic());
         cosmeticsManager.addCosmetic(new WalkDripLavaCosmetic());
         cosmeticsManager.addCosmetic(new WalkDripWaterCosmetic());

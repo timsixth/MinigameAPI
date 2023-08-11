@@ -39,13 +39,13 @@ guis:
           - '&7Price &a{PRICE} &7coins'
           - '&7Right click to buy effect'
       3:
-        material: WHITE_WOOL
-        displayname: '&a&lCloud effect'
+        material: SLIME_BALL
+        displayname: '&a&lSlime effect'
         price: 4000
         click_action:
           type: 'BUY_OR_ACTIVE_COSMETIC'
           args:
-            - 'WALK_CLOUD'
+            - 'WALK_SLIME'
         lore:
           - '&7Price &a{PRICE} &7coins'
           - '&7Right click to buy effect'
