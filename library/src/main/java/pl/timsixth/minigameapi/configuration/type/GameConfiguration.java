@@ -2,7 +2,6 @@ package pl.timsixth.minigameapi.configuration.type;
 
 import lombok.Builder;
 import lombok.Getter;
-import org.bukkit.GameMode;
 import pl.timsixth.minigameapi.configuration.Configuration;
 
 /**
@@ -10,7 +9,7 @@ import pl.timsixth.minigameapi.configuration.Configuration;
  */
 @Builder
 @Getter
-public class DefaultGameConfiguration implements Configuration {
+public class GameConfiguration implements Configuration {
 
     private boolean useTeams;
     private boolean blockBreaking;

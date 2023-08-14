@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import pl.timsixth.minigameapi.configuration.type.DefaultGameConfiguration;
+import pl.timsixth.minigameapi.configuration.type.GameConfiguration;
 import pl.timsixth.minigameapi.game.GameManager;
 
 /**
@@ -13,7 +13,7 @@ import pl.timsixth.minigameapi.game.GameManager;
 @RequiredArgsConstructor
 public class BlockBreakListener implements Listener {
 
-    private final DefaultGameConfiguration defaultGameConfiguration;
+    private final GameConfiguration defaultGameConfiguration;
     private final GameManager gameManager;
 
     @EventHandler

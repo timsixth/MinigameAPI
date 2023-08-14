@@ -7,7 +7,7 @@ import pl.timsixth.minigameapi.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.command.ParentCommand;
-import pl.timsixth.minigameapi.configuration.type.DefaultCommandConfiguration;
+import pl.timsixth.minigameapi.configuration.type.CommandConfiguration;
 import pl.timsixth.minigameapi.util.ChatUtil;
 import pl.timsixth.thetag.command.subcommand.thetagadmin.*;
 import pl.timsixth.thetag.config.ConfigFile;
@@ -20,10 +20,10 @@ public class AdminTheTagCommand extends ParentCommand {
 
     private final Messages messages;
 
-    public AdminTheTagCommand(DefaultCommandConfiguration defaultCommandConfiguration, Messages messages,
+    public AdminTheTagCommand(CommandConfiguration commandConfiguration, Messages messages,
                               Settings settings, MenuManager menuManager, ConfigFile configFile,
                               ArenaManager<ArenaFileModel> arenaManager, UserCoinsManager<UserCoinsDbModel> userCoinsManager) {
-        super("thetag.admin", true, true, true, defaultCommandConfiguration);
+        super("thetag.admin", true, true, true, commandConfiguration);
         this.messages = messages;
         getSubCommands().add(new SetLobbySubCommand(settings, messages));
         getSubCommands().add(new ReloadSubCommand(configFile, menuManager, messages));

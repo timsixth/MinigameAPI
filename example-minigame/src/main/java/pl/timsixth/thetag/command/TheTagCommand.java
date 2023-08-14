@@ -7,7 +7,7 @@ import pl.timsixth.minigameapi.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.command.ParentCommand;
-import pl.timsixth.minigameapi.configuration.type.DefaultCommandConfiguration;
+import pl.timsixth.minigameapi.configuration.type.CommandConfiguration;
 import pl.timsixth.minigameapi.game.GameManager;
 import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
@@ -22,11 +22,11 @@ public class TheTagCommand extends ParentCommand {
 
     private final Messages messages;
 
-    public TheTagCommand(DefaultCommandConfiguration defaultCommandConfiguration,
+    public TheTagCommand(CommandConfiguration commandConfiguration,
                          Messages messages, ArenaManager<ArenaFileModel> arenaManager, GameManager gameManager,
                          UserCoinsManager<UserCoinsDbModel> userCoinsManager, UserStatsManager<UserStatsDbModel> userStatsManager,
                          MenuManager menuManager, GameLogic gameLogic) {
-        super("", true, true, false, defaultCommandConfiguration);
+        super("", true, true, false, commandConfiguration);
         this.messages = messages;
         getSubCommands().add(new ListSubCommand(arenaManager, messages));
         getSubCommands().add(new LeaveSubCommand(gameManager, messages));

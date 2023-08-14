@@ -1,13 +1,13 @@
 package pl.timsixth.thetag.configurators;
 
-import pl.timsixth.minigameapi.configuration.configurators.PluginConfigurator;
-import pl.timsixth.minigameapi.configuration.type.DefaultPluginConfiguration;
+import pl.timsixth.minigameapi.configuration.configurators.DefaultPluginConfigurator;
+import pl.timsixth.minigameapi.configuration.type.PluginConfiguration;
 
-public class MyPluginConfigurator extends PluginConfigurator {
+public class MyPluginConfigurator extends DefaultPluginConfigurator {
 
     @Override
-    public DefaultPluginConfiguration configure() {
-        return DefaultPluginConfiguration.builder()
+    public PluginConfiguration configure() {
+        return PluginConfiguration.builder()
                 .tablesPrefix("thetag_")
                 .useDataBase(true)
                 .useDefaultStatsSystem(true)
