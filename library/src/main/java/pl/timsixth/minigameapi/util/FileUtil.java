@@ -2,8 +2,8 @@ package pl.timsixth.minigameapi.util;
 
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
-import pl.timsixth.minigameapi.MiniGame;
-import pl.timsixth.minigameapi.file.ConfigurationFile;
+import pl.timsixth.minigameapi.api.MiniGame;
+import pl.timsixth.minigameapi.api.file.ConfigurationFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,5 +51,15 @@ public class FileUtil {
         if (!miniGame.getDataFolder().mkdir()) {
             miniGame.getDataFolder().mkdirs();
         }
+    }
+
+    public static File createDirectory(File parent, String name) {
+        File file = new File(parent, name);
+
+        if (!file.exists()) {
+            file.mkdir();
+        }
+
+        return file;
     }
 }

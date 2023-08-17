@@ -1,7 +1,7 @@
 package pl.timsixth.thetag.configurators;
 
-import pl.timsixth.minigameapi.configuration.configurators.DefaultGameConfigurator;
-import pl.timsixth.minigameapi.configuration.type.GameConfiguration;
+import pl.timsixth.minigameapi.api.configuration.configurators.DefaultGameConfigurator;
+import pl.timsixth.minigameapi.api.configuration.type.GameConfiguration;
 
 public class MyGameConfigurator extends DefaultGameConfigurator {
 

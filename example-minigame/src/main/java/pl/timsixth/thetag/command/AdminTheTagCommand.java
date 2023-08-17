@@ -2,12 +2,12 @@ package pl.timsixth.thetag.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.arena.ArenaFileModel;
-import pl.timsixth.minigameapi.arena.manager.ArenaManager;
-import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
-import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
-import pl.timsixth.minigameapi.command.ParentCommand;
-import pl.timsixth.minigameapi.configuration.type.CommandConfiguration;
+import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
+import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
+import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
+import pl.timsixth.minigameapi.api.command.ParentCommand;
+import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
 import pl.timsixth.minigameapi.util.ChatUtil;
 import pl.timsixth.thetag.command.subcommand.thetagadmin.*;
 import pl.timsixth.thetag.config.ConfigFile;

@@ -3,10 +3,10 @@ package pl.timsixth.thetag.command.subcommand.thetagadmin;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.arena.ArenaFileModel;
-import pl.timsixth.minigameapi.arena.ArenaImpl;
-import pl.timsixth.minigameapi.arena.manager.ArenaManager;
-import pl.timsixth.minigameapi.command.SubCommand;
+import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
+import pl.timsixth.minigameapi.api.arena.ArenaImpl;
+import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
+import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.util.PlayerUtil;
 

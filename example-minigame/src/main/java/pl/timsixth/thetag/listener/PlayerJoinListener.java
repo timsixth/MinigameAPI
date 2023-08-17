@@ -5,9 +5,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
-import pl.timsixth.minigameapi.coins.UserCoinsImpl;
-import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
+import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.UserCoinsImpl;
+import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 
 import java.util.Optional;
 

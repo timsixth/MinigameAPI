@@ -11,51 +11,16 @@
 
     <artifactId>library</artifactId>
     <version>0.6.0</version>
-    <name>MinigameAPI</name>
+    <name>T-MinigameAPI</name>
     <build>
         <finalName>${project.name}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.4.1</version>
+                <version>3.3.0</version>
                 <configuration>
-                    <relocations>
-                        <relocation>
-                            <pattern>pl.timsixth.gui.libray</pattern>
-                            <shadedPattern>pl.timsixth.thetag.gui.lib</shadedPattern>
-                        </relocation>
-                    </relocations>
-                    <filters>
-                        <filter>
-                            <artifact>com.mysql:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/*.MF</exclude>
-                            </excludes>
-                        </filter>
-                        <filter>
-                            <artifact>com.github.timsixth:T-GuiApi</artifact>
-                            <includes>
-                                <include>pl/timsixth/gui/libray/listener/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/action/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/action/click/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/action/custom/impl/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/action/custom/**.class</include>
-                                <include>pl/timsixth/gui/libray/manager/**.class</include>
-                                <include>pl/timsixth/gui/libray/manager/registration/**.class</include>
-                                <include>pl/timsixth/gui/libray/util/**.class</include>
-                            </includes>
-                        </filter>
-                    </filters>
-                    <artifactSet>
-                        <excludes>
-                            <exclude>com.google.protobuf:protobuf-java</exclude>
-                            <exclude>com.mysql:mysql-connector-j</exclude>
-                            <exclude>com.github.timsixth:T-DataBasesAPI</exclude>
-                            <exclude>org.xerial:sqlite-jdbc</exclude>
-                        </excludes>
-                    </artifactSet>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
                 </configuration>
                 <executions>
                     <execution>
@@ -63,6 +28,31 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.kohsuke</pattern>
+                                    <shadedPattern>pl.timsixth.minigameapi.github.api</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <filters>
+                                <filter>
+                                    <artifact>>org.kohsuke:github-api</artifact>
+                                    <excludeDefaults>false</excludeDefaults>
+                                    <includes>
+                                        <include>pl.timsixth.minigameapi.github.api</include>
+                                    </includes>
+                                </filter>
+                            </filters>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>com.google.protobuf:protobuf-java</exclude>
+                                    <exclude>com.mysql:mysql-connector-j</exclude>
+                                    <exclude>com.github.timsixth:T-DataBasesAPI</exclude>
+                                    <exclude>org.xerial:sqlite-jdbc</exclude>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -83,9 +73,9 @@
             <version>v1.7.2</version>
         </dependency>
         <dependency>
-            <groupId>com.github.timsixth</groupId>
-            <artifactId>T-GuiApi</artifactId>
-            <version>v1.1.2</version>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>github-api</artifactId>
+            <version>1.315</version>
         </dependency>
     </dependencies>
 

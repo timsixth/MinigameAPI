@@ -6,8 +6,8 @@ import pl.timsixth.gui.libray.model.MenuItem;
 import pl.timsixth.gui.libray.model.action.AbstractAction;
 import pl.timsixth.gui.libray.model.action.ActionType;
 import pl.timsixth.gui.libray.model.action.click.ClickAction;
-import pl.timsixth.minigameapi.cosmetics.user.UserCosmeticsDbModel;
-import pl.timsixth.minigameapi.cosmetics.user.manager.UserCosmeticsManager;
+import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsDbModel;
+import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.util.PlayerUtil;
 

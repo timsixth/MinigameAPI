@@ -1,0 +1,16 @@
+messages:
+  addon_enabled: '&aYou have enabled addon'
+  addon_disabled: '&aYou have disabled addon'
+  installed_addons: '&aInstalled addons'
+  addon_already_enabled: '&cAddon is already enabled'
+  addon_already_disabled: '&cAddon is already disabled'
+  addon_does_not_exists: '&cAddon does not exists'
+  addon_downloading: '&aDownloading addon...'
+  addon_has_downloaded: '&aAddon has been downloaded'
+  addons_help:
+    - '&7--------] &6&lMiniGameAPI &7[--------'
+    - '&7/&6minigameapi addon install <github-repo-name> <version> &7- Installs addon from Github repository'
+    - '&7/&6minigameapi addon update <addon-name> &7- Updates addon'
+    - '&7/&6minigameapi addon enable <addon-name> &7- Enables addon'
+    - '&7/&6minigameapi addon disable <addon-name> &7- Disable addon'
+    - '&7/&6minigameapi addon list &7- List of all addons'

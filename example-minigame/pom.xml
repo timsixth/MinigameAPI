@@ -58,6 +58,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.4.1</version>
                 <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
                     <relocations>
                         <relocation>
                             <pattern>pl.timsixth.gui.libray</pattern>
@@ -93,6 +94,12 @@
                             <exclude>com.github.timsixth:T-DataBasesAPI</exclude>
                             <exclude>org.xerial:sqlite-jdbc</exclude>
                             <exclude>pl.timsixth:library</exclude>
+                            <exclude>org.kohsuke:github-api</exclude>
+                            <exclude>com.fasterxml.jackson.core:jackson-annotations</exclude>
+                            <exclude>com.fasterxml.jackson.core:jackson-core</exclude>
+                            <exclude>com.fasterxml.jackson.core:jackson-databind</exclude>
+                            <exclude>org.apache.commons:commons-lang3</exclude>
+                            <exclude>commons-io:commons-io</exclude>
                         </excludes>
                     </artifactSet>
                 </configuration>

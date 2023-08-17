@@ -5,10 +5,10 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
-import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
-import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
+import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
+import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 
 import java.util.Optional;
 import java.util.UUID;

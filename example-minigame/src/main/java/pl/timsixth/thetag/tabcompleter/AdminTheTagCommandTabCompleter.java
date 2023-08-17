@@ -6,11 +6,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
-import pl.timsixth.minigameapi.arena.Arena;
-import pl.timsixth.minigameapi.arena.ArenaFileModel;
-import pl.timsixth.minigameapi.arena.manager.ArenaManager;
-import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
-import pl.timsixth.minigameapi.coins.manager.UserCoinsManager;
+import pl.timsixth.minigameapi.api.arena.Arena;
+import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
+import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
+import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;

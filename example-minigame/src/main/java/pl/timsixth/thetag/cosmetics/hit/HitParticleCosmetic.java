@@ -1,7 +1,7 @@
 package pl.timsixth.thetag.cosmetics.hit;
 
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.cosmetics.ParticleCosmetic;
+import pl.timsixth.minigameapi.api.cosmetics.ParticleCosmetic;
 
 public interface HitParticleCosmetic extends ParticleCosmetic {
 
