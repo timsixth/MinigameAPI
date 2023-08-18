@@ -10,6 +10,7 @@ import pl.timsixth.minigameapi.api.addon.manager.AddonManagerImpl;
 import pl.timsixth.minigameapi.api.arena.ArenaImpl;
 import pl.timsixth.minigameapi.api.configuration.configurators.DefaultCommandConfigurator;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
+import pl.timsixth.minigameapi.bstats.Metrics;
 import pl.timsixth.minigameapi.command.MiniGameAPICommand;
 import pl.timsixth.minigameapi.config.Messages;
 import pl.timsixth.minigameapi.tabcompleter.MiniGameAPITabCompleter;
@@ -19,7 +20,7 @@ import pl.timsixth.minigameapi.util.FileUtil;
 import java.io.File;
 
 @Getter
-public class MiniGameApiPlugin extends JavaPlugin {
+public final class MiniGameApiPlugin extends JavaPlugin {
 
     private AddonManager addonManager;
 
@@ -35,6 +36,8 @@ public class MiniGameApiPlugin extends JavaPlugin {
 
         this.getConfig().options().copyDefaults(true);
         saveConfig();
+
+        new Metrics(this, 19564);
 
         Messages messages = new Messages(this);
 
