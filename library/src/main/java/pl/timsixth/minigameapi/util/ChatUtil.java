@@ -9,7 +9,7 @@ import java.util.List;
 @UtilityClass
 public class ChatUtil {
     /**
-     * Translates '&' symbol to colors in text
+     * Translates 'and' symbol to colors in text
      *
      * @param text text to translates
      * @return translated text
@@ -19,7 +19,7 @@ public class ChatUtil {
     }
 
     /**
-     * Translates '&' symbol to colors in strings list
+     * Translates 'and' symbol to colors in strings list
      *
      * @param stringList list of string to translate
      * @return translated list of strings
