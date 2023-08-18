@@ -1,11 +1,14 @@
 package pl.timsixth.minigameapi.api.addon.manager;
 
+import com.rylinaux.plugman.PlugMan;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 import org.kohsuke.github.GHAsset;
 import org.kohsuke.github.GHRelease;
 import org.kohsuke.github.GHRepository;
@@ -52,8 +55,24 @@ public class AddonManagerImpl implements AddonManager {
     }
 
     @Override
-    public void update(Addon addon) {
+    public void update(Addon addon) throws IOException, InvalidPluginException {
+        if (Bukkit.getPluginManager().getPlugin("PlugManX") == null) return;
 
+        if (addon.getRepository() == null || addon.getRepository().isEmpty()) return;
+
+        PluginManager pluginManager = miniGameApiPlugin.getServer().getPluginManager();
+        Plugin plugin = addon.toPlugin();
+
+        addon.getPluginFile().delete();
+
+        PlugMan.getInstance().getPluginUtil().unload(plugin);
+        pluginManager.disablePlugin(plugin);
+
+        File file = download(addon.getRepository(), "latest");
+
+        addons.remove(addon);
+
+        loadAddon(file);
     }
 
     @Override
@@ -110,11 +129,11 @@ public class AddonManagerImpl implements AddonManager {
         YamlConfiguration yamlConfiguration = loadAddonDescription(file);
 
         if (yamlConfiguration == null) throw new IllegalStateException("Can not get values from addon.yml");
-        Addon addon = new AddonImpl(yamlConfiguration.getString("name"), yamlConfiguration.getString("displayName"));
+        Addon addon = new AddonImpl(yamlConfiguration.getString("name"), yamlConfiguration.getString("displayName"), file);
 
         if (yamlConfiguration.contains("repository"))
-            addon = new AddonImpl(yamlConfiguration.getString("name"),
-                    yamlConfiguration.getString("repository"), yamlConfiguration.getString("displayName"));
+            addon = new AddonImpl(yamlConfiguration.getString("name"), yamlConfiguration.getString("displayName")
+                    , file, yamlConfiguration.getString("repository"));
 
         return addon;
     }
@@ -149,6 +168,6 @@ public class AddonManagerImpl implements AddonManager {
         addons.add(addon);
 
         Plugin plugin = miniGameApiPlugin.getPluginLoader().loadPlugin(file);
-        miniGameApiPlugin.getServer().getPluginManager().enablePlugin(plugin);
+        Bukkit.getPluginManager().enablePlugin(plugin);
     }
 }

@@ -22,6 +22,7 @@ public final class Messages {
     private String addonDoesNotExists;
     private String addonDownloading;
     private String addonHasDownloaded;
+    private String addonUpdated;
 
     public Messages(MiniGameApiPlugin miniGameApiPlugin) {
         this.miniGameApiPlugin = miniGameApiPlugin;
@@ -41,5 +42,6 @@ public final class Messages {
         addonDoesNotExists = ChatUtil.chatColor(config.getString("messages.addon_does_not_exists"));
         addonDownloading = ChatUtil.chatColor(config.getString("messages.addon_downloading"));
         addonHasDownloaded = ChatUtil.chatColor(config.getString("messages.addon_has_downloaded"));
+        addonUpdated = ChatUtil.chatColor(config.getString("messages.addon_updated"));
     }
 }

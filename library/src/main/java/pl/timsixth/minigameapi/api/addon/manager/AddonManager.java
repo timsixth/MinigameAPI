@@ -12,7 +12,7 @@ public interface AddonManager {
 
     File download(String addonName, String version) throws IOException;
 
-    void update(Addon addon);
+    void update(Addon addon) throws IOException, InvalidPluginException;
 
     List<Addon> getAddons();
 

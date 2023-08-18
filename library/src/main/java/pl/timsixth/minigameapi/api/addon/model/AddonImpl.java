@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
+import java.io.File;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -14,18 +16,15 @@ import org.bukkit.plugin.Plugin;
 public class AddonImpl implements Addon {
 
     private final String name;
+    private final String displayName;
+    private final File pluginFile;
     private String repository;
-    private String displayName;
-
-    public AddonImpl(String name,String displayName) {
-        this.name = name;
-        this.displayName = displayName;
-    }
 
     @Override
     public Plugin toPlugin() {
         return Bukkit.getPluginManager().getPlugin(name);
     }
+
     @Override
     public String getVersion() {
         return this.toPlugin().getDescription().getVersion();

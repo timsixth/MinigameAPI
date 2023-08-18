@@ -36,8 +36,10 @@ public class AddonSubCommand implements SubCommand {
             }
         } else if (args.length == 3) {
             if (args[1].equalsIgnoreCase("enable")) {
-                Plugin plugin = getPlugin(args, sender);
-                if (plugin == null) return true;
+                Addon addon = getAddon(args, sender);
+                if (addon == null) return true;
+
+                Plugin plugin = addon.toPlugin();
 
                 if (plugin.isEnabled()) {
                     sender.sendMessage(messages.getAddonAlreadyEnabled());
@@ -48,8 +50,10 @@ public class AddonSubCommand implements SubCommand {
 
                 sender.sendMessage(messages.getAddonEnabled());
             } else if (args[1].equalsIgnoreCase("disable")) {
-                Plugin plugin = getPlugin(args, sender);
-                if (plugin == null) return true;
+                Addon addon = getAddon(args, sender);
+                if (addon == null) return true;
+
+                Plugin plugin = addon.toPlugin();
 
                 if (!plugin.isEnabled()) {
                     sender.sendMessage(messages.getAddonAlreadyDisabled());
@@ -58,23 +62,35 @@ public class AddonSubCommand implements SubCommand {
 
                 Bukkit.getPluginManager().disablePlugin(plugin);
                 sender.sendMessage(messages.getAddonDisabled());
+            } else if (args[1].equalsIgnoreCase("update")) {
+                Addon addon = getAddon(args, sender);
+                if (addon == null) return true;
+
+                if (Bukkit.getPluginManager().getPlugin("PlugManX") == null) {
+                    sender.sendMessage(ChatUtil.chatColor("&cUpdate command requires PlugManX plugin to work."));
+                    return true;
+                }
+
+                Bukkit.getScheduler().runTaskAsynchronously(miniGameApiPlugin, () -> {
+                    try {
+                        addonManager.update(addon);
+                    } catch (IOException | InvalidPluginException e) {
+                        Bukkit.getLogger().severe("Error: " + e);
+                    }
+                });
+
+                sender.sendMessage(messages.getAddonUpdated());
             }
         } else if (args.length == 4) {
             if (args[1].equalsIgnoreCase("install")) {
-                String version;
-
-                if (args[3] != null) version = args[3];
-                else {
-                    version = "latest";
-                }
                 sender.sendMessage(messages.getAddonDownloading());
                 Bukkit.getScheduler().runTaskAsynchronously(miniGameApiPlugin, () -> {
                     try {
-                        File file = addonManager.download(args[2]  /*GitHub repository*/, version);
+                        File file = addonManager.download(args[2]  /*GitHub repository*/, args[3] /*version*/);
 
                         addonManager.loadAddon(file);
                     } catch (IOException | InvalidPluginException e) {
-                        throw new RuntimeException(e);
+                        Bukkit.getLogger().severe("Error: " + e);
                     }
                 });
                 sender.sendMessage(messages.getAddonHasDownloaded());
@@ -83,7 +99,7 @@ public class AddonSubCommand implements SubCommand {
         return false;
     }
 
-    private Plugin getPlugin(String[] args, CommandSender sender) {
+    private Addon getAddon(String[] args, CommandSender sender) {
         String addonName = args[2];
 
         Optional<Addon> addonOptional = addonManager.getAddon(addonName);
@@ -92,7 +108,7 @@ public class AddonSubCommand implements SubCommand {
             return null;
         }
 
-        return addonOptional.get().toPlugin();
+        return addonOptional.get();
     }
 
     @Override

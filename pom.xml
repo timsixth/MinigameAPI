@@ -11,7 +11,6 @@
     <modules>
         <module>library</module>
         <module>example-minigame</module>
-        <module>boosters-addon</module>
     </modules>
     <repositories>
         <repository>
