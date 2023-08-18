@@ -1,8 +1,8 @@
 package pl.timsixth.minigameapi.user;
 
 import lombok.Getter;
-import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
-import pl.timsixth.minigameapi.database.annoations.Id;
+import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.database.annoations.Id;
 
 import java.util.UUID;
 @Getter

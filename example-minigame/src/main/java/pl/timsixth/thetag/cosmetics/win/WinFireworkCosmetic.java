@@ -4,7 +4,7 @@ import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.cosmetics.Cosmetic;
+import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
 import pl.timsixth.thetag.util.ItemUtil;
 
 public class WinFireworkCosmetic implements Cosmetic {

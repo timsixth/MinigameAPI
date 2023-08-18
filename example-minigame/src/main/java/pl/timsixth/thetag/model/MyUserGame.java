@@ -2,7 +2,7 @@ package pl.timsixth.thetag.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.timsixth.minigameapi.game.user.UserGameImpl;
+import pl.timsixth.minigameapi.api.game.user.UserGameImpl;
 
 import java.util.UUID;
 

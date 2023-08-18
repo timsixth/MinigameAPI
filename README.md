@@ -2,7 +2,7 @@
 Flexible, modern and easy to use library to creating minigames in minecraft. <br>
 Library works from 1.13.2 to 1.20.x.
 <br>
-This version is pre-release, not for commercial use, may be it has bugs. 
+This version is pre-release, not for commercial use, maybe it has bugs. 
 Please report every bugs in issues section.<br>
 
 JavaDocs: https://timsixth.pl/javadocs/minigame_api/0.6.0/

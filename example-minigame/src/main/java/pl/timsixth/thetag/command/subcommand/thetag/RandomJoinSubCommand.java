@@ -3,7 +3,7 @@ package pl.timsixth.thetag.command.subcommand.thetag;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.command.SubCommand;
+import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.thetag.game.GameLogic;
 
 @RequiredArgsConstructor

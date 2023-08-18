@@ -5,11 +5,11 @@ import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.game.Game;
-import pl.timsixth.minigameapi.game.state.GameState;
-import pl.timsixth.minigameapi.game.user.UserGame;
-import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
+import pl.timsixth.minigameapi.api.game.Game;
+import pl.timsixth.minigameapi.api.game.state.GameState;
+import pl.timsixth.minigameapi.api.game.user.UserGame;
+import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
@@ -39,7 +39,7 @@ public class DrawingTheTagGameState implements GameState {
 
         myUserGame.setTag(true);
 
-        for (pl.timsixth.minigameapi.game.user.UserGame playingUser : game.getPlayingUsers()) {
+        for (UserGame playingUser : game.getPlayingUsers()) {
             ItemUtil.clearPlayerInventory(playingUser.toPlayer());
             playingUser.setPlaying(true);
 

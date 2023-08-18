@@ -6,8 +6,9 @@ import org.bukkit.event.Listener;
 import pl.timsixth.gui.libray.manager.registration.ActionRegistration;
 import pl.timsixth.gui.libray.manager.registration.ActionRegistrationImpl;
 import pl.timsixth.gui.libray.model.action.custom.impl.NoneClickAction;
-import pl.timsixth.minigameapi.MiniGame;
-import pl.timsixth.minigameapi.cosmetics.CosmeticsManager;
+import pl.timsixth.minigameapi.api.MiniGame;
+import pl.timsixth.minigameapi.api.command.ParentCommand;
+import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.thetag.bstats.Metrics;
 import pl.timsixth.thetag.command.AdminTheTagCommand;
 import pl.timsixth.thetag.command.TheTagCommand;
@@ -46,6 +47,9 @@ public class TheTagPlugin extends MiniGame {
     @Getter
     private MenuManager menuManager;
     private ActionRegistration actionRegistration;
+
+    private TheTagCommand theTagCommand;
+    private AdminTheTagCommand adminTheTagCommand;
 
     @Override
     public void onEnable() {
@@ -109,6 +113,16 @@ public class TheTagPlugin extends MiniGame {
         menuManager.load();
     }
 
+    @Override
+    public ParentCommand getPlayerCommand() {
+        return theTagCommand;
+    }
+
+    @Override
+    public ParentCommand getAdminCommand() {
+        return adminTheTagCommand;
+    }
+
     private void initConfiguration() {
         configFile = new ConfigFile(this);
         settings = new Settings(this);
@@ -134,8 +148,11 @@ public class TheTagPlugin extends MiniGame {
     }
 
     private void registerCommands() {
-        getCommand("thetag").setExecutor(new TheTagCommand(getDefaultCommandConfiguration(), messages, getArenaManager(), getGameManager(), getUserCoinsManager(), getUserStatsManager(), menuManager, gameLogic));
-        getCommand("thetagadmin").setExecutor(new AdminTheTagCommand(getDefaultCommandConfiguration(), messages, settings, menuManager, configFile, getArenaManager(), getUserCoinsManager()));
+        theTagCommand = new TheTagCommand(getDefaultCommandConfiguration(), messages, getArenaManager(), getGameManager(), getUserCoinsManager(), getUserStatsManager(), menuManager, gameLogic);
+        adminTheTagCommand = new AdminTheTagCommand(getDefaultCommandConfiguration(), messages, settings, menuManager, configFile, getArenaManager(), getUserCoinsManager());
+
+        getCommand("thetag").setExecutor(theTagCommand);
+        getCommand("thetagadmin").setExecutor(adminTheTagCommand);
     }
 
     private void registerTabCompleters() {

@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.timsixth.gui.libray.model.Menu;
-import pl.timsixth.minigameapi.command.SubCommand;
+import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.manager.MenuManager;
 import pl.timsixth.thetag.util.PlayerUtil;

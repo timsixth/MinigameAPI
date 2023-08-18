@@ -3,7 +3,7 @@ package pl.timsixth.thetag.cosmetics.walk;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.cosmetics.ParticleCosmetic;
+import pl.timsixth.minigameapi.api.cosmetics.ParticleCosmetic;
 
 public abstract class AbstractWalkCosmetic implements ParticleCosmetic {
 

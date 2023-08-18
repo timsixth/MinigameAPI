@@ -1,8 +1,8 @@
 package pl.timsixth.minigameapi;
 
 import org.junit.Test;
-import pl.timsixth.minigameapi.game.user.UserGame;
-import pl.timsixth.minigameapi.game.user.UserGameImpl;
+import pl.timsixth.minigameapi.api.game.user.UserGame;
+import pl.timsixth.minigameapi.api.game.user.UserGameImpl;
 
 import java.util.UUID;
 

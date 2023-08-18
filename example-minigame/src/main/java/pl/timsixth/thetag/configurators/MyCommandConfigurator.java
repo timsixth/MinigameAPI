@@ -1,8 +1,8 @@
 package pl.timsixth.thetag.configurators;
 
 import lombok.RequiredArgsConstructor;
-import pl.timsixth.minigameapi.configuration.configurators.DefaultCommandConfigurator;
-import pl.timsixth.minigameapi.configuration.type.CommandConfiguration;
+import pl.timsixth.minigameapi.api.configuration.configurators.DefaultCommandConfigurator;
+import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
 import pl.timsixth.thetag.config.Messages;
 @RequiredArgsConstructor
 public class MyCommandConfigurator extends DefaultCommandConfigurator {

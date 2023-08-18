@@ -1,10 +1,10 @@
 package pl.timsixth.thetag.game.state;
 
 import lombok.RequiredArgsConstructor;
-import pl.timsixth.minigameapi.game.Game;
-import pl.timsixth.minigameapi.game.state.GameState;
-import pl.timsixth.minigameapi.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.stats.model.UserStatsDbModel;
+import pl.timsixth.minigameapi.api.game.Game;
+import pl.timsixth.minigameapi.api.game.state.GameState;
+import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;

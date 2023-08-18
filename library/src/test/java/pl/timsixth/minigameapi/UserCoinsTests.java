@@ -3,7 +3,7 @@ package pl.timsixth.minigameapi;
 import org.junit.Before;
 import org.junit.Test;
 import pl.timsixth.databasesapi.database.structure.DataType;
-import pl.timsixth.minigameapi.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.database.DataBase;
 import pl.timsixth.minigameapi.user.UserCoinsStub;
 
