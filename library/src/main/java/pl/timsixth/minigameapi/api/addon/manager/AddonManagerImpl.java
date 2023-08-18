@@ -27,6 +27,9 @@ import java.util.Optional;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+/**
+ * Implementation of {@link AddonManager}
+ */
 @Getter
 @RequiredArgsConstructor
 public class AddonManagerImpl implements AddonManager {
@@ -82,6 +85,14 @@ public class AddonManagerImpl implements AddonManager {
                 .findAny();
     }
 
+    /**
+     * Gets link to download addon from GitHub release
+     *
+     * @param repositoryName GitHub repository
+     * @param version        release tag name
+     * @return URL to download file or null
+     * @throws IOException when can not parse link
+     */
     private URL getDownloadUrl(String repositoryName, String version) throws IOException {
         GitHub gitHub = GitHub.connectAnonymously();
         GHRepository repository = gitHub.getRepository(repositoryName);
@@ -100,12 +111,25 @@ public class AddonManagerImpl implements AddonManager {
         return null;
     }
 
-    private URL getUrl(GHRelease latestRelease) throws IOException {
-        GHAsset ghAsset = latestRelease.listAssets().toList().get(0);
+    /**
+     * Gets link to download first asset from GitHub release
+     *
+     * @param release release to get link to download asset
+     * @return URL to download file
+     * @throws IOException when can not parse link
+     */
+    private URL getUrl(GHRelease release) throws IOException {
+        GHAsset ghAsset = release.listAssets().toList().get(0);
 
         return new URL(ghAsset.getBrowserDownloadUrl());
     }
 
+    /**
+     * Gets file name from link to download asset
+     *
+     * @param url url to get file name
+     * @return file name
+     */
     private String getFileName(URL url) {
         String urlStr = url.toString();
 
@@ -125,10 +149,22 @@ public class AddonManagerImpl implements AddonManager {
         }
     }
 
-    private Addon registerAddon(File file) {
+    /**
+     * Creates new addon
+     *
+     * @param file JAR file with addon.yml
+     * @return addon to register
+     */
+    private Addon createAddon(File file) {
         YamlConfiguration yamlConfiguration = loadAddonDescription(file);
 
         if (yamlConfiguration == null) throw new IllegalStateException("Can not get values from addon.yml");
+
+        if (!yamlConfiguration.contains("name")) throw new IllegalStateException("Missing 'name' in addon.yml");
+
+        if (!yamlConfiguration.contains("displayName"))
+            throw new IllegalStateException("Missing 'displayName' in addon.yml");
+
         Addon addon = new AddonImpl(yamlConfiguration.getString("name"), yamlConfiguration.getString("displayName"), file);
 
         if (yamlConfiguration.contains("repository"))
@@ -138,6 +174,12 @@ public class AddonManagerImpl implements AddonManager {
         return addon;
     }
 
+    /**
+     * Gets addon description from addon.yml
+     *
+     * @param file JAR file with addon.yml
+     * @return yaml configuration with addon description
+     */
     private YamlConfiguration loadAddonDescription(File file) {
         YamlConfiguration data;
         try (JarFile jarFile = new JarFile(file)) {
@@ -161,7 +203,7 @@ public class AddonManagerImpl implements AddonManager {
 
     @Override
     public void loadAddon(File file) throws InvalidPluginException {
-        Addon addon = registerAddon(file);
+        Addon addon = createAddon(file);
 
         if (addons.contains(addon)) throw new IllegalStateException("Addon with name " + addon + " already loaded");
 

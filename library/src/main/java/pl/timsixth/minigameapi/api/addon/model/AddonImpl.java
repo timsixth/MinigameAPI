@@ -9,6 +9,9 @@ import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 
+/**
+ * Implementation of {@link Addon}
+ */
 @Getter
 @Setter
 @RequiredArgsConstructor
