@@ -8,6 +8,7 @@ messages:
   addon_downloading: '&aDownloading addon...'
   addon_has_downloaded: '&aAddon has been downloaded'
   addon_updated: '&aAddon has been updated'
+  invalid_repository_name: '&cInvalid repository name. For example, timsixth/BoostersMiniGameAddon'
   addons_help:
     - '&7--------] &6&lMiniGameAPI &7[--------'
     - '&7/&6minigameapi addon install <github-repo-name> <version> &7- Installs addon from Github repository'

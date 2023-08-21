@@ -3,7 +3,7 @@ package pl.timsixth.thetag.config;
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.bukkit.configuration.file.YamlConfiguration;
-import pl.timsixth.minigameapi.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
 
 import java.util.List;
 

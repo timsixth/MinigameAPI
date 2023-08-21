@@ -11,7 +11,7 @@ import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
 import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
-import pl.timsixth.minigameapi.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.command.subcommand.thetag.*;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.game.GameLogic;
@@ -45,5 +45,10 @@ public class TheTagCommand extends ParentCommand {
         }
 
         return true;
+    }
+
+    @Override
+    public String getName() {
+        return "thetag";
     }
 }

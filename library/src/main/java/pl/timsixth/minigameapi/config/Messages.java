@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 import pl.timsixth.minigameapi.MiniGameApiPlugin;
-import pl.timsixth.minigameapi.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ public final class Messages {
     private String addonDownloading;
     private String addonHasDownloaded;
     private String addonUpdated;
+    private String invalidRepositoryName;
 
     public Messages(MiniGameApiPlugin miniGameApiPlugin) {
         this.miniGameApiPlugin = miniGameApiPlugin;
@@ -43,5 +44,6 @@ public final class Messages {
         addonDownloading = ChatUtil.chatColor(config.getString("messages.addon_downloading"));
         addonHasDownloaded = ChatUtil.chatColor(config.getString("messages.addon_has_downloaded"));
         addonUpdated = ChatUtil.chatColor(config.getString("messages.addon_updated"));
+        invalidRepositoryName = ChatUtil.chatColor(config.getString("messages.invalid_repository_name"));
     }
 }

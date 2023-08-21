@@ -7,7 +7,7 @@ import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.command.SubCommand;
-import pl.timsixth.minigameapi.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.util.PlayerUtil;
 
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class ListSubCommand implements SubCommand {
+public class ListSubCommand extends SubCommand {
 
     private final ArenaManager<ArenaFileModel> arenaManager;
     private final Messages messages;

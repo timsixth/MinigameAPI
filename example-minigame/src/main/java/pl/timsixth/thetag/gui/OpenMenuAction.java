@@ -7,7 +7,7 @@ import pl.timsixth.gui.libray.model.MenuItem;
 import pl.timsixth.gui.libray.model.action.AbstractAction;
 import pl.timsixth.gui.libray.model.action.ActionType;
 import pl.timsixth.gui.libray.model.action.click.ClickAction;
-import pl.timsixth.minigameapi.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.util.PlayerUtil;
 

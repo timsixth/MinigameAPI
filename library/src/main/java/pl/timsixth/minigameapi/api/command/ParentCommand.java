@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
 
 import java.util.ArrayList;
@@ -27,10 +28,10 @@ public abstract class ParentCommand implements CommandExecutor {
     /**
      * All args constructor
      *
-     * @param permission                  command permission
-     * @param hasArguments                true if command has sub commands otherwise false
-     * @param onlyPlayers                 true if command can be used by only players otherwise false
-     * @param usePermission               true if command has permission otherwise false
+     * @param permission           command permission
+     * @param hasArguments         true if command has sub commands otherwise false
+     * @param onlyPlayers          true if command can be used by only players otherwise false
+     * @param usePermission        true if command has permission otherwise false
      * @param commandConfiguration command messages configuration
      */
     public ParentCommand(String permission, boolean hasArguments, boolean onlyPlayers, boolean usePermission, CommandConfiguration commandConfiguration) {
@@ -45,9 +46,9 @@ public abstract class ParentCommand implements CommandExecutor {
     /**
      * Constructor to command which doesn't have sub commands
      *
-     * @param permission                  command permission
-     * @param onlyPlayers                 true if command can be used by only players otherwise false
-     * @param usePermission               true if command has permission otherwise false
+     * @param permission           command permission
+     * @param onlyPlayers          true if command can be used by only players otherwise false
+     * @param usePermission        true if command has permission otherwise false
      * @param commandConfiguration command messages configuration
      */
     public ParentCommand(String permission, boolean onlyPlayers, boolean usePermission, CommandConfiguration commandConfiguration) {
@@ -94,6 +95,7 @@ public abstract class ParentCommand implements CommandExecutor {
             for (SubCommand subCommand : subCommands) {
                 for (String arg : args) {
                     if (arg.equalsIgnoreCase(subCommand.getName())) {
+                        subCommand.setParentCommand(this);
                         return subCommand.executeCommand(sender, args);
                     }
                 }
@@ -107,7 +109,7 @@ public abstract class ParentCommand implements CommandExecutor {
      * Executes command
      *
      * @param commandSender Source of the command
-     * @param args Passed command arguments
+     * @param args          Passed command arguments
      * @return true if a valid command, otherwise false
      */
     protected abstract boolean executeCommand(CommandSender commandSender, String[] args);
@@ -118,10 +120,38 @@ public abstract class ParentCommand implements CommandExecutor {
      * @return list of sub commands
      * @throws IllegalStateException when subCommands is null
      */
-    protected List<SubCommand> getSubCommands() {
+    public List<SubCommand> getSubCommands() {
         if (subCommands == null)
             throw new IllegalStateException("Can not get sub commands from ParentCommand, because field hasArguments is false");
 
         return subCommands;
+    }
+
+    /**
+     * Adds new sub command
+     *
+     * @param subCommand subcommand to add
+     */
+    public void addSubCommand(SubCommand subCommand) {
+        if (subCommands == null) return;
+        if (subCommands.contains(subCommand)) return;
+
+        subCommands.add(subCommand);
+    }
+
+    /**
+     * Gets command name, this is so important for addons system
+     *
+     * @return command name
+     */
+    public abstract String getName();
+
+    /**
+     * Gets tab completer for command
+     *
+     * @return tab completer
+     */
+    public BaseTabCompleter getTabCompleter() {
+        throw new UnsupportedOperationException("Not implemented");
     }
 }

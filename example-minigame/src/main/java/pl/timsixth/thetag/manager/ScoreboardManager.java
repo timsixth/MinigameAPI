@@ -9,7 +9,7 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
-import pl.timsixth.minigameapi.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.model.MyUserGame;
 

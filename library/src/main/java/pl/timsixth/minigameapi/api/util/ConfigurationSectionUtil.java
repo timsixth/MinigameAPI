@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.util;
+package pl.timsixth.minigameapi.api.util;
 
 import lombok.experimental.UtilityClass;
 import org.bukkit.configuration.ConfigurationSection;

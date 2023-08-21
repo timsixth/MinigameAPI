@@ -3,7 +3,7 @@ package pl.timsixth.minigameapi.api.file;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pl.timsixth.minigameapi.api.MiniGame;
-import pl.timsixth.minigameapi.util.ConfigurationSectionUtil;
+import pl.timsixth.minigameapi.api.util.ConfigurationSectionUtil;
 
 import java.io.File;
 

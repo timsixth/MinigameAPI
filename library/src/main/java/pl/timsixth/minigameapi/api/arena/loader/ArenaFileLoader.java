@@ -7,7 +7,7 @@ import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
 import pl.timsixth.minigameapi.api.arena.ArenaImpl;
 import pl.timsixth.minigameapi.api.loader.file.AbstractFileLoader;
-import pl.timsixth.minigameapi.util.ConfigurationSectionUtil;
+import pl.timsixth.minigameapi.api.util.ConfigurationSectionUtil;
 
 import java.io.File;
 

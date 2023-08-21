@@ -12,7 +12,7 @@ import pl.timsixth.thetag.util.PlayerUtil;
 
 import java.util.Optional;
 @RequiredArgsConstructor
-public class JoinSubCommand implements SubCommand {
+public class JoinSubCommand extends SubCommand {
 
     private final ArenaManager<ArenaFileModel> arenaManager;
     private final GameManager gameManager;

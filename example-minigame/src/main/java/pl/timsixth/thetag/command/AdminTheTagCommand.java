@@ -8,7 +8,7 @@ import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
-import pl.timsixth.minigameapi.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.command.subcommand.thetagadmin.*;
 import pl.timsixth.thetag.config.ConfigFile;
 import pl.timsixth.thetag.config.Messages;
@@ -43,5 +43,10 @@ public class AdminTheTagCommand extends ParentCommand {
         }
 
         return false;
+    }
+
+    @Override
+    public String getName() {
+        return "tta";
     }
 }

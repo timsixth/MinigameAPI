@@ -10,18 +10,22 @@ import pl.timsixth.minigameapi.api.addon.manager.AddonManager;
 import pl.timsixth.minigameapi.api.addon.model.Addon;
 import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.minigameapi.config.Messages;
-import pl.timsixth.minigameapi.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
-public class AddonSubCommand implements SubCommand {
+public class AddonSubCommand extends SubCommand {
 
     private final AddonManager addonManager;
     private final Messages messages;
     private final MiniGameApiPlugin miniGameApiPlugin;
+
+    private final Pattern REPOSITORY_PATTERN = Pattern.compile("^[A-Za-z0-9]{3,}/[A-Za-z0-9]{3,}");
 
     @Override
     public boolean executeCommand(CommandSender sender, String[] args) {
@@ -83,10 +87,17 @@ public class AddonSubCommand implements SubCommand {
             }
         } else if (args.length == 4) {
             if (args[1].equalsIgnoreCase("install")) {
+                String repository = args[2];
+
+                Matcher matcher = REPOSITORY_PATTERN.matcher(repository);
+                if (!matcher.matches()) {
+                    sender.sendMessage(messages.getInvalidRepositoryName());
+                    return true;
+                }
                 sender.sendMessage(messages.getAddonDownloading());
                 Bukkit.getScheduler().runTaskAsynchronously(miniGameApiPlugin, () -> {
                     try {
-                        File file = addonManager.download(args[2]  /*GitHub repository*/, args[3] /*version*/);
+                        File file = addonManager.download(repository, args[3] /*version*/);
 
                         addonManager.loadAddon(file);
                     } catch (IOException | InvalidPluginException e) {

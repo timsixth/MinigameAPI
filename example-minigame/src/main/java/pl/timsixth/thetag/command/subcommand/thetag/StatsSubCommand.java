@@ -8,13 +8,13 @@ import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
-import pl.timsixth.minigameapi.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.util.PlayerUtil;
 
 import java.util.Optional;
 @RequiredArgsConstructor
-public class StatsSubCommand implements SubCommand {
+public class StatsSubCommand extends SubCommand {
 
     private final UserCoinsManager<UserCoinsDbModel> userCoinsManager;
     private final Messages messages;

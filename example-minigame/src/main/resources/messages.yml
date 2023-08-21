@@ -43,7 +43,7 @@ player:
     - '&7/&atta setgamelobby <arena name> &7- Sets new game lobby'
     - '&7/&atta addcoins <player name> <coins> &7- Adds coins to player'
     - '&7/&atta removecoins <player name> <coins> &7- Removes player coins'
-    - '&7/&attas reload &7- Reloads all configuration files'
+    - '&7/&atta reload &7- Reloads all configuration files'
 game:
   joined: '&a{NICK} &7has joined to arena'
   left: '&a{NICK} &7has left from arena'

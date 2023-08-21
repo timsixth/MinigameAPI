@@ -3,7 +3,7 @@ package pl.timsixth.minigameapi.api.file;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import pl.timsixth.minigameapi.util.FileUtil;
+import pl.timsixth.minigameapi.api.util.FileUtil;
 
 import java.io.File;
 

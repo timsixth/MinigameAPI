@@ -1,11 +1,18 @@
 package pl.timsixth.minigameapi.api.command;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.command.CommandSender;
 
 /**
  * Represents sub command
  */
-public interface SubCommand {
+@Getter
+@Setter
+public abstract class SubCommand {
+
+    private ParentCommand parentCommand;
+
     /**
      * Executes subcommand
      *
@@ -13,10 +20,10 @@ public interface SubCommand {
      * @param args   Passed command arguments
      * @return true if a valid command, otherwise false
      */
-    boolean executeCommand(CommandSender sender, String[] args);
+    protected abstract boolean executeCommand(CommandSender sender, String[] args);
 
     /**
      * @return subcommand name
      */
-    String getName();
+    public abstract String getName();
 }

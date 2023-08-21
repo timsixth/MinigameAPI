@@ -191,7 +191,17 @@ public abstract class MiniGame extends JavaPlugin {
         return defaultCommandConfigurator.configure();
     }
 
+    /**
+     * Gets player command
+     *
+     * @return player command
+     */
     public abstract ParentCommand getPlayerCommand();
 
+    /**
+     * Gets admin command
+     *
+     * @return admin command
+     */
     public abstract ParentCommand getAdminCommand();
 }

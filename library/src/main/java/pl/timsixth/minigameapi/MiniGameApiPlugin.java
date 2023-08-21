@@ -8,14 +8,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.timsixth.minigameapi.api.addon.manager.AddonManager;
 import pl.timsixth.minigameapi.api.addon.manager.AddonManagerImpl;
 import pl.timsixth.minigameapi.api.arena.ArenaImpl;
+import pl.timsixth.minigameapi.api.command.CommandRegistration;
 import pl.timsixth.minigameapi.api.configuration.configurators.DefaultCommandConfigurator;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
 import pl.timsixth.minigameapi.bstats.Metrics;
 import pl.timsixth.minigameapi.command.MiniGameAPICommand;
 import pl.timsixth.minigameapi.config.Messages;
-import pl.timsixth.minigameapi.tabcompleter.MiniGameAPITabCompleter;
-import pl.timsixth.minigameapi.util.ChatUtil;
-import pl.timsixth.minigameapi.util.FileUtil;
+import pl.timsixth.minigameapi.api.util.ChatUtil;
+import pl.timsixth.minigameapi.api.util.FileUtil;
 
 import java.io.File;
 
@@ -44,8 +44,7 @@ public final class MiniGameApiPlugin extends JavaPlugin {
         addonManager = new AddonManagerImpl(this);
         CommandConfiguration commandConfiguration = new DefaultCommandConfigurator().configure();
 
-        getCommand("minigameapi").setExecutor(new MiniGameAPICommand(commandConfiguration, addonManager, messages, this));
-        getCommand("minigameapi").setTabCompleter(new MiniGameAPITabCompleter(addonManager));
+        new CommandRegistration(this).registerCommandWithTabCompleter(new MiniGameAPICommand(commandConfiguration, addonManager, messages, this));
 
         addonsFile = FileUtil.createDirectory(getDataFolder(), "addons");
 

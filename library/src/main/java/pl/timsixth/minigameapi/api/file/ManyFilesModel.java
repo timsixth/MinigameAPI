@@ -1,7 +1,7 @@
 package pl.timsixth.minigameapi.api.file;
 
 import org.bukkit.configuration.file.YamlConfiguration;
-import pl.timsixth.minigameapi.util.FileUtil;
+import pl.timsixth.minigameapi.api.util.FileUtil;
 
 /**
  * Represents every file model which is saving in many files

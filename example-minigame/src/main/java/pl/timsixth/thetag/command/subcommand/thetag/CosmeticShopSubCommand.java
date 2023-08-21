@@ -11,7 +11,7 @@ import pl.timsixth.thetag.util.PlayerUtil;
 
 import java.util.Optional;
 @RequiredArgsConstructor
-public class CosmeticShopSubCommand implements SubCommand {
+public class CosmeticShopSubCommand extends SubCommand {
 
     private final MenuManager menuManager;
     private final Messages messages;
