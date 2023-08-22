@@ -9,10 +9,12 @@ import java.util.List;
 
 /**
  * Represents single argument when onTabComplete method is executing
+ * @deprecated for removal 1.0.0-rc4
  */
 @Getter
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Deprecated
 public final class Argument {
 
     private final int argsLength;

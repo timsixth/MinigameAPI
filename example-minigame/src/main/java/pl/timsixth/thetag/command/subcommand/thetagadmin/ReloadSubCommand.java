@@ -11,7 +11,7 @@ import pl.timsixth.thetag.util.PlayerUtil;
 
 import java.util.Collections;
 @RequiredArgsConstructor
-public class ReloadSubCommand extends SubCommand {
+public class ReloadSubCommand implements SubCommand {
 
     private final ConfigFile configFile;
     private final MenuManager menuManager;

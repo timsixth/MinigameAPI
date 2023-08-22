@@ -95,7 +95,6 @@ public abstract class ParentCommand implements CommandExecutor {
             for (SubCommand subCommand : subCommands) {
                 for (String arg : args) {
                     if (arg.equalsIgnoreCase(subCommand.getName())) {
-                        subCommand.setParentCommand(this);
                         return subCommand.executeCommand(sender, args);
                     }
                 }

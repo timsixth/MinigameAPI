@@ -7,7 +7,7 @@ import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.thetag.game.GameLogic;
 
 @RequiredArgsConstructor
-public class RandomJoinSubCommand extends SubCommand {
+public class RandomJoinSubCommand implements SubCommand {
 
     private final GameLogic gameLogic;
 

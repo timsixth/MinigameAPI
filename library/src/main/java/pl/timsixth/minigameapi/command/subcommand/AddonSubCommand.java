@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
-public class AddonSubCommand extends SubCommand {
+public class AddonSubCommand implements SubCommand {
 
     private final AddonManager addonManager;
     private final Messages messages;

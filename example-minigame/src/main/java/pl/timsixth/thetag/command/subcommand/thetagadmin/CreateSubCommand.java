@@ -13,7 +13,7 @@ import pl.timsixth.thetag.util.PlayerUtil;
 import java.util.HashMap;
 
 @RequiredArgsConstructor
-public class CreateSubCommand extends SubCommand {
+public class CreateSubCommand implements SubCommand {
 
     private final ArenaManager<ArenaFileModel> arenaManager;
     private final Messages messages;

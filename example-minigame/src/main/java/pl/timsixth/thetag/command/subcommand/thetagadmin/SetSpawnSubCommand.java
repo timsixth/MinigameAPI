@@ -11,7 +11,7 @@ import pl.timsixth.thetag.util.PlayerUtil;
 
 import java.util.Optional;
 @RequiredArgsConstructor
-public class SetSpawnSubCommand extends SubCommand {
+public class SetSpawnSubCommand implements SubCommand {
 
     private final ArenaManager<ArenaFileModel> arenaManager;
     private final Messages messages;

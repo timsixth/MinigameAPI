@@ -14,7 +14,7 @@ import pl.timsixth.thetag.util.PlayerUtil;
 
 import java.util.Optional;
 @RequiredArgsConstructor
-public class AddCoinsSubCommand extends SubCommand {
+public class AddCoinsSubCommand implements SubCommand {
 
     private final UserCoinsManager<UserCoinsDbModel> userCoinsManager;
     private final Messages messages;

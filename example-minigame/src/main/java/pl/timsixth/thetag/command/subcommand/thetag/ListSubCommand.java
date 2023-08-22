@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class ListSubCommand extends SubCommand {
+public class ListSubCommand implements SubCommand {
 
     private final ArenaManager<ArenaFileModel> arenaManager;
     private final Messages messages;

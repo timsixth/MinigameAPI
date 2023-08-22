@@ -9,7 +9,7 @@ import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.util.PlayerUtil;
 
 @RequiredArgsConstructor
-public class SetLobbySubCommand extends SubCommand {
+public class SetLobbySubCommand implements SubCommand {
 
     private final Settings settings;
     private final Messages messages;

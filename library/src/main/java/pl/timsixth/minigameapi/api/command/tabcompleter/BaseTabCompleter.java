@@ -10,7 +10,9 @@ import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.command.SubCommand;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -18,11 +20,13 @@ import java.util.stream.Collectors;
 public abstract class BaseTabCompleter implements TabCompleter {
 
     private final ParentCommand parentCommand;
+    private BiFunction<CommandSender, String[], List<String>> conditions;
+    @Deprecated
     private final List<Argument> arguments = new ArrayList<>();
 
     /**
      * @param sender  Source of the command.  For players tab-completing a
-     *                command inside of a command block, this will be the player, not
+     *                command inside a command block, this will be the player, not
      *                the command block.
      * @param command Command which was executed
      * @param alias   The alias used
@@ -32,53 +36,48 @@ public abstract class BaseTabCompleter implements TabCompleter {
      */
     @Override
     public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String alias, String[] args) {
-        List<String> completions = new ArrayList<>();
-
         if (args.length == 1) {
-            List<String> subCommandsNames = parentCommand.getSubCommands()
+            return parentCommand.getSubCommands()
                     .stream().map(SubCommand::getName).collect(Collectors.toList());
-            completions.addAll(subCommandsNames);
         }
 
-        for (Argument argument : arguments) {
-            if (args.length == argument.getArgsLength()) {
-                if (argument.getConditions().isEmpty() && argument.getIndex() == -1) {
-                    completions.addAll(argument.getValues());
-                } else {
-                    if (argument.getConditions().size() == 1) {
-                        if (args[argument.getIndex()].equalsIgnoreCase(argument.getConditions().get(0))) {
-                            completions.addAll(argument.getValues());
-                        }
-                    } else {
-                        for (String condition : argument.getConditions()) {
-                            if (args[argument.getIndex()].equalsIgnoreCase(condition)) {
-                                completions.addAll(argument.getValues());
-                            }
-                        }
-                    }
-                }
-            }
+        if (conditions != null) {
+            return conditions.apply(sender, args);
         }
 
-        onTabComplete(sender, args);
-        return completions;
+        return Collections.emptyList();
+    }
+
+    /**
+     * Adds conditions
+     *
+     * @param conditions callback to define conditions
+     */
+    public void addConditions(BiFunction<CommandSender, String[], List<String>> conditions) {
+        this.conditions = conditions;
     }
 
     /**
      * Adds new argument to completions
      *
      * @param argument argument to add
+     * @deprecated for removal 1.0.0-rc4
      */
+    @Deprecated
     public void addArgument(Argument argument) {
         arguments.add(argument);
     }
 
     /**
      * @param sender Source of the command.  For players tab-completing a
-     *               command inside of a command block, this will be the player, not
+     *               command inside a command block, this will be the player, not
      *               the command block.
      * @param args   The arguments passed to the command, including final
      *               partial argument to be completed and command label
+     * @deprecated for removal 1.0.0-rc4
      */
-    protected abstract void onTabComplete(CommandSender sender, String[] args);
+    @Deprecated
+    protected void onTabComplete(CommandSender sender, String[] args) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
 }

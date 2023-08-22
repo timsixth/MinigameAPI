@@ -12,7 +12,7 @@ import pl.timsixth.thetag.util.PlayerUtil;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class LeaveSubCommand extends SubCommand {
+public class LeaveSubCommand implements SubCommand {
 
     private final GameManager gameManager;
     private final Messages messages;
