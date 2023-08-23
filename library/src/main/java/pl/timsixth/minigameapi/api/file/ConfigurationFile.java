@@ -51,7 +51,26 @@ public final class ConfigurationFile {
             this.primarySection = manyFiles.primarySection();
         }
 
-        Field[] fields = typeClass.getDeclaredFields();
+        setIdSection(type, typeClass);
+
+        if (idSection == null) setIdSectionFromSuperclass(type);
+
+        if (typeClass.isAnnotationPresent(ManyFiles.class)) this.name = idSection.toString() + ".yml";
+
+        if (typeClass.isAnnotationPresent(SerializableAs.class))
+            ConfigurationSerialization.registerClass(typeClass, alias);
+        else ConfigurationSerialization.registerClass(typeClass);
+    }
+
+    /**
+     * Sets idSection value
+     *
+     * @param type  type class which implements {@link ConfigurationSerializable}
+     * @param clazz param to gets fields by reflection
+     * @throws IllegalAccessException when can not access to fields
+     */
+    private <T extends ConfigurationSerializable> void setIdSection(T type, Class<?> clazz) throws IllegalAccessException {
+        Field[] fields = clazz.getDeclaredFields();
 
         for (Field field : fields) {
             if (field.isAnnotationPresent(IdSection.class)) {
@@ -61,13 +80,6 @@ public final class ConfigurationFile {
                 idSection = field.get(type);
             }
         }
-        if (idSection == null) throw new IllegalStateException("Every file model must have IdSection annotation");
-
-        if (typeClass.isAnnotationPresent(ManyFiles.class)) this.name = idSection.toString() + ".yml";
-
-        if (typeClass.isAnnotationPresent(SerializableAs.class))
-            ConfigurationSerialization.registerClass(typeClass, alias);
-        else ConfigurationSerialization.registerClass(typeClass);
     }
 
     /**
@@ -79,5 +91,19 @@ public final class ConfigurationFile {
         } catch (IOException e) {
             Bukkit.getLogger().severe(e.getMessage());
         }
+    }
+
+    /**
+     * If subclass doesn't have IdSection annotation, this method sets idSection from superclass
+     *
+     * @param type class which implements {@link ConfigurationSerializable}
+     * @throws IllegalAccessException when can not access to fields
+     */
+    private <T extends ConfigurationSerializable> void setIdSectionFromSuperclass(T type) throws IllegalAccessException {
+        Class<?> superclass = type.getClass().getSuperclass();
+
+        setIdSection(type, superclass);
+
+        if (idSection == null) throw new IllegalStateException("Every file model must have IdSection annotation");
     }
 }
