@@ -82,7 +82,7 @@ public class BuyOrActiveCosmeticAction extends AbstractAction implements ClickAc
             UserCosmeticsDbModel userCosmeticsDbModel = new UserCosmeticsImpl(player.getUniqueId());
             userCosmeticsDbModel.addCosmetic(cosmetic);
 
-            userCosmeticsManager.addUserCosmetics(userCosmeticsDbModel);
+            userCosmeticsManager.addUser(userCosmeticsDbModel);
 
             buyCosmetic(event, menuItem, player, userCoinsDbModel);
         }

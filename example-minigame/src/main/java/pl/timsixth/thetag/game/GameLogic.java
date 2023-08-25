@@ -12,7 +12,7 @@ import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.api.stats.model.DefaultUserStats;
+import pl.timsixth.minigameapi.api.stats.model.UserStatsImpl;
 import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
@@ -76,7 +76,7 @@ public class GameLogic {
                 Optional<UserStatsDbModel> userStatsOptional = statisticsManager.getUser(player.getUniqueId(), game.getArena().getName());
                 UserStatsDbModel userStats;
                 if (!userStatsOptional.isPresent()) {
-                    userStats = new DefaultUserStats(player.getUniqueId(), player.getName(), game.getArena().getName());
+                    userStats = new UserStatsImpl(player.getUniqueId(), player.getName(), game.getArena().getName());
                     statisticsManager.addNewUser(userStats);
 
                 } else {

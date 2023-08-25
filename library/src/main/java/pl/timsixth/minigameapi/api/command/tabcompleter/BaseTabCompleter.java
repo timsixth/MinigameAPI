@@ -9,7 +9,6 @@ import org.bukkit.command.TabCompleter;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.command.SubCommand;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -21,8 +20,6 @@ public abstract class BaseTabCompleter implements TabCompleter {
 
     private final ParentCommand parentCommand;
     private BiFunction<CommandSender, String[], List<String>> conditions;
-    @Deprecated
-    private final List<Argument> arguments = new ArrayList<>();
 
     /**
      * @param sender  Source of the command.  For players tab-completing a
@@ -55,29 +52,5 @@ public abstract class BaseTabCompleter implements TabCompleter {
      */
     public void addConditions(BiFunction<CommandSender, String[], List<String>> conditions) {
         this.conditions = conditions;
-    }
-
-    /**
-     * Adds new argument to completions
-     *
-     * @param argument argument to add
-     * @deprecated for removal 1.0.0-rc4
-     */
-    @Deprecated
-    public void addArgument(Argument argument) {
-        arguments.add(argument);
-    }
-
-    /**
-     * @param sender Source of the command.  For players tab-completing a
-     *               command inside a command block, this will be the player, not
-     *               the command block.
-     * @param args   The arguments passed to the command, including final
-     *               partial argument to be completed and command label
-     * @deprecated for removal 1.0.0-rc4
-     */
-    @Deprecated
-    protected void onTabComplete(CommandSender sender, String[] args) {
-        throw new UnsupportedOperationException("Not implemented");
     }
 }

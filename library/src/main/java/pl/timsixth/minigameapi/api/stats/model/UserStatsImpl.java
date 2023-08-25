@@ -15,7 +15,7 @@ import java.util.UUID;
  * @see AbstractDbModel
  */
 @Getter
-public class DefaultUserStats extends AbstractDbModel implements UserStatsDbModel {
+public class UserStatsImpl extends AbstractDbModel implements UserStatsDbModel {
 
     @Id
     private final UUID uuid;
@@ -24,14 +24,14 @@ public class DefaultUserStats extends AbstractDbModel implements UserStatsDbMode
     private int wins;
     private int defeats;
 
-    public DefaultUserStats(UUID uuid, String name, String arenaName) {
+    public UserStatsImpl(UUID uuid, String name, String arenaName) {
         this.uuid = uuid;
         this.name = name;
         this.arenaName = arenaName;
         init();
     }
 
-    public DefaultUserStats(UUID uuid, String name, String arenaName, int wins, int defeats) {
+    public UserStatsImpl(UUID uuid, String name, String arenaName, int wins, int defeats) {
         this.uuid = uuid;
         this.name = name;
         this.arenaName = arenaName;

@@ -37,7 +37,7 @@ import pl.timsixth.minigameapi.api.listener.BlockBreakListener;
 import pl.timsixth.minigameapi.api.listener.BlockPlaceListener;
 import pl.timsixth.minigameapi.api.listener.PlayerDropItemListener;
 import pl.timsixth.minigameapi.api.loader.Loaders;
-import pl.timsixth.minigameapi.api.stats.loader.DefaultUserStatsLoader;
+import pl.timsixth.minigameapi.api.stats.loader.UserStatsLoader;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManagerImpl;
 import pl.timsixth.minigameapi.api.stats.migrations.CreateUserStatsTable;
@@ -64,7 +64,7 @@ public abstract class MiniGame extends JavaPlugin {
     private ArenaFileLoader arenaFileLoader;
     private UserCoinsLoader userCoinsLoader;
     private UserCosmeticsLoader userCosmeticsLoader;
-    private DefaultUserStatsLoader userStatsLoader;
+    private UserStatsLoader userStatsLoader;
 
     private Loaders loaders;
 
@@ -100,7 +100,7 @@ public abstract class MiniGame extends JavaPlugin {
         userCosmeticsManager = new UserCosmeticsManagerImpl(userCosmeticsLoader);
 
         if (getDefaultPluginConfiguration().isUseDefaultStatsSystem())
-            userStatsManager = new UserStatsManagerImpl<>(userStatsLoader);
+            userStatsManager = new UserStatsManagerImpl(userStatsLoader);
     }
 
     /**
@@ -114,7 +114,7 @@ public abstract class MiniGame extends JavaPlugin {
         userCoinsLoader = new UserCoinsLoader();
         userCosmeticsLoader = new UserCosmeticsLoader(cosmeticsManager);
 
-        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem()) userStatsLoader = new DefaultUserStatsLoader();
+        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem()) userStatsLoader = new UserStatsLoader();
     }
 
     /**
@@ -187,6 +187,9 @@ public abstract class MiniGame extends JavaPlugin {
         return defaultPluginConfigurator.configure();
     }
 
+    /**
+     * @return default command configuration {@link CommandConfiguration}
+     */
     public CommandConfiguration getDefaultCommandConfiguration() {
         return defaultCommandConfigurator.configure();
     }

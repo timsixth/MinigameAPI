@@ -2,9 +2,9 @@ package pl.timsixth.minigameapi.api.coins.migrations;
 
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.ISQLDataBase;
-import pl.timsixth.databasesapi.database.ISQLite;
 import pl.timsixth.databasesapi.database.migration.ICreationMigration;
-import pl.timsixth.databasesapi.database.structure.DataType;
+import pl.timsixth.databasesapi.database.structure.datatype.DataTypes;
+import pl.timsixth.databasesapi.database.structure.datatype.VarcharDataType;
 import pl.timsixth.minigameapi.api.MiniGame;
 
 import java.sql.SQLException;
@@ -39,27 +39,11 @@ public class CreateUserCoinsTableMigration implements ICreationMigration {
      */
     @Override
     public void up() throws SQLException {
-        if (currentSqlDataBase instanceof ISQLite) {
-            createTableUserCoins(DataType.INTEGER);
-        } else {
-            createTableUserCoins(DataType.INT);
-        }
-    }
-
-    /**
-     * Creates table in database
-     *
-     * @param idDataType type of id in table
-     * @throws SQLException when can not execute query
-     */
-    private void createTableUserCoins(DataType idDataType) throws SQLException {
         currentSqlDataBase.getTableCreator()
-                .createColumn("id", idDataType, 11, false)
-                .primaryKey("id", true)
-                .autoIncrement("id", true)
-                .createColumn("uuid", DataType.VARCHAR, 36, false)
-                .createColumn("coins", DataType.INT, 11, false)
+                .id()
+                .createColumn("uuid", new VarcharDataType(36), false)
+                .createColumn("coins", DataTypes.INT, false)
                 .defaultValue("coins", 0)
-                .create(getTableName());
+                .createTable(getTableName());
     }
 }

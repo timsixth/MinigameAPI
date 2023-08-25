@@ -17,24 +17,24 @@ public class UserCosmeticsManagerImpl implements UserCosmeticsManager<UserCosmet
     private final UserCosmeticsLoader userCosmeticsLoader;
 
     @Override
-    public List<UserCosmeticsDbModel> getUsersCosmetics() {
-        return userCosmeticsLoader.getData();
-    }
-
-    @Override
-    public void addUserCosmetics(UserCosmeticsDbModel type) {
-        userCosmeticsLoader.addObject(type);
-    }
-
-    @Override
-    public void removeUserCosmetics(UserCosmeticsDbModel type) {
-        userCosmeticsLoader.removeObject(type);
-    }
-
-    @Override
     public Optional<UserCosmeticsDbModel> getUserByUuid(UUID uuid) {
         return userCosmeticsLoader.getData().stream()
                 .filter(userCosmeticsDbModel -> userCosmeticsDbModel.getUuid().equals(uuid))
                 .findAny();
+    }
+
+    @Override
+    public List<UserCosmeticsDbModel> getUsers() {
+        return userCosmeticsLoader.getData();
+    }
+
+    @Override
+    public void addUser(UserCosmeticsDbModel user) {
+        userCosmeticsLoader.addObject(user);
+    }
+
+    @Override
+    public void removeUser(UserCosmeticsDbModel user) {
+        userCosmeticsLoader.removeObject(user);
     }
 }

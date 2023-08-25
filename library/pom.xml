@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>library</artifactId>
-    <version>1.0.0-rc3</version>
+    <version>1.0.0-rc4</version>
     <name>T-MinigameAPI</name>
     <build>
         <finalName>${project.name}-${project.version}</finalName>
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>com.github.timsixth</groupId>
             <artifactId>T-DataBasesAPI</artifactId>
-            <version>v1.7.2</version>
+            <version>v1.8.0</version>
         </dependency>
         <dependency>
             <groupId>org.kohsuke</groupId>
