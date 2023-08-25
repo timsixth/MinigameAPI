@@ -5,7 +5,7 @@ Library works from 1.13.2 to 1.20.x.
 This version is pre-release, not for commercial use, maybe it has bugs. 
 Please report every bugs in issues section.<br>
 
-JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.0.0-rc3/
+JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.0.0-rc4/
 
 ## Library features:
 - Arena management system
