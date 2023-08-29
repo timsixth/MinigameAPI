@@ -2,10 +2,7 @@ package pl.timsixth.minigameapi.api.coins;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.bukkit.Bukkit;
 import pl.timsixth.minigameapi.api.MiniGame;
-import pl.timsixth.minigameapi.api.coins.event.UserCoinsReceivedEvent;
-import pl.timsixth.minigameapi.api.coins.event.UserCoinsRemovedEvent;
 import pl.timsixth.minigameapi.api.database.AbstractDbModel;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
 
@@ -41,20 +38,12 @@ public class UserCoinsImpl extends AbstractDbModel implements UserCoinsDbModel {
     public void addCoins(double coins) {
         this.coins += (int) coins;
         update();
-
-        UserCoinsReceivedEvent userCoinsReceivedEvent = new UserCoinsReceivedEvent(this, (int) coins);
-
-        Bukkit.getPluginManager().callEvent(userCoinsReceivedEvent);
     }
 
     @Override
     public void removeCoins(double coins) {
         this.coins -= (int) coins;
         update();
-
-        UserCoinsRemovedEvent userCoinsRemovedEvent = new UserCoinsRemovedEvent(this, (int) coins);
-
-        Bukkit.getPluginManager().callEvent(userCoinsRemovedEvent);
     }
 
     @Override
