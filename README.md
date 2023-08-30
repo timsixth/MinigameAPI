@@ -5,7 +5,7 @@ Library works from 1.13.2 to 1.20.x.
 This version is pre-release, not for commercial use, maybe it has bugs. 
 Please report every bugs in issues section.<br>
 
-JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.0.0-rc4/
+JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.0.0-rc5/
 
 ## Library features:
 - Arena management system
@@ -20,6 +20,9 @@ JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.0.0-rc4/
 - Simple saving, deleting and updating system (You don't have to write query to database or use YAML spigot API to execute these actions)
 - Commands API (You can create parent commands and subcommands in separate classes)
 - Addons system (You can create addon will works with every mini game which is using this library)
+
+## Addons
+- [Boosters](https://github.com/timsixth/BoostersMiniGameAddon)
 
 ## Getting started
 
