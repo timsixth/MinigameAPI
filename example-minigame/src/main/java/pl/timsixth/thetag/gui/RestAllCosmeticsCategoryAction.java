@@ -2,10 +2,9 @@ package pl.timsixth.thetag.gui;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import pl.timsixth.gui.libray.model.MenuItem;
-import pl.timsixth.gui.libray.model.action.AbstractAction;
-import pl.timsixth.gui.libray.model.action.ActionType;
-import pl.timsixth.gui.libray.model.action.click.ClickAction;
+import pl.timsixth.guilibrary.core.model.MenuItem;
+import pl.timsixth.guilibrary.core.model.action.AbstractAction;
+import pl.timsixth.guilibrary.core.model.action.click.ClickAction;
 import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsDbModel;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.thetag.TheTagPlugin;
@@ -18,7 +17,7 @@ public class RestAllCosmeticsCategoryAction extends AbstractAction implements Cl
     private final TheTagPlugin theTagPlugin = TheTagPlugin.getPlugin(TheTagPlugin.class);
 
     public RestAllCosmeticsCategoryAction() {
-        super("RESET_ALL_COSMETICS_CATEGORY", ActionType.CLICK);
+        super("RESET_ALL_COSMETICS_CATEGORY");
     }
 
     @Override

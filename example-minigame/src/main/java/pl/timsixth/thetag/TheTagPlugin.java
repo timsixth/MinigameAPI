@@ -3,10 +3,11 @@ package pl.timsixth.thetag;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
-import pl.timsixth.gui.libray.manager.registration.ActionRegistration;
-import pl.timsixth.gui.libray.manager.registration.ActionRegistrationImpl;
-import pl.timsixth.gui.libray.model.action.custom.impl.NoneClickAction;
+import pl.timsixth.guilibrary.core.GUIApi;
+import pl.timsixth.guilibrary.core.manager.registration.ActionRegistration;
+import pl.timsixth.guilibrary.core.model.action.custom.NoneClickAction;
 import pl.timsixth.minigameapi.api.MiniGame;
+import pl.timsixth.minigameapi.api.command.CommandRegistration;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.thetag.bstats.Metrics;
@@ -32,8 +33,6 @@ import pl.timsixth.thetag.listener.*;
 import pl.timsixth.thetag.manager.MenuManager;
 import pl.timsixth.thetag.manager.MyGameManager;
 import pl.timsixth.thetag.manager.ScoreboardManager;
-import pl.timsixth.thetag.tabcompleter.AdminTheTagCommandTabCompleter;
-import pl.timsixth.thetag.tabcompleter.TheTagCommandTabCompleter;
 import pl.timsixth.thetag.version.VersionChecker;
 
 public class TheTagPlugin extends MiniGame {
@@ -47,7 +46,6 @@ public class TheTagPlugin extends MiniGame {
     @Getter
     private MenuManager menuManager;
     private ActionRegistration actionRegistration;
-
     private TheTagCommand theTagCommand;
     private AdminTheTagCommand adminTheTagCommand;
 
@@ -71,23 +69,20 @@ public class TheTagPlugin extends MiniGame {
 
         gameLogic = new GameLogic(getGameManager(), getUserStatsManager(), messages, getArenaManager(), settings, getUserCosmeticsManager());
 
-        actionRegistration = new ActionRegistrationImpl();
-        actionRegistration.register(
-                new NoneClickAction(),
-                new BuyOrActiveCosmeticAction(),
-                new OpenMenuAction(),
-                new RestAllCosmeticsAction(),
-                new RestAllCosmeticsCategoryAction()
-        );
+        GUIApi guiApi = new GUIApi(this);
+        actionRegistration = guiApi.getActionRegistration();
+
+        registerActions();
 
         menuManager = new MenuManager(actionRegistration, configFile);
 
+        guiApi.setMenuManager(menuManager);
+
         super.registerGameListeners();
+        guiApi.registerMenuListener();
 
         registerCommands();
-        registerTabCompleters();
         registerListeners();
-        registerActions();
 
         new VersionChecker(this).checkVersion();
 
@@ -136,7 +131,6 @@ public class TheTagPlugin extends MiniGame {
                 new PlayerQuitListener(gameLogic),
                 new PlayerKickListener(gameLogic),
                 new FoodLevelChangeListener(getGameManager()),
-                new pl.timsixth.gui.libray.listener.InventoryClickListener(menuManager),
                 new PlayerJoinListener(getUserCoinsManager()),
                 new PlayerMoveListener(getGameManager(), gameLogic),
                 new PlayerInteractListener(settings, messages, getGameManager())
@@ -151,13 +145,10 @@ public class TheTagPlugin extends MiniGame {
         theTagCommand = new TheTagCommand(getDefaultCommandConfiguration(), messages, getArenaManager(), getGameManager(), getUserCoinsManager(), getUserStatsManager(), menuManager, gameLogic);
         adminTheTagCommand = new AdminTheTagCommand(getDefaultCommandConfiguration(), messages, settings, menuManager, configFile, getArenaManager(), getUserCoinsManager());
 
-        getCommand("thetag").setExecutor(theTagCommand);
-        getCommand("thetagadmin").setExecutor(adminTheTagCommand);
-    }
+        CommandRegistration commandRegistration = new CommandRegistration(this);
 
-    private void registerTabCompleters() {
-        getCommand("thetag").setTabCompleter(new TheTagCommandTabCompleter(getArenaManager()));
-        getCommand("thetagadmin").setTabCompleter(new AdminTheTagCommandTabCompleter(getArenaManager(), getUserCoinsManager()));
+        commandRegistration.registerCommandWithTabCompleter(theTagCommand);
+        commandRegistration.registerCommandWithTabCompleter(adminTheTagCommand);
     }
 
     private boolean initPlaceHolderApi() {
@@ -170,6 +161,12 @@ public class TheTagPlugin extends MiniGame {
     }
 
     private void registerActions() {
-        actionRegistration.register(new BuyOrActiveCosmeticAction(), new NoneClickAction(), new RestAllCosmeticsCategoryAction(), new RestAllCosmeticsAction());
+        actionRegistration.register(
+                new NoneClickAction(),
+                new BuyOrActiveCosmeticAction(),
+                new OpenMenuAction(),
+                new RestAllCosmeticsAction(),
+                new RestAllCosmeticsCategoryAction()
+        );
     }
 }

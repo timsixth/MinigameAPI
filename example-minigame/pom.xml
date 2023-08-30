@@ -24,7 +24,7 @@
     </repositories>
 
     <artifactId>example-minigame</artifactId>
-    <version>1.4</version>
+    <version>1.5.0</version>
     <name>T-TheTag</name>
 
     <dependencies>
@@ -40,9 +40,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.timsixth</groupId>
-            <artifactId>T-GuiApi</artifactId>
-            <version>v1.1.2</version>
+            <groupId>com.github.timsixth.T-GuiApi</groupId>
+            <artifactId>core</artifactId>
+            <version>v2.0.0</version>
         </dependency>
     </dependencies>
     <properties>

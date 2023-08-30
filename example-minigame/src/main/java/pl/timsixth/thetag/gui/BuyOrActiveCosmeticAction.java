@@ -2,10 +2,9 @@ package pl.timsixth.thetag.gui;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import pl.timsixth.gui.libray.model.MenuItem;
-import pl.timsixth.gui.libray.model.action.AbstractAction;
-import pl.timsixth.gui.libray.model.action.ActionType;
-import pl.timsixth.gui.libray.model.action.click.ClickAction;
+import pl.timsixth.guilibrary.core.model.MenuItem;
+import pl.timsixth.guilibrary.core.model.action.AbstractAction;
+import pl.timsixth.guilibrary.core.model.action.click.ClickAction;
 import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
@@ -24,7 +23,7 @@ public class BuyOrActiveCosmeticAction extends AbstractAction implements ClickAc
     private final Messages messages = theTagPlugin.getMessages();
 
     public BuyOrActiveCosmeticAction() {
-        super("BUY_OR_ACTIVE_COSMETIC", ActionType.CLICK);
+        super("BUY_OR_ACTIVE_COSMETIC");
     }
 
     @Override

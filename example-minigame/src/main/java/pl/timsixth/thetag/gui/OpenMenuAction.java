@@ -2,11 +2,11 @@ package pl.timsixth.thetag.gui;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import pl.timsixth.gui.libray.model.Menu;
-import pl.timsixth.gui.libray.model.MenuItem;
-import pl.timsixth.gui.libray.model.action.AbstractAction;
-import pl.timsixth.gui.libray.model.action.ActionType;
-import pl.timsixth.gui.libray.model.action.click.ClickAction;
+import pl.timsixth.guilibrary.core.model.Menu;
+import pl.timsixth.guilibrary.core.model.MenuItem;
+import pl.timsixth.guilibrary.core.model.action.AbstractAction;
+import pl.timsixth.guilibrary.core.model.action.ActionType;
+import pl.timsixth.guilibrary.core.model.action.click.ClickAction;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.util.PlayerUtil;

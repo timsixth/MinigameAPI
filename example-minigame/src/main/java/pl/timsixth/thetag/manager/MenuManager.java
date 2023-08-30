@@ -1,11 +1,11 @@
 package pl.timsixth.thetag.manager;
 
-import pl.timsixth.gui.libray.manager.AbstractMenuManager;
-import pl.timsixth.gui.libray.manager.registration.ActionRegistration;
+import pl.timsixth.guilibrary.core.manager.YAMLMenuManager;
+import pl.timsixth.guilibrary.core.manager.registration.ActionRegistration;
 import pl.timsixth.thetag.config.ConfigFile;
 import pl.timsixth.thetag.manager.intertaces.Reloadable;
 
-public class MenuManager extends AbstractMenuManager implements Reloadable {
+public class MenuManager extends YAMLMenuManager implements Reloadable {
 
     private final ConfigFile configFile;
 

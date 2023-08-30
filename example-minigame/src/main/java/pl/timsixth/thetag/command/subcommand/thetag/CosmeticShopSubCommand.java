@@ -3,7 +3,7 @@ package pl.timsixth.thetag.command.subcommand.thetag;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.timsixth.gui.libray.model.Menu;
+import pl.timsixth.guilibrary.core.model.Menu;
 import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.manager.MenuManager;

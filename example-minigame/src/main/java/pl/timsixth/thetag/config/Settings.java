@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
-import pl.timsixth.gui.libray.util.ItemBuilder;
+import pl.timsixth.guilibrary.core.util.ItemBuilder;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.util.PotionEffectUtil;
