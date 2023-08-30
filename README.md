@@ -21,6 +21,9 @@ JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.0.0-rc5/
 - Commands API (You can create parent commands and subcommands in separate classes)
 - Addons system (You can create addon will works with every mini game which is using this library)
 
+## Addons
+- [Boosters](https://github.com/timsixth/BoostersMiniGameAddon)
+
 ## Getting started
 
 Maven
