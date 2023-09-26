@@ -3,6 +3,7 @@ package pl.timsixth.minigameapi.api.loader.database;
 import pl.timsixth.minigameapi.api.database.DbModel;
 import pl.timsixth.minigameapi.api.loader.Loader;
 import pl.timsixth.minigameapi.api.loader.Loaders;
+import pl.timsixth.minigameapi.api.model.Model;
 
 /**
  * Loader which loads data from database
@@ -12,7 +13,7 @@ import pl.timsixth.minigameapi.api.loader.Loaders;
  * @see Loader
  * @see Loaders
  */
-public interface SqlDataBaseLoader<T extends DbModel> extends Loader<T> {
+public interface SqlDataBaseLoader<T extends Model> extends Loader<T> {
     /**
      * Loads data from database table
      *

@@ -7,10 +7,8 @@ import java.util.UUID;
 
 /**
  * Manages default stats
- *
- * @param <T> every class which implemented {@link UserStats}
  */
-public interface UserStatsManager<T extends UserStats> extends Statistics<T> {
+public interface UserStatsManager extends Statistics<UserStats> {
     /**
      * @param uuid user's uuid
      * @return total amount of wins
@@ -34,5 +32,5 @@ public interface UserStatsManager<T extends UserStats> extends Statistics<T> {
      *
      * @param type user to add
      */
-    void addNewUser(T type);
+    void addNewUser(UserStats type);
 }

@@ -4,14 +4,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scoreboard.DisplaySlot;
 import pl.timsixth.minigameapi.api.arena.Arena;
-import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsDbModel;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.impl.GameImpl;
 import pl.timsixth.minigameapi.api.game.impl.GameManagerImpl;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
@@ -31,10 +29,10 @@ public class MyGameManager extends GameManagerImpl {
     private final TheTagPlugin theTagPlugin;
     private final Messages messages;
     private final ScoreboardManager scoreboardManager;
-    private final UserStatsManager<UserStatsDbModel> statisticsManager;
+    private final UserStatsManager statisticsManager;
     private final GameLogic gameLogic;
 
-    public MyGameManager(Settings settings, TheTagPlugin theTagPlugin, Messages messages, ScoreboardManager scoreboardManager, UserStatsManager<UserStatsDbModel> statisticsManager, UserCosmeticsManager<UserCosmeticsDbModel> userCosmeticsManager) {
+    public MyGameManager(Settings settings, TheTagPlugin theTagPlugin, Messages messages, ScoreboardManager scoreboardManager, UserStatsManager statisticsManager, UserCosmeticsManager userCosmeticsManager) {
         this.settings = settings;
         this.theTagPlugin = theTagPlugin;
         this.messages = messages;

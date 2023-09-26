@@ -2,16 +2,13 @@ package pl.timsixth.thetag.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
 import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.command.subcommand.thetag.*;
 import pl.timsixth.thetag.config.Messages;
@@ -23,11 +20,11 @@ import pl.timsixth.thetag.util.PlayerUtil;
 public class TheTagCommand extends ParentCommand {
 
     private final Messages messages;
-    private final ArenaManager<ArenaFileModel> arenaManager;
+    private final ArenaManager arenaManager;
 
     public TheTagCommand(CommandConfiguration commandConfiguration,
-                         Messages messages, ArenaManager<ArenaFileModel> arenaManager, GameManager gameManager,
-                         UserCoinsManager<UserCoinsDbModel> userCoinsManager, UserStatsManager<UserStatsDbModel> userStatsManager,
+                         Messages messages, ArenaManager arenaManager, GameManager gameManager,
+                         UserCoinsManager userCoinsManager, UserStatsManager userStatsManager,
                          MenuManager menuManager, GameLogic gameLogic) {
         super("", true, true, false, commandConfiguration);
         this.messages = messages;

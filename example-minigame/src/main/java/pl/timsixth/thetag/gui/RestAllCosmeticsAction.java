@@ -5,7 +5,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import pl.timsixth.guilibrary.core.model.MenuItem;
 import pl.timsixth.guilibrary.core.model.action.AbstractAction;
 import pl.timsixth.guilibrary.core.model.action.click.ClickAction;
-import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsDbModel;
+import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.util.PlayerUtil;
@@ -24,16 +24,16 @@ public class RestAllCosmeticsAction extends AbstractAction implements ClickActio
     public void handleClickEvent(InventoryClickEvent event, MenuItem menuItem) {
         Player player = (Player) event.getWhoClicked();
 
-        UserCosmeticsManager<UserCosmeticsDbModel> userCosmeticsManager = theTagPlugin.getUserCosmeticsManager();
+        UserCosmeticsManager userCosmeticsManager = theTagPlugin.getUserCosmeticsManager();
 
-        Optional<UserCosmeticsDbModel> userCosmeticsOptional = userCosmeticsManager.getUserByUuid(player.getUniqueId());
+        Optional<UserCosmetics> userCosmeticsOptional = userCosmeticsManager.getUserByUuid(player.getUniqueId());
 
         if (!userCosmeticsOptional.isPresent()) {
             event.setCancelled(true);
             return;
         }
 
-        UserCosmeticsDbModel userCosmeticsDbModel = userCosmeticsOptional.get();
+        UserCosmetics userCosmeticsDbModel = userCosmeticsOptional.get();
 
         userCosmeticsDbModel.resetAllCosmetics();
 

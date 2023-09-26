@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.thetag.config.Messages;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AddCoinsSubCommand implements SubCommand {
 
-    private final UserCoinsManager<UserCoinsDbModel> userCoinsManager;
+    private final UserCoinsManager userCoinsManager;
     private final Messages messages;
 
     @Override
@@ -25,7 +25,7 @@ public class AddCoinsSubCommand implements SubCommand {
             Player player = (Player) sender;
             OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(args[1]);
 
-            Optional<UserCoinsDbModel> userCoinsOptional = userCoinsManager.getUserByUuid(offlinePlayer.getUniqueId());
+            Optional<UserCoins> userCoinsOptional = userCoinsManager.getUserByUuid(offlinePlayer.getUniqueId());
             if (!userCoinsOptional.isPresent()) {
                 PlayerUtil.sendMessage(player, messages.getPlayerDoesNotExits());
                 return true;
@@ -43,7 +43,7 @@ public class AddCoinsSubCommand implements SubCommand {
                 return true;
             }
 
-            UserCoinsDbModel userCoinsDbModel = userCoinsOptional.get();
+            UserCoins userCoinsDbModel = userCoinsOptional.get();
 
             userCoinsDbModel.addCoins(coins);
             PlayerUtil.sendMessage(player, messages.getAddedCoins().replace("{PLAYER_NAME}", player.getName()));

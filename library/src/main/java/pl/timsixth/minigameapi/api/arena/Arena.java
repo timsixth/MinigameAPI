@@ -2,6 +2,7 @@ package pl.timsixth.minigameapi.api.arena;
 
 import org.bukkit.Location;
 import pl.timsixth.minigameapi.api.arena.exception.LocationNotFoundException;
+import pl.timsixth.minigameapi.api.model.Model;
 
 import java.util.Map;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import java.util.Optional;
 /**
  * Represents every arena
  */
-public interface Arena {
+public interface Arena extends Model {
     /**
      * @return arena name
      */

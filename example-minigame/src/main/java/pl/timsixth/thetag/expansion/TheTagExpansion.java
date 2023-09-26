@@ -5,10 +5,9 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -16,8 +15,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TheTagExpansion extends PlaceholderExpansion {
 
-    private final UserStatsManager<UserStatsDbModel> statisticsManager;
-    private final UserCoinsManager<UserCoinsDbModel> userCoinsManager;
+    private final UserStatsManager statisticsManager;
+    private final UserCoinsManager userCoinsManager;
 
     @Override
     public @NotNull String getIdentifier() {
@@ -54,7 +53,7 @@ public class TheTagExpansion extends PlaceholderExpansion {
 
             return String.valueOf(statisticsManager.getTotalDefeats(player.getUniqueId()));
         } else if (params.equalsIgnoreCase("player_coins")) {
-            UserCoinsDbModel userCoins = getUserCoins(player.getUniqueId());
+            UserCoins userCoins = getUserCoins(player.getUniqueId());
 
             if (userCoins == null) return null;
 
@@ -63,8 +62,8 @@ public class TheTagExpansion extends PlaceholderExpansion {
         return null;
     }
 
-    private UserCoinsDbModel getUserCoins(UUID uuid) {
-        Optional<UserCoinsDbModel> userCoinsDbModelOptional = userCoinsManager.getUserByUuid(uuid);
+    private UserCoins getUserCoins(UUID uuid) {
+        Optional<UserCoins> userCoinsDbModelOptional = userCoinsManager.getUserByUuid(uuid);
 
         return userCoinsDbModelOptional.orElse(null);
     }

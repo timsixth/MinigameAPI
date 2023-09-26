@@ -6,7 +6,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
@@ -22,7 +21,7 @@ public class StartFinalCountDown extends BukkitRunnable {
     private final Messages messages;
     private final Settings settings;
     private final ScoreboardManager scoreboardManager;
-    private final UserStatsManager<UserStatsDbModel> statisticsManager;
+    private final UserStatsManager statisticsManager;
     private final GameLogic gameLogic;
     private int gameTimer;
 

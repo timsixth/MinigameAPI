@@ -1,12 +1,13 @@
 package pl.timsixth.minigameapi.user;
 
 import lombok.Getter;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.UserCoins;
+import pl.timsixth.minigameapi.api.database.DbModel;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
 
 import java.util.UUID;
 @Getter
-public class UserCoinsStub extends AbstractDbModelStub implements UserCoinsDbModel {
+public class UserCoinsStub extends AbstractDbModelStub implements UserCoins, DbModel {
 
     @Id
     private final UUID uuid;

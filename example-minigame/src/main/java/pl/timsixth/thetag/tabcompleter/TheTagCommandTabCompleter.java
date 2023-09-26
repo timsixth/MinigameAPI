@@ -1,7 +1,6 @@
 package pl.timsixth.thetag.tabcompleter;
 
 import pl.timsixth.minigameapi.api.arena.Arena;
-import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class TheTagCommandTabCompleter extends BaseTabCompleter {
 
-    public TheTagCommandTabCompleter(ParentCommand parentCommand, ArenaManager<ArenaFileModel> arenaManager) {
+    public TheTagCommandTabCompleter(ParentCommand parentCommand, ArenaManager arenaManager) {
         super(parentCommand);
 
         this.addConditions((sender, args) -> {

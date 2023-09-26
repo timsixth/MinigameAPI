@@ -4,14 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.event.PlayerWinGameEvent;
 import pl.timsixth.minigameapi.api.game.state.GameState;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
+import pl.timsixth.minigameapi.api.stats.model.UserStats;
 import pl.timsixth.minigameapi.api.stats.model.UserStatsImpl;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
@@ -29,7 +29,7 @@ public class WinGameState implements GameState {
     private final Game game;
     private final TheTagPlugin theTagPlugin;
     private final Messages messages;
-    private final UserStatsManager<UserStatsDbModel> statisticsManager;
+    private final UserStatsManager statisticsManager;
     private final Settings settings;
     private final GameLogic gameLogic;
 
@@ -46,8 +46,8 @@ public class WinGameState implements GameState {
             ItemUtil.clearPlayerInventory(player);
             player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
 
-            Optional<UserStatsDbModel> userStatsOptional = statisticsManager.getUser(player.getUniqueId(), game.getArena().getName());
-            UserStatsDbModel userStats;
+            Optional<UserStats> userStatsOptional = statisticsManager.getUser(player.getUniqueId(), game.getArena().getName());
+            UserStats userStats;
             if (!userStatsOptional.isPresent()) {
                 userStats = new UserStatsImpl(player.getUniqueId(), player.getName(), game.getArena().getName());
                 statisticsManager.addNewUser(userStats);
@@ -57,12 +57,12 @@ public class WinGameState implements GameState {
             }
             userStats.addWin();
 
-            UserCoinsManager<UserCoinsDbModel> userCoinsManager = theTagPlugin.getUserCoinsManager();
+            UserCoinsManager userCoinsManager = theTagPlugin.getUserCoinsManager();
 
-            Optional<UserCoinsDbModel> coinsDbModelOptional = userCoinsManager.getUserByUuid(player.getUniqueId());
+            Optional<UserCoins> coinsDbModelOptional = userCoinsManager.getUserByUuid(player.getUniqueId());
             if (!coinsDbModelOptional.isPresent()) return;
 
-            UserCoinsDbModel userCoinsDbModel = coinsDbModelOptional.get();
+            UserCoins userCoinsDbModel = coinsDbModelOptional.get();
 
             userCoinsDbModel.addCoins(settings.getCostOfWin());
             gameLogic.showCosmetics(player, null, CosmeticCategory.WIN.name());

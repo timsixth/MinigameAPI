@@ -3,11 +3,10 @@ package pl.timsixth.thetag.command.subcommand.thetag;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.util.PlayerUtil;
@@ -16,18 +15,18 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class StatsSubCommand implements SubCommand {
 
-    private final UserCoinsManager<UserCoinsDbModel> userCoinsManager;
+    private final UserCoinsManager userCoinsManager;
     private final Messages messages;
-    private final UserStatsManager<UserStatsDbModel> userStatsManager;
+    private final UserStatsManager userStatsManager;
 
     @Override
     public boolean executeCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
 
-        Optional<UserCoinsDbModel> userCoinsDbModelOptional = userCoinsManager.getUserByUuid(player.getUniqueId());
+        Optional<UserCoins> userCoinsDbModelOptional = userCoinsManager.getUserByUuid(player.getUniqueId());
         if (!userCoinsDbModelOptional.isPresent()) return true;
 
-        UserCoinsDbModel userCoinsDbModel = userCoinsDbModelOptional.get();
+        UserCoins userCoinsDbModel = userCoinsDbModelOptional.get();
 
         for (String playerStat : messages.getPlayerStats()) {
             PlayerUtil.sendMessage(player, ChatUtil.chatColor(playerStat

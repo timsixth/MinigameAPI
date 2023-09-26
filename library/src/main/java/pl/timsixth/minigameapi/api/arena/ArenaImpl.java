@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import org.bukkit.Location;
+import pl.timsixth.minigameapi.api.file.FileModel;
 import pl.timsixth.minigameapi.api.file.SingleFileModel;
 import pl.timsixth.minigameapi.api.file.annotaions.IdSection;
 import pl.timsixth.minigameapi.api.file.annotaions.SingleFile;
@@ -17,12 +18,11 @@ import java.util.Optional;
  *
  * @see SingleFileModel
  * @see SingleFile
- * @see ArenaFileModel
  */
 @Getter
 @Setter
 @SingleFile(fileName = "arenas.yml", primarySection = "arenas")
-public class ArenaImpl extends SingleFileModel implements ArenaFileModel {
+public class ArenaImpl extends SingleFileModel implements Arena, FileModel {
 
     @IdSection
     private String name;

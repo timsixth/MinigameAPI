@@ -6,6 +6,7 @@ import lombok.ToString;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.database.AbstractDbModel;
+import pl.timsixth.minigameapi.api.database.DbModel;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
 
@@ -14,12 +15,11 @@ import java.util.*;
  * Implementation of {@link UserCosmetics}
  *
  * @see AbstractDbModel
- * @see UserCosmeticsDbModel
  */
 @Getter
 @Setter
 @ToString
-public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmeticsDbModel {
+public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmetics, DbModel {
 
     @Id
     private final UUID uuid;

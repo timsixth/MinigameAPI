@@ -1,11 +1,12 @@
 package pl.timsixth.minigameapi.api.coins;
 
+import pl.timsixth.minigameapi.api.model.Model;
 import pl.timsixth.minigameapi.api.user.User;
 
 /**
  * @see User
  */
-public interface UserCoins extends User {
+public interface UserCoins extends User, Model {
     /**
      * @return user's coins
      */

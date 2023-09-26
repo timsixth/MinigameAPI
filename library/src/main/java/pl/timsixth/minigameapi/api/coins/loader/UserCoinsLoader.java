@@ -4,8 +4,8 @@ import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.ISQLDataBase;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
 import pl.timsixth.minigameapi.api.MiniGame;
+import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.UserCoinsImpl;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.api.loader.database.AbstractSqlDataBaseLoader;
 
 import java.sql.ResultSet;
@@ -15,9 +15,8 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * @see AbstractSqlDataBaseLoader
- * @see UserCoinsDbModel
  */
-public class UserCoinsLoader extends AbstractSqlDataBaseLoader<UserCoinsDbModel> {
+public class UserCoinsLoader extends AbstractSqlDataBaseLoader<UserCoins> {
     /**
      * Loads data from table
      */
@@ -40,7 +39,7 @@ public class UserCoinsLoader extends AbstractSqlDataBaseLoader<UserCoinsDbModel>
 
         try (ResultSet resultSet = currentSqlDataBase.getAsyncQuery().query(query)) {
             while (resultSet.next()) {
-                UserCoinsDbModel userStats = new UserCoinsImpl(
+                UserCoins userStats = new UserCoinsImpl(
                         UUID.fromString(resultSet.getString("uuid")),
                         resultSet.getInt("coins")
                 );

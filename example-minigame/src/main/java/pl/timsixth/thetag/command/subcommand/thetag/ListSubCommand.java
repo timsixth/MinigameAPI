@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.timsixth.minigameapi.api.arena.Arena;
-import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.command.SubCommand;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
@@ -17,14 +16,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ListSubCommand implements SubCommand {
 
-    private final ArenaManager<ArenaFileModel> arenaManager;
+    private final ArenaManager arenaManager;
     private final Messages messages;
 
     @Override
     public boolean executeCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
 
-        List<ArenaFileModel> arenas = arenaManager.getArenas();
+        List<Arena> arenas = arenaManager.getArenas();
         if (arenas.isEmpty()) {
             PlayerUtil.sendMessage(player, messages.getEmptyArenaList());
             return true;

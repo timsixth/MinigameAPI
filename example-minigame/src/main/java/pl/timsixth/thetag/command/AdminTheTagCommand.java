@@ -2,9 +2,7 @@ package pl.timsixth.thetag.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
@@ -21,12 +19,12 @@ import pl.timsixth.thetag.util.PlayerUtil;
 public class AdminTheTagCommand extends ParentCommand {
 
     private final Messages messages;
-    private final ArenaManager<ArenaFileModel> arenaManager;
-    private final UserCoinsManager<UserCoinsDbModel> userCoinsManager;
+    private final ArenaManager arenaManager;
+    private final UserCoinsManager userCoinsManager;
 
     public AdminTheTagCommand(CommandConfiguration commandConfiguration, Messages messages,
                               Settings settings, MenuManager menuManager, ConfigFile configFile,
-                              ArenaManager<ArenaFileModel> arenaManager, UserCoinsManager<UserCoinsDbModel> userCoinsManager) {
+                              ArenaManager arenaManager, UserCoinsManager userCoinsManager) {
         super("thetag.admin", true, true, true, commandConfiguration);
         this.messages = messages;
         this.arenaManager = arenaManager;

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.ToString;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.database.AbstractDbModel;
+import pl.timsixth.minigameapi.api.database.DbModel;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
 
 import java.util.UUID;
@@ -12,11 +13,10 @@ import java.util.UUID;
  * Implementation of {@link UserCoins}
  *
  * @see AbstractDbModel
- * @see UserCoinsDbModel
  */
 @Getter
 @ToString
-public class UserCoinsImpl extends AbstractDbModel implements UserCoinsDbModel {
+public class UserCoinsImpl extends AbstractDbModel implements UserCoins, DbModel {
 
     @Id
     private final UUID uuid;

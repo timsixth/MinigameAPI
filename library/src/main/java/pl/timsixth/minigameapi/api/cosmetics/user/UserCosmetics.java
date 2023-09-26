@@ -1,12 +1,13 @@
 package pl.timsixth.minigameapi.api.cosmetics.user;
 
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
+import pl.timsixth.minigameapi.api.model.Model;
 import pl.timsixth.minigameapi.api.user.User;
 
 import java.util.List;
 import java.util.Map;
 
-public interface UserCosmetics extends User {
+public interface UserCosmetics extends User, Model {
     /**
      * Checks having cosmetic
      *

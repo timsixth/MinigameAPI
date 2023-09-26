@@ -7,7 +7,7 @@ import pl.timsixth.databasesapi.database.query.QueryBuilder;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
-import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsDbModel;
+import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsImpl;
 import pl.timsixth.minigameapi.api.loader.database.AbstractSqlDataBaseLoader;
 
@@ -18,10 +18,9 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * @see AbstractSqlDataBaseLoader
- * @see UserCosmeticsDbModel
  */
 @RequiredArgsConstructor
-public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmeticsDbModel> {
+public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics> {
 
     private final ISQLDataBase currentSqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
     private final String TABLE_NAME = MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_cosmetics";
@@ -43,7 +42,7 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
      */
     @Override
     public void load(String tableName) {
-        List<UserCosmeticsDbModel> userCosmeticsList = loadUuids();
+        List<UserCosmetics> userCosmeticsList = loadUuids();
 
         userCosmeticsList.forEach(userCosmetics -> {
             userCosmetics.setCosmetics(getCosmetics(userCosmetics.getUuid()));
@@ -54,17 +53,17 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
     /**
      * Load uuid from database
      *
-     * @return list of {@link UserCosmeticsDbModel}
+     * @return list of {@link UserCosmetics}
      */
-    private List<UserCosmeticsDbModel> loadUuids() {
+    private List<UserCosmetics> loadUuids() {
         QueryBuilder queryBuilder = new QueryBuilder();
-        List<UserCosmeticsDbModel> userCosmeticsList = new ArrayList<>();
+        List<UserCosmetics> userCosmeticsList = new ArrayList<>();
 
         String query = queryBuilder.selectAll(TABLE_NAME).build();
 
         try (ResultSet resultSet = currentSqlDataBase.getAsyncQuery().query(query)) {
             while (resultSet.next()) {
-                UserCosmeticsDbModel userCosmetics = new UserCosmeticsImpl(
+                UserCosmetics userCosmetics = new UserCosmeticsImpl(
                         UUID.fromString(resultSet.getString("uuid"))
                 );
 

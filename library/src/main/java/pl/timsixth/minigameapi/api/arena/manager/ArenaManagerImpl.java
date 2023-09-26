@@ -1,8 +1,8 @@
 package pl.timsixth.minigameapi.api.arena.manager;
 
 import lombok.RequiredArgsConstructor;
-import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
-import pl.timsixth.minigameapi.api.arena.loader.ArenaFileLoader;
+import pl.timsixth.minigameapi.api.arena.Arena;
+import pl.timsixth.minigameapi.api.loader.Loader;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
  * Every manager which works on loaded data must have injected loader
  */
 @RequiredArgsConstructor
-public class ArenaManagerImpl implements ArenaManager<ArenaFileModel> {
+public class ArenaManagerImpl implements ArenaManager {
 
-    private final ArenaFileLoader arenaFileLoader;
+    private final Loader<Arena> arenaFileLoader;
 
     @Override
-    public Optional<ArenaFileModel> getArena(String name) {
+    public Optional<Arena> getArena(String name) {
         return arenaFileLoader.getData()
                 .stream()
                 .filter(arena -> arena.getName().equalsIgnoreCase(name))
@@ -28,13 +28,13 @@ public class ArenaManagerImpl implements ArenaManager<ArenaFileModel> {
     }
 
     @Override
-    public List<ArenaFileModel> getArenas() {
+    public List<Arena> getArenas() {
         return arenaFileLoader.getData();
     }
 
     private List<String> getAreasNames() {
         return arenaFileLoader.getData().stream()
-                .map(ArenaFileModel::getName)
+                .map(Arena::getName)
                 .collect(Collectors.toList());
     }
 
@@ -48,10 +48,10 @@ public class ArenaManagerImpl implements ArenaManager<ArenaFileModel> {
     /**
      * Adds new arena to list and save to file
      *
-     * @param type every class which implemented {@link ArenaFileModel}
+     * @param type every class which implemented {@link Arena}
      */
     @Override
-    public void addArena(ArenaFileModel type) {
+    public void addArena(Arena type) {
         this.arenaFileLoader.addObject(type);
         type.save();
     }
@@ -59,10 +59,10 @@ public class ArenaManagerImpl implements ArenaManager<ArenaFileModel> {
     /**
      * Removes new arena to list and deletes from file
      *
-     * @param type every class which implemented {@link ArenaFileModel}
+     * @param type every class which implemented {@link Arena}
      */
     @Override
-    public void removeArena(ArenaFileModel type) {
+    public void removeArena(Arena type) {
         this.arenaFileLoader.removeObject(type);
         type.delete();
     }

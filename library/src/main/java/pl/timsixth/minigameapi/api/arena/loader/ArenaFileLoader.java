@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pl.timsixth.minigameapi.api.MiniGame;
-import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
+import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.ArenaImpl;
 import pl.timsixth.minigameapi.api.loader.file.AbstractFileLoader;
 import pl.timsixth.minigameapi.api.util.ConfigurationSectionUtil;
@@ -13,9 +13,8 @@ import java.io.File;
 
 /**
  * @see AbstractFileLoader
- * @see ArenaFileModel
  */
-public class ArenaFileLoader extends AbstractFileLoader<ArenaFileModel> {
+public class ArenaFileLoader extends AbstractFileLoader<Arena> {
     /**
      * Loads arena from arenas.yml file
      */

@@ -2,9 +2,7 @@ package pl.timsixth.thetag.tabcompleter;
 
 import org.bukkit.Bukkit;
 import pl.timsixth.minigameapi.api.arena.Arena;
-import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
@@ -16,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class AdminTheTagCommandTabCompleter extends BaseTabCompleter {
 
-    public AdminTheTagCommandTabCompleter(ParentCommand parentCommand, ArenaManager<ArenaFileModel> arenaManager, UserCoinsManager<UserCoinsDbModel> userCoinsManager) {
+    public AdminTheTagCommandTabCompleter(ParentCommand parentCommand, ArenaManager arenaManager, UserCoinsManager userCoinsManager) {
         super(parentCommand);
 
         this.addConditions((sender, args) -> {

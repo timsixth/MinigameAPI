@@ -3,9 +3,9 @@ package pl.timsixth.minigameapi.api.stats.manager;
 import lombok.RequiredArgsConstructor;
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
-import pl.timsixth.minigameapi.api.loader.database.SqlDataBaseLoader;
+import pl.timsixth.minigameapi.api.database.DbModel;
+import pl.timsixth.minigameapi.api.loader.Loader;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
  * @see AbstractUserStatsManager
  */
 @RequiredArgsConstructor
-public class UserStatsManagerImpl extends AbstractUserStatsManager<UserStatsDbModel> {
+public class UserStatsManagerImpl extends AbstractUserStatsManager<UserStats> {
 
-    private final SqlDataBaseLoader<UserStatsDbModel> userStatsSqlDataBaseLoader;
+    private final Loader<UserStats> userStatsSqlDataBaseLoader;
 
     @Override
-    public Optional<UserStatsDbModel> getUser(UUID uuid, String arenaName) {
+    public Optional<UserStats> getUser(UUID uuid, String arenaName) {
         return userStatsSqlDataBaseLoader.getData()
                 .stream().filter(userStats -> userStats.getUuid().equals(uuid))
                 .filter(userStats -> userStats.getArenaName().equalsIgnoreCase(arenaName))
@@ -33,17 +33,21 @@ public class UserStatsManagerImpl extends AbstractUserStatsManager<UserStatsDbMo
     }
 
     @Override
-    public List<UserStatsDbModel> getAllStatsByUuid(UUID uuid) {
+    public List<UserStats> getAllStatsByUuid(UUID uuid) {
         return userStatsSqlDataBaseLoader.getData().stream()
                 .filter(userStats -> userStats.getUuid().equals(uuid))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public void addNewUser(UserStatsDbModel userStats) {
+    public void addNewUser(UserStats userStats) {
+        DbModel userStatsDbModel = null;
+
+        if (userStats instanceof DbModel) userStatsDbModel = (DbModel) userStats;
+
         QueryBuilder queryBuilder = new QueryBuilder();
 
-        String sql = queryBuilder.insert(userStats.getTableName(), null, userStats.getUuid().toString(), userStats.getName(),
+        String sql = queryBuilder.insert(userStatsDbModel.getTableName(), null, userStats.getUuid().toString(), userStats.getName(),
                 userStats.getArenaName(), userStats.getWins(), userStats.getDefeats()).build();
 
         try {

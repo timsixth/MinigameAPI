@@ -3,6 +3,7 @@ package pl.timsixth.minigameapi.api.loader.file;
 import pl.timsixth.minigameapi.api.file.FileModel;
 import pl.timsixth.minigameapi.api.loader.Loaders;
 import pl.timsixth.minigameapi.api.loader.Loader;
+import pl.timsixth.minigameapi.api.model.Model;
 
 /**
  * Loader which loads data from file
@@ -12,7 +13,7 @@ import pl.timsixth.minigameapi.api.loader.Loader;
  * @see Loader
  * @see Loaders
  */
-public interface FileLoader<T extends FileModel> extends Loader<T> {
+public interface FileLoader<T extends Model> extends Loader<T> {
     /**
      * Loads data from file
      *

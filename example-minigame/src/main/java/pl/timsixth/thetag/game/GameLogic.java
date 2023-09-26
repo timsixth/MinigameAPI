@@ -3,17 +3,17 @@ package pl.timsixth.thetag.game;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
-import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
+import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
-import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsDbModel;
+import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
+import pl.timsixth.minigameapi.api.stats.model.UserStats;
 import pl.timsixth.minigameapi.api.stats.model.UserStatsImpl;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.cosmetics.CosmeticCategory;
@@ -28,11 +28,11 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GameLogic {
 
     private final GameManager gameManager;
-    private final UserStatsManager<UserStatsDbModel> statisticsManager;
+    private final UserStatsManager statisticsManager;
     private final Messages messages;
-    private final ArenaManager<ArenaFileModel> arenaManager;
+    private final ArenaManager arenaManager;
     private final Settings settings;
-    private final UserCosmeticsManager<UserCosmeticsDbModel> userCosmeticsManager;
+    private final UserCosmeticsManager userCosmeticsManager;
 
     public MyUserGame randomUser(Game game) {
         return (MyUserGame) game.getPlayingUsers().get(ThreadLocalRandom.current().nextInt(game.getPlayingUsers().size()));
@@ -54,9 +54,9 @@ public class GameLogic {
             return;
         }
 
-        Optional<ArenaFileModel> areaOptional = arenaManager.getArena(randomName);
+        Optional<Arena> areaOptional = arenaManager.getArena(randomName);
         if (!areaOptional.isPresent()) return;
-        ArenaFileModel arena = areaOptional.get();
+        Arena arena = areaOptional.get();
         gameManager.joinGame(arena, player);
     }
 
@@ -73,8 +73,8 @@ public class GameLogic {
                 player.getInventory().clear();
                 player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
                 player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-                Optional<UserStatsDbModel> userStatsOptional = statisticsManager.getUser(player.getUniqueId(), game.getArena().getName());
-                UserStatsDbModel userStats;
+                Optional<UserStats> userStatsOptional = statisticsManager.getUser(player.getUniqueId(), game.getArena().getName());
+                UserStats userStats;
                 if (!userStatsOptional.isPresent()) {
                     userStats = new UserStatsImpl(player.getUniqueId(), player.getName(), game.getArena().getName());
                     statisticsManager.addNewUser(userStats);
@@ -90,11 +90,11 @@ public class GameLogic {
     }
 
     public void showCosmetics(Player player, Player entity, String category) {
-        Optional<UserCosmeticsDbModel> userCosmeticsDbModelOptional = userCosmeticsManager.getUserByUuid(player.getUniqueId());
+        Optional<UserCosmetics> userCosmeticsDbModelOptional = userCosmeticsManager.getUserByUuid(player.getUniqueId());
 
         if (!userCosmeticsDbModelOptional.isPresent()) return;
 
-        UserCosmeticsDbModel userCosmeticsDbModel = userCosmeticsDbModelOptional.get();
+        UserCosmetics userCosmeticsDbModel = userCosmeticsDbModelOptional.get();
 
         for (Cosmetic cosmetic : userCosmeticsDbModel.getAllCosmeticsCategory(category)) {
             if (!userCosmeticsDbModel.isCosmeticEnable(cosmetic)) continue;

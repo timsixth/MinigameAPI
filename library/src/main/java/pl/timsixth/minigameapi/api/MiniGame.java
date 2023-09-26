@@ -7,11 +7,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.migration.Migrations;
-import pl.timsixth.minigameapi.api.arena.ArenaFileModel;
 import pl.timsixth.minigameapi.api.arena.loader.ArenaFileLoader;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManagerImpl;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
 import pl.timsixth.minigameapi.api.coins.loader.UserCoinsLoader;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManagerImpl;
@@ -26,7 +24,6 @@ import pl.timsixth.minigameapi.api.configuration.type.GameConfiguration;
 import pl.timsixth.minigameapi.api.configuration.type.PluginConfiguration;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.impl.CosmeticsManagerImpl;
-import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsDbModel;
 import pl.timsixth.minigameapi.api.cosmetics.user.loader.UserCosmeticsLoader;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManagerImpl;
@@ -41,7 +38,6 @@ import pl.timsixth.minigameapi.api.stats.loader.UserStatsLoader;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManagerImpl;
 import pl.timsixth.minigameapi.api.stats.migrations.CreateUserStatsTable;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsDbModel;
 
 /**
  * Represents every minigame
@@ -54,10 +50,10 @@ public abstract class MiniGame extends JavaPlugin {
     private Configurator<PluginConfiguration> defaultPluginConfigurator;
     private Configurator<CommandConfiguration> defaultCommandConfigurator;
 
-    private ArenaManager<ArenaFileModel> arenaManager;
-    private UserCoinsManager<UserCoinsDbModel> userCoinsManager;
-    private UserCosmeticsManager<UserCosmeticsDbModel> userCosmeticsManager;
-    private UserStatsManager<UserStatsDbModel> userStatsManager;
+    private ArenaManager arenaManager;
+    private UserCoinsManager userCoinsManager;
+    private UserCosmeticsManager userCosmeticsManager;
+    private UserStatsManager userStatsManager;
     private CosmeticsManager cosmeticsManager;
     private GameManager gameManager;
 

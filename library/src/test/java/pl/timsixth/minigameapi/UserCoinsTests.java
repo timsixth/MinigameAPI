@@ -2,8 +2,8 @@ package pl.timsixth.minigameapi;
 
 import org.junit.Before;
 import org.junit.Test;
-import pl.timsixth.databasesapi.database.structure.DataType;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.databasesapi.database.structure.datatype.DataTypes;
+import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.database.DataBase;
 import pl.timsixth.minigameapi.user.UserCoinsStub;
 
@@ -15,25 +15,23 @@ import static junit.framework.Assert.assertEquals;
 public class UserCoinsTests {
 
     @Before
-    public void init() throws SQLException {
+    public void init() {
         DataBase dataBase = new DataBase();
         dataBase.openConnection();
 
 
         DataBase.getMySQL().getTableCreator()
-                .createColumn("id", DataType.INT, 11, false)
-                .primaryKey("id", true)
-                .autoIncrement("id", true)
-                .createColumn("uuid", DataType.VARCHAR, 36, false)
-                .createColumn("coins", DataType.INT, 11, false)
+                .id()
+                .createColumn("uuid", DataTypes.VARCHAR, false)
+                .createColumn("coins", DataTypes.INT, false)
                 .defaultValue("coins", 0)
-                .create("users_coins_test");
+                .createTable("users_coins_test");
     }
 
 
     @Test
     public void shouldAddCoinsToUser() {
-        UserCoinsDbModel userCoinsDbModel = new UserCoinsStub(UUID.randomUUID(), 10);
+        UserCoins userCoinsDbModel = new UserCoinsStub(UUID.randomUUID(), 10);
 
         userCoinsDbModel.addCoins(2);
 

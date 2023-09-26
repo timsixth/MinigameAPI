@@ -1,11 +1,12 @@
 package pl.timsixth.minigameapi.api.stats.model;
 
+import pl.timsixth.minigameapi.api.model.Model;
 import pl.timsixth.minigameapi.api.user.User;
 
 /**
  * Represents every user stat for single arena
  */
-public interface UserStats extends User {
+public interface UserStats extends User, Model {
     /**
      * @return user's name
      */

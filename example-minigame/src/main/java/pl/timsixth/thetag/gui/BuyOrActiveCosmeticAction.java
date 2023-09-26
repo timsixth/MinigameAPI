@@ -5,10 +5,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import pl.timsixth.guilibrary.core.model.MenuItem;
 import pl.timsixth.guilibrary.core.model.action.AbstractAction;
 import pl.timsixth.guilibrary.core.model.action.click.ClickAction;
-import pl.timsixth.minigameapi.api.coins.UserCoinsDbModel;
+import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
-import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsDbModel;
+import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsImpl;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.thetag.TheTagPlugin;
@@ -30,12 +30,12 @@ public class BuyOrActiveCosmeticAction extends AbstractAction implements ClickAc
     public void handleClickEvent(InventoryClickEvent event, MenuItem menuItem) {
         Player player = (Player) event.getWhoClicked();
 
-        UserCoinsManager<UserCoinsDbModel> userCoinsManager = theTagPlugin.getUserCoinsManager();
-        UserCosmeticsManager<UserCosmeticsDbModel> userCosmeticsManager = theTagPlugin.getUserCosmeticsManager();
+        UserCoinsManager userCoinsManager = theTagPlugin.getUserCoinsManager();
+        UserCosmeticsManager userCosmeticsManager = theTagPlugin.getUserCosmeticsManager();
 
-        Optional<UserCosmeticsDbModel> userCosmeticsOptional = userCosmeticsManager.getUserByUuid(player.getUniqueId());
+        Optional<UserCosmetics> userCosmeticsOptional = userCosmeticsManager.getUserByUuid(player.getUniqueId());
         Optional<Cosmetic> cosmeticOptional = theTagPlugin.getCosmeticsManager().getCosmeticByName(getArgs().get(0));
-        Optional<UserCoinsDbModel> userCoinsOptional = userCoinsManager.getUserByUuid(player.getUniqueId());
+        Optional<UserCoins> userCoinsOptional = userCoinsManager.getUserByUuid(player.getUniqueId());
 
         if (!cosmeticOptional.isPresent()) {
             event.setCancelled(true);
@@ -48,10 +48,10 @@ public class BuyOrActiveCosmeticAction extends AbstractAction implements ClickAc
         }
 
         Cosmetic cosmetic = cosmeticOptional.get();
-        UserCoinsDbModel userCoinsDbModel = userCoinsOptional.get();
+        UserCoins userCoinsDbModel = userCoinsOptional.get();
 
         if (userCosmeticsOptional.isPresent()) {
-            UserCosmeticsDbModel userCosmeticsDbModel = userCosmeticsOptional.get();
+            UserCosmetics userCosmeticsDbModel = userCosmeticsOptional.get();
 
             if (userCosmeticsDbModel.hasCosmetic(cosmetic)) {
                 if (userCosmeticsDbModel.isCosmeticEnable(cosmetic)) {
@@ -78,7 +78,7 @@ public class BuyOrActiveCosmeticAction extends AbstractAction implements ClickAc
         } else {
             if (hasCoins(event, menuItem, player, userCoinsDbModel)) return;
 
-            UserCosmeticsDbModel userCosmeticsDbModel = new UserCosmeticsImpl(player.getUniqueId());
+            UserCosmetics userCosmeticsDbModel = new UserCosmeticsImpl(player.getUniqueId());
             userCosmeticsDbModel.addCosmetic(cosmetic);
 
             userCosmeticsManager.addUser(userCosmeticsDbModel);
@@ -87,13 +87,13 @@ public class BuyOrActiveCosmeticAction extends AbstractAction implements ClickAc
         }
     }
 
-    private void buyCosmetic(InventoryClickEvent event, MenuItem menuItem, Player player, UserCoinsDbModel userCoinsDbModel) {
+    private void buyCosmetic(InventoryClickEvent event, MenuItem menuItem, Player player, UserCoins userCoinsDbModel) {
         userCoinsDbModel.removeCoins(menuItem.getPrice());
         PlayerUtil.sendMessage(player, messages.getBoughtCosmetic());
         event.setCancelled(true);
     }
 
-    private boolean hasCoins(InventoryClickEvent event, MenuItem menuItem, Player player, UserCoinsDbModel userCoinsDbModel) {
+    private boolean hasCoins(InventoryClickEvent event, MenuItem menuItem, Player player, UserCoins userCoinsDbModel) {
         if (!userCoinsDbModel.hasCoins(menuItem.getPrice())) {
             PlayerUtil.sendMessage(player, messages.getDontHaveCoins());
             event.setCancelled(true);
