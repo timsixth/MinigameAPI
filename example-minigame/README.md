@@ -23,3 +23,4 @@ Plugin libiraies:
 - PlaceholderAPI 
 - T-MinigameAPI
 - T-DataBasesAPI
+- T-GuiApi
