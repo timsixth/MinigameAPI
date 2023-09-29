@@ -103,7 +103,7 @@ public class GameLogic {
                 if (entity == null) continue;
                 HitParticleCosmetic hitParticleCosmetic = (HitParticleCosmetic) cosmetic;
 
-                hitParticleCosmetic.show(player, entity);
+                hitParticleCosmetic.show(entity);
             } else {
                 cosmetic.show(player);
             }

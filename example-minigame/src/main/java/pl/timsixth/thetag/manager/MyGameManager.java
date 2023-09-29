@@ -6,16 +6,17 @@ import org.bukkit.scoreboard.DisplaySlot;
 import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.game.Game;
+import pl.timsixth.minigameapi.api.game.impl.AbstractGameManager;
 import pl.timsixth.minigameapi.api.game.impl.GameImpl;
-import pl.timsixth.minigameapi.api.game.impl.GameManagerImpl;
+import pl.timsixth.minigameapi.api.game.state.GameState;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.game.GameLogic;
-import pl.timsixth.thetag.model.MyUserGame;
 import pl.timsixth.thetag.game.state.*;
+import pl.timsixth.thetag.model.MyUserGame;
 import pl.timsixth.thetag.util.ItemUtil;
 import pl.timsixth.thetag.util.PlayerUtil;
 
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class MyGameManager extends GameManagerImpl {
+public class MyGameManager extends AbstractGameManager {
 
     private final Settings settings;
     private final TheTagPlugin theTagPlugin;
@@ -40,11 +41,6 @@ public class MyGameManager extends GameManagerImpl {
         this.statisticsManager = statisticsManager;
 
         gameLogic = new GameLogic(this, statisticsManager, messages, theTagPlugin.getArenaManager(), settings, userCosmeticsManager);
-    }
-
-    @Override
-    public void gameRestart(Game game) {
-        game.setState(new RestartingGameState(this, game));
     }
 
     @Override
@@ -161,5 +157,10 @@ public class MyGameManager extends GameManagerImpl {
     private void giveLeaveItem(Player player) {
         ItemStack item = settings.leaveItem();
         player.getInventory().setItem(8, item);
+    }
+
+    @Override
+    protected GameState getRestartingGameState(Game game) {
+        return new RestartingGameState(this, game);
     }
 }

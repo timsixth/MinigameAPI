@@ -2,7 +2,7 @@ package pl.timsixth.thetag.cosmetics.walk;
 
 import org.bukkit.Particle;
 
-public class WalkHeartCosmetic extends AbstractWalkCosmetic {
+public class WalkHeartCosmetic implements WalkCosmetic {
 
     @Override
     public String getName() {

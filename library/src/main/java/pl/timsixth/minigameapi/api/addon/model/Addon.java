@@ -22,6 +22,11 @@ public interface Addon {
      */
     String getVersion();
 
+    /**
+     * Gets repository name
+     *
+     * @return repository name
+     */
     String getRepository();
 
     /**

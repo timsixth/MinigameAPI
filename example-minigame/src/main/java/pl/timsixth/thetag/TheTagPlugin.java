@@ -21,6 +21,8 @@ import pl.timsixth.thetag.configurators.MyGameConfigurator;
 import pl.timsixth.thetag.configurators.MyPluginConfigurator;
 import pl.timsixth.thetag.cosmetics.defeat.DefeatLightningCosmetic;
 import pl.timsixth.thetag.cosmetics.hit.HitHeartCosmetic;
+import pl.timsixth.thetag.cosmetics.hit.HitNoteCosmetic;
+import pl.timsixth.thetag.cosmetics.hit.HitSlimeCosmetic;
 import pl.timsixth.thetag.cosmetics.walk.*;
 import pl.timsixth.thetag.cosmetics.win.WinFireworkCosmetic;
 import pl.timsixth.thetag.expansion.TheTagExpansion;
@@ -87,16 +89,18 @@ public class TheTagPlugin extends MiniGame {
         new VersionChecker(this).checkVersion();
 
         CosmeticsManager cosmeticsManager = getCosmeticsManager();
-        cosmeticsManager.addCosmetic(new DefeatLightningCosmetic());
-        cosmeticsManager.addCosmetic(new WinFireworkCosmetic());
-
-        cosmeticsManager.addCosmetic(new WalkHeartCosmetic());
-        cosmeticsManager.addCosmetic(new WalkSlimeCosmetic());
-        cosmeticsManager.addCosmetic(new WalkNoteCosmetic());
-        cosmeticsManager.addCosmetic(new WalkDripLavaCosmetic());
-        cosmeticsManager.addCosmetic(new WalkDripWaterCosmetic());
-
-        cosmeticsManager.addCosmetic(new HitHeartCosmetic());
+        cosmeticsManager.addCosmetics(
+                new DefeatLightningCosmetic(),
+                new WinFireworkCosmetic(),
+                new WalkHeartCosmetic(),
+                new WalkSlimeCosmetic(),
+                new WalkNoteCosmetic(),
+                new WalkDripLavaCosmetic(),
+                new WalkDripWaterCosmetic(),
+                new HitHeartCosmetic(),
+                new HitSlimeCosmetic(),
+                new HitNoteCosmetic()
+        );
 
         new Metrics(this, 18831);
 

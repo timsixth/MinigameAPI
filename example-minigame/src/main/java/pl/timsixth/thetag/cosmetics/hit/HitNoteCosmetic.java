@@ -1,11 +1,11 @@
-package pl.timsixth.thetag.cosmetics.walk;
+package pl.timsixth.thetag.cosmetics.hit;
 
 import org.bukkit.Particle;
 
-public class WalkNoteCosmetic implements WalkCosmetic {
+public class HitNoteCosmetic implements HitParticleCosmetic {
     @Override
     public String getName() {
-        return "WALK_NOTE";
+        return "HIT_NOTE";
     }
 
     @Override

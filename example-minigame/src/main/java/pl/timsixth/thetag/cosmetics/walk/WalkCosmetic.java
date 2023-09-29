@@ -1,11 +1,11 @@
-package pl.timsixth.thetag.cosmetics.hit;
+package pl.timsixth.thetag.cosmetics.walk;
 
 import pl.timsixth.minigameapi.api.cosmetics.ParticleCosmetic;
 
-public interface HitParticleCosmetic extends ParticleCosmetic {
+interface WalkCosmetic extends ParticleCosmetic {
 
     @Override
     default int getParticleHeight() {
-        return 1;
+        return 2;
     }
 }

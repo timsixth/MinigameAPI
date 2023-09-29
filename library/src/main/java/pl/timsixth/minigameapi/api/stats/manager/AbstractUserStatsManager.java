@@ -7,9 +7,8 @@ import java.util.UUID;
 
 /**
  * Template method of {@link UserStatsManager}
- * @param <T> every class which implemented {@link UserStats}
  */
-public abstract class AbstractUserStatsManager<T extends UserStats> extends AbstractStatistics<T> implements UserStatsManager<T> {
+public abstract class AbstractUserStatsManager extends AbstractStatistics<UserStats> implements UserStatsManager {
 
     @Override
     public int getTotalDefeats(UUID uuid) {

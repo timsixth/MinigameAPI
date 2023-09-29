@@ -16,11 +16,6 @@ public class GameManagerImpl extends AbstractGameManager {
     }
 
     @Override
-    public void gameRestart(Game game) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    @Override
     public void joinGame(Arena arena, Player player) {
         throw new UnsupportedOperationException("Not implemented");
     }

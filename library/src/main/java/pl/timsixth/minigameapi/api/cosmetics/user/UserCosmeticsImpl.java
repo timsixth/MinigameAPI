@@ -5,10 +5,9 @@ import lombok.Setter;
 import lombok.ToString;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
 import pl.timsixth.minigameapi.api.MiniGame;
-import pl.timsixth.minigameapi.api.database.AbstractDbModel;
-import pl.timsixth.minigameapi.api.database.DbModel;
-import pl.timsixth.minigameapi.api.database.annoations.Id;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
+import pl.timsixth.minigameapi.api.database.AbstractDbModel;
+import pl.timsixth.minigameapi.api.database.annoations.Id;
 
 import java.util.*;
 /**
@@ -19,7 +18,7 @@ import java.util.*;
 @Getter
 @Setter
 @ToString
-public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmetics, DbModel {
+public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmetics {
 
     @Id
     private final UUID uuid;

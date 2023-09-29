@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @see AbstractUserStatsManager
  */
 @RequiredArgsConstructor
-public class UserStatsManagerImpl extends AbstractUserStatsManager<UserStats> {
+public class UserStatsManagerImpl extends AbstractUserStatsManager {
 
     private final Loader<UserStats> userStatsSqlDataBaseLoader;
 

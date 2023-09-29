@@ -33,4 +33,11 @@ public interface CosmeticsManager {
      * @param cosmetic cosmetic to remove
      */
     void removeCosmetic(Cosmetic cosmetic);
+
+    /**
+     * Adds new cosmetics (Every cosmetic must be registered in main class)
+     *
+     * @param cosmetics cosmetics to add
+     */
+    void addCosmetics(Cosmetic... cosmetics);
 }

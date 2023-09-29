@@ -5,6 +5,7 @@ import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,5 +34,12 @@ public class CosmeticsManagerImpl implements CosmeticsManager {
     @Override
     public void removeCosmetic(Cosmetic cosmetic) {
         cosmetics.remove(cosmetic);
+    }
+
+    @Override
+    public void addCosmetics(Cosmetic... cosmetics) {
+        if (cosmetics.length == 0) throw new IllegalArgumentException("Cosmetics can not be empty");
+
+        this.cosmetics.addAll(Arrays.asList(cosmetics));
     }
 }

@@ -35,7 +35,7 @@ public interface UserGame extends User {
     void setPoints(int points);
 
     /**
-     * @return true if player is playin otherwise false
+     * @return true if player is playing otherwise false
      */
     boolean isPlaying();
 

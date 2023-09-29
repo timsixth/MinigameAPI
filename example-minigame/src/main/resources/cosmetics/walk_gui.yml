@@ -51,7 +51,7 @@ guis:
           - '&7Right click to buy effect'
       4:
         material: JUKEBOX
-        displayname: '&a&lNOte effect'
+        displayname: '&a&lNote effect'
         price: 2000
         click_action:
           type: 'BUY_OR_ACTIVE_COSMETIC'

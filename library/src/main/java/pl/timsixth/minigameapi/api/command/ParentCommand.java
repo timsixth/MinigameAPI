@@ -93,8 +93,10 @@ public abstract class ParentCommand implements CommandExecutor {
 
         if (hasArguments) {
             for (SubCommand subCommand : subCommands) {
-                if (args[0].equalsIgnoreCase(subCommand.getName())) {
-                    return subCommand.executeCommand(sender, args);
+                if (args.length >= 1) {
+                    if (args[0].equalsIgnoreCase(subCommand.getName())) {
+                        return subCommand.executeCommand(sender, args);
+                    }
                 }
             }
         }

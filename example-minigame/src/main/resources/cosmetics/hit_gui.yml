@@ -16,6 +16,28 @@ guis:
         lore:
           - '&7Price &a{PRICE} &7coins'
           - '&7Right click to buy effect'
+      1:
+        material: SLIME_BALL
+        displayname: '&a&lSlime effect'
+        price: 4000
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'HIT_SLIME'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
+      2:
+        material: JUKEBOX
+        displayname: '&a&lNote effect'
+        price: 2000
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'HIT_NOTE'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
       7:
         material: BARRIER
         displayname: '&cReturn to main menu'

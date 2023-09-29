@@ -6,6 +6,6 @@ package pl.timsixth.minigameapi.api.arena.exception;
 public class LocationNotFoundException extends RuntimeException {
 
     public LocationNotFoundException(String name) {
-        super("Location with " + name + "not found");
+        super("Location with " + name + " not found");
     }
 }

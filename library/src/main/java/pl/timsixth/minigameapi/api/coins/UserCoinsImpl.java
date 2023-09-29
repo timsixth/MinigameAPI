@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.ToString;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.database.AbstractDbModel;
-import pl.timsixth.minigameapi.api.database.DbModel;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
 
 import java.util.UUID;
@@ -16,7 +15,7 @@ import java.util.UUID;
  */
 @Getter
 @ToString
-public class UserCoinsImpl extends AbstractDbModel implements UserCoins, DbModel {
+public class UserCoinsImpl extends AbstractDbModel implements UserCoins {
 
     @Id
     private final UUID uuid;
