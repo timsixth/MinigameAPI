@@ -3,10 +3,12 @@ package pl.timsixth.minigameapi;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.timsixth.minigameapi.api.addon.manager.AddonManager;
 import pl.timsixth.minigameapi.api.addon.manager.AddonManagerImpl;
+import pl.timsixth.minigameapi.api.arena.ArenaImpl;
 import pl.timsixth.minigameapi.api.command.CommandRegistration;
 import pl.timsixth.minigameapi.api.configuration.configurators.DefaultCommandConfigurator;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
@@ -35,6 +37,8 @@ public final class MiniGameApiPlugin extends JavaPlugin {
         saveConfig();
 
         new Metrics(this, 19564);
+
+        ConfigurationSerialization.registerClass(ArenaImpl.class);
 
         Messages messages = new Messages(this);
 

@@ -3,7 +3,6 @@ package pl.timsixth.minigameapi.api;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
@@ -29,8 +28,6 @@ import pl.timsixth.minigameapi.api.cosmetics.user.loader.UserCosmeticsLoader;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManagerImpl;
 import pl.timsixth.minigameapi.api.cosmetics.user.migrations.CreateUserCosmeticsTableMigration;
-import pl.timsixth.minigameapi.api.file.ConfigurationFile;
-import pl.timsixth.minigameapi.api.file.registration.ConfigurationFileRegistration;
 import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.game.impl.GameManagerImpl;
 import pl.timsixth.minigameapi.api.listener.BlockBreakListener;
@@ -75,23 +72,9 @@ public abstract class MiniGame extends JavaPlugin {
         instance = this;
         initConfigurators();
         initMigrations();
-        registerFileModels();
         initLoaders();
         loadData();
         initManagers();
-    }
-
-    /**
-     * Registers file model in the bukkit serialization
-     */
-    private void registerFileModels() {
-        for (ConfigurationFile configurationFile : ConfigurationFileRegistration.getConfigurationFiles()) {
-            if (configurationFile.getAlias().isEmpty()) {
-                ConfigurationSerialization.registerClass(configurationFile.getClazz());
-                continue;
-            }
-            ConfigurationSerialization.registerClass(configurationFile.getClazz(), configurationFile.getAlias());
-        }
     }
 
     /**

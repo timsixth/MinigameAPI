@@ -5,12 +5,10 @@ import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import org.bukkit.configuration.serialization.SerializableAs;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.file.annotaions.IdSection;
 import pl.timsixth.minigameapi.api.file.annotaions.ManyFiles;
 import pl.timsixth.minigameapi.api.file.annotaions.SingleFile;
-import pl.timsixth.minigameapi.api.file.registration.ConfigurationFileRegistration;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,8 +20,6 @@ public final class ConfigurationFile {
     private String name;
     private String primarySection;
     private Object idSection;
-    private Class<? extends ConfigurationSerializable> clazz;
-    private String alias = "";
     @Setter
     private File file;
     @Setter
@@ -37,8 +33,6 @@ public final class ConfigurationFile {
      */
     <T extends ConfigurationSerializable> void prepareModel(T type) throws NoSuchFieldException, IllegalAccessException {
         Class<? extends ConfigurationSerializable> typeClass = type.getClass();
-        MiniGame miniGame = MiniGame.getInstance();
-        String alias = miniGame.getDescription().getName() + typeClass.getSimpleName();
 
         if (typeClass.isAnnotationPresent(SingleFile.class)) {
             SingleFile singleFile = typeClass.getAnnotation(SingleFile.class);
@@ -58,14 +52,6 @@ public final class ConfigurationFile {
         if (idSection == null) setIdSectionFromSuperclass(type);
 
         if (typeClass.isAnnotationPresent(ManyFiles.class)) this.name = idSection.toString() + ".yml";
-
-        if (typeClass.isAnnotationPresent(SerializableAs.class)) {
-            this.alias = alias;
-        }
-
-        this.clazz = typeClass;
-
-        ConfigurationFileRegistration.registerConfigurationFile(this);
     }
 
     /**
