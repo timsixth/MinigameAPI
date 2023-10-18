@@ -11,7 +11,6 @@ import pl.timsixth.minigameapi.api.configuration.Configuration;
 @Getter
 public class GameConfiguration implements Configuration {
 
-    private boolean useTeams;
     private boolean blockBreaking;
     private boolean blocksPlacing;
     private boolean droppingItems;

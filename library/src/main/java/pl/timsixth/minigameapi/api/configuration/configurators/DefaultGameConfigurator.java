@@ -13,7 +13,6 @@ public class DefaultGameConfigurator implements Configurator<GameConfiguration> 
         return GameConfiguration.builder()
                 .blockBreaking(true)
                 .blocksPlacing(true)
-                .useTeams(false)
                 .droppingItems(false)
                 .build();
     }

@@ -14,7 +14,6 @@ public class DefaultPluginConfigurator implements Configurator<PluginConfigurati
                 .useDataBase(true)
                 .tablesPrefix("minigames_")
                 .useDefaultStatsSystem(false)
-                .useBoostersSystem(false)
                 .build();
     }
 }
