@@ -1,5 +1,6 @@
 package pl.timsixth.minigameapi.api.database;
 
+import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.model.Model;
 
 /**
@@ -12,4 +13,8 @@ public interface DbModel extends Model {
      * @return table name
      */
     String getTableName();
+
+    default String getTableNameWithPrefix() {
+        return MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + getTableName();
+    }
 }

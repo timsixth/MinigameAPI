@@ -1,7 +1,6 @@
 package pl.timsixth.minigameapi.api.stats.model;
 
 import lombok.Getter;
-import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.database.AbstractDbModel;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
 
@@ -23,6 +22,8 @@ public class UserStatsImpl extends AbstractDbModel implements UserStats {
     private int wins;
     private int defeats;
 
+    public static final String TABLE_NAME = "users_stats";
+
     public UserStatsImpl(UUID uuid, String name, String arenaName) {
         this.uuid = uuid;
         this.name = name;
@@ -41,7 +42,7 @@ public class UserStatsImpl extends AbstractDbModel implements UserStats {
 
     @Override
     public String getTableName() {
-        return MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_stats";
+        return TABLE_NAME;
     }
 
     @Override

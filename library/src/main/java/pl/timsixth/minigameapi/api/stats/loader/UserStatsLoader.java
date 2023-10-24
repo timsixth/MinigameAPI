@@ -1,7 +1,6 @@
 package pl.timsixth.minigameapi.api.stats.loader;
 
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
-import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.loader.database.AbstractSqlDataBaseLoader;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
 import pl.timsixth.minigameapi.api.stats.model.UserStatsImpl;
@@ -16,13 +15,6 @@ import java.util.concurrent.ExecutionException;
  */
 public class UserStatsLoader extends AbstractSqlDataBaseLoader<UserStats> {
 
-    /**
-     * Loads data from table
-     */
-    @Override
-    public void load() {
-        load(MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_stats");
-    }
     /**
      * Loads data from database
      *
@@ -51,6 +43,10 @@ public class UserStatsLoader extends AbstractSqlDataBaseLoader<UserStats> {
         } catch (ExecutionException | InterruptedException | SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    @Override
+    protected String getTableName() {
+        return UserStatsImpl.TABLE_NAME;
     }
 }

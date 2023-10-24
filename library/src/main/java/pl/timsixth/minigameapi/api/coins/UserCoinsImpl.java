@@ -2,7 +2,6 @@ package pl.timsixth.minigameapi.api.coins;
 
 import lombok.Getter;
 import lombok.ToString;
-import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.database.AbstractDbModel;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
 
@@ -20,6 +19,8 @@ public class UserCoinsImpl extends AbstractDbModel implements UserCoins {
     @Id
     private final UUID uuid;
     private int coins;
+
+    public static final String TABLE_NAME = "users_coins";
 
     public UserCoinsImpl(UUID uuid, double coins) {
         this.uuid = uuid;
@@ -57,6 +58,6 @@ public class UserCoinsImpl extends AbstractDbModel implements UserCoins {
 
     @Override
     public String getTableName() {
-        return MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_coins";
+        return TABLE_NAME;
     }
 }

@@ -47,7 +47,7 @@ public class UserStatsManagerImpl extends AbstractUserStatsManager {
 
         QueryBuilder queryBuilder = new QueryBuilder();
 
-        String sql = queryBuilder.insert(userStatsDbModel.getTableName(), null, userStats.getUuid().toString(), userStats.getName(),
+        String sql = queryBuilder.insert(userStatsDbModel.getTableNameWithPrefix(), null, userStats.getUuid().toString(), userStats.getName(),
                 userStats.getArenaName(), userStats.getWins(), userStats.getDefeats()).build();
 
         try {

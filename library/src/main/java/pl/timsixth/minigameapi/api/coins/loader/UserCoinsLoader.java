@@ -1,7 +1,6 @@
 package pl.timsixth.minigameapi.api.coins.loader;
 
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
-import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.UserCoinsImpl;
 import pl.timsixth.minigameapi.api.loader.database.AbstractSqlDataBaseLoader;
@@ -15,13 +14,6 @@ import java.util.concurrent.ExecutionException;
  * @see AbstractSqlDataBaseLoader
  */
 public class UserCoinsLoader extends AbstractSqlDataBaseLoader<UserCoins> {
-    /**
-     * Loads data from table
-     */
-    @Override
-    public void load() {
-        load(MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_coins");
-    }
 
     /**
      * Loads data from database
@@ -46,5 +38,10 @@ public class UserCoinsLoader extends AbstractSqlDataBaseLoader<UserCoins> {
         } catch (ExecutionException | InterruptedException | SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    protected String getTableName() {
+        return UserCoinsImpl.TABLE_NAME;
     }
 }

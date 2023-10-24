@@ -33,7 +33,7 @@ public abstract class AbstractDbModel implements DbModel {
 
         QueryBuilder queryBuilder = new QueryBuilder();
 
-        String query = queryBuilder.insert(getTableName(), null, data.values()).build();
+        String query = queryBuilder.insert(getTableNameWithPrefix(), null, data.values()).build();
 
         executeUpdate(query);
 
@@ -46,7 +46,7 @@ public abstract class AbstractDbModel implements DbModel {
 
         QueryBuilder queryBuilder = new QueryBuilder();
 
-        String query = queryBuilder.update(getTableName(), data)
+        String query = queryBuilder.update(getTableNameWithPrefix(), data)
                 .where(idName + " = " + getId().toString())
                 .build();
 
@@ -61,7 +61,7 @@ public abstract class AbstractDbModel implements DbModel {
 
         QueryBuilder queryBuilder = new QueryBuilder();
 
-        String query = queryBuilder.deleteAll(getTableName())
+        String query = queryBuilder.deleteAll(getTableNameWithPrefix())
                 .where(idName + " = " + getId().toString())
                 .build();
 

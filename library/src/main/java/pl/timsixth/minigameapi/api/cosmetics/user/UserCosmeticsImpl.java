@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
-import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
 import pl.timsixth.minigameapi.api.database.AbstractDbModel;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
@@ -23,6 +22,8 @@ public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmetics 
     @Id
     private final UUID uuid;
     private Map<Cosmetic, Boolean> cosmetics;
+
+    public static final String TABLE_NAME = "user_cosmetics";
 
     public UserCosmeticsImpl(UUID uuid) {
         this.uuid = uuid;
@@ -70,9 +71,8 @@ public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmetics 
 
     @Override
     public String getTableName() {
-        return MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_cosmetics";
+        return TABLE_NAME;
     }
-
 
     @Override
     public Object update() {
@@ -84,7 +84,7 @@ public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmetics 
             data.put("enabled", status);
 
 
-            String query = queryBuilder.update(getTableName(), data)
+            String query = queryBuilder.update(getTableNameWithPrefix(), data)
                     .where("uuid = '" + uuid.toString() + "' AND cosmetic = '" + cosmetic.getName() + "'")
                     .build();
 
@@ -100,7 +100,7 @@ public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmetics 
         cosmetics.forEach((cosmetic, status) -> {
             QueryBuilder queryBuilder = new QueryBuilder();
 
-            String query = queryBuilder.insert(getTableName(), null, uuid, cosmetic.getName(), status).build();
+            String query = queryBuilder.insert(getTableNameWithPrefix(), null, uuid, cosmetic.getName(), status).build();
 
             executeUpdate(query);
         });
@@ -112,7 +112,7 @@ public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmetics 
         cosmetics.forEach((cosmetic, status) -> {
             QueryBuilder queryBuilder = new QueryBuilder();
 
-            String query = queryBuilder.deleteAll(getTableName())
+            String query = queryBuilder.deleteAll(getTableNameWithPrefix())
                     .where("uuid = '" + uuid.toString() + "' AND cosmetic = '" + cosmetic.getName() + "'")
                     .build();
 

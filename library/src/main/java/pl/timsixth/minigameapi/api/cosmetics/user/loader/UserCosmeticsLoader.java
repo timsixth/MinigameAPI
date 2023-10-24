@@ -2,7 +2,6 @@ package pl.timsixth.minigameapi.api.cosmetics.user.loader;
 
 import lombok.RequiredArgsConstructor;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
-import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
@@ -20,17 +19,7 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics> {
 
-    private final String TABLE_NAME = MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_cosmetics";
-
     private final CosmeticsManager cosmeticsManager;
-
-    /**
-     * Loads data from table
-     */
-    @Override
-    public void load() {
-        load(TABLE_NAME);
-    }
 
     /**
      * Loads data from database
@@ -56,7 +45,7 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
         QueryBuilder queryBuilder = new QueryBuilder();
         List<UserCosmetics> userCosmeticsList = new ArrayList<>();
 
-        String query = queryBuilder.selectAll(TABLE_NAME).build();
+        String query = queryBuilder.selectAll(getTableName()).build();
 
         try (ResultSet resultSet = currentSqlDataBase.getAsyncQuery().query(query)) {
             while (resultSet.next()) {
@@ -82,7 +71,7 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
         QueryBuilder queryBuilder = new QueryBuilder();
         Map<Cosmetic, Boolean> cosmeticAndStatus = new HashMap<>();
 
-        String query = queryBuilder.select(TABLE_NAME, "cosmetic", "enabled").where("uuid = '" + uuid.toString() + "'").build();
+        String query = queryBuilder.select(getTableName(), "cosmetic", "enabled").where("uuid = '" + uuid.toString() + "'").build();
 
         try (ResultSet resultSet = currentSqlDataBase.getAsyncQuery().query(query)) {
             while (resultSet.next()) {
@@ -99,4 +88,8 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
         return cosmeticAndStatus;
     }
 
+    @Override
+    protected String getTableName() {
+        return UserCosmeticsImpl.TABLE_NAME;
+    }
 }
