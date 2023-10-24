@@ -1,7 +1,5 @@
 package pl.timsixth.minigameapi.api.coins.loader;
 
-import pl.timsixth.databasesapi.DatabasesApiPlugin;
-import pl.timsixth.databasesapi.database.ISQLDataBase;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.coins.UserCoins;
@@ -32,7 +30,6 @@ public class UserCoinsLoader extends AbstractSqlDataBaseLoader<UserCoins> {
      */
     @Override
     public void load(String tableName) {
-        ISQLDataBase currentSqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
         QueryBuilder queryBuilder = new QueryBuilder();
 
         String query = queryBuilder.selectAll(tableName).build();

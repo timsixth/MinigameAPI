@@ -1,7 +1,5 @@
 package pl.timsixth.minigameapi.api.stats.loader;
 
-import pl.timsixth.databasesapi.DatabasesApiPlugin;
-import pl.timsixth.databasesapi.database.ISQLDataBase;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.loader.database.AbstractSqlDataBaseLoader;
@@ -18,7 +16,6 @@ import java.util.concurrent.ExecutionException;
  */
 public class UserStatsLoader extends AbstractSqlDataBaseLoader<UserStats> {
 
-    private final ISQLDataBase sqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
     /**
      * Loads data from table
      */
@@ -37,7 +34,7 @@ public class UserStatsLoader extends AbstractSqlDataBaseLoader<UserStats> {
 
         String query = queryBuilder.selectAll(tableName).build();
 
-        try (ResultSet resultSet = sqlDataBase.getAsyncQuery().query(query)) {
+        try (ResultSet resultSet = currentSqlDataBase.getAsyncQuery().query(query)) {
 
             while (resultSet.next()) {
                 UserStats userStats = new UserStatsImpl(

@@ -1,8 +1,6 @@
 package pl.timsixth.minigameapi.api.cosmetics.user.loader;
 
 import lombok.RequiredArgsConstructor;
-import pl.timsixth.databasesapi.DatabasesApiPlugin;
-import pl.timsixth.databasesapi.database.ISQLDataBase;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
@@ -22,7 +20,6 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics> {
 
-    private final ISQLDataBase currentSqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
     private final String TABLE_NAME = MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_cosmetics";
 
     private final CosmeticsManager cosmeticsManager;
