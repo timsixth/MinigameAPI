@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.java.JavaPluginLoader;
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.migration.Migrations;
 import pl.timsixth.minigameapi.api.arena.loader.ArenaFileLoader;
@@ -39,6 +41,8 @@ import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManagerImpl;
 import pl.timsixth.minigameapi.api.stats.migrations.CreateUserStatsTable;
 
+import java.io.File;
+
 /**
  * Represents every minigame
  */
@@ -66,6 +70,13 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Getter
     private static MiniGame instance;
+
+    public MiniGame() {
+    }
+
+    public MiniGame(JavaPluginLoader loader,PluginDescriptionFile description, File dataFolder, File file) {
+        super(loader, description, dataFolder, file);
+    }
 
     @Override
     public void onEnable() {

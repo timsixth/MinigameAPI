@@ -24,7 +24,7 @@
     </repositories>
 
     <artifactId>example-minigame</artifactId>
-    <version>1.6.0</version>
+    <version>1.7.0</version>
     <name>T-TheTag</name>
 
     <dependencies>

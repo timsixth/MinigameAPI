@@ -23,6 +23,7 @@ import pl.timsixth.thetag.cosmetics.defeat.DefeatLightningCosmetic;
 import pl.timsixth.thetag.cosmetics.hit.HitHeartCosmetic;
 import pl.timsixth.thetag.cosmetics.hit.HitNoteCosmetic;
 import pl.timsixth.thetag.cosmetics.hit.HitSlimeCosmetic;
+import pl.timsixth.thetag.cosmetics.hit.HitSnowCosmetic;
 import pl.timsixth.thetag.cosmetics.walk.*;
 import pl.timsixth.thetag.cosmetics.win.WinFireworkCosmetic;
 import pl.timsixth.thetag.expansion.TheTagExpansion;
@@ -97,9 +98,11 @@ public class TheTagPlugin extends MiniGame {
                 new WalkNoteCosmetic(),
                 new WalkDripLavaCosmetic(),
                 new WalkDripWaterCosmetic(),
+                new WalkSnowCosmetic(),
                 new HitHeartCosmetic(),
                 new HitSlimeCosmetic(),
-                new HitNoteCosmetic()
+                new HitNoteCosmetic(),
+                new HitSnowCosmetic()
         );
 
         new Metrics(this, 18831);

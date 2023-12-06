@@ -7,7 +7,6 @@ import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.database.DataBase;
 import pl.timsixth.minigameapi.user.UserCoinsStub;
 
-import java.sql.SQLException;
 import java.util.UUID;
 
 import static junit.framework.Assert.assertEquals;

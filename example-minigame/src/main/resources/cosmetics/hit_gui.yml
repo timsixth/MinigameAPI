@@ -38,6 +38,17 @@ guis:
         lore:
           - '&7Price &a{PRICE} &7coins'
           - '&7Right click to buy effect'
+      3:
+        material: SNOWBALL
+        displayname: '&a&lSnow effect'
+        price: 2000
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'HIT_SNOW'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
       7:
         material: BARRIER
         displayname: '&cReturn to main menu'

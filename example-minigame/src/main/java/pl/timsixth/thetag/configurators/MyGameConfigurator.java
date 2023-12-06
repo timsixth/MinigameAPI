@@ -10,7 +10,6 @@ public class MyGameConfigurator extends DefaultGameConfigurator {
         return GameConfiguration
                 .builder()
                 .blockBreaking(false)
-                .useTeams(false)
                 .droppingItems(false)
                 .blocksPlacing(false)
                 .build();
