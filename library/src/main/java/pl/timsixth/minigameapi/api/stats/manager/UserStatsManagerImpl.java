@@ -1,11 +1,14 @@
 package pl.timsixth.minigameapi.api.stats.manager;
 
 import lombok.RequiredArgsConstructor;
+import org.bukkit.entity.Player;
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
+import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.database.DbModel;
 import pl.timsixth.minigameapi.api.loader.Loader;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
+import pl.timsixth.minigameapi.api.stats.model.UserStatsImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,5 +60,21 @@ public class UserStatsManagerImpl extends AbstractUserStatsManager {
         }
 
         userStatsSqlDataBaseLoader.addObject(userStats);
+    }
+
+    @Override
+    public UserStats getUserStatsOrCreate(Player player, Arena arena) {
+        Optional<UserStats> userStatsOptional = getUser(player.getUniqueId(), arena.getName());
+
+        UserStats userStats;
+        if (!userStatsOptional.isPresent()) {
+            userStats = new UserStatsImpl(player.getUniqueId(), player.getName(), arena.getName());
+
+            addNewUser(userStats);
+        } else {
+            userStats = userStatsOptional.get();
+        }
+
+        return userStats;
     }
 }

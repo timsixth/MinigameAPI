@@ -1,5 +1,7 @@
 package pl.timsixth.minigameapi.api.stats.manager;
 
+import org.bukkit.entity.Player;
+import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.stats.Statistics;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
 
@@ -33,4 +35,13 @@ public interface UserStatsManager extends Statistics<UserStats> {
      * @param type user to add
      */
     void addNewUser(UserStats type);
+
+    /**
+     * Gets or creates new {@link UserStats}
+     *
+     * @param player player to create user
+     * @param arena arena to get arena name
+     * @return created or got user
+     */
+    UserStats getUserStatsOrCreate(Player player, Arena arena);
 }

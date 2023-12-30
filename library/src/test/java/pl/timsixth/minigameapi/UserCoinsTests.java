@@ -34,8 +34,6 @@ public class UserCoinsTests {
 
         userCoinsDbModel.addCoins(2);
 
-        userCoinsDbModel.save();
-
         assertEquals(12, (int) userCoinsDbModel.getCoins());
     }
 }
