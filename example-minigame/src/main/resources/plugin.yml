@@ -1,14 +1,11 @@
-name: T-TheTag
-main: pl.timsixth.thetag.TheTagPlugin
-version: '1.7.0'
-description: The tag minigame
-website: https://timsixth.pl/
+name: ExampleMiniGame
+main: pl.timsixth.exampleminigame.ExampleMiniGamePlugin
+version: '1.0.0'
 api-version: 1.13
 author: timsixth
 depend:
   - T-MiniGameAPI
 softdepend:
-  - PlaceholderAPI
   - Multiverse-Core
 commands:
   thetag:
