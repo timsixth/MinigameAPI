@@ -8,7 +8,5 @@ depend:
 softdepend:
   - Multiverse-Core
 commands:
-  thetag:
-  tta:
-    aliases:
-      - thetagadmin
+  em:
+  aem:

@@ -1,4 +1,4 @@
-permission: 'thetag.admin'
+permission: 'em.admin'
 lobby:
   location:
     ==: org.bukkit.Location
@@ -10,26 +10,10 @@ lobby:
     world: world
 leaveItem:
   material: BARRIER
-  name: '&cLeave from area &7(Right click)'
+  name: '&cLeave from arena &7(Right click)'
 game:
   max_players: 4
-  min_players: 3
+  min_players: 2
   seconds_start: 10
-  round_time: 60
-  final_time: 45
   costOfWin: 100.0
-  usePotionEffectsInFinal: false
-  theTagEffects: #potion_effect;level
-    - 'BLINDNESS;1'
-    - 'SPEED;1'
-  noTheTagEffects: #potion_effect;level
-    - 'NIGHT_VISION;1'
-    - 'SLOW;1'
-scoreboard:
-  title: '&a&lTheTag'
-  lines:
-    - '11;&7Your nickname: &a{PLAYER_NAME}'
-    - '10;&e'
-    - '9;&7Game time: &a{GAME_TIME}'
-    - '8;&7'
-    - '7;&7The tag: &a{IS_THE_TAG}'
+  neededBlockToWin: 100
