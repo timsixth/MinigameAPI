@@ -23,7 +23,7 @@ public class UserCosmeticsImpl extends AbstractDbModel implements UserCosmetics 
     private final UUID uuid;
     private Map<Cosmetic, Boolean> cosmetics;
 
-    public static final String TABLE_NAME = "user_cosmetics";
+    public static final String TABLE_NAME = "users_cosmetics";
 
     public UserCosmeticsImpl(UUID uuid) {
         this.uuid = uuid;

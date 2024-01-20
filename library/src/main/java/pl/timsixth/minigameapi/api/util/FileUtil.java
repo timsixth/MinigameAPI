@@ -28,6 +28,24 @@ public class FileUtil {
         return file;
     }
 
+
+    /**
+     * @param configurationFile class which contains information about file model
+     * @param parent            parent directory
+     * @return saved file
+     */
+    public static File createFile(File parent, ConfigurationFile configurationFile) {
+        File file = new File(parent, configurationFile.getName());
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                Bukkit.getLogger().severe(e.getMessage());
+            }
+        }
+        return file;
+    }
+
     /**
      * Deletes file
      *
@@ -53,6 +71,13 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Creates directory
+     *
+     * @param parent parent directory
+     * @param name   file name
+     * @return created file
+     */
     public static File createDirectory(File parent, String name) {
         File file = new File(parent, name);
 

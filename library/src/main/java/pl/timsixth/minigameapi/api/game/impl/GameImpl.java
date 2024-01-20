@@ -79,4 +79,14 @@ public class GameImpl implements Game {
         }
         return Optional.empty();
     }
+
+    @Override
+    public void addUserGame(UserGame userGame) {
+        this.playingUsers.add(userGame);
+    }
+
+    @Override
+    public void removeUserGame(UserGame userGame) {
+        this.playingUsers.remove(userGame);
+    }
 }

@@ -22,10 +22,22 @@ public abstract class AbstractSqlDataBaseLoader<T extends Model> extends Abstrac
 
     @Override
     public void load() {
-        load(MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + getTableName());
+        load(getTableNameWithPrefix());
     }
 
-    protected String getTableName() {
-        throw new UnsupportedOperationException("Not implemented");
+    /**
+     * Gets table name which loader will load data
+     *
+     * @return table name
+     */
+    protected abstract String getTableName();
+
+    /**
+     * Gets table name with minigame tables' prefix
+     *
+     * @return table name with minigame tables' prefix
+     */
+    protected String getTableNameWithPrefix() {
+        return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + getTableName();
     }
 }

@@ -15,9 +15,9 @@ public class PlayerWinGameEvent extends PlayerEvent {
 
     private static final HandlerList handlers = new HandlerList();
     private final Game game;
-    private final int costOfWin;
+    private final double costOfWin;
 
-    public PlayerWinGameEvent(Player who, Game game, int costOfWin) {
+    public PlayerWinGameEvent(Player who, Game game, double costOfWin) {
         super(who);
         this.game = game;
         this.costOfWin = costOfWin;

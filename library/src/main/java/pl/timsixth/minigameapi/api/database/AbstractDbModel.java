@@ -6,6 +6,7 @@ import pl.timsixth.databasesapi.database.query.QueryBuilder;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -111,6 +112,8 @@ public abstract class AbstractDbModel implements DbModel {
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
 
+            if (Modifier.isStatic(declaredField.getModifiers())) return;
+
             if (declaredField.isAnnotationPresent(Id.class)) {
                 if (idValue != null)
                     throw new IllegalStateException("Every database model can has only one field annotated as Id");
@@ -158,6 +161,8 @@ public abstract class AbstractDbModel implements DbModel {
 
             for (Field declaredField : declaredFields) {
                 declaredField.setAccessible(true);
+
+                if (Modifier.isStatic(declaredField.getModifiers())) return;
 
                 if (fieldNameAndValue.getKey().equalsIgnoreCase(declaredField.getName())) continue;
 

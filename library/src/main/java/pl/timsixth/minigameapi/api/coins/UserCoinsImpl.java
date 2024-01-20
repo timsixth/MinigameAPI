@@ -18,7 +18,7 @@ public class UserCoinsImpl extends AbstractDbModel implements UserCoins {
 
     @Id
     private final UUID uuid;
-    private int coins;
+    private double coins;
 
     public static final String TABLE_NAME = "users_coins";
 
@@ -30,19 +30,19 @@ public class UserCoinsImpl extends AbstractDbModel implements UserCoins {
 
     @Override
     public void setCoins(double coins) {
-        this.coins = (int) coins;
+        this.coins = coins;
         update();
     }
 
     @Override
     public void addCoins(double coins) {
-        this.coins += (int) coins;
+        this.coins += coins;
         update();
     }
 
     @Override
     public void removeCoins(double coins) {
-        this.coins -= (int) coins;
+        this.coins -= coins;
         update();
     }
 

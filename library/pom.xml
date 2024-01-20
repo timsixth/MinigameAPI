@@ -6,11 +6,11 @@
     <parent>
         <groupId>pl.timsixth</groupId>
         <artifactId>MinigameAPI</artifactId>
-        <version>0.2.0</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>library</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>T-MinigameAPI</name>
     <build>
         <finalName>${project.name}-${project.version}</finalName>
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>com.github.timsixth</groupId>
             <artifactId>T-DataBasesAPI</artifactId>
-            <version>v1.8.0</version>
+            <version>v1.9.1</version>
         </dependency>
         <dependency>
             <groupId>org.kohsuke</groupId>

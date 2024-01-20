@@ -22,7 +22,7 @@ public class CreateUserCosmeticsTableMigration implements ICreationMigration {
      */
     @Override
     public String getTableName() {
-        return MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_cosmetics";
+        return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + "users_cosmetics";
     }
 
     /**

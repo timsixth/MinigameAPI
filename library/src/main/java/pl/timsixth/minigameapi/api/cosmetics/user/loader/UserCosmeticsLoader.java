@@ -45,7 +45,7 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
         QueryBuilder queryBuilder = new QueryBuilder();
         List<UserCosmetics> userCosmeticsList = new ArrayList<>();
 
-        String query = queryBuilder.selectAll(getTableName()).build();
+        String query = queryBuilder.selectAll(getTableNameWithPrefix()).build();
 
         try (ResultSet resultSet = currentSqlDataBase.getAsyncQuery().query(query)) {
             while (resultSet.next()) {
@@ -71,7 +71,7 @@ public class UserCosmeticsLoader extends AbstractSqlDataBaseLoader<UserCosmetics
         QueryBuilder queryBuilder = new QueryBuilder();
         Map<Cosmetic, Boolean> cosmeticAndStatus = new HashMap<>();
 
-        String query = queryBuilder.select(getTableName(), "cosmetic", "enabled").where("uuid = '" + uuid.toString() + "'").build();
+        String query = queryBuilder.select(getTableNameWithPrefix(), "cosmetic", "enabled").where("uuid = '" + uuid.toString() + "'").build();
 
         try (ResultSet resultSet = currentSqlDataBase.getAsyncQuery().query(query)) {
             while (resultSet.next()) {

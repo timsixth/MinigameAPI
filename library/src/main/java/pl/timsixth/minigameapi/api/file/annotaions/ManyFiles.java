@@ -21,4 +21,6 @@ public @interface ManyFiles {
      * @return primary section in file
      */
     String primarySection() default "";
+
+    String parentDirectory() default "";
 }

@@ -57,4 +57,11 @@ public interface GameManager {
      * @return set of games
      */
     Set<Game> getGames();
+
+    /**
+     * Adds game
+     *
+     * @param game game to add
+     */
+    void addGame(Game game);
 }

@@ -9,7 +9,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.migration.Migrations;
+import pl.timsixth.minigameapi.api.arena.factory.ArenaFactory;
+import pl.timsixth.minigameapi.api.arena.factory.ArenaFactoryImpl;
 import pl.timsixth.minigameapi.api.arena.loader.ArenaFileLoader;
+import pl.timsixth.minigameapi.api.arena.loader.ArenaSingleFileLoader;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManagerImpl;
 import pl.timsixth.minigameapi.api.coins.loader.UserCoinsLoader;
@@ -69,12 +72,15 @@ public abstract class MiniGame extends JavaPlugin {
     private Loaders loaders;
 
     @Getter
+    private static ArenaFactory arenaFactory;
+
+    @Getter
     private static MiniGame instance;
 
     public MiniGame() {
     }
 
-    public MiniGame(JavaPluginLoader loader,PluginDescriptionFile description, File dataFolder, File file) {
+    public MiniGame(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
         super(loader, description, dataFolder, file);
     }
 
@@ -86,6 +92,14 @@ public abstract class MiniGame extends JavaPlugin {
         initLoaders();
         loadData();
         initManagers();
+        initFactories();
+    }
+
+    /**
+     * Initializes factories
+     */
+    private void initFactories() {
+        arenaFactory = new ArenaFactoryImpl();
     }
 
     /**
@@ -106,7 +120,7 @@ public abstract class MiniGame extends JavaPlugin {
         userCoinsManager = new UserCoinsManagerImpl(userCoinsLoader);
         userCosmeticsManager = new UserCosmeticsManagerImpl(userCosmeticsLoader);
 
-        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem())
+        if (getPluginConfiguration().isUseDefaultStatsSystem())
             userStatsManager = new UserStatsManagerImpl(userStatsLoader);
     }
 
@@ -116,26 +130,32 @@ public abstract class MiniGame extends JavaPlugin {
     private void initLoaders() {
         cosmeticsManager = new CosmeticsManagerImpl();
 
-        loaders = new Loaders(getDefaultPluginConfiguration());
-        arenaFileLoader = new ArenaFileLoader();
+        loaders = new Loaders(getPluginConfiguration());
+        if (arenaFileLoader == null) arenaFileLoader = new ArenaSingleFileLoader();
         userCoinsLoader = new UserCoinsLoader();
         userCosmeticsLoader = new UserCosmeticsLoader(cosmeticsManager);
 
-        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem()) userStatsLoader = new UserStatsLoader();
+        if (getPluginConfiguration().isUseDefaultStatsSystem()) userStatsLoader = new UserStatsLoader();
     }
 
     /**
      * Loads data
      */
     private void loadData() {
-        loaders.registerLoaders(arenaFileLoader, userCoinsLoader, userCosmeticsLoader);
+        loaders.registerLoaders(userCoinsLoader, userCosmeticsLoader);
 
-        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem()) {
+        if (getPluginConfiguration().isUseDefaultStatsSystem()) {
             loaders.registerLoader(userStatsLoader);
             loaders.load(userStatsLoader);
         }
 
-        loaders.load(arenaFileLoader, userCoinsLoader);
+        loaders.registerLoaders(arenaFileLoader);
+
+        if (arenaFileLoader instanceof ArenaSingleFileLoader) {
+            loaders.load(arenaFileLoader);
+        }
+
+        loaders.load(userCoinsLoader);
     }
 
     /**
@@ -146,7 +166,7 @@ public abstract class MiniGame extends JavaPlugin {
         CreateUserCoinsTableMigration createUserCoinsTableMigration = new CreateUserCoinsTableMigration();
         CreateUserCosmeticsTableMigration createUserCosmeticsTableMigration = new CreateUserCosmeticsTableMigration();
 
-        if (getDefaultPluginConfiguration().isUseDefaultStatsSystem()) {
+        if (getPluginConfiguration().isUseDefaultStatsSystem()) {
             CreateUserStatsTable createUserStatsTable = new CreateUserStatsTable();
             migrations.addMigration(createUserStatsTable);
 
@@ -170,9 +190,9 @@ public abstract class MiniGame extends JavaPlugin {
      */
     protected void registerGameListeners() {
         Listener[] listeners = {
-                new BlockBreakListener(getDefaultGameConfiguration(), gameManager),
-                new BlockPlaceListener(getDefaultGameConfiguration(), gameManager),
-                new PlayerDropItemListener(getDefaultGameConfiguration(), gameManager)
+                new BlockBreakListener(getGameConfiguration(), gameManager),
+                new BlockPlaceListener(getGameConfiguration(), gameManager),
+                new PlayerDropItemListener(getGameConfiguration(), gameManager)
         };
 
         for (Listener listener : listeners) {
@@ -182,23 +202,59 @@ public abstract class MiniGame extends JavaPlugin {
 
     /**
      * @return default game configuration {@link GameConfiguration}
+     * @deprecated use {@link MiniGame#getGameConfiguration()}
      */
+    @Deprecated
     public GameConfiguration getDefaultGameConfiguration() {
         return defaultGameConfigurator.configure();
     }
 
     /**
      * @return default plugin configuration {@link PluginConfiguration}
+     * @deprecated use {@link MiniGame#getPluginConfiguration()}
      */
+    @Deprecated
     public PluginConfiguration getDefaultPluginConfiguration() {
         return defaultPluginConfigurator.configure();
     }
 
     /**
      * @return default command configuration {@link CommandConfiguration}
+     * @deprecated use {@link MiniGame#getCommandConfiguration()}
      */
+    @Deprecated
     public CommandConfiguration getDefaultCommandConfiguration() {
         return defaultCommandConfigurator.configure();
+    }
+
+    /**
+     * @return game configuration {@link GameConfiguration}
+     */
+    public GameConfiguration getGameConfiguration() {
+        return defaultGameConfigurator.configure();
+    }
+
+    /**
+     * @return plugin configuration {@link PluginConfiguration}
+     */
+    public PluginConfiguration getPluginConfiguration() {
+        return defaultPluginConfigurator.configure();
+    }
+
+    /**
+     * @return command configuration {@link CommandConfiguration}
+     */
+    public CommandConfiguration getCommandConfiguration() {
+        return defaultCommandConfigurator.configure();
+    }
+
+    /**
+     * Sets arena factory
+     *
+     * @param arenaFactory arena factory to set
+     */
+    protected void setArenaFactory(ArenaFactory arenaFactory) {
+        MiniGame.arenaFactory = arenaFactory;
     }
 
     /**

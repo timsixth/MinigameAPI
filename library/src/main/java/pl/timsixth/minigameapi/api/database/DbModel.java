@@ -15,6 +15,6 @@ public interface DbModel extends Model {
     String getTableName();
 
     default String getTableNameWithPrefix() {
-        return MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + getTableName();
+        return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + getTableName();
     }
 }

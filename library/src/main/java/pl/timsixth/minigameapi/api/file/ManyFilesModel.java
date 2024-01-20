@@ -1,7 +1,10 @@
 package pl.timsixth.minigameapi.api.file;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.util.FileUtil;
+
+import java.io.File;
 
 /**
  * Represents every file model which is saving in many files
@@ -22,7 +25,13 @@ public abstract class ManyFilesModel extends AbstractFileModel {
     @Override
     public Object update() {
         YamlConfiguration yamlConfiguration = getConfigurationFile().getYamlConfiguration();
-        yamlConfiguration.set(getConfigurationFile().getIdSection().toString(), this);
+
+        String path = getConfigurationFile().getIdSection().toString();
+
+        if (!getConfigurationFile().getParentDirectory().isEmpty())
+            path = getConfigurationFile().getPrimarySection() + "." + path;
+
+        yamlConfiguration.set(path, this);
 
         getConfigurationFile().saveFile();
 
@@ -31,8 +40,20 @@ public abstract class ManyFilesModel extends AbstractFileModel {
 
     @Override
     public Object save() {
-        super.save();
+        createFile();
 
         return this.update();
+    }
+
+    @Override
+    protected void createFile() {
+        if (getConfigurationFile().getParentDirectory().isEmpty()) super.createFile();
+
+        File directory = FileUtil.createDirectory(MiniGame.getInstance().getDataFolder(), getConfigurationFile().getParentDirectory());
+
+        File file = FileUtil.createFile(directory, getConfigurationFile());
+
+        getConfigurationFile().setYamlConfiguration(YamlConfiguration.loadConfiguration(file));
+        getConfigurationFile().setFile(file);
     }
 }

@@ -1,7 +1,8 @@
 package pl.timsixth.minigameapi.api.configuration.configurators;
 
-import pl.timsixth.minigameapi.api.configuration.type.PluginConfiguration;
+import pl.timsixth.minigameapi.api.configuration.ArenaSaveType;
 import pl.timsixth.minigameapi.api.configuration.Configurator;
+import pl.timsixth.minigameapi.api.configuration.type.PluginConfiguration;
 
 public class DefaultPluginConfigurator implements Configurator<PluginConfiguration> {
 
@@ -14,6 +15,7 @@ public class DefaultPluginConfigurator implements Configurator<PluginConfigurati
                 .useDataBase(true)
                 .tablesPrefix("minigames_")
                 .useDefaultStatsSystem(false)
+                .arenaSaveType(ArenaSaveType.SINGLE_FILE)
                 .build();
     }
 }

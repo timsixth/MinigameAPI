@@ -29,7 +29,7 @@ abstract class AbstractFileModel implements FileModel, ConfigurationSerializable
     /**
      * The method set YamlConfiguration and File
      */
-    private void createFile() {
+    protected void createFile() {
         File file = FileUtil.createFile(configurationFile);
         configurationFile.setYamlConfiguration(YamlConfiguration.loadConfiguration(file));
         configurationFile.setFile(file);

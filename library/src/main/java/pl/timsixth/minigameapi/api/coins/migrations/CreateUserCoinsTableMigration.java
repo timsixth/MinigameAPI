@@ -21,7 +21,7 @@ public class CreateUserCoinsTableMigration implements ICreationMigration {
      */
     @Override
     public String getTableName() {
-        return MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_coins";
+        return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + "users_coins";
     }
 
     /**
@@ -42,7 +42,7 @@ public class CreateUserCoinsTableMigration implements ICreationMigration {
         currentSqlDataBase.getTableCreator()
                 .id()
                 .createColumn("uuid", new VarcharDataType(36), false)
-                .createColumn("coins", DataTypes.INT, false)
+                .createColumn("coins", DataTypes.DOUBLE, false)
                 .defaultValue("coins", 0)
                 .createTable(getTableName());
     }

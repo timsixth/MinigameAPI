@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.file.annotaions.IdSection;
 import pl.timsixth.minigameapi.api.file.annotaions.ManyFiles;
 import pl.timsixth.minigameapi.api.file.annotaions.SingleFile;
@@ -24,6 +23,7 @@ public final class ConfigurationFile {
     private File file;
     @Setter
     private YamlConfiguration yamlConfiguration;
+    private String parentDirectory;
 
     /**
      * @param type object which is preparing to serialization
@@ -45,6 +45,7 @@ public final class ConfigurationFile {
             ManyFiles manyFiles = typeClass.getAnnotation(ManyFiles.class);
 
             this.primarySection = manyFiles.primarySection();
+            this.parentDirectory = manyFiles.parentDirectory();
         }
 
         setIdSection(type, typeClass);

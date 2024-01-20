@@ -20,7 +20,7 @@ public class CreateUserStatsTable implements ICreationMigration {
 
     @Override
     public final String getTableName() {
-        return MiniGame.getInstance().getDefaultPluginConfiguration().getTablesPrefix() + "users_stats";
+        return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + "users_stats";
     }
 
     @Override

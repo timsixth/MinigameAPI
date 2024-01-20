@@ -47,4 +47,8 @@ public abstract class AbstractGameManager implements GameManager {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void addGame(Game game) {
+        this.games.add(game);
+    }
 }

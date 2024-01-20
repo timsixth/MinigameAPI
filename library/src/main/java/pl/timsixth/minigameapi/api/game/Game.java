@@ -90,4 +90,18 @@ public interface Game {
      * @return Optional of team
      */
     Optional<Team> getTeamByPlayer(Player player);
+
+    /**
+     * Adds new user game to playing players
+     *
+     * @param userGame user game to add
+     */
+    void addUserGame(UserGame userGame);
+
+    /**
+     * Removes user game from playing players
+     *
+     * @param userGame user game to remove
+     */
+    void removeUserGame(UserGame userGame);
 }
