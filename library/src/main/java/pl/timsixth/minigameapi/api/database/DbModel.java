@@ -6,7 +6,7 @@ import pl.timsixth.minigameapi.api.model.Model;
 /**
  * Represents every database model.
  *
- * @see DbModel
+ * @see Model
  */
 public interface DbModel extends Model {
     /**
@@ -14,6 +14,11 @@ public interface DbModel extends Model {
      */
     String getTableName();
 
+    /**
+     * Gets table name with plugin's table prefix
+     *
+     * @return table name with plugin's table prefix
+     */
     default String getTableNameWithPrefix() {
         return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + getTableName();
     }

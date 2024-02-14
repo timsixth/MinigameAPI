@@ -7,8 +7,12 @@ import pl.timsixth.minigameapi.api.arena.ArenaImpl;
 import pl.timsixth.minigameapi.api.arena.MultiFilesArena;
 import pl.timsixth.minigameapi.api.configuration.ArenaSaveType;
 
+import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Implementation of {@link ArenaFactory}
+ */
 public class ArenaFactoryImpl implements ArenaFactory {
 
     @Override
@@ -20,5 +24,10 @@ public class ArenaFactoryImpl implements ArenaFactory {
         }
 
         return new ArenaImpl(name, lobbyLocation, locations);
+    }
+
+    @Override
+    public Arena createArena(String name, Location lobbyLocation) {
+        return createArena(name, lobbyLocation, new HashMap<>());
     }
 }

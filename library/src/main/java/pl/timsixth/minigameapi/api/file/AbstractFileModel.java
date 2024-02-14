@@ -3,6 +3,8 @@ package pl.timsixth.minigameapi.api.file;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import pl.timsixth.minigameapi.api.model.InitializableModel;
+import pl.timsixth.minigameapi.api.model.Model;
 import pl.timsixth.minigameapi.api.util.FileUtil;
 
 import java.io.File;
@@ -10,9 +12,9 @@ import java.io.File;
 /**
  * The class represents every model which is saving in file
  */
-abstract class AbstractFileModel implements FileModel, ConfigurationSerializable {
+abstract class AbstractFileModel implements FileModel, ConfigurationSerializable, InitializableModel {
 
-    private final ConfigurationFile configurationFile = new ConfigurationFile();
+    private ConfigurationFile configurationFile;
 
     /**
      * The method saves model to file
@@ -21,18 +23,16 @@ abstract class AbstractFileModel implements FileModel, ConfigurationSerializable
      */
     @Override
     public Object save() {
-        createFile();
-
-        return this;
+        return save(this);
     }
 
     /**
      * The method set YamlConfiguration and File
      */
     protected void createFile() {
-        File file = FileUtil.createFile(configurationFile);
-        configurationFile.setYamlConfiguration(YamlConfiguration.loadConfiguration(file));
-        configurationFile.setFile(file);
+        File file = FileUtil.createFile(getConfigurationFile());
+       getConfigurationFile().setYamlConfiguration(YamlConfiguration.loadConfiguration(file));
+        getConfigurationFile().setFile(file);
     }
 
     /**
@@ -42,7 +42,7 @@ abstract class AbstractFileModel implements FileModel, ConfigurationSerializable
      */
     @Override
     public boolean delete() {
-        throw new UnsupportedOperationException("Not implemented");
+        return delete(this);
     }
 
     /**
@@ -52,7 +52,7 @@ abstract class AbstractFileModel implements FileModel, ConfigurationSerializable
      */
     @Override
     public Object update() {
-        throw new UnsupportedOperationException("Not implemented");
+        return update(this);
     }
 
     /**
@@ -63,11 +63,36 @@ abstract class AbstractFileModel implements FileModel, ConfigurationSerializable
         return configurationFile;
     }
 
+    @Override
     public void init() {
+        init(this);
+    }
+
+    @Override
+    public void init(Model object) {
+        configurationFile = new ConfigurationFile();
+
         try {
-            configurationFile.prepareModel(this);
+            configurationFile.prepareModel(object);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             Bukkit.getLogger().severe(e.getMessage());
         }
+    }
+
+    @Override
+    public Object save(Model model) {
+        createFile();
+
+        return model;
+    }
+
+    @Override
+    public boolean delete(Model model) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @Override
+    public Object update(Model model) {
+        throw new UnsupportedOperationException("Not implemented");
     }
 }

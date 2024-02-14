@@ -27,7 +27,7 @@ public class CreateSubCommand implements SubCommand {
                 return true;
             }
             ArenaFactory arenaFactory = MiniGame.getArenaFactory();
-            arenaManager.addArena(arenaFactory.createArena(args[1], player.getLocation(), new HashMap<>()));
+            arenaManager.addArena(arenaFactory.createArena(args[1], player.getLocation()));
             player.sendMessage(messages.getArenaCreated());
         }
 

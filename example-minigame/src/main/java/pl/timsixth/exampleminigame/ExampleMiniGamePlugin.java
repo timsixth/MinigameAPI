@@ -14,7 +14,6 @@ import pl.timsixth.exampleminigame.cosmetics.FireworkCosmetic;
 import pl.timsixth.exampleminigame.cosmetics.HeartParticleCosmetic;
 import pl.timsixth.exampleminigame.listeners.BlockBreakListener;
 import pl.timsixth.exampleminigame.listeners.PlayerInteractListener;
-import pl.timsixth.exampleminigame.listeners.PlayerJoinListener;
 import pl.timsixth.exampleminigame.manager.MyGameManager;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.command.CommandRegistration;
@@ -74,7 +73,6 @@ public class ExampleMiniGamePlugin extends MiniGame {
 
         pluginManager.registerEvents(new BlockBreakListener(settings, getGameManager(), messages, getUserStatsManager(), getUserCoinsManager()), this);
         pluginManager.registerEvents(new PlayerInteractListener(settings, messages, getGameManager()), this);
-        pluginManager.registerEvents(new PlayerJoinListener(getUserCoinsManager()), this);
     }
 
     private void registerCommands() {

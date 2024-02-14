@@ -1,6 +1,7 @@
 package pl.timsixth.minigameapi.api.stats.model;
 
 import lombok.Getter;
+import lombok.ToString;
 import pl.timsixth.minigameapi.api.database.AbstractDbModel;
 import pl.timsixth.minigameapi.api.database.annoations.Id;
 
@@ -13,6 +14,7 @@ import java.util.UUID;
  * @see AbstractDbModel
  */
 @Getter
+@ToString
 public class UserStatsImpl extends AbstractDbModel implements UserStats {
 
     @Id

@@ -10,6 +10,7 @@ import pl.timsixth.minigameapi.api.addon.manager.AddonManager;
 import pl.timsixth.minigameapi.api.addon.manager.AddonManagerImpl;
 import pl.timsixth.minigameapi.api.arena.ArenaImpl;
 import pl.timsixth.minigameapi.api.arena.MultiFilesArena;
+import pl.timsixth.minigameapi.api.coins.SingleFileUserCoinsAdapter;
 import pl.timsixth.minigameapi.api.command.CommandRegistration;
 import pl.timsixth.minigameapi.api.configuration.configurators.DefaultCommandConfigurator;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
@@ -41,6 +42,7 @@ public final class MiniGameApiPlugin extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(ArenaImpl.class);
         ConfigurationSerialization.registerClass(MultiFilesArena.class);
+        ConfigurationSerialization.registerClass(SingleFileUserCoinsAdapter.class, "SingleFileUserCoinsAdapter");
 
         Messages messages = new Messages(this);
 

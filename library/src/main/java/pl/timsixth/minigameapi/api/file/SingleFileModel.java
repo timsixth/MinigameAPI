@@ -3,6 +3,7 @@ package pl.timsixth.minigameapi.api.file;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pl.timsixth.minigameapi.api.MiniGame;
+import pl.timsixth.minigameapi.api.model.Model;
 import pl.timsixth.minigameapi.api.util.ConfigurationSectionUtil;
 
 import java.io.File;
@@ -16,7 +17,29 @@ import java.io.File;
 public abstract class SingleFileModel extends AbstractFileModel {
 
     @Override
-    public boolean delete() {
+    public Object save(Model model) {
+        super.save(model);
+
+        return this.update(model);
+    }
+
+    @Override
+    public Object update(Model model) {
+        setFiles();
+
+        ConfigurationFile configurationFile = getConfigurationFile();
+
+        YamlConfiguration yamlConfiguration = configurationFile.getYamlConfiguration();
+        ConfigurationSection primarySection = ConfigurationSectionUtil.getSection(yamlConfiguration, configurationFile.getPrimarySection());
+        primarySection.set(configurationFile.getIdSection().toString(), model);
+
+        configurationFile.saveFile();
+
+        return model;
+    }
+
+    @Override
+    public boolean delete(Model model) {
         setFiles();
 
         YamlConfiguration yamlConfiguration = getConfigurationFile().getYamlConfiguration();
@@ -32,31 +55,11 @@ public abstract class SingleFileModel extends AbstractFileModel {
         return false;
     }
 
-    @Override
-    public Object update() {
-        setFiles();
-
-        YamlConfiguration yamlConfiguration = getConfigurationFile().getYamlConfiguration();
-        ConfigurationSection primarySection = ConfigurationSectionUtil.getSection(yamlConfiguration, getConfigurationFile().getPrimarySection());
-        primarySection.set(getConfigurationFile().getIdSection().toString(), this);
-
-        getConfigurationFile().saveFile();
-
-        return this;
-    }
-
     private void setFiles() {
         if (getConfigurationFile().getYamlConfiguration() == null) {
             File file = new File(MiniGame.getInstance().getDataFolder(), getConfigurationFile().getName());
             getConfigurationFile().setFile(file);
             getConfigurationFile().setYamlConfiguration(YamlConfiguration.loadConfiguration(file));
         }
-    }
-
-    @Override
-    public Object save() {
-        super.save();
-
-        return this.update();
     }
 }

@@ -8,6 +8,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import pl.timsixth.minigameapi.api.file.annotaions.IdSection;
 import pl.timsixth.minigameapi.api.file.annotaions.ManyFiles;
 import pl.timsixth.minigameapi.api.file.annotaions.SingleFile;
+import pl.timsixth.minigameapi.api.util.ModelUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,43 +28,41 @@ public final class ConfigurationFile {
 
     /**
      * @param type object which is preparing to serialization
-     * @param <T>  every FileModel
      * @throws NoSuchFieldException   when the field is null
      * @throws IllegalAccessException when method has illegal access to field
      */
-    <T extends ConfigurationSerializable> void prepareModel(T type) throws NoSuchFieldException, IllegalAccessException {
-        Class<? extends ConfigurationSerializable> typeClass = type.getClass();
+    void prepareModel(Object type) throws NoSuchFieldException, IllegalAccessException {
+        Class<?> clazz = type.getClass();
 
-        if (typeClass.isAnnotationPresent(SingleFile.class)) {
-            SingleFile singleFile = typeClass.getAnnotation(SingleFile.class);
+        if (clazz.isAnnotationPresent(SingleFile.class)) {
+            SingleFile singleFile = clazz.getAnnotation(SingleFile.class);
 
             this.name = singleFile.fileName();
             this.primarySection = singleFile.primarySection();
         }
 
-        if (typeClass.isAnnotationPresent(ManyFiles.class)) {
-            ManyFiles manyFiles = typeClass.getAnnotation(ManyFiles.class);
+        if (clazz.isAnnotationPresent(ManyFiles.class)) {
+            ManyFiles manyFiles = clazz.getAnnotation(ManyFiles.class);
 
             this.primarySection = manyFiles.primarySection();
             this.parentDirectory = manyFiles.parentDirectory();
         }
 
-        setIdSection(type, typeClass);
+        setIdSection(type);
 
-        if (idSection == null) setIdSectionFromSuperclass(type);
+        if (idSection == null) throw new IllegalStateException("Every file model must have IdSection annotation");
 
-        if (typeClass.isAnnotationPresent(ManyFiles.class)) this.name = idSection.toString() + ".yml";
+        if (clazz.isAnnotationPresent(ManyFiles.class)) this.name = idSection.toString() + ".yml";
     }
 
     /**
      * Sets idSection value
      *
-     * @param type  type class which implements {@link ConfigurationSerializable}
-     * @param clazz param to gets fields by reflection
+     * @param type type class which implements {@link ConfigurationSerializable}
      * @throws IllegalAccessException when can not access to fields
      */
-    private <T extends ConfigurationSerializable> void setIdSection(T type, Class<?> clazz) throws IllegalAccessException {
-        Field[] fields = clazz.getDeclaredFields();
+    private void setIdSection(Object type) throws IllegalAccessException {
+        Field[] fields = ModelUtil.findFields(type);
 
         for (Field field : fields) {
             if (field.isAnnotationPresent(IdSection.class)) {
@@ -86,17 +85,4 @@ public final class ConfigurationFile {
         }
     }
 
-    /**
-     * If subclass doesn't have IdSection annotation, this method sets idSection from superclass
-     *
-     * @param type class which implements {@link ConfigurationSerializable}
-     * @throws IllegalAccessException when can not access to fields
-     */
-    private <T extends ConfigurationSerializable> void setIdSectionFromSuperclass(T type) throws IllegalAccessException {
-        Class<?> superclass = type.getClass().getSuperclass();
-
-        setIdSection(type, superclass);
-
-        if (idSection == null) throw new IllegalStateException("Every file model must have IdSection annotation");
-    }
 }

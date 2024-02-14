@@ -6,6 +6,7 @@ import pl.timsixth.minigameapi.api.arena.MultiFilesArena;
 import pl.timsixth.minigameapi.api.loader.file.AbstractFileLoader;
 
 import java.io.File;
+
 /**
  * @see AbstractFileLoader
  */
@@ -25,6 +26,7 @@ public class ArenaManyFilesLoader extends AbstractArenaFileLoader {
             load(childFile.getAbsolutePath(), "arena");
         }
     }
+
     /**
      * Loads data from single arena file
      *
@@ -35,7 +37,7 @@ public class ArenaManyFilesLoader extends AbstractArenaFileLoader {
     public void load(String fileName, String primarySection) {
         File file = new File(fileName);
 
-        loadFile(file, primarySection);
+        loadFile(file, primarySection, (key, section) -> this.addObject(section.getObject(key, MultiFilesArena.class)));
     }
 
     @Override

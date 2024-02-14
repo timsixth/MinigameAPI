@@ -1,11 +1,8 @@
 package pl.timsixth.minigameapi.api.arena.loader;
 
-import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.ArenaImpl;
 import pl.timsixth.minigameapi.api.loader.file.AbstractFileLoader;
-
-import java.io.File;
 
 /**
  * @see AbstractFileLoader
@@ -27,9 +24,7 @@ public class ArenaSingleFileLoader extends AbstractArenaFileLoader {
      */
     @Override
     public void load(String fileName, String primarySection) {
-        File file = new File(MiniGame.getInstance().getDataFolder(), fileName);
-
-        loadFile(file, primarySection);
+        loadFile(fileName, primarySection, (key, section) -> this.addObject(section.getObject(key, ArenaImpl.class)));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package pl.timsixth.minigameapi.api;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -9,13 +10,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.migration.Migrations;
+import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.factory.ArenaFactory;
 import pl.timsixth.minigameapi.api.arena.factory.ArenaFactoryImpl;
 import pl.timsixth.minigameapi.api.arena.loader.ArenaFileLoader;
+import pl.timsixth.minigameapi.api.arena.loader.ArenaLoader;
 import pl.timsixth.minigameapi.api.arena.loader.ArenaSingleFileLoader;
+import pl.timsixth.minigameapi.api.arena.loader.factory.ArenaLoaderFactory;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManagerImpl;
+import pl.timsixth.minigameapi.api.coins.UserCoins;
+import pl.timsixth.minigameapi.api.coins.factory.UserCoinsFactory;
+import pl.timsixth.minigameapi.api.coins.factory.UserCoinsFactoryImpl;
 import pl.timsixth.minigameapi.api.coins.loader.UserCoinsLoader;
+import pl.timsixth.minigameapi.api.coins.loader.factory.UserCoinsLoaderFactory;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManagerImpl;
 import pl.timsixth.minigameapi.api.coins.migrations.CreateUserCoinsTableMigration;
@@ -29,7 +37,9 @@ import pl.timsixth.minigameapi.api.configuration.type.GameConfiguration;
 import pl.timsixth.minigameapi.api.configuration.type.PluginConfiguration;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.impl.CosmeticsManagerImpl;
+import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.loader.UserCosmeticsLoader;
+import pl.timsixth.minigameapi.api.cosmetics.user.loader.factory.UserCosmeticsLoaderFactory;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManagerImpl;
 import pl.timsixth.minigameapi.api.cosmetics.user.migrations.CreateUserCosmeticsTableMigration;
@@ -38,11 +48,15 @@ import pl.timsixth.minigameapi.api.game.impl.GameManagerImpl;
 import pl.timsixth.minigameapi.api.listener.BlockBreakListener;
 import pl.timsixth.minigameapi.api.listener.BlockPlaceListener;
 import pl.timsixth.minigameapi.api.listener.PlayerDropItemListener;
+import pl.timsixth.minigameapi.api.listener.PlayerJoinListener;
 import pl.timsixth.minigameapi.api.loader.Loaders;
+import pl.timsixth.minigameapi.api.loader.factory.LoaderFactory;
 import pl.timsixth.minigameapi.api.stats.loader.UserStatsLoader;
+import pl.timsixth.minigameapi.api.stats.loader.factory.UserStatsLoaderFactory;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManagerImpl;
 import pl.timsixth.minigameapi.api.stats.migrations.CreateUserStatsTable;
+import pl.timsixth.minigameapi.api.stats.model.UserStats;
 
 import java.io.File;
 
@@ -64,7 +78,7 @@ public abstract class MiniGame extends JavaPlugin {
     private CosmeticsManager cosmeticsManager;
     private GameManager gameManager;
 
-    private ArenaFileLoader arenaFileLoader;
+    private ArenaLoader arenaLoader;
     private UserCoinsLoader userCoinsLoader;
     private UserCosmeticsLoader userCosmeticsLoader;
     private UserStatsLoader userStatsLoader;
@@ -72,8 +86,22 @@ public abstract class MiniGame extends JavaPlugin {
     private Loaders loaders;
 
     @Getter
+    @Setter(AccessLevel.PROTECTED)
     private static ArenaFactory arenaFactory;
 
+    @Getter
+    @Setter(AccessLevel.PROTECTED)
+    private static UserCoinsFactory userCoinsFactory;
+
+    private LoaderFactory<UserCoins> userCoinsLoaderFactory;
+    private LoaderFactory<Arena> arenaLoaderFactory;
+    private LoaderFactory<UserCosmetics> userCosmeticsLoaderFactory;
+    private LoaderFactory<UserStats> userStatsLoaderFactory;
+
+    /**
+     * -- GETTER --
+     * Gets instance of minigame. Don't use when on a server are more than one MiniGame plugin
+     */
     @Getter
     private static MiniGame instance;
 
@@ -89,17 +117,31 @@ public abstract class MiniGame extends JavaPlugin {
         instance = this;
         initConfigurators();
         initMigrations();
+        initModelsFactories();
+        initLoadersFactories();
         initLoaders();
         loadData();
         initManagers();
-        initFactories();
     }
 
     /**
-     * Initializes factories
+     * Initializes models factories
      */
-    private void initFactories() {
+    private void initModelsFactories() {
         arenaFactory = new ArenaFactoryImpl();
+        userCoinsFactory = new UserCoinsFactoryImpl();
+    }
+
+    /**
+     * Initializes loaders factories
+     */
+    private void initLoadersFactories() {
+        cosmeticsManager = new CosmeticsManagerImpl();
+
+        userCoinsLoaderFactory = new UserCoinsLoaderFactory();
+        arenaLoaderFactory = new ArenaLoaderFactory();
+        userCosmeticsLoaderFactory = new UserCosmeticsLoaderFactory(cosmeticsManager);
+        userStatsLoaderFactory = new UserStatsLoaderFactory();
     }
 
     /**
@@ -115,7 +157,7 @@ public abstract class MiniGame extends JavaPlugin {
      * Initializes managers
      */
     private void initManagers() {
-        arenaManager = new ArenaManagerImpl(arenaFileLoader);
+        arenaManager = new ArenaManagerImpl(arenaLoader);
         gameManager = new GameManagerImpl();
         userCoinsManager = new UserCoinsManagerImpl(userCoinsLoader);
         userCosmeticsManager = new UserCosmeticsManagerImpl(userCosmeticsLoader);
@@ -128,14 +170,15 @@ public abstract class MiniGame extends JavaPlugin {
      * Initializes loaders
      */
     private void initLoaders() {
-        cosmeticsManager = new CosmeticsManagerImpl();
-
         loaders = new Loaders(getPluginConfiguration());
-        if (arenaFileLoader == null) arenaFileLoader = new ArenaSingleFileLoader();
-        userCoinsLoader = new UserCoinsLoader();
-        userCosmeticsLoader = new UserCosmeticsLoader(cosmeticsManager);
 
-        if (getPluginConfiguration().isUseDefaultStatsSystem()) userStatsLoader = new UserStatsLoader();
+        if (arenaLoader == null) arenaLoader = (ArenaLoader) arenaLoaderFactory.createLoader();
+        if (userCoinsLoader == null) userCoinsLoader = (UserCoinsLoader) userCoinsLoaderFactory.createLoader();
+
+        if (userCosmeticsLoader == null)
+            userCosmeticsLoader = (UserCosmeticsLoader) userCosmeticsLoaderFactory.createLoader();
+
+        if (userStatsLoader == null) userStatsLoader = (UserStatsLoader) userStatsLoaderFactory.createLoader();
     }
 
     /**
@@ -149,10 +192,10 @@ public abstract class MiniGame extends JavaPlugin {
             loaders.load(userStatsLoader);
         }
 
-        loaders.registerLoaders(arenaFileLoader);
+        loaders.registerLoaders(arenaLoader);
 
-        if (arenaFileLoader instanceof ArenaSingleFileLoader) {
-            loaders.load(arenaFileLoader);
+        if (arenaLoader instanceof ArenaSingleFileLoader) {
+            loaders.load(arenaLoader);
         }
 
         loaders.load(userCoinsLoader);
@@ -162,6 +205,8 @@ public abstract class MiniGame extends JavaPlugin {
      * Initializes migrations
      */
     private void initMigrations() {
+        if (!getPluginConfiguration().isUseDataBase()) return;
+
         Migrations migrations = DatabasesApiPlugin.getApi().getMigrations();
         CreateUserCoinsTableMigration createUserCoinsTableMigration = new CreateUserCoinsTableMigration();
         CreateUserCosmeticsTableMigration createUserCosmeticsTableMigration = new CreateUserCosmeticsTableMigration();
@@ -192,39 +237,13 @@ public abstract class MiniGame extends JavaPlugin {
         Listener[] listeners = {
                 new BlockBreakListener(getGameConfiguration(), gameManager),
                 new BlockPlaceListener(getGameConfiguration(), gameManager),
-                new PlayerDropItemListener(getGameConfiguration(), gameManager)
+                new PlayerDropItemListener(getGameConfiguration(), gameManager),
+                new PlayerJoinListener(userCoinsManager)
         };
 
         for (Listener listener : listeners) {
             Bukkit.getPluginManager().registerEvents(listener, this);
         }
-    }
-
-    /**
-     * @return default game configuration {@link GameConfiguration}
-     * @deprecated use {@link MiniGame#getGameConfiguration()}
-     */
-    @Deprecated
-    public GameConfiguration getDefaultGameConfiguration() {
-        return defaultGameConfigurator.configure();
-    }
-
-    /**
-     * @return default plugin configuration {@link PluginConfiguration}
-     * @deprecated use {@link MiniGame#getPluginConfiguration()}
-     */
-    @Deprecated
-    public PluginConfiguration getDefaultPluginConfiguration() {
-        return defaultPluginConfigurator.configure();
-    }
-
-    /**
-     * @return default command configuration {@link CommandConfiguration}
-     * @deprecated use {@link MiniGame#getCommandConfiguration()}
-     */
-    @Deprecated
-    public CommandConfiguration getDefaultCommandConfiguration() {
-        return defaultCommandConfigurator.configure();
     }
 
     /**
@@ -249,12 +268,21 @@ public abstract class MiniGame extends JavaPlugin {
     }
 
     /**
-     * Sets arena factory
-     *
-     * @param arenaFactory arena factory to set
+     * @param arenaFileLoader arena loader file
+     * @deprecated use {@link MiniGame#setArenaLoader(ArenaLoader)}
      */
-    protected void setArenaFactory(ArenaFactory arenaFactory) {
-        MiniGame.arenaFactory = arenaFactory;
+    @Deprecated
+    public void setArenaFileLoader(ArenaFileLoader arenaFileLoader) {
+        this.arenaLoader = arenaFileLoader;
+    }
+
+    /**
+     * @return arena loader file
+     * @deprecated use {@link MiniGame#getArenaLoader()}
+     */
+    @Deprecated
+    public ArenaFileLoader getArenaFileLoader() {
+        return (ArenaFileLoader) arenaLoader;
     }
 
     /**

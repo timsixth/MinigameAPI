@@ -2,6 +2,7 @@ package pl.timsixth.minigameapi.api.file;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import pl.timsixth.minigameapi.api.MiniGame;
+import pl.timsixth.minigameapi.api.model.Model;
 import pl.timsixth.minigameapi.api.util.FileUtil;
 
 import java.io.File;
@@ -15,7 +16,14 @@ import java.io.File;
 public abstract class ManyFilesModel extends AbstractFileModel {
 
     @Override
-    public boolean delete() {
+    public Object save(Model model) {
+        createFile();
+
+        return this.update();
+    }
+
+    @Override
+    public boolean delete(Model model) {
         getConfigurationFile().setFile(null);
         getConfigurationFile().setYamlConfiguration(null);
 
@@ -23,7 +31,7 @@ public abstract class ManyFilesModel extends AbstractFileModel {
     }
 
     @Override
-    public Object update() {
+    public Object update(Model model) {
         YamlConfiguration yamlConfiguration = getConfigurationFile().getYamlConfiguration();
 
         String path = getConfigurationFile().getIdSection().toString();
@@ -31,18 +39,11 @@ public abstract class ManyFilesModel extends AbstractFileModel {
         if (!getConfigurationFile().getParentDirectory().isEmpty())
             path = getConfigurationFile().getPrimarySection() + "." + path;
 
-        yamlConfiguration.set(path, this);
+        yamlConfiguration.set(path, model);
 
         getConfigurationFile().saveFile();
 
         return this;
-    }
-
-    @Override
-    public Object save() {
-        createFile();
-
-        return this.update();
     }
 
     @Override

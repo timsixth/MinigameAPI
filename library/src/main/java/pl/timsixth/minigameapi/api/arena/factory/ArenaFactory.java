@@ -6,7 +6,7 @@ import pl.timsixth.minigameapi.api.arena.Arena;
 import java.util.Map;
 
 /**
- * Creates correct instance of arena
+ * Creates instance of arena
  */
 public interface ArenaFactory {
     /**
@@ -18,4 +18,13 @@ public interface ArenaFactory {
      * @return correct instance of arena
      */
     Arena createArena(String name, Location lobbyLocation, Map<String, Location> locations);
+
+    /**
+     * Creates arena, by default locations will be set to empty HashMap
+     *
+     * @param name          arena's name
+     * @param lobbyLocation arena's lobby location
+     * @return correct instance of arena
+     */
+    Arena createArena(String name, Location lobbyLocation);
 }
