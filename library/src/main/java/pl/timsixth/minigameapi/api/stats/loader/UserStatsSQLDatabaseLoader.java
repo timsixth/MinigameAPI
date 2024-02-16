@@ -1,9 +1,10 @@
 package pl.timsixth.minigameapi.api.stats.loader;
 
 import pl.timsixth.databasesapi.database.query.QueryBuilder;
+import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.loader.database.AbstractSqlDataBaseLoader;
+import pl.timsixth.minigameapi.api.stats.model.SQLDatabaseUserStatsAdapter;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +30,7 @@ public class UserStatsSQLDatabaseLoader extends AbstractSqlDataBaseLoader<UserSt
         try (ResultSet resultSet = currentSqlDataBase.getAsyncQuery().query(query)) {
 
             while (resultSet.next()) {
-                UserStats userStats = new UserStatsImpl(
+                UserStats userStats = MiniGame.getUserStatsFactory().createUserStats(
                         UUID.fromString(resultSet.getString("uuid")),
                         resultSet.getString("name"),
                         resultSet.getString("arenaName"),
@@ -47,6 +48,6 @@ public class UserStatsSQLDatabaseLoader extends AbstractSqlDataBaseLoader<UserSt
 
     @Override
     protected String getTableName() {
-        return UserStatsImpl.TABLE_NAME;
+        return SQLDatabaseUserStatsAdapter.TABLE_NAME;
     }
 }

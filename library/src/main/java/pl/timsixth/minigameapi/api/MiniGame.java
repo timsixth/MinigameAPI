@@ -51,6 +51,8 @@ import pl.timsixth.minigameapi.api.listener.PlayerDropItemListener;
 import pl.timsixth.minigameapi.api.listener.PlayerJoinListener;
 import pl.timsixth.minigameapi.api.loader.Loaders;
 import pl.timsixth.minigameapi.api.loader.factory.LoaderFactory;
+import pl.timsixth.minigameapi.api.stats.factory.UserStatsFactory;
+import pl.timsixth.minigameapi.api.stats.factory.UserStatsFactoryImpl;
 import pl.timsixth.minigameapi.api.stats.loader.UserStatsLoader;
 import pl.timsixth.minigameapi.api.stats.loader.factory.UserStatsLoaderFactory;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
@@ -61,7 +63,7 @@ import pl.timsixth.minigameapi.api.stats.model.UserStats;
 import java.io.File;
 
 /**
- * Represents every minigame
+ * Represents every MiniGame
  */
 @Getter
 @Setter
@@ -93,6 +95,10 @@ public abstract class MiniGame extends JavaPlugin {
     @Setter(AccessLevel.PROTECTED)
     private static UserCoinsFactory userCoinsFactory;
 
+    @Getter
+    @Setter(AccessLevel.PROTECTED)
+    private static UserStatsFactory userStatsFactory;
+
     private LoaderFactory<UserCoins> userCoinsLoaderFactory;
     private LoaderFactory<Arena> arenaLoaderFactory;
     private LoaderFactory<UserCosmetics> userCosmeticsLoaderFactory;
@@ -100,7 +106,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     /**
      * -- GETTER --
-     * Gets instance of minigame. Don't use when on a server are more than one MiniGame plugin
+     * Gets instance of MiniGame. Don't use when on a server are more than one MiniGame plugin
      */
     @Getter
     private static MiniGame instance;
@@ -130,6 +136,7 @@ public abstract class MiniGame extends JavaPlugin {
     private void initModelsFactories() {
         arenaFactory = new ArenaFactoryImpl();
         userCoinsFactory = new UserCoinsFactoryImpl();
+        if (getPluginConfiguration().isUseDefaultStatsSystem()) userStatsFactory = new UserStatsFactoryImpl();
     }
 
     /**
@@ -178,7 +185,8 @@ public abstract class MiniGame extends JavaPlugin {
         if (userCosmeticsLoader == null)
             userCosmeticsLoader = (UserCosmeticsLoader) userCosmeticsLoaderFactory.createLoader();
 
-        if (userStatsLoader == null) userStatsLoader = (UserStatsLoader) userStatsLoaderFactory.createLoader();
+        if (userStatsLoader == null)
+            userStatsLoader = (UserStatsLoader) userStatsLoaderFactory.createLoader();
     }
 
     /**

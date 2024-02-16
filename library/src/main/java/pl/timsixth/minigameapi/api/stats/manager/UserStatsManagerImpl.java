@@ -2,18 +2,14 @@ package pl.timsixth.minigameapi.api.stats.manager;
 
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
-import pl.timsixth.databasesapi.DatabasesApiPlugin;
-import pl.timsixth.databasesapi.database.query.QueryBuilder;
+import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.arena.Arena;
-import pl.timsixth.minigameapi.api.database.DbModel;
 import pl.timsixth.minigameapi.api.loader.Loader;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsImpl;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 /**
@@ -25,11 +21,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserStatsManagerImpl extends AbstractUserStatsManager {
 
-    private final Loader<UserStats> userStatsSqlDataBaseLoader;
+    private final Loader<UserStats> userStatsLoader;
 
     @Override
     public Optional<UserStats> getUser(UUID uuid, String arenaName) {
-        return userStatsSqlDataBaseLoader.getData()
+        return userStatsLoader.getData()
                 .stream().filter(userStats -> userStats.getUuid().equals(uuid))
                 .filter(userStats -> userStats.getArenaName().equalsIgnoreCase(arenaName))
                 .findAny();
@@ -37,29 +33,14 @@ public class UserStatsManagerImpl extends AbstractUserStatsManager {
 
     @Override
     public List<UserStats> getAllStatsByUuid(UUID uuid) {
-        return userStatsSqlDataBaseLoader.getData().stream()
+        return userStatsLoader.getData().stream()
                 .filter(userStats -> userStats.getUuid().equals(uuid))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void addNewUser(UserStats userStats) {
-        DbModel userStatsDbModel = null;
-
-        if (userStats instanceof DbModel) userStatsDbModel = (DbModel) userStats;
-
-        QueryBuilder queryBuilder = new QueryBuilder();
-
-        String sql = queryBuilder.insert(userStatsDbModel.getTableNameWithPrefix(), null, userStats.getUuid().toString(), userStats.getName(),
-                userStats.getArenaName(), userStats.getWins(), userStats.getDefeats()).build();
-
-        try {
-            DatabasesApiPlugin.getApi().getCurrentSqlDataBase().getAsyncQuery().update(sql);
-        } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        userStatsSqlDataBaseLoader.addObject(userStats);
+        throw new UnsupportedOperationException("This method is deprecated");
     }
 
     @Override
@@ -68,9 +49,11 @@ public class UserStatsManagerImpl extends AbstractUserStatsManager {
 
         UserStats userStats;
         if (!userStatsOptional.isPresent()) {
-            userStats = new UserStatsImpl(player.getUniqueId(), player.getName(), arena.getName());
+            userStats = MiniGame.getUserStatsFactory().createUserStats(player.getUniqueId(), player.getName(), arena.getName());
 
-            addNewUser(userStats);
+            userStatsLoader.addObject(userStats);
+
+            userStats.save();
         } else {
             userStats = userStatsOptional.get();
         }

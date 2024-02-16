@@ -47,7 +47,7 @@ public abstract class ManyFilesModel extends AbstractFileModel {
     }
 
     @Override
-    protected void createFile() {
+    public void createFile() {
         if (getConfigurationFile().getParentDirectory().isEmpty()) super.createFile();
 
         File directory = FileUtil.createDirectory(MiniGame.getInstance().getDataFolder(), getConfigurationFile().getParentDirectory());

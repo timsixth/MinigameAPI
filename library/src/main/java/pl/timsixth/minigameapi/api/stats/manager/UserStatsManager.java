@@ -33,14 +33,16 @@ public interface UserStatsManager extends Statistics<UserStats> {
      * Adds new user
      *
      * @param type user to add
+     * @deprecated
      */
+    @Deprecated
     void addNewUser(UserStats type);
 
     /**
      * Gets or creates new {@link UserStats}
      *
      * @param player player to create user
-     * @param arena arena to get arena name
+     * @param arena  arena to get arena name
      * @return created or got user
      */
     UserStats getUserStatsOrCreate(Player player, Arena arena);

@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>library</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <name>T-MinigameAPI</name>
     <build>
         <finalName>${project.name}-${project.version}</finalName>

@@ -14,7 +14,7 @@ import java.io.File;
  */
 abstract class AbstractFileModel implements FileModel, ConfigurationSerializable, InitializableModel {
 
-    private ConfigurationFile configurationFile;
+    private final ConfigurationFile configurationFile = new ConfigurationFile();
 
     /**
      * The method saves model to file
@@ -29,9 +29,9 @@ abstract class AbstractFileModel implements FileModel, ConfigurationSerializable
     /**
      * The method set YamlConfiguration and File
      */
-    protected void createFile() {
+    public void createFile() {
         File file = FileUtil.createFile(getConfigurationFile());
-       getConfigurationFile().setYamlConfiguration(YamlConfiguration.loadConfiguration(file));
+        getConfigurationFile().setYamlConfiguration(YamlConfiguration.loadConfiguration(file));
         getConfigurationFile().setFile(file);
     }
 
@@ -70,8 +70,6 @@ abstract class AbstractFileModel implements FileModel, ConfigurationSerializable
 
     @Override
     public void init(Model object) {
-        configurationFile = new ConfigurationFile();
-
         try {
             configurationFile.prepareModel(object);
         } catch (NoSuchFieldException | IllegalAccessException e) {

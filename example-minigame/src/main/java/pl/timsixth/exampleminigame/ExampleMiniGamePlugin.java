@@ -35,7 +35,7 @@ public class ExampleMiniGamePlugin extends MiniGame {
         setDefaultCommandConfigurator(new MyCommandConfigurator());
 
         //set loader which loads data from many YAML files
-        //setArenaFileLoader(new ArenaManyFilesLoader());
+        //setArenaLoader(new ArenaManyFilesLoader());
 
         super.onEnable();
 
