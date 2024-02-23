@@ -76,7 +76,7 @@ public class ExampleMiniGamePlugin extends MiniGame {
     }
 
     private void registerCommands() {
-        exampleMiniGameCommand = new ExampleMiniGameCommand(getCommandConfiguration(), messages, getArenaManager(), getGameManager(), getUserCoinsManager(), getUserStatsManager());
+        exampleMiniGameCommand = new ExampleMiniGameCommand(getCommandConfiguration(), messages, getArenaManager(), getGameManager(), getUserCoinsManager(), getUserStatsManager(), getUserCosmeticsManager(), getCosmeticsManager());
         adminExampleMiniGameCommand = new AdminExampleMiniGameCommand(getCommandConfiguration(), messages, settings, getArenaManager(), getUserCoinsManager());
 
         CommandRegistration commandRegistration = new CommandRegistration(this);

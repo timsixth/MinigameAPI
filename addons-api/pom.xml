@@ -3,39 +3,41 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>pl.timsixth</groupId>
+        <artifactId>MinigameAPI</artifactId>
+        <version>1.0.0</version>
+    </parent>
 
-    <groupId>pl.timsixth</groupId>
-    <artifactId>MinigameAPI</artifactId>
-    <version>1.0.0</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>library</module>
-        <module>example-minigame</module>
-        <module>api</module>
-        <module>library-lite</module>
-        <module>addons-api</module>
-    </modules>
+    <artifactId>addons-api</artifactId>
+    <version>1.2.0</version>
+
     <repositories>
         <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <id>PlugMan</id>
+            <url>https://raw.githubusercontent.com/TheBlackEntity/PlugMan/repository/</url>
         </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.13.2-R0.1-SNAPSHOT</version>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>github-api</artifactId>
+            <version>1.315</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rylinaux</groupId>
+            <artifactId>PlugMan</artifactId>
+            <version>2.3.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.26</version>
-            <scope>provided</scope>
+            <groupId>pl.timsixth</groupId>
+            <artifactId>api</artifactId>
+            <version>1.2.0</version>
         </dependency>
     </dependencies>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>

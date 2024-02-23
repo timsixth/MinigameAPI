@@ -2,7 +2,7 @@ package pl.timsixth.minigameapi.command;
 
 import org.bukkit.command.CommandSender;
 import pl.timsixth.minigameapi.MiniGameApiPlugin;
-import pl.timsixth.minigameapi.api.addon.manager.AddonManager;
+import pl.timsixth.minigameapi.addon.manager.AddonManager;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;

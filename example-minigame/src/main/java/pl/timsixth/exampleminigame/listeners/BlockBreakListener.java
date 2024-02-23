@@ -1,6 +1,8 @@
 package pl.timsixth.exampleminigame.listeners;
 
 import lombok.RequiredArgsConstructor;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -50,7 +52,7 @@ public class BlockBreakListener implements Listener {
 
         myUserGame.addBlock();
 
-        player.sendMessage(messages.getYouHaveBrokenBlocks().replace("{BLOCKS_AMOUNT}", String.valueOf(myUserGame.getBrokeBlocksAmount())));
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(messages.getYouHaveBrokenBlocks().replace("{BLOCKS_AMOUNT}", String.valueOf(myUserGame.getBrokeBlocksAmount()))));
 
         if (settings.getNeededBlockToWin() != myUserGame.getBrokeBlocksAmount()) return;
 

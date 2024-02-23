@@ -1,7 +1,7 @@
 package pl.timsixth.minigameapi.tabcompleter;
 
-import pl.timsixth.minigameapi.api.addon.manager.AddonManager;
-import pl.timsixth.minigameapi.api.addon.model.Addon;
+import pl.timsixth.minigameapi.addon.manager.AddonManager;
+import pl.timsixth.minigameapi.addon.model.Addon;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
 

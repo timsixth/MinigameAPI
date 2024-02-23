@@ -9,9 +9,9 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>library</artifactId>
+    <artifactId>library-lite</artifactId>
     <version>1.2.0</version>
-    <name>T-MinigameAPI</name>
+    <name>T-MinigameAPILite</name>
     <build>
         <finalName>${project.name}-${project.version}</finalName>
         <plugins>
@@ -29,21 +29,6 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <relocations>
-                                <relocation>
-                                    <pattern>org.kohsuke</pattern>
-                                    <shadedPattern>pl.timsixth.minigameapi.github.api</shadedPattern>
-                                </relocation>
-                            </relocations>
-                            <filters>
-                                <filter>
-                                    <artifact>org.kohsuke:github-api</artifact>
-                                    <excludeDefaults>false</excludeDefaults>
-                                    <includes>
-                                        <include>pl.timsixth.minigameapi.github.api</include>
-                                    </includes>
-                                </filter>
-                            </filters>
                             <artifactSet>
                                 <excludes>
                                     <exclude>com.google.protobuf:protobuf-java</exclude>
@@ -59,22 +44,10 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>PlugMan</id>
-            <url>https://raw.githubusercontent.com/TheBlackEntity/PlugMan/repository/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>pl.timsixth</groupId>
-            <artifactId>library-lite</artifactId>
-            <version>1.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>pl.timsixth</groupId>
-            <artifactId>addons-api</artifactId>
+            <artifactId>api</artifactId>
             <version>1.2.0</version>
         </dependency>
     </dependencies>

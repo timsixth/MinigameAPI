@@ -10,9 +10,12 @@ import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
+import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
+import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
+
 public class ExampleMiniGameCommand extends ParentCommand {
 
     private final Messages messages;
@@ -20,14 +23,15 @@ public class ExampleMiniGameCommand extends ParentCommand {
 
     public ExampleMiniGameCommand(CommandConfiguration commandConfiguration,
                                   Messages messages, ArenaManager arenaManager, GameManager gameManager,
-                                  UserCoinsManager userCoinsManager, UserStatsManager userStatsManager) {
+                                  UserCoinsManager userCoinsManager, UserStatsManager userStatsManager, UserCosmeticsManager userCosmeticsManager, CosmeticsManager cosmeticsManager) {
         super("", true, true, false, commandConfiguration);
         this.messages = messages;
         this.arenaManager = arenaManager;
-        getSubCommands().add(new ListSubCommand(arenaManager, messages));
-        getSubCommands().add(new LeaveSubCommand(gameManager, messages));
-        getSubCommands().add(new StatsSubCommand(userCoinsManager, messages, userStatsManager));
-        getSubCommands().add(new JoinSubCommand(arenaManager, gameManager, messages));
+        addSubCommand(new ListSubCommand(arenaManager, messages));
+        addSubCommand(new LeaveSubCommand(gameManager, messages));
+        addSubCommand(new StatsSubCommand(userCoinsManager, messages, userStatsManager));
+        addSubCommand(new JoinSubCommand(arenaManager, gameManager, messages));
+        addSubCommand(new CosmeticsSubCommand(userCosmeticsManager, cosmeticsManager, userCoinsManager));
     }
 
     @Override
