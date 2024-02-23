@@ -6,3 +6,5 @@
 /library-lite/target/
 /api/target/
 /addons-api/target/
+/library/javadocs/
+/.idea/

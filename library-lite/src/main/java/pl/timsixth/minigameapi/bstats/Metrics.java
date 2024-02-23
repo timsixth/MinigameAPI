@@ -63,8 +63,7 @@ public class Metrics {
 
     /**
      * -- GETTER --
-     *  Checks if bStats is enabled.
-     *
+     * Checks if bStats is enabled.
      */
     // Is bStats enabled on this server?
     @Getter
