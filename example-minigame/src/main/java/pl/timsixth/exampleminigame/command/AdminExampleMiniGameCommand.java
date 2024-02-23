@@ -26,12 +26,12 @@ public class AdminExampleMiniGameCommand extends ParentCommand {
         this.messages = messages;
         this.arenaManager = arenaManager;
         this.userCoinsManager = userCoinsManager;
-        getSubCommands().add(new SetLobbySubCommand(settings, messages));
-        getSubCommands().add(new CreateSubCommand(arenaManager, messages));
-        getSubCommands().add(new SetSpawnSubCommand(arenaManager, messages));
-        getSubCommands().add(new SetGameLobbySubCommand(arenaManager, messages));
-        getSubCommands().add(new AddCoinsSubCommand(userCoinsManager, messages));
-        getSubCommands().add(new RemoveCoinsSubCommand(userCoinsManager, messages));
+        addSubCommand(new SetLobbySubCommand(settings, messages));
+        addSubCommand(new CreateSubCommand(arenaManager, messages));
+        addSubCommand(new SetSpawnSubCommand(arenaManager, messages));
+        addSubCommand(new SetGameLobbySubCommand(arenaManager, messages));
+        addSubCommand(new AddCoinsSubCommand(userCoinsManager, messages));
+        addSubCommand(new RemoveCoinsSubCommand(userCoinsManager, messages));
     }
 
     @Override

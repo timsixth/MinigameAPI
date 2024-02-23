@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>library</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <name>T-MinigameAPI</name>
     <build>
         <finalName>${project.name}-${project.version}</finalName>
@@ -37,7 +37,7 @@
                             </relocations>
                             <filters>
                                 <filter>
-                                    <artifact>>org.kohsuke:github-api</artifact>
+                                    <artifact>org.kohsuke:github-api</artifact>
                                     <excludeDefaults>false</excludeDefaults>
                                     <includes>
                                         <include>pl.timsixth.minigameapi.github.api</include>
@@ -61,10 +61,6 @@
 
     <repositories>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
             <id>PlugMan</id>
             <url>https://raw.githubusercontent.com/TheBlackEntity/PlugMan/repository/</url>
         </repository>
@@ -72,20 +68,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.timsixth</groupId>
-            <artifactId>T-DataBasesAPI</artifactId>
-            <version>v1.9.1</version>
+            <groupId>pl.timsixth</groupId>
+            <artifactId>library-lite</artifactId>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
-            <groupId>org.kohsuke</groupId>
-            <artifactId>github-api</artifactId>
-            <version>1.315</version>
-        </dependency>
-        <dependency>
-            <groupId>com.rylinaux</groupId>
-            <artifactId>PlugMan</artifactId>
-            <version>2.3.3</version>
-            <scope>provided</scope>
+            <groupId>pl.timsixth</groupId>
+            <artifactId>addons-api</artifactId>
+            <version>1.2.0</version>
         </dependency>
     </dependencies>
 

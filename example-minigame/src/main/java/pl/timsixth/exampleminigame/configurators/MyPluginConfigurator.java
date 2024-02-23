@@ -10,7 +10,7 @@ public class MyPluginConfigurator extends DefaultPluginConfigurator {
     public PluginConfiguration configure() {
         return PluginConfiguration.builder()
                 .tablesPrefix("example_minigame_")
-                .useDataBase(true)
+                .useDataBase(false)
                 .useDefaultStatsSystem(true)
                 .arenaSaveType(ArenaSaveType.SINGLE_FILE) //type MANY_FILES to change save type
                 .build();

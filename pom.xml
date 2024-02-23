@@ -11,6 +11,9 @@
     <modules>
         <module>library</module>
         <module>example-minigame</module>
+        <module>api</module>
+        <module>library-lite</module>
+        <module>addons-api</module>
     </modules>
     <repositories>
         <repository>
