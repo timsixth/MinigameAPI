@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.addon.model;
+package pl.timsixth.minigameapi.api.addon.model;
 
 import org.bukkit.plugin.Plugin;
 

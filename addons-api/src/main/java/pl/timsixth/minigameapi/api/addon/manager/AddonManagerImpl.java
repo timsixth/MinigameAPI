@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.addon.manager;
+package pl.timsixth.minigameapi.api.addon.manager;
 
 import com.rylinaux.plugman.PlugMan;
 import lombok.Getter;
@@ -13,8 +13,8 @@ import org.kohsuke.github.GHAsset;
 import org.kohsuke.github.GHRelease;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
-import pl.timsixth.minigameapi.addon.model.Addon;
-import pl.timsixth.minigameapi.addon.model.AddonImpl;
+import pl.timsixth.minigameapi.api.addon.model.Addon;
+import pl.timsixth.minigameapi.api.addon.model.AddonImpl;
 
 import java.io.*;
 import java.net.URL;

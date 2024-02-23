@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.addon;
+package pl.timsixth.minigameapi.api.addon;
 
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -300,7 +300,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     /**
      * @param arenaFileLoader arena loader file
-     * @deprecated use {@link MiniGame#setArenaLoader(ArenaLoader)}
+     * @deprecated use MiniGame#setArenaLoader(ArenaLoader)
      */
     @Deprecated
     public void setArenaFileLoader(ArenaFileLoader arenaFileLoader) {
@@ -309,7 +309,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     /**
      * @return arena loader file
-     * @deprecated use {@link MiniGame#getArenaLoader()}
+     * @deprecated use MiniGame#getArenaLoader()
      */
     @Deprecated
     public ArenaFileLoader getArenaFileLoader() {

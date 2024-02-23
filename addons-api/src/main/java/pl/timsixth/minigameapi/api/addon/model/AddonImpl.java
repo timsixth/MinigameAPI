@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.addon.model;
+package pl.timsixth.minigameapi.api.addon.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

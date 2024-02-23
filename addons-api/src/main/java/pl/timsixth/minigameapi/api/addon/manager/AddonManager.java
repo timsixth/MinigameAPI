@@ -1,7 +1,7 @@
-package pl.timsixth.minigameapi.addon.manager;
+package pl.timsixth.minigameapi.api.addon.manager;
 
 import org.bukkit.plugin.InvalidPluginException;
-import pl.timsixth.minigameapi.addon.model.Addon;
+import pl.timsixth.minigameapi.api.addon.model.Addon;
 
 import java.io.File;
 import java.io.IOException;
