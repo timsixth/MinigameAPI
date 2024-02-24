@@ -6,11 +6,10 @@
     <parent>
         <groupId>pl.timsixth</groupId>
         <artifactId>MinigameAPI</artifactId>
-        <version>1.0.0</version>
+        <version>1.2.1</version>
     </parent>
 
     <artifactId>api</artifactId>
-    <version>1.2.0</version>
 
     <repositories>
         <repository>
@@ -23,7 +22,7 @@
         <dependency>
             <groupId>com.github.timsixth</groupId>
             <artifactId>T-DataBasesAPI</artifactId>
-            <version>v1.9.1</version>
+            <version>v1.9.2</version>
         </dependency>
     </dependencies>
 

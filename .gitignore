@@ -8,3 +8,6 @@
 /addons-api/target/
 /library/javadocs/
 /.idea/
+/library-lite/library-lite.iml
+/api/api.iml
+/addons-api/addons-api.iml

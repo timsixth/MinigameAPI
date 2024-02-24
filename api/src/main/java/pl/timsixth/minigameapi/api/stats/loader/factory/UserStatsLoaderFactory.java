@@ -1,5 +1,6 @@
 package pl.timsixth.minigameapi.api.stats.loader.factory;
 
+import org.bukkit.Bukkit;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.configuration.type.PluginConfiguration;
 import pl.timsixth.minigameapi.api.loader.Loader;
@@ -13,8 +14,10 @@ public class UserStatsLoaderFactory implements LoaderFactory<UserStats> {
     public Loader<UserStats> createLoader() {
         PluginConfiguration pluginConfiguration = MiniGame.getInstance().getPluginConfiguration();
 
-        if (!pluginConfiguration.isUseDefaultStatsSystem())
-            throw new IllegalStateException("Default stats system is disabled");
+        if (!pluginConfiguration.isUseDefaultStatsSystem()) {
+            Bukkit.getLogger().info("Default stats system is disabled");
+            return null;
+        }
 
         if (pluginConfiguration.isUseDataBase()) return new UserStatsSQLDatabaseLoader();
 
