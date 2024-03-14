@@ -34,11 +34,40 @@ Maven
    <url>https://jitpack.io</url>
   </repository>
 </repositories>
-
+<!-- library module includes addon system, api, addons-api and runnable plugin-->
 <dependency>
-	<groupId>com.github.timsixth.MinigameAPI</groupId>
-	<artifactId>library</artifactId>
-	<version>Tag</version>
+   <groupId>com.github.timsixth.MinigameAPI</groupId>
+   <artifactId>library</artifactId>
+   <version>Tag</version>
+</dependency>
+
+<!-- library-lite module includes only api and runnable plugin-->
+<dependency>
+   <groupId>com.github.timsixth.MinigameAPI</groupId>
+   <artifactId>library-lite</artifactId>
+   <version>Tag</version>
+</dependency>
+
+<!-- api module includes only api and T-DataBasesAPI (It's recommended to use this module 
+to create the minigame)-->
+<dependency>
+   <groupId>com.github.timsixth.MinigameAPI</groupId>
+   <artifactId>api</artifactId>
+   <version>Tag</version>
+</dependency>
+
+<!-- addons-api module includes only api and addons-api-->
+<dependency>
+   <groupId>com.github.timsixth.MinigameAPI</groupId>
+   <artifactId>addons-api</artifactId>
+   <version>Tag</version>
+</dependency>
+
+<!-- example-minigame module includes example usage of minigame-->
+<dependency>
+   <groupId>com.github.timsixth.MinigameAPI</groupId>
+   <artifactId>example-minigame</artifactId>
+   <version>Tag</version>
 </dependency>
 ```
 Gradle
