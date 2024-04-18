@@ -79,6 +79,18 @@ allprojects {
 }
   
  dependencies {
-	 implementation 'com.github.timsixth:MinigameAPI:Tag'
+   //includes all modules
+   implementation 'com.github.timsixth:MinigameAPI:Tag'
+   //includes only library, api, and addons-api modules
+   implementation 'com.github.timsixth.MinigameAPI:library:Tag'
+   //includes only api and library-lite modules
+   implementation 'com.github.timsixth.MinigameAPI:library-lite:Tag'   
+   //includes only api module
+   implementation 'com.github.timsixth.MinigameAPI:api:Tag' 
+   //includes only api and addons-api modules
+   implementation 'com.github.timsixth.MinigameAPI:addons-api:Tag' 
+   //includes example-minigame module
+   implementation 'com.github.timsixth.MinigameAPI:example-minigame:Tag' 
+   
 }
 ```
