@@ -26,6 +26,10 @@ Documentation: https://timsixths-plugins.gitbook.io/minigameapi-docs/
 
 ## Getting started
 
+Tag - current version form GitHub releases section:
+
+https://github.com/timsixth/MinigameAPI/releases
+
 Maven
 ```xml
 <repositories>
