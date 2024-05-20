@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * @see AbstractFileLoader
  */
-public class ArenaManyFilesLoader extends AbstractArenaFileLoader {
+public class ArenaManyFilesLoader extends AbstractFileLoader<Arena> implements ArenaLoader {
     /**
      * Loads arenas from many files
      */
@@ -38,10 +38,5 @@ public class ArenaManyFilesLoader extends AbstractArenaFileLoader {
         File file = new File(fileName);
 
         loadFile(file, primarySection, (key, section) -> this.addObject(section.getObject(key, MultiFilesArena.class)));
-    }
-
-    @Override
-    protected Class<? extends Arena> getArenaClass() {
-        return MultiFilesArena.class;
     }
 }

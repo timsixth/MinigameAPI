@@ -7,7 +7,7 @@ import pl.timsixth.minigameapi.api.loader.file.AbstractFileLoader;
 /**
  * @see AbstractFileLoader
  */
-public class ArenaSingleFileLoader extends AbstractArenaFileLoader {
+public class ArenaSingleFileLoader extends AbstractFileLoader<Arena> implements ArenaLoader {
     /**
      * Loads arena from arenas.yml file
      */
@@ -27,8 +27,4 @@ public class ArenaSingleFileLoader extends AbstractArenaFileLoader {
         loadFile(fileName, primarySection, (key, section) -> this.addObject(section.getObject(key, ArenaImpl.class)));
     }
 
-    @Override
-    protected Class<? extends Arena> getArenaClass() {
-        return ArenaImpl.class;
-    }
 }

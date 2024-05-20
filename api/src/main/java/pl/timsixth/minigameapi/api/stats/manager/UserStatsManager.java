@@ -30,15 +30,6 @@ public interface UserStatsManager extends Statistics<UserStats> {
     int getTotalGamesPlayed(UUID uuid);
 
     /**
-     * Adds new user
-     *
-     * @param type user to add
-     * @deprecated
-     */
-    @Deprecated
-    void addNewUser(UserStats type);
-
-    /**
      * Gets or creates new {@link UserStats}
      *
      * @param player player to create user
