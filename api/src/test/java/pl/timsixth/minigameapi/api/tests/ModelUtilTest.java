@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi;
+package pl.timsixth.minigameapi.api.tests;
 
 import org.junit.Test;
 import pl.timsixth.minigameapi.api.model.annoations.IgnoreFields;

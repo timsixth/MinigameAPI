@@ -102,11 +102,6 @@ public class MyGameManager extends AbstractGameManager {
         Optional<UserGame> userGameOptional = game.getUserGame(player.getUniqueId());
         if (!userGameOptional.isPresent()) return;
 
-        UserStatsManager userStatsManager = plugin.getUserStatsManager();
-
-        UserStats userStats = userStatsManager.getUserStatsOrCreate(player, game.getArena());
-        userStats.addDefeat();
-
         UserGame userGame = userGameOptional.get();
         game.removeUserGame(userGame);
 
@@ -122,6 +117,11 @@ public class MyGameManager extends AbstractGameManager {
             userGame.setPlaying(false);
 
             if (game.getPlayingUsers().size() == 1) {
+                UserStatsManager userStatsManager = plugin.getUserStatsManager();
+
+                UserStats userStats = userStatsManager.getUserStatsOrCreate(player, game.getArena());
+                userStats.addDefeat();
+
                 game.setState(new WinGameState(game, messages, userStatsManager, settings, plugin.getGameManager(),
                         plugin.getUserCoinsManager()));
             } else if (game.getPlayingUsers().isEmpty()) {

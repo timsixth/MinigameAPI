@@ -1,7 +1,7 @@
-package pl.timsixth.minigameapi.user;
+package pl.timsixth.minigameapi.api.tests.user;
 
+import pl.timsixth.minigameapi.api.tests.database.DataBase;
 import pl.timsixth.minigameapi.api.database.AbstractDbModel;
-import pl.timsixth.minigameapi.database.DataBase;
 
 import java.util.concurrent.ExecutionException;
 

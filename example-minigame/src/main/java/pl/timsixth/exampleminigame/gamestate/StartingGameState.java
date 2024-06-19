@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import pl.timsixth.exampleminigame.ExampleMiniGamePlugin;
 import pl.timsixth.exampleminigame.config.Messages;
 import pl.timsixth.exampleminigame.config.Settings;
-import pl.timsixth.exampleminigame.task.StartGameCountDown;
+import pl.timsixth.exampleminigame.task.SimpleStartGameTimer;
 import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.state.GameState;
 
@@ -18,7 +18,16 @@ public class StartingGameState implements GameState {
 
     @Override
     public void run() {
-        new StartGameCountDown(settings.getStartTimer(), game, messages, settings)
+        //the old version
+//        new StartGameCountDown(settings.getStartTimer(), game, messages, settings)
+//                .runTaskTimer(plugin, 20L, 20L);
+
+        //the countdown on the level bar
+//        new XpStartGameTimer(game, settings, messages)
+//                .runTaskTimer(plugin, 20L, 20L);
+
+        //the countdown on the chat
+        new SimpleStartGameTimer(game, settings, messages)
                 .runTaskTimer(plugin, 20L, 20L);
     }
 }

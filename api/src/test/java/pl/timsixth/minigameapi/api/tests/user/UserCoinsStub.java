@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.user;
+package pl.timsixth.minigameapi.api.tests.user;
 
 import lombok.Getter;
 import pl.timsixth.minigameapi.api.coins.UserCoins;

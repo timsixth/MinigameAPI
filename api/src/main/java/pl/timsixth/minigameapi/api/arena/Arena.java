@@ -3,6 +3,7 @@ package pl.timsixth.minigameapi.api.arena;
 import org.bukkit.Location;
 import pl.timsixth.minigameapi.api.arena.exception.LocationNotFoundException;
 import pl.timsixth.minigameapi.api.model.Model;
+import pl.timsixth.minigameapi.api.util.options.Options;
 
 import java.util.Map;
 import java.util.Optional;
@@ -73,4 +74,11 @@ public interface Arena extends Model {
     default Location getLocationByName(String name) {
         return getLocation(name).orElseThrow(() -> new LocationNotFoundException(name));
     }
+
+    /**
+     * Custom options for arena
+     *
+     * @return custom options for arena
+     */
+    Options arenaOptions();
 }

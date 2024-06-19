@@ -16,7 +16,6 @@ import pl.timsixth.minigameapi.api.arena.ArenaImpl;
 import pl.timsixth.minigameapi.api.arena.MultiFilesArena;
 import pl.timsixth.minigameapi.api.arena.factory.ArenaFactory;
 import pl.timsixth.minigameapi.api.arena.factory.ArenaFactoryImpl;
-import pl.timsixth.minigameapi.api.arena.loader.ArenaFileLoader;
 import pl.timsixth.minigameapi.api.arena.loader.ArenaLoader;
 import pl.timsixth.minigameapi.api.arena.loader.ArenaSingleFileLoader;
 import pl.timsixth.minigameapi.api.arena.loader.factory.ArenaLoaderFactory;
@@ -66,6 +65,7 @@ import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManagerImpl;
 import pl.timsixth.minigameapi.api.stats.migrations.CreateUserStatsTable;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
+import pl.timsixth.minigameapi.api.util.options.OptionsImpl;
 
 import java.io.File;
 
@@ -142,9 +142,6 @@ public abstract class MiniGame extends JavaPlugin {
         initManagers();
     }
 
-    /**
-     * Initializes models factories
-     */
     private void initModelsFactories() {
         arenaFactory = new ArenaFactoryImpl();
         userCoinsFactory = new UserCoinsFactoryImpl();
@@ -152,9 +149,6 @@ public abstract class MiniGame extends JavaPlugin {
         if (getPluginConfiguration().isUseDefaultStatsSystem()) userStatsFactory = new UserStatsFactoryImpl();
     }
 
-    /**
-     * Initializes loaders factories
-     */
     private void initLoadersFactories() {
         cosmeticsManager = new CosmeticsManagerImpl();
 
@@ -164,18 +158,12 @@ public abstract class MiniGame extends JavaPlugin {
         userStatsLoaderFactory = new UserStatsLoaderFactory();
     }
 
-    /**
-     * Initializes configurators
-     */
     private void initConfigurators() {
         if (defaultGameConfigurator == null) defaultGameConfigurator = new DefaultGameConfigurator();
         if (defaultPluginConfigurator == null) defaultPluginConfigurator = new DefaultPluginConfigurator();
         if (defaultCommandConfigurator == null) defaultCommandConfigurator = new DefaultCommandConfigurator();
     }
 
-    /**
-     * Initializes managers
-     */
     private void initManagers() {
         arenaManager = new ArenaManagerImpl(arenaLoader);
         gameManager = new GameManagerImpl();
@@ -186,9 +174,6 @@ public abstract class MiniGame extends JavaPlugin {
             userStatsManager = new UserStatsManagerImpl(userStatsLoader);
     }
 
-    /**
-     * Initializes loaders
-     */
     private void initLoaders() {
         loaders = new Loaders(getPluginConfiguration());
 
@@ -202,9 +187,6 @@ public abstract class MiniGame extends JavaPlugin {
             userStatsLoader = (UserStatsLoader) userStatsLoaderFactory.createLoader();
     }
 
-    /**
-     * Loads data
-     */
     private void loadData() {
         loaders.registerLoaders(userCoinsLoader, userCosmeticsLoader);
 
@@ -222,9 +204,6 @@ public abstract class MiniGame extends JavaPlugin {
         loaders.load(userCoinsLoader);
     }
 
-    /**
-     * Initializes migrations
-     */
     private void initMigrations() {
         if (!getPluginConfiguration().isUseDataBase()) return;
 
@@ -251,9 +230,6 @@ public abstract class MiniGame extends JavaPlugin {
         loaders.unregisterLoaders();
     }
 
-    /**
-     * Registers game listeners
-     */
     protected void registerGameListeners() {
         Listener[] listeners = {
                 new BlockBreakListener(getGameConfiguration(), gameManager),
@@ -275,6 +251,7 @@ public abstract class MiniGame extends JavaPlugin {
         ConfigurationSerialization.registerClass(MultiFilesArena.class);
         ConfigurationSerialization.registerClass(SingleFileUserCoinsAdapter.class, "SingleFileUserCoinsAdapter");
         ConfigurationSerialization.registerClass(SingleFileUserCosmeticsAdapter.class, "SingleFileUserCosmeticsAdapter");
+        ConfigurationSerialization.registerClass(OptionsImpl.class, "options");
     }
 
     /**
@@ -296,24 +273,6 @@ public abstract class MiniGame extends JavaPlugin {
      */
     public CommandConfiguration getCommandConfiguration() {
         return defaultCommandConfigurator.configure();
-    }
-
-    /**
-     * @param arenaFileLoader arena loader file
-     * @deprecated use MiniGame#setArenaLoader(ArenaLoader)
-     */
-    @Deprecated
-    public void setArenaFileLoader(ArenaFileLoader arenaFileLoader) {
-        this.arenaLoader = arenaFileLoader;
-    }
-
-    /**
-     * @return arena loader file
-     * @deprecated use MiniGame#getArenaLoader()
-     */
-    @Deprecated
-    public ArenaFileLoader getArenaFileLoader() {
-        return (ArenaFileLoader) arenaLoader;
     }
 
     /**

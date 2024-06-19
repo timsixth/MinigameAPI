@@ -39,11 +39,6 @@ public class UserStatsManagerImpl extends AbstractUserStatsManager {
     }
 
     @Override
-    public void addNewUser(UserStats userStats) {
-        throw new UnsupportedOperationException("This method is deprecated");
-    }
-
-    @Override
     public UserStats getUserStatsOrCreate(Player player, Arena arena) {
         Optional<UserStats> userStatsOptional = getUser(player.getUniqueId(), arena.getName());
 
