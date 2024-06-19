@@ -29,8 +29,6 @@ public class PlayerJoinListener implements Listener {
 
             userCoinsManager.addUser(userCoins);
 
-            System.out.println(userCoins);
-
             userCoins.save();
         }
     }

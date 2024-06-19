@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi;
+package pl.timsixth.minigameapi.api.addon.tests;
 
 import org.junit.Test;
 

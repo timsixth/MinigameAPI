@@ -1,5 +1,6 @@
 package pl.timsixth.minigameapi.api.coins;
 
+import lombok.NonNull;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.SerializableAs;
 import pl.timsixth.minigameapi.api.file.annotaions.SingleFile;
@@ -28,6 +29,7 @@ public class SingleFileUserCoinsAdapter extends AbstractUserCoinsAdapter impleme
     }
 
     @Override
+    @NonNull
     public Map<String, Object> serialize() {
         Map<String, Object> map = new LinkedHashMap<>();
 

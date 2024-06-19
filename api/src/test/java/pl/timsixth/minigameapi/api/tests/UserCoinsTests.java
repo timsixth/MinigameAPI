@@ -1,11 +1,11 @@
-package pl.timsixth.minigameapi;
+package pl.timsixth.minigameapi.api.tests;
 
+import pl.timsixth.minigameapi.api.tests.database.DataBase;
+import pl.timsixth.minigameapi.api.tests.user.UserCoinsStub;
 import org.junit.Before;
 import org.junit.Test;
 import pl.timsixth.databasesapi.database.structure.datatype.DataTypes;
 import pl.timsixth.minigameapi.api.coins.UserCoins;
-import pl.timsixth.minigameapi.database.DataBase;
-import pl.timsixth.minigameapi.user.UserCoinsStub;
 
 import java.util.UUID;
 

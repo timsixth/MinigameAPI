@@ -1,6 +1,7 @@
 package pl.timsixth.exampleminigame.command.subcommand.player;
 
 import lombok.RequiredArgsConstructor;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.timsixth.exampleminigame.config.Messages;
@@ -27,6 +28,10 @@ public class ListSubCommand implements SubCommand {
             player.sendMessage(messages.getEmptyArenaList());
             return true;
         }
+
+        Object option = arenas.get(0).arenaOptions().getValueOrDefault("option", 1); //gets custom option
+        Bukkit.getLogger().info(String.valueOf(option));
+
         player.sendMessage(messages.getArenaList());
         List<String> arenasNames = arenas.stream()
                 .map(Arena::getName)

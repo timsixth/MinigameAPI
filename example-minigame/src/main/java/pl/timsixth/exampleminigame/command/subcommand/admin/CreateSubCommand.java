@@ -5,11 +5,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.timsixth.exampleminigame.config.Messages;
 import pl.timsixth.minigameapi.api.MiniGame;
+import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.factory.ArenaFactory;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.command.SubCommand;
-
-import java.util.HashMap;
 
 @RequiredArgsConstructor
 public class CreateSubCommand implements SubCommand {
@@ -19,7 +18,7 @@ public class CreateSubCommand implements SubCommand {
 
     @Override
     public boolean executeCommand(CommandSender sender, String[] args) {
-        if (args.length == 2){
+        if (args.length == 2) {
             Player player = (Player) sender;
 
             if (arenaManager.getArena(args[1]).isPresent()) {
@@ -27,7 +26,9 @@ public class CreateSubCommand implements SubCommand {
                 return true;
             }
             ArenaFactory arenaFactory = MiniGame.getArenaFactory();
-            arenaManager.addArena(arenaFactory.createArena(args[1], player.getLocation()));
+            Arena arena = arenaFactory.createArena(args[1], player.getLocation());
+            arena.arenaOptions().setValue("option", 123); //set custom option
+            arenaManager.addArena(arena);
             player.sendMessage(messages.getArenaCreated());
         }
 

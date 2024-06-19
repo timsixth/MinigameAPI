@@ -65,6 +65,7 @@ import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManagerImpl;
 import pl.timsixth.minigameapi.api.stats.migrations.CreateUserStatsTable;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
+import pl.timsixth.minigameapi.api.util.options.OptionsImpl;
 
 import java.io.File;
 
@@ -250,6 +251,7 @@ public abstract class MiniGame extends JavaPlugin {
         ConfigurationSerialization.registerClass(MultiFilesArena.class);
         ConfigurationSerialization.registerClass(SingleFileUserCoinsAdapter.class, "SingleFileUserCoinsAdapter");
         ConfigurationSerialization.registerClass(SingleFileUserCosmeticsAdapter.class, "SingleFileUserCosmeticsAdapter");
+        ConfigurationSerialization.registerClass(OptionsImpl.class, "options");
     }
 
     /**

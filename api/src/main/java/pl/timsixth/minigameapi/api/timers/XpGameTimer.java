@@ -27,4 +27,13 @@ public abstract class XpGameTimer extends AbstractGameTimer {
             player.setLevel(second);
         }
     }
+
+    @Override
+    public void onEnd() {
+        for (UserGame user : game.getPlayingUsers()) {
+            Player player = user.toPlayer();
+
+            player.setLevel(0);
+        }
+    }
 }

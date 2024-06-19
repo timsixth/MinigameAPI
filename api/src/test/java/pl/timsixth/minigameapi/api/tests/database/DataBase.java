@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.database;
+package pl.timsixth.minigameapi.api.tests.database;
 
 import lombok.Getter;
 import pl.timsixth.databasesapi.database.type.MySQL;
