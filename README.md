@@ -4,12 +4,17 @@ Library works from 1.13.2 to 1.20.x.
 <br>
 Please report every bugs in issues section.<br>
 
-JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.2.0/ <br>
+JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.3.0/ <br>
 Documentation: https://timsixths-plugins.gitbook.io/minigameapi-docs/
+
+The library requires T-DataBasesAPI on Paper 1.20.6 and newer versions.
+
+https://github.com/timsixth/T-DataBasesAPI/releases
 
 ## Library features:
 - Arena management system
 - Game management system
+- Countdown to game start (On player level bar or on the player chat)
 - Game cosmetics system
 - Teams in game
 - Advanced loading system from SQL databases (MySQL or SQLite) or YAML files
