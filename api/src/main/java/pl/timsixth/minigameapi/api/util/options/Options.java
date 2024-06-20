@@ -2,6 +2,9 @@ package pl.timsixth.minigameapi.api.util.options;
 
 import java.util.Map;
 
+/**
+ * Custom model options which can be stored in YAML
+ */
 public interface Options {
 
     /**

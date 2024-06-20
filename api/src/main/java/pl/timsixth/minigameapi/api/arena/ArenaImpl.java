@@ -92,4 +92,16 @@ public class ArenaImpl extends SingleFileModel implements Arena, FileModel {
 
         return arena;
     }
+
+    @Override
+    public Options options() {
+        return options;
+    }
+
+    @Override
+    public Options getOptionsOrCreate() {
+        if (options == null) options = new OptionsImpl();
+
+        return options;
+    }
 }

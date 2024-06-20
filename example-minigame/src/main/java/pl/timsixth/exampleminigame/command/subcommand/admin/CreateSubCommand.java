@@ -27,7 +27,7 @@ public class CreateSubCommand implements SubCommand {
             }
             ArenaFactory arenaFactory = MiniGame.getArenaFactory();
             Arena arena = arenaFactory.createArena(args[1], player.getLocation());
-            arena.arenaOptions().setValue("option", 123); //set custom option
+            arena.options().setValue("option", 123); //set custom option
             arenaManager.addArena(arena);
             player.sendMessage(messages.getArenaCreated());
         }

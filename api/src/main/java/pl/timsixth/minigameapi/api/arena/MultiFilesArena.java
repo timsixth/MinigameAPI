@@ -81,4 +81,16 @@ public class MultiFilesArena extends ManyFilesModel implements Arena {
 
         return multiFilesArena;
     }
+
+    @Override
+    public Options options() {
+        return options;
+    }
+
+    @Override
+    public Options getOptionsOrCreate() {
+        if (options == null) options = new OptionsImpl();
+
+        return options;
+    }
 }

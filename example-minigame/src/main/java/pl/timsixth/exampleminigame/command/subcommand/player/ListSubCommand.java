@@ -29,7 +29,7 @@ public class ListSubCommand implements SubCommand {
             return true;
         }
 
-        Object option = arenas.get(0).arenaOptions().getValueOrDefault("option", 1); //gets custom option
+        Object option = arenas.get(0).options().getValueOrDefault("option", 1); //gets custom option
         Bukkit.getLogger().info(String.valueOf(option));
 
         player.sendMessage(messages.getArenaList());
