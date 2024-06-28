@@ -34,6 +34,6 @@ public class TeamImpl implements Team {
 
     @Override
     public void removeUser(UserGame userGame) {
-        users.add(userGame);
+        users.remove(userGame);
     }
 }

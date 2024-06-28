@@ -6,7 +6,7 @@
     <parent>
         <groupId>pl.timsixth</groupId>
         <artifactId>MinigameAPI</artifactId>
-        <version>1.4.0</version>
+        <version>1.4.1</version>
     </parent>
 
     <artifactId>addons-api</artifactId>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>pl.timsixth</groupId>
             <artifactId>api</artifactId>
-            <version>1.4.0</version>
+            <version>1.4.1</version>
         </dependency>
     </dependencies>
 
