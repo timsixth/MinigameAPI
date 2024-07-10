@@ -8,9 +8,8 @@ import pl.timsixth.exampleminigame.config.Settings;
 import pl.timsixth.exampleminigame.tabcompleter.AdminExampleMiniGameCommandTabCompleter;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
-import pl.timsixth.minigameapi.api.command.ParentCommand;
-import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
-import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
+import pl.timsixth.minigameapi.api.module.command.ParentCommand;
+import pl.timsixth.minigameapi.api.module.command.tabcompleter.BaseTabCompleter;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
 
 public class AdminExampleMiniGameCommand extends ParentCommand {
@@ -19,10 +18,10 @@ public class AdminExampleMiniGameCommand extends ParentCommand {
     private final ArenaManager arenaManager;
     private final UserCoinsManager userCoinsManager;
 
-    public AdminExampleMiniGameCommand(CommandConfiguration commandConfiguration, Messages messages,
+    public AdminExampleMiniGameCommand(Messages messages,
                                        Settings settings,
                                        ArenaManager arenaManager, UserCoinsManager userCoinsManager) {
-        super("minigame.admin", true, true, true, commandConfiguration);
+        super("minigame.admin", true, true, true);
         this.messages = messages;
         this.arenaManager = arenaManager;
         this.userCoinsManager = userCoinsManager;

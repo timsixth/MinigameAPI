@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
-import pl.timsixth.minigameapi.api.command.SubCommand;
+import pl.timsixth.minigameapi.api.module.command.SubCommand;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;

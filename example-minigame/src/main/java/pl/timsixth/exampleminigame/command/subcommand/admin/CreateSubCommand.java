@@ -8,7 +8,7 @@ import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.factory.ArenaFactory;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
-import pl.timsixth.minigameapi.api.command.SubCommand;
+import pl.timsixth.minigameapi.api.module.command.SubCommand;
 
 @RequiredArgsConstructor
 public class CreateSubCommand implements SubCommand {

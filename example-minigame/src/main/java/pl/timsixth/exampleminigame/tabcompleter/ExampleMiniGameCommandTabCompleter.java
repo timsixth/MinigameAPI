@@ -2,8 +2,8 @@ package pl.timsixth.exampleminigame.tabcompleter;
 
 import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
-import pl.timsixth.minigameapi.api.command.ParentCommand;
-import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
+import pl.timsixth.minigameapi.api.module.command.ParentCommand;
+import pl.timsixth.minigameapi.api.module.command.tabcompleter.BaseTabCompleter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -11,3 +11,5 @@
 /library-lite/library-lite.iml
 /api/api.iml
 /addons-api/addons-api.iml
+/commands/target/
+/commands.iml

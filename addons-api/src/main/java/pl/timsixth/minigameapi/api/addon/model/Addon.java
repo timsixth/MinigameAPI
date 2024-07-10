@@ -7,6 +7,7 @@ import java.io.File;
 /**
  * Represents registered addon
  */
+@Deprecated
 public interface Addon {
     /**
      * Gets addon name, plugin name must be the same

@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.api.configuration.type;
+package pl.timsixth.minigameapi.api.module.command.configuration;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import pl.timsixth.minigameapi.api.configuration.Configuration;
  */
 @Builder
 @Getter
-@Deprecated
 public class CommandConfiguration implements Configuration {
 
     private String doNotHavePermissionMessage;

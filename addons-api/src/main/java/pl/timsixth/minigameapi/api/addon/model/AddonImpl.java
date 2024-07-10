@@ -16,6 +16,7 @@ import java.io.File;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Deprecated
 public class AddonImpl implements Addon {
 
     private final String name;

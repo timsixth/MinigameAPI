@@ -11,6 +11,7 @@ import pl.timsixth.minigameapi.api.loader.Loaders;
  * Base class for every addon
  */
 @Getter
+@Deprecated
 public class MiniGameAddon extends JavaPlugin {
 
 

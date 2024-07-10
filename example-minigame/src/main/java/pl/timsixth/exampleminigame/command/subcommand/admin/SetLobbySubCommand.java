@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.timsixth.exampleminigame.config.Messages;
 import pl.timsixth.exampleminigame.config.Settings;
-import pl.timsixth.minigameapi.api.command.SubCommand;
+import pl.timsixth.minigameapi.api.module.command.SubCommand;
 
 @RequiredArgsConstructor
 public class SetLobbySubCommand implements SubCommand {

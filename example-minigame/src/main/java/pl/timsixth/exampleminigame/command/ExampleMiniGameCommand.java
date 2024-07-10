@@ -7,12 +7,11 @@ import pl.timsixth.exampleminigame.config.Messages;
 import pl.timsixth.exampleminigame.tabcompleter.ExampleMiniGameCommandTabCompleter;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
-import pl.timsixth.minigameapi.api.command.ParentCommand;
-import pl.timsixth.minigameapi.api.command.tabcompleter.BaseTabCompleter;
-import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.game.GameManager;
+import pl.timsixth.minigameapi.api.module.command.ParentCommand;
+import pl.timsixth.minigameapi.api.module.command.tabcompleter.BaseTabCompleter;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
 
@@ -21,10 +20,9 @@ public class ExampleMiniGameCommand extends ParentCommand {
     private final Messages messages;
     private final ArenaManager arenaManager;
 
-    public ExampleMiniGameCommand(CommandConfiguration commandConfiguration,
-                                  Messages messages, ArenaManager arenaManager, GameManager gameManager,
+    public ExampleMiniGameCommand(Messages messages, ArenaManager arenaManager, GameManager gameManager,
                                   UserCoinsManager userCoinsManager, UserStatsManager userStatsManager, UserCosmeticsManager userCosmeticsManager, CosmeticsManager cosmeticsManager) {
-        super("", true, true, false, commandConfiguration);
+        super("", true, true, false);
         this.messages = messages;
         this.arenaManager = arenaManager;
         addSubCommand(new ListSubCommand(arenaManager, messages));

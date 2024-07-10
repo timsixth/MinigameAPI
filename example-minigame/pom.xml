@@ -23,7 +23,40 @@
             <artifactId>api</artifactId>
             <version>1.4.1</version>
         </dependency>
+        <dependency>
+            <groupId>pl.timsixth</groupId>
+            <artifactId>commands</artifactId>
+            <version>1.4.1</version>
+        </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>com.google.protobuf:protobuf-java</exclude>
+                                    <exclude>com.mysql:mysql-connector-j</exclude>
+                                    <exclude>com.github.timsixth:T-DataBasesAPI</exclude>
+                                    <exclude>pl.timsixth:api</exclude>
+                                    <exclude>org.xerial:sqlite-jdbc</exclude>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>

@@ -31,6 +31,7 @@ import java.util.jar.JarFile;
  */
 @Getter
 @RequiredArgsConstructor
+@Deprecated
 public class AddonManagerImpl implements AddonManager {
 
     private final Plugin plugin;

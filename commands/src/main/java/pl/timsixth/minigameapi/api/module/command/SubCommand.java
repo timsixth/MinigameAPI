@@ -1,11 +1,10 @@
-package pl.timsixth.minigameapi.api.command;
+package pl.timsixth.minigameapi.api.module.command;
 
 import org.bukkit.command.CommandSender;
 
 /**
  * Represents sub command
  */
-@Deprecated
 public interface SubCommand {
 
     /**

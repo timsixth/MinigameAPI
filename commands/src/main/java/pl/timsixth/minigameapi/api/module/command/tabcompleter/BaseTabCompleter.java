@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.api.command.tabcompleter;
+package pl.timsixth.minigameapi.api.module.command.tabcompleter;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import pl.timsixth.minigameapi.api.command.ParentCommand;
-import pl.timsixth.minigameapi.api.command.SubCommand;
+import pl.timsixth.minigameapi.api.module.command.ParentCommand;
+import pl.timsixth.minigameapi.api.module.command.SubCommand;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Getter
-@Deprecated
 public abstract class BaseTabCompleter implements TabCompleter {
 
     private final ParentCommand parentCommand;

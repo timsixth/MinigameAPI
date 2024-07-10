@@ -1,7 +1,8 @@
-package pl.timsixth.minigameapi.api.command;
+package pl.timsixth.minigameapi.api.module.command;
 
 import lombok.RequiredArgsConstructor;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.timsixth.minigameapi.api.module.command.configuration.CommandConfiguration;
 
 import java.util.Objects;
 
@@ -9,10 +10,10 @@ import java.util.Objects;
  * Registers commands and tab completer
  */
 @RequiredArgsConstructor
-@Deprecated
 public final class CommandRegistration {
 
     private final JavaPlugin plugin;
+    private final CommandConfiguration commandConfiguration;
 
     /**
      * Registers command
@@ -20,6 +21,8 @@ public final class CommandRegistration {
      * @param command command to register
      */
     public void registerCommand(ParentCommand command) {
+        command.setCommandConfiguration(commandConfiguration);
+
         Objects.requireNonNull(plugin.getCommand(command.getName())).setExecutor(command);
     }
 

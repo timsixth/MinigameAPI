@@ -1,10 +1,9 @@
-package pl.timsixth.minigameapi.api.configuration.configurators;
+package pl.timsixth.minigameapi.api.module.command.configuration;
 
 import org.bukkit.ChatColor;
 import pl.timsixth.minigameapi.api.configuration.Configurator;
-import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
 
-@Deprecated
+
 public class DefaultCommandConfigurator implements Configurator<CommandConfiguration> {
 
     /**
