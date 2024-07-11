@@ -156,7 +156,7 @@ public class LibraryConfiguration {
 
             this.userCoinsLoaderFactory = new UserCoinsLoaderFactory();
             this.arenaLoaderFactory = new ArenaLoaderFactory();
-            this.userCosmeticsLoaderFactory = new UserCosmeticsLoaderFactory(cosmeticsManager);
+            this.userCosmeticsLoaderFactory = new UserCosmeticsLoaderFactory();
             this.userStatsLoaderFactory = new UserStatsLoaderFactory();
 
             this.arenaLoader = (ArenaLoader) arenaLoaderFactory.createLoader();

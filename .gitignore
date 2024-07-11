@@ -14,3 +14,5 @@
 /commands/target/
 /commands.iml
 /sql-databases-support/target/
+/sql-databases-support/sql-databases-support.iml
+/commands/commands.iml

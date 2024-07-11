@@ -92,6 +92,11 @@ public class CosmeticsSubCommand implements SubCommand {
                 Cosmetic cosmetic = cosmeticOptional.get();
                 UserCosmetics userCosmetics = userCosmeticsOptional.get();
 
+                if (!userCosmetics.hasCosmetic(cosmetic)) {
+                    player.sendMessage("You don't have this cosmetic");
+                    return true;
+                }
+
                 if (userCosmetics.isCosmeticEnable(cosmetic)) {
                     userCosmetics.disableCosmetic(cosmetic);
                     player.sendMessage("Cosmetic has been disabled");

@@ -1,10 +1,7 @@
 package pl.timsixth.minigameapi.api.stats.factory;
 
 import pl.timsixth.minigameapi.api.MiniGame;
-import pl.timsixth.minigameapi.api.database.impl.DbModelImpl;
-import pl.timsixth.minigameapi.api.file.impl.SingleFileModelImpl;
-import pl.timsixth.minigameapi.api.stats.model.SQLDatabaseUserStatsAdapter;
-import pl.timsixth.minigameapi.api.stats.model.SingleFileUserStatsAdapter;
+import pl.timsixth.minigameapi.api.stats.model.SingleYamlFileUserStats;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
 
 import java.util.UUID;
@@ -17,10 +14,7 @@ public class UserStatsFactoryImpl implements UserStatsFactory {
             return null;
         }
 
-        if (MiniGame.getInstance().getPluginConfiguration().isUseDataBase())
-            return new SQLDatabaseUserStatsAdapter(new DbModelImpl(), uuid, name, arenaName, wins, defeats);
-
-        return new SingleFileUserStatsAdapter(new SingleFileModelImpl(), uuid, name, arenaName, wins, defeats);
+        return new SingleYamlFileUserStats(uuid, name, arenaName, wins, defeats);
     }
 
     @Override

@@ -17,27 +17,7 @@ public class UserStatsSQLDatabaseLoader extends AbstractSqlDataBaseLoader<UserSt
      */
     @Override
     public void load(String tableName) {
-//        QueryBuilder queryBuilder = new QueryBuilder();
-//
-//        String query = queryBuilder.selectAll(tableName).build();
-//
-//        try (ResultSet resultSet = currentSqlDataBase.getAsyncQuery().query(query)) {
-//
-//            while (resultSet.next()) {
-//                UserStats userStats = MiniGame.getUserStatsFactory().createUserStats(
-//                        UUID.fromString(resultSet.getString("uuid")),
-//                        resultSet.getString("name"),
-//                        resultSet.getString("arenaName"),
-//                        resultSet.getInt("wins"),
-//                        resultSet.getInt("defeats")
-//                );
-//
-//                getData().add(userStats);
-//            }
-//
-//        } catch (ExecutionException | InterruptedException | SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+
     }
 
     @Override

@@ -13,6 +13,7 @@ import pl.timsixth.minigameapi.api.arena.loader.ArenaLoader;
 import pl.timsixth.minigameapi.api.arena.loader.ArenaSingleFileLoader;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.coins.SingleFileUserCoinsAdapter;
+import pl.timsixth.minigameapi.api.coins.SingleYamlUserCoins;
 import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.factory.UserCoinsFactory;
 import pl.timsixth.minigameapi.api.coins.loader.UserCoinsLoader;
@@ -26,6 +27,7 @@ import pl.timsixth.minigameapi.api.configuration.type.GameConfiguration;
 import pl.timsixth.minigameapi.api.configuration.type.PluginConfiguration;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.user.SingleFileUserCosmeticsAdapter;
+import pl.timsixth.minigameapi.api.cosmetics.user.SingleYamlUserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.factory.UserCosmeticsFactory;
 import pl.timsixth.minigameapi.api.cosmetics.user.loader.UserCosmeticsLoader;
@@ -157,6 +159,8 @@ public abstract class MiniGame extends JavaPlugin {
         ConfigurationSerialization.registerClass(SingleFileUserCoinsAdapter.class, "SingleFileUserCoinsAdapter");
         ConfigurationSerialization.registerClass(SingleFileUserCosmeticsAdapter.class, "SingleFileUserCosmeticsAdapter");
         ConfigurationSerialization.registerClass(OptionsImpl.class, "options");
+        ConfigurationSerialization.registerClass(SingleYamlUserCoins.class, "SingleYamlUserCoins");
+        ConfigurationSerialization.registerClass(SingleYamlUserCosmetics.class, "SingleYamlUserCosmetics");
     }
 
     /**
