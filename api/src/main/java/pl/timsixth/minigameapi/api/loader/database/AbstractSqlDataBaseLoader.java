@@ -1,7 +1,5 @@
 package pl.timsixth.minigameapi.api.loader.database;
 
-import pl.timsixth.databasesapi.DatabasesApiPlugin;
-import pl.timsixth.databasesapi.database.ISQLDataBase;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.database.DbModel;
 import pl.timsixth.minigameapi.api.loader.AbstractLoader;
@@ -16,9 +14,10 @@ import pl.timsixth.minigameapi.api.model.Model;
  * @see Loader
  * @see Loaders
  */
+@Deprecated
 public abstract class AbstractSqlDataBaseLoader<T extends Model> extends AbstractLoader<T> implements SqlDataBaseLoader<T> {
 
-    protected ISQLDataBase currentSqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
+    // protected ISQLDataBase currentSqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
 
     @Override
     public void load() {

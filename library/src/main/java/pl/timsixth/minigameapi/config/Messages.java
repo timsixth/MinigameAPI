@@ -7,7 +7,11 @@ import pl.timsixth.minigameapi.MiniGameApiPlugin;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
 
 import java.util.List;
-
+/**
+ * Addons system will be removed
+ * @deprecated
+ */
+@Deprecated
 @Getter
 public final class Messages {
     @Getter(AccessLevel.NONE)

@@ -14,6 +14,7 @@ import java.util.UUID;
  * @see AbstractModelAdapter
  */
 @Table(name = "users_coins")
+@Deprecated
 public class SQLDatabaseUserCoinsAdapter extends AbstractUserCoinsAdapter {
 
     public static final String TABLE_NAME = "users_coins";

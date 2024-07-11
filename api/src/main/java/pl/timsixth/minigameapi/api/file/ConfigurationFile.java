@@ -8,6 +8,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import pl.timsixth.minigameapi.api.file.annotaions.IdSection;
 import pl.timsixth.minigameapi.api.file.annotaions.ManyFiles;
 import pl.timsixth.minigameapi.api.file.annotaions.SingleFile;
+import pl.timsixth.minigameapi.api.model.annotations.Id;
 import pl.timsixth.minigameapi.api.util.ModelUtil;
 
 import java.io.File;
@@ -65,7 +66,7 @@ public final class ConfigurationFile {
         Field[] fields = ModelUtil.findFields(type);
 
         for (Field field : fields) {
-            if (field.isAnnotationPresent(IdSection.class)) {
+            if (field.isAnnotationPresent(IdSection.class) || field.isAnnotationPresent(Id.class)) {
                 if (idSection != null)
                     throw new IllegalStateException("Only one field can be annotated as IdSection");
                 field.setAccessible(true);

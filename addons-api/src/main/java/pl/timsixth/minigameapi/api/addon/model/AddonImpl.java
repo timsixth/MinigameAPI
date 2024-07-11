@@ -11,6 +11,8 @@ import java.io.File;
 
 /**
  * Implementation of {@link Addon}
+ *
+ * @deprecated Addons system will be removed
  */
 @Getter
 @Setter

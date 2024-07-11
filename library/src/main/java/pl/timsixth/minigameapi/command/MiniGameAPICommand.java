@@ -10,6 +10,11 @@ import pl.timsixth.minigameapi.command.subcommand.AddonSubCommand;
 import pl.timsixth.minigameapi.config.Messages;
 import pl.timsixth.minigameapi.tabcompleter.MiniGameAPITabCompleter;
 
+/**
+ * Addons system will be removed
+ * @deprecated
+ */
+@Deprecated
 public class MiniGameAPICommand extends ParentCommand {
 
     private final Messages messages;

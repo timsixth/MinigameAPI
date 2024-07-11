@@ -6,7 +6,11 @@ import pl.timsixth.minigameapi.api.MiniGame;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Addons system will be removed
+ */
 @UtilityClass
+@Deprecated
 public class Replacer {
     /**
      * Replaces '{admin_command}' and '{player_command}' in string

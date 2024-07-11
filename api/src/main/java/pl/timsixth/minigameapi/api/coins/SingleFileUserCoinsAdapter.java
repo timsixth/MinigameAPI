@@ -22,6 +22,7 @@ import java.util.UUID;
  */
 @SingleFile(fileName = "users_coins.yml", primarySection = "users")
 @SerializableAs("SingleFileUserCoinsAdapter")
+@Deprecated
 public class SingleFileUserCoinsAdapter extends AbstractUserCoinsAdapter implements ConfigurationSerializable {
     public SingleFileUserCoinsAdapter(InitializableModel model, UUID uuid, double coins) {
         super(model, uuid, coins);

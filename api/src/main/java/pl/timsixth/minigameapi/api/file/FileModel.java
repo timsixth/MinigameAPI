@@ -1,14 +1,15 @@
 package pl.timsixth.minigameapi.api.file;
 
-import pl.timsixth.minigameapi.api.model.Model;
+import pl.timsixth.minigameapi.api.model.ManageableModel;
 
 /**
  * The class represents every FileModel
  */
-public interface FileModel extends Model {
+public interface FileModel extends ManageableModel {
     /**
-     *
      * @return information about file
      */
-    ConfigurationFile getConfigurationFile();
+    default ConfigurationFile getConfigurationFile() {
+        return ((YamlFileDao) getDao()).getConfigurationFile();
+    }
 }

@@ -7,6 +7,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
+/**
+ * @deprecated Addons system will be removed
+ */
 @Deprecated
 public interface AddonManager {
     /**

@@ -14,6 +14,7 @@ import java.io.File;
  * @see FileModel
  * @see AbstractFileModel
  */
+@Deprecated
 public abstract class SingleFileModel extends AbstractFileModel {
 
     @Override

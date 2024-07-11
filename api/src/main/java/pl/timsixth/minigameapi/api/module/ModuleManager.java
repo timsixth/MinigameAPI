@@ -3,6 +3,7 @@ package pl.timsixth.minigameapi.api.module;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.module.exception.ModuleException;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +16,6 @@ public interface ModuleManager {
     Optional<Module> getModule(String name);
 
     List<Module> getModules();
-
-    default void unregisterAllModules() {
-        getModules().forEach(this::unregisterModule);
-    }
 
     default void enableModules() {
         getModules().forEach(module -> {
@@ -37,9 +34,15 @@ public interface ModuleManager {
     }
 
     default void disableModules() {
-        getModules().forEach(module -> {
+        Iterator<Module> iterator = getModules().iterator();
+
+        while (iterator.hasNext()) {
+            Module module = iterator.next();
+
             module.onDisable();
             MiniGame.getInstance().getLogger().info("Module " + module.getName() + " disabled!");
-        });
+
+            iterator.remove();
+        }
     }
 }

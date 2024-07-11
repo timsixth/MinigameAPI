@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Getter
+@Deprecated
 public abstract class AbstractModelAdapter implements Model {
 
     protected final InitializableModel model;

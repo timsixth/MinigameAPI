@@ -49,7 +49,7 @@ import pl.timsixth.minigameapi.api.stats.model.UserStats;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public final class LibraryConfiguration {
+public class LibraryConfiguration {
 
     private Plugin plugin;
     private ConfiguratorsInitializer configuratorsInitializer;
@@ -152,7 +152,7 @@ public final class LibraryConfiguration {
             this.userCoinsFactory = new UserCoinsFactoryImpl();
             this.userCosmeticsFactory = new UserCosmeticsFactoryImpl();
             if (configuratorsInitializer.getPluginConfiguration().isUseDefaultStatsSystem())
-                userStatsFactory = new UserStatsFactoryImpl();
+                this.userStatsFactory = new UserStatsFactoryImpl();
 
             this.userCoinsLoaderFactory = new UserCoinsLoaderFactory();
             this.arenaLoaderFactory = new ArenaLoaderFactory();

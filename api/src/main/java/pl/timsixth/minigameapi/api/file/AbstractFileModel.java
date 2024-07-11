@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import pl.timsixth.minigameapi.api.model.InitializableModel;
 import pl.timsixth.minigameapi.api.model.Model;
+import pl.timsixth.minigameapi.api.storage.Dao;
 import pl.timsixth.minigameapi.api.util.FileUtil;
 
 import java.io.File;
@@ -12,6 +13,7 @@ import java.io.File;
 /**
  * The class represents every model which is saving in file
  */
+@Deprecated
 abstract class AbstractFileModel implements FileModel, ConfigurationSerializable, InitializableModel {
 
     private final ConfigurationFile configurationFile = new ConfigurationFile();
@@ -92,5 +94,10 @@ abstract class AbstractFileModel implements FileModel, ConfigurationSerializable
     @Override
     public Object update(Model model) {
         throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @Override
+    public Dao getDao() {
+        return null;
     }
 }

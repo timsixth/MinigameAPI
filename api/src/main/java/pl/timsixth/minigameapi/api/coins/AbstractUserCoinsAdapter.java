@@ -17,6 +17,7 @@ import java.util.UUID;
  */
 @Getter
 @ToString
+@Deprecated
 public abstract class AbstractUserCoinsAdapter extends AbstractModelAdapter implements UserCoins {
 
     @Id

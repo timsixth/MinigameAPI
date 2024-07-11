@@ -8,6 +8,7 @@ import pl.timsixth.minigameapi.api.model.Model;
  *
  * @see Model
  */
+@Deprecated
 public interface DbModel extends Model {
     /**
      * @return table name

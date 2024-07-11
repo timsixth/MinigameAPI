@@ -28,6 +28,8 @@ import java.util.jar.JarFile;
 
 /**
  * Implementation of {@link AddonManager}
+ *
+ * @deprecated Addons system will be removed
  */
 @Getter
 @RequiredArgsConstructor

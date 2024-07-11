@@ -11,21 +11,6 @@
 
     <artifactId>api</artifactId>
 
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.github.timsixth</groupId>
-            <artifactId>T-DataBasesAPI</artifactId>
-            <version>v1.9.2</version>
-        </dependency>
-    </dependencies>
-
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>

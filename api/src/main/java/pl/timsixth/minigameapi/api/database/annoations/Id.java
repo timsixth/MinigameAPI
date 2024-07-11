@@ -9,7 +9,9 @@ import java.lang.annotation.Target;
 
 /**
  * In every {@link DbModel} must be Id annotation
+ * @deprecated use {@link pl.timsixth.minigameapi.api.model.annotations.Id}
  */
+@Deprecated
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface Id {

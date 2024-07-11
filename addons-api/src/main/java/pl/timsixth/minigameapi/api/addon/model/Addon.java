@@ -6,6 +6,8 @@ import java.io.File;
 
 /**
  * Represents registered addon
+ *
+ * @deprecated Addons system will be removed
  */
 @Deprecated
 public interface Addon {

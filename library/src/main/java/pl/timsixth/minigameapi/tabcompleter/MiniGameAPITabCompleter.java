@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * Addons system will be removed
+ * @deprecated
+ */
+@Deprecated
 public class MiniGameAPITabCompleter extends BaseTabCompleter {
 
     public MiniGameAPITabCompleter(ParentCommand parentCommand, AddonManager addonManager) {

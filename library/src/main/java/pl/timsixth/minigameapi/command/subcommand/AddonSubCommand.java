@@ -17,7 +17,11 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * Addons system will be removed
+ * @deprecated
+ */
+@Deprecated
 @RequiredArgsConstructor
 public class AddonSubCommand implements SubCommand {
 

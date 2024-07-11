@@ -14,6 +14,7 @@ import java.util.UUID;
  * @see InitializableModel
  */
 @Getter
+@Deprecated
 public abstract class AbstractUserStatsAdapter extends AbstractModelAdapter implements UserStats {
 
     @Id

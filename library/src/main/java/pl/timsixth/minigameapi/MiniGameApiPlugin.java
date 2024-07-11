@@ -14,7 +14,11 @@ import pl.timsixth.minigameapi.command.MiniGameAPICommand;
 import pl.timsixth.minigameapi.config.Messages;
 
 import java.io.File;
-
+/**
+ *
+ * @deprecated This class will be replaced by {@link MiniGameApiPluginLite}
+ */
+@Deprecated
 @Getter
 public final class MiniGameApiPlugin extends MiniGameApiPluginLite {
 

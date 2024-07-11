@@ -7,7 +7,7 @@ import pl.timsixth.minigameapi.api.file.SingleFileModel;
 import pl.timsixth.minigameapi.api.file.annotaions.SingleFile;
 import pl.timsixth.minigameapi.api.model.AbstractModelAdapter;
 import pl.timsixth.minigameapi.api.model.InitializableModel;
-import pl.timsixth.minigameapi.api.model.annoations.IgnoreFields;
+import pl.timsixth.minigameapi.api.model.annotations.IgnoreFields;
 import pl.timsixth.minigameapi.api.util.ConfigurationSectionUtil;
 
 import java.util.UUID;
@@ -21,6 +21,7 @@ import java.util.UUID;
  */
 @SingleFile(fileName = "users_stats.yml", primarySection = "users")
 @IgnoreFields
+@Deprecated
 public class SingleFileUserStatsAdapter extends AbstractUserStatsAdapter {
 
     private final ConfigurationFile configurationFile;

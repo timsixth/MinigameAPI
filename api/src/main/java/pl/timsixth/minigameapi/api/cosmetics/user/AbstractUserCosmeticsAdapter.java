@@ -17,6 +17,7 @@ import java.util.*;
  */
 @Getter
 @Setter
+@Deprecated
 public abstract class AbstractUserCosmeticsAdapter extends AbstractModelAdapter implements UserCosmetics {
 
     @Id

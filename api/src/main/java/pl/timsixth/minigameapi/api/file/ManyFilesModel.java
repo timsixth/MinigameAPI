@@ -13,6 +13,7 @@ import java.io.File;
  * @see FileModel
  * @see AbstractFileModel
  */
+@Deprecated
 public abstract class ManyFilesModel extends AbstractFileModel {
 
     @Override

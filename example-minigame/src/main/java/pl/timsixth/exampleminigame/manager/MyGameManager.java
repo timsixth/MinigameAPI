@@ -72,7 +72,7 @@ public class MyGameManager extends AbstractGameManager {
 
                 player.teleport(arena.getLobbyLocation());
 
-                game.getState().run();
+                game.runState();
                 game.sendMessage(messages.getGameJoined().replace("{NICK}", player.getName()));
                 player.getInventory().clear();
                 giveLeaveItem(player);

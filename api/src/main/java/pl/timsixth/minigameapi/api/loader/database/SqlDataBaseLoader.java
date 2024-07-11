@@ -13,6 +13,7 @@ import pl.timsixth.minigameapi.api.model.Model;
  * @see Loader
  * @see Loaders
  */
+@Deprecated
 public interface SqlDataBaseLoader<T extends Model> extends Loader<T> {
     /**
      * Loads data from database table

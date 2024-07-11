@@ -15,6 +15,7 @@
         <module>library-lite</module>
         <module>addons-api</module>
         <module>commands</module>
+        <module>sql-databases-support</module>
     </modules>
     <repositories>
         <repository>

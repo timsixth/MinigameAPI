@@ -11,6 +11,7 @@ import pl.timsixth.minigameapi.api.game.Game;
  * This event must be called to Boosters addon works correctly
  */
 @Getter
+@Deprecated
 public class PlayerWinGameEvent extends PlayerEvent {
 
     private static final HandlerList handlers = new HandlerList();

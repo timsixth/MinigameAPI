@@ -13,7 +13,9 @@ import java.lang.annotation.Target;
  * @see SingleFile
  * Every field which is annotated this annotaion is uniqe key of FileModel.
  * In models which are annotated ManyFiles is a name of file.
+ * @deprecated use {@link pl.timsixth.minigameapi.api.model.annotations.Id}
  */
+@Deprecated
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface IdSection {

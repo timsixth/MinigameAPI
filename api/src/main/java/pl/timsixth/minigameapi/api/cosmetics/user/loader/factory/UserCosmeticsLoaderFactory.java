@@ -10,6 +10,7 @@ import pl.timsixth.minigameapi.api.loader.Loader;
 import pl.timsixth.minigameapi.api.loader.factory.LoaderFactory;
 
 @RequiredArgsConstructor
+@Deprecated
 public class UserCosmeticsLoaderFactory implements LoaderFactory<UserCosmetics> {
 
     private final CosmeticsManager cosmeticsManager;

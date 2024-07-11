@@ -1,7 +1,7 @@
 package pl.timsixth.minigameapi.api.tests;
 
 import org.junit.Test;
-import pl.timsixth.minigameapi.api.model.annoations.IgnoreFields;
+import pl.timsixth.minigameapi.api.model.annotations.IgnoreFields;
 import pl.timsixth.minigameapi.api.util.ModelUtil;
 
 import java.lang.reflect.Field;

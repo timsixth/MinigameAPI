@@ -9,6 +9,8 @@ import pl.timsixth.minigameapi.api.loader.Loaders;
 
 /**
  * Base class for every addon
+ *
+ * @deprecated Addons system will be removed
  */
 @Getter
 @Deprecated

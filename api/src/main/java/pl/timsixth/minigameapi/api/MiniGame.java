@@ -5,8 +5,6 @@ import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
-import pl.timsixth.databasesapi.DatabasesApiPlugin;
-import pl.timsixth.databasesapi.database.migration.Migrations;
 import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.ArenaImpl;
 import pl.timsixth.minigameapi.api.arena.MultiFilesArena;
@@ -19,7 +17,6 @@ import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.factory.UserCoinsFactory;
 import pl.timsixth.minigameapi.api.coins.loader.UserCoinsLoader;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
-import pl.timsixth.minigameapi.api.coins.migrations.CreateUserCoinsTableMigration;
 import pl.timsixth.minigameapi.api.command.ParentCommand;
 import pl.timsixth.minigameapi.api.configuration.Configurator;
 import pl.timsixth.minigameapi.api.configuration.ConfiguratorsInitializer;
@@ -33,7 +30,6 @@ import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.factory.UserCosmeticsFactory;
 import pl.timsixth.minigameapi.api.cosmetics.user.loader.UserCosmeticsLoader;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
-import pl.timsixth.minigameapi.api.cosmetics.user.migrations.CreateUserCosmeticsTableMigration;
 import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.loader.Loaders;
 import pl.timsixth.minigameapi.api.loader.factory.LoaderFactory;
@@ -41,7 +37,6 @@ import pl.timsixth.minigameapi.api.module.ModuleManager;
 import pl.timsixth.minigameapi.api.stats.factory.UserStatsFactory;
 import pl.timsixth.minigameapi.api.stats.loader.UserStatsLoader;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
-import pl.timsixth.minigameapi.api.stats.migrations.CreateUserStatsTable;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
 import pl.timsixth.minigameapi.api.util.options.OptionsImpl;
 
@@ -61,9 +56,13 @@ public abstract class MiniGame extends JavaPlugin {
     @Getter
     private Loaders loaders;
 
+    @Getter
     private static ArenaFactory arenaFactory;
+    @Getter
     private static UserCoinsFactory userCoinsFactory;
+    @Getter
     private static UserStatsFactory userStatsFactory;
+    @Getter
     private static UserCosmeticsFactory userCosmeticsFactory;
 
     /**
@@ -97,7 +96,6 @@ public abstract class MiniGame extends JavaPlugin {
         setUserCosmeticsFactory(libraryConfiguration.getUserCosmeticsFactory());
 
         registerSerializableClasses();
-        initMigrations();
         initLoaders();
         loadData();
 
@@ -109,7 +107,6 @@ public abstract class MiniGame extends JavaPlugin {
         loaders.unregisterLoaders();
 
         getModuleManager().disableModules();
-        getModuleManager().unregisterAllModules();
     }
 
     protected ConfiguratorsInitializer loadConfigurators() {
@@ -147,27 +144,6 @@ public abstract class MiniGame extends JavaPlugin {
         loaders.load(userCoinsLoader);
     }
 
-    private void initMigrations() {
-        if (!getPluginConfiguration().isUseDataBase()) return;
-
-        Migrations migrations = DatabasesApiPlugin.getApi().getMigrations();
-        CreateUserCoinsTableMigration createUserCoinsTableMigration = new CreateUserCoinsTableMigration();
-        CreateUserCosmeticsTableMigration createUserCosmeticsTableMigration = new CreateUserCosmeticsTableMigration();
-
-        if (getPluginConfiguration().isUseDefaultStatsSystem()) {
-            CreateUserStatsTable createUserStatsTable = new CreateUserStatsTable();
-            migrations.addMigration(createUserStatsTable);
-
-            migrations.migrate(createUserStatsTable);
-        }
-
-        migrations.addMigration(createUserCoinsTableMigration);
-        migrations.addMigration(createUserCosmeticsTableMigration);
-
-        migrations.migrate(createUserCoinsTableMigration);
-        migrations.migrate(createUserCosmeticsTableMigration);
-    }
-
     @Deprecated
     protected void registerGameListeners() {
     }
@@ -176,8 +152,8 @@ public abstract class MiniGame extends JavaPlugin {
      * Registers serializable classes. The method uses Bukkit serialization system to serialize and deserialize objects
      */
     protected void registerSerializableClasses() {
-        ConfigurationSerialization.registerClass(ArenaImpl.class);
-        ConfigurationSerialization.registerClass(MultiFilesArena.class);
+        ConfigurationSerialization.registerClass(ArenaImpl.class, "ArenaImpl");
+        ConfigurationSerialization.registerClass(MultiFilesArena.class, "MultiFilesArena");
         ConfigurationSerialization.registerClass(SingleFileUserCoinsAdapter.class, "SingleFileUserCoinsAdapter");
         ConfigurationSerialization.registerClass(SingleFileUserCosmeticsAdapter.class, "SingleFileUserCosmeticsAdapter");
         ConfigurationSerialization.registerClass(OptionsImpl.class, "options");
@@ -229,17 +205,9 @@ public abstract class MiniGame extends JavaPlugin {
         return libraryConfiguration.getModuleManager();
     }
 
-    public static ArenaFactory getArenaFactory() {
-        return arenaFactory;
-    }
-
     @Deprecated
     protected static void setArenaFactory(ArenaFactory arenaFactory) {
         MiniGame.arenaFactory = arenaFactory;
-    }
-
-    public static UserCoinsFactory getUserCoinsFactory() {
-        return userCoinsFactory;
     }
 
     @Deprecated
@@ -247,17 +215,9 @@ public abstract class MiniGame extends JavaPlugin {
         MiniGame.userCoinsFactory = userCoinsFactory;
     }
 
-    public static UserStatsFactory getUserStatsFactory() {
-        return userStatsFactory;
-    }
-
     @Deprecated
-    public static void setUserStatsFactory(UserStatsFactory userStatsFactory) {
+    protected static void setUserStatsFactory(UserStatsFactory userStatsFactory) {
         MiniGame.userStatsFactory = userStatsFactory;
-    }
-
-    public static UserCosmeticsFactory getUserCosmeticsFactory() {
-        return userCosmeticsFactory;
     }
 
     @Deprecated
@@ -271,7 +231,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setDefaultGameConfigurator(Configurator<GameConfiguration> defaultGameConfigurator) {
-        //this.defaultGameConfigurator = defaultGameConfigurator;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public Configurator<PluginConfiguration> getDefaultPluginConfigurator() {
@@ -280,7 +240,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setDefaultPluginConfigurator(Configurator<PluginConfiguration> defaultPluginConfigurator) {
-        //  this.defaultPluginConfigurator = defaultPluginConfigurator;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     @Deprecated
@@ -290,7 +250,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setDefaultCommandConfigurator(Configurator<CommandConfiguration> defaultCommandConfigurator) {
-        // this.defaultCommandConfigurator = defaultCommandConfigurator;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public ArenaManager getArenaManager() {
@@ -299,7 +259,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setArenaManager(ArenaManager arenaManager) {
-        //  this.arenaManager = arenaManager;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public UserCoinsManager getUserCoinsManager() {
@@ -308,7 +268,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setUserCoinsManager(UserCoinsManager userCoinsManager) {
-        // this.userCoinsManager = userCoinsManager;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public UserCosmeticsManager getUserCosmeticsManager() {
@@ -317,7 +277,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setUserCosmeticsManager(UserCosmeticsManager userCosmeticsManager) {
-        //  this.userCosmeticsManager = userCosmeticsManager;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public UserStatsManager getUserStatsManager() {
@@ -326,7 +286,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setUserStatsManager(UserStatsManager userStatsManager) {
-        // this.userStatsManager = userStatsManager;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public GameManager getGameManager() {
@@ -335,7 +295,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setGameManager(GameManager gameManager) {
-        //  this.gameManager = gameManager;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public CosmeticsManager getCosmeticsManager() {
@@ -344,7 +304,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setCosmeticsManager(CosmeticsManager cosmeticsManager) {
-        // this.cosmeticsManager = cosmeticsManager;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public ArenaLoader getArenaLoader() {
@@ -353,7 +313,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setArenaLoader(ArenaLoader arenaLoader) {
-        //  this.arenaLoader = arenaLoader;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public UserCoinsLoader getUserCoinsLoader() {
@@ -362,7 +322,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setUserCoinsLoader(UserCoinsLoader userCoinsLoader) {
-        //  this.userCoinsLoader = userCoinsLoader;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public UserCosmeticsLoader getUserCosmeticsLoader() {
@@ -371,7 +331,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setUserCosmeticsLoader(UserCosmeticsLoader userCosmeticsLoader) {
-        //  this.userCosmeticsLoader = userCosmeticsLoader;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public UserStatsLoader getUserStatsLoader() {
@@ -380,7 +340,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setUserStatsLoader(UserStatsLoader userStatsLoader) {
-        // this.userStatsLoader = userStatsLoader;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public LoaderFactory<UserCoins> getUserCoinsLoaderFactory() {
@@ -389,7 +349,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setUserCoinsLoaderFactory(LoaderFactory<UserCoins> userCoinsLoaderFactory) {
-        //  this.userCoinsLoaderFactory = userCoinsLoaderFactory;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public LoaderFactory<Arena> getArenaLoaderFactory() {
@@ -398,7 +358,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setArenaLoaderFactory(LoaderFactory<Arena> arenaLoaderFactory) {
-        //  this.arenaLoaderFactory = arenaLoaderFactory;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public LoaderFactory<UserCosmetics> getUserCosmeticsLoaderFactory() {
@@ -407,7 +367,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setUserCosmeticsLoaderFactory(LoaderFactory<UserCosmetics> userCosmeticsLoaderFactory) {
-        // this.userCosmeticsLoaderFactory = userCosmeticsLoaderFactory;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     public LoaderFactory<UserStats> getUserStatsLoaderFactory() {
@@ -416,6 +376,6 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     public void setUserStatsLoaderFactory(LoaderFactory<UserStats> userStatsLoaderFactory) {
-        // this.userStatsLoaderFactory = userStatsLoaderFactory;
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 }

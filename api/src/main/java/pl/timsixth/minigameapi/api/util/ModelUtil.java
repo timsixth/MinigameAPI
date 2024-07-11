@@ -6,7 +6,7 @@ import pl.timsixth.minigameapi.api.database.annoations.Id;
 import pl.timsixth.minigameapi.api.file.ManyFilesModel;
 import pl.timsixth.minigameapi.api.file.SingleFileModel;
 import pl.timsixth.minigameapi.api.file.annotaions.IdSection;
-import pl.timsixth.minigameapi.api.model.annoations.IgnoreFields;
+import pl.timsixth.minigameapi.api.model.annotations.IgnoreFields;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

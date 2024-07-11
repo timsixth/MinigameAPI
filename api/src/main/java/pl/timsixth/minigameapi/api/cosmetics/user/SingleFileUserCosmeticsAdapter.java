@@ -21,6 +21,7 @@ import java.util.*;
  */
 @SingleFile(fileName = "users_cosmetics.yml", primarySection = "users_cosmetics")
 @SerializableAs("SingleFileUserCosmeticsAdapter")
+@Deprecated
 public class SingleFileUserCosmeticsAdapter extends AbstractUserCosmeticsAdapter implements ConfigurationSerializable {
     public SingleFileUserCosmeticsAdapter(InitializableModel model, UUID uuid) {
         super(model, uuid);
