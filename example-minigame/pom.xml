@@ -22,10 +22,18 @@
             <groupId>pl.timsixth</groupId>
             <artifactId>api</artifactId>
             <version>1.4.1</version>
+            <scope>provided</scope>
         </dependency>
+        <!-- Set this when you want to use commands system-->
         <dependency>
-            <groupId>pl.timsixth</groupId>
+            <groupId>pl.timsixth</groupId> <!-- Remember the groupId is not the same, read documentation-->
             <artifactId>commands</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+        <!-- Set this when you want to use SQL databases support-->
+        <dependency>
+            <groupId>pl.timsixth</groupId> <!-- Remember the groupId is not the same, read documentation-->
+            <artifactId>sql-databases-support</artifactId>
             <version>1.4.1</version>
         </dependency>
     </dependencies>

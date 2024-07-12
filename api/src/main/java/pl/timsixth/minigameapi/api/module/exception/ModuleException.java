@@ -6,4 +6,9 @@ public class ModuleException extends RuntimeException {
         super("Can't load module " + moduleName + " because, " + requiredModule + " is required to work");
     }
 
+    public ModuleException(String message) {
+        super(message);
+    }
+
+
 }

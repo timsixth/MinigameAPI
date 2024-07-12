@@ -35,6 +35,7 @@ import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.loader.Loaders;
 import pl.timsixth.minigameapi.api.loader.factory.LoaderFactory;
+import pl.timsixth.minigameapi.api.logging.MiniGameLogger;
 import pl.timsixth.minigameapi.api.module.ModuleManager;
 import pl.timsixth.minigameapi.api.stats.factory.UserStatsFactory;
 import pl.timsixth.minigameapi.api.stats.loader.UserStatsLoader;
@@ -99,9 +100,10 @@ public abstract class MiniGame extends JavaPlugin {
 
         registerSerializableClasses();
         initLoaders();
-        loadData();
 
         getModuleManager().enableModules();
+
+        loadData();
     }
 
     @Override

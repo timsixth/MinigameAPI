@@ -39,6 +39,7 @@ import pl.timsixth.minigameapi.api.loader.factory.LoaderFactory;
 import pl.timsixth.minigameapi.api.module.Module;
 import pl.timsixth.minigameapi.api.module.ModuleManager;
 import pl.timsixth.minigameapi.api.module.ModuleManagerImpl;
+import pl.timsixth.minigameapi.api.module.exception.ModuleException;
 import pl.timsixth.minigameapi.api.stats.factory.UserStatsFactory;
 import pl.timsixth.minigameapi.api.stats.factory.UserStatsFactoryImpl;
 import pl.timsixth.minigameapi.api.stats.loader.UserStatsLoader;
@@ -47,12 +48,17 @@ import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManagerImpl;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class LibraryConfiguration {
 
     private Plugin plugin;
     private ConfiguratorsInitializer configuratorsInitializer;
+    private List<Module> modules;
 
     private ModuleManager moduleManager;
     private ArenaManager arenaManager;
@@ -77,7 +83,7 @@ public class LibraryConfiguration {
     private LoaderFactory<UserCosmetics> userCosmeticsLoaderFactory;
     private LoaderFactory<UserStats> userStatsLoaderFactory;
 
-    private LibraryConfiguration(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer, Builder builder) {
+    protected LibraryConfiguration(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer, Builder builder) {
         this.plugin = plugin;
         this.configuratorsInitializer = configuratorsInitializer;
 
@@ -106,25 +112,30 @@ public class LibraryConfiguration {
     }
 
     public LibraryConfiguration(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer) {
+        this(plugin, configuratorsInitializer, Collections.emptyList());
+    }
+
+    public LibraryConfiguration(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer, List<Module> modules) {
         this.plugin = plugin;
         this.configuratorsInitializer = configuratorsInitializer;
+        this.modules = modules;
     }
 
     public Builder builder() {
-        return new Builder(plugin, configuratorsInitializer);
+        return new Builder(plugin, configuratorsInitializer, modules);
     }
 
     public static class Builder {
 
-        private final Plugin plugin;
-        private final ConfiguratorsInitializer configuratorsInitializer;
+        protected final Plugin plugin;
+        protected final ConfiguratorsInitializer configuratorsInitializer;
 
-        private final ModuleManager moduleManager;
+        protected final ModuleManager moduleManager;
         private ArenaManager arenaManager;
         private UserCoinsManager userCoinsManager;
         private UserCosmeticsManager userCosmeticsManager;
         private UserStatsManager userStatsManager;
-        private CosmeticsManager cosmeticsManager;
+        protected CosmeticsManager cosmeticsManager;
         private GameManager gameManager;
 
         private ArenaLoader arenaLoader;
@@ -142,9 +153,13 @@ public class LibraryConfiguration {
         private LoaderFactory<UserCosmetics> userCosmeticsLoaderFactory;
         private LoaderFactory<UserStats> userStatsLoaderFactory;
 
-        public Builder(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer) {
+        public Builder(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer, List<Module> modules) {
             this.plugin = plugin;
             this.configuratorsInitializer = configuratorsInitializer;
+
+            this.moduleManager = new ModuleManagerImpl();
+
+            registerModulesBeforeOtherModules(modules);
 
             this.cosmeticsManager = new CosmeticsManagerImpl();
 
@@ -164,7 +179,6 @@ public class LibraryConfiguration {
             this.userCosmeticsLoader = (UserCosmeticsLoader) userCosmeticsLoaderFactory.createLoader();
             this.userStatsLoader = (UserStatsLoader) userStatsLoaderFactory.createLoader();
 
-            this.moduleManager = new ModuleManagerImpl();
             this.arenaManager = new ArenaManagerImpl(arenaLoader);
             this.gameManager = new GameManagerImpl();
             this.userCoinsManager = new UserCoinsManagerImpl(userCoinsLoader);
@@ -172,6 +186,20 @@ public class LibraryConfiguration {
 
             if (configuratorsInitializer.getPluginConfiguration().isUseDefaultStatsSystem())
                 this.userStatsManager = new UserStatsManagerImpl(userStatsLoader);
+        }
+
+        private void registerModulesBeforeOtherModules(List<Module> modules) {
+            modules.forEach(this::registerModules);
+        }
+
+        protected Module checkBeforeRegistration(String moduleName) {
+            Optional<Module> moduleOptional = moduleManager.getModule(moduleName);
+
+            if (!moduleOptional.isPresent()) {
+                throw new ModuleException(moduleName + " module must be registered before other modules");
+            }
+
+            return moduleOptional.get();
         }
 
         public LibraryConfiguration withDefaultConfiguration() {

@@ -26,6 +26,7 @@
             <groupId>com.github.timsixth</groupId>
             <artifactId>T-DataBasesAPI</artifactId>
             <version>v1.9.2</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <properties>

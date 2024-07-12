@@ -1,4 +1,4 @@
-package pl.timsixth.minigameapi.api.module.sql.coins.migrations;
+package pl.timsixth.minigameapi.api.module.sql.cosmetics.migrations;
 
 import pl.timsixth.databasesapi.DatabasesApiPlugin;
 import pl.timsixth.databasesapi.database.ISQLDataBase;
@@ -9,10 +9,11 @@ import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.module.sql.core.integration.migrator.T_DatabaseApiMigration;
 
 /**
- * Creates table user_coins in database
+ * Creates table users_cosmetics in database
  * More information in T-DataBasesAPI on my GitHub
  */
-public class CreateUserCoinsTableMigration implements ICreationMigration, T_DatabaseApiMigration {
+public class CreateUserCosmeticsTableMigration implements ICreationMigration, T_DatabaseApiMigration {
+
     private final ISQLDataBase currentSqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
 
     /**
@@ -20,7 +21,7 @@ public class CreateUserCoinsTableMigration implements ICreationMigration, T_Data
      */
     @Override
     public String getTableName() {
-        return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + "users_coins";
+        return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + "users_cosmetics";
     }
 
     /**
@@ -33,15 +34,15 @@ public class CreateUserCoinsTableMigration implements ICreationMigration, T_Data
 
     /**
      * Creates table in sqlite or mysql
-     *
      */
     @Override
     public void up() {
         currentSqlDataBase.getTableCreator()
                 .id()
                 .createColumn("uuid", new VarcharDataType(36), false)
-                .createColumn("coins", DataTypes.DOUBLE, false)
-                .defaultValue("coins", 0)
+                .createColumn("cosmetic", new VarcharDataType(50), false)
+                .createColumn("enabled", DataTypes.BOOLEAN, false)
+                .defaultValue("enabled", false)
                 .createTable(getTableName());
     }
 }

@@ -1,17 +1,36 @@
 package pl.timsixth.minigameapi.api.module.sql;
 
-import pl.timsixth.databasesapi.DatabasesApiPlugin;
-import pl.timsixth.databasesapi.database.migration.Migrations;
+import lombok.Getter;
 import pl.timsixth.minigameapi.api.MiniGame;
-import pl.timsixth.minigameapi.api.coins.migrations.CreateUserCoinsTableMigration;
-import pl.timsixth.minigameapi.api.cosmetics.user.migrations.CreateUserCosmeticsTableMigration;
 import pl.timsixth.minigameapi.api.module.Module;
-import pl.timsixth.minigameapi.api.stats.migrations.CreateUserStatsTable;
+import pl.timsixth.minigameapi.api.module.sql.coins.migrations.CreateUserCoinsTableMigration;
+import pl.timsixth.minigameapi.api.module.sql.core.configuration.DefaultSQLModuleConfigurator;
+import pl.timsixth.minigameapi.api.module.sql.core.configuration.SQLModuleConfiguration;
+import pl.timsixth.minigameapi.api.module.sql.core.integration.migrator.SQLDatabaseMigrator;
+import pl.timsixth.minigameapi.api.module.sql.cosmetics.migrations.CreateUserCosmeticsTableMigration;
+import pl.timsixth.minigameapi.api.module.sql.stats.migrations.CreateUserStatsTable;
 
 public class SQLModule implements Module {
+
+    @Getter
+    private SQLModuleConfiguration sqlModuleConfiguration;
+
+    @Getter
+    private static SQLModule instance;
+
     @Override
     public String getName() {
         return "minigameapi-sql";
+    }
+
+    public SQLModule() {
+        this(new DefaultSQLModuleConfigurator().configure());
+    }
+
+    public SQLModule(SQLModuleConfiguration sqlModuleConfiguration) {
+        instance = this;
+
+        this.sqlModuleConfiguration = sqlModuleConfiguration;
     }
 
     @Override
@@ -20,23 +39,22 @@ public class SQLModule implements Module {
     }
 
     private void initMigrations() {
-//        if (!MiniGame.getInstance().getPluginConfiguration().isUseDataBase()) return;
-//
-//        Migrations migrations = DatabasesApiPlugin.getApi().getMigrations();
-//        CreateUserCoinsTableMigration createUserCoinsTableMigration = new CreateUserCoinsTableMigration();
-//        CreateUserCosmeticsTableMigration createUserCosmeticsTableMigration = new CreateUserCosmeticsTableMigration();
-//
-//        if (MiniGame.getInstance().getPluginConfiguration().isUseDefaultStatsSystem()) {
-//            CreateUserStatsTable createUserStatsTable = new CreateUserStatsTable();
-//            migrations.addMigration(createUserStatsTable);
-//
-//            migrations.migrate(createUserStatsTable);
-//        }
-//
-//        migrations.addMigration(createUserCoinsTableMigration);
-//        migrations.addMigration(createUserCosmeticsTableMigration);
-//
-//        migrations.migrate(createUserCoinsTableMigration);
-//        migrations.migrate(createUserCosmeticsTableMigration);
+        SQLDatabaseMigrator sqlDatabaseMigrator = sqlModuleConfiguration.getSqlDatabaseMigrator();
+
+        CreateUserCoinsTableMigration createUserCoinsTableMigration = new CreateUserCoinsTableMigration();
+        CreateUserCosmeticsTableMigration createUserCosmeticsTableMigration = new CreateUserCosmeticsTableMigration();
+
+        if (MiniGame.getInstance().getPluginConfiguration().isUseDefaultStatsSystem()) {
+            CreateUserStatsTable createUserStatsTable = new CreateUserStatsTable();
+            sqlDatabaseMigrator.addMigration(createUserStatsTable);
+
+            sqlDatabaseMigrator.migrate(createUserStatsTable);
+        }
+
+        sqlDatabaseMigrator.addMigration(createUserCoinsTableMigration);
+        sqlDatabaseMigrator.addMigration(createUserCosmeticsTableMigration);
+
+        sqlDatabaseMigrator.migrate(createUserCoinsTableMigration);
+        sqlDatabaseMigrator.migrate(createUserCosmeticsTableMigration);
     }
 }

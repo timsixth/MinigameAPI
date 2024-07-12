@@ -3,6 +3,9 @@ package pl.timsixth.minigameapi.api.module.sql.core;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.model.ManageableModel;
 import pl.timsixth.minigameapi.api.model.Model;
+import pl.timsixth.minigameapi.api.module.sql.core.annotations.Table;
+import pl.timsixth.minigameapi.api.module.sql.core.dao.SQLDatabaseDao;
+import pl.timsixth.minigameapi.api.storage.Dao;
 
 /**
  * Represents every database model.
@@ -14,7 +17,19 @@ public interface DbModel extends ManageableModel {
     /**
      * @return table name
      */
-    String getTableName();
+    default String getTableName() {
+        String tableName = "";
+
+        Class<?> clazz = this.getClass();
+
+        if (clazz.isAnnotationPresent(Table.class)) {
+            Table table = clazz.getAnnotation(Table.class);
+
+            tableName = table.name();
+        }
+
+        return tableName;
+    }
 
     /**
      * Gets table name with plugin's table prefix
@@ -23,5 +38,10 @@ public interface DbModel extends ManageableModel {
      */
     default String getTableNameWithPrefix() {
         return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + getTableName();
+    }
+
+    @Override
+    default Dao getDao() {
+        return new SQLDatabaseDao(this);
     }
 }

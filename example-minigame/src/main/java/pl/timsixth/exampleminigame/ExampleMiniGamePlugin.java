@@ -20,6 +20,10 @@ import pl.timsixth.minigameapi.api.configuration.LibraryConfiguration;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.module.command.CommandRegistration;
 import pl.timsixth.minigameapi.api.module.command.CommandsModule;
+import pl.timsixth.minigameapi.api.module.sql.SQLModule;
+import pl.timsixth.minigameapi.api.module.sql.core.configuration.SQLLibraryConfiguration;
+
+import java.util.Collections;
 
 public class ExampleMiniGamePlugin extends MiniGame {
 
@@ -54,10 +58,22 @@ public class ExampleMiniGamePlugin extends MiniGame {
                 .build();
     }
 
+//    @Override
+//    protected LibraryConfiguration configure() {
+//        commandsModule = new CommandsModule(this);
+//        return new LibraryConfiguration(this, getConfiguratorsInitializer())
+//                .builder()
+//                .setGameManager(new MyGameManager(this, settings, messages))
+//                .registerModules(commandsModule) //new way how to register command module
+//                .build();
+//    }
+
+    //When you want to use SQL databases support
     @Override
     protected LibraryConfiguration configure() {
         commandsModule = new CommandsModule(this);
-        return new LibraryConfiguration(this, getConfiguratorsInitializer())
+        return new SQLLibraryConfiguration(this, getConfiguratorsInitializer(),
+                 Collections.singletonList(new SQLModule())) //you can register modules before others
                 .builder()
                 .setGameManager(new MyGameManager(this, settings, messages))
                 .registerModules(commandsModule) //new way how to register command module

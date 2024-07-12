@@ -1,21 +1,25 @@
 package pl.timsixth.minigameapi.api.module.sql.coins.loader;
 
-import pl.timsixth.databasesapi.database.query.QueryBuilder;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.coins.UserCoins;
-import pl.timsixth.minigameapi.api.loader.Loader;
-import pl.timsixth.minigameapi.api.loader.database.AbstractSqlDataBaseLoader;
-import pl.timsixth.minigameapi.api.module.sql.coins.SQLDatabaseUserCoinsAdapter;
+import pl.timsixth.minigameapi.api.coins.loader.UserCoinsLoader;
+import pl.timsixth.minigameapi.api.logging.MiniGameLogger;
+import pl.timsixth.minigameapi.api.module.sql.coins.SQLDatabaseUserCoins;
+import pl.timsixth.minigameapi.api.module.sql.core.integration.SQLDatabaseAdapter;
+import pl.timsixth.minigameapi.api.module.sql.core.loader.AbstractSqlDataBaseLoader;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 /**
  * @see AbstractSqlDataBaseLoader
  */
-public class UserCoinsSQLDatabaseLoader extends AbstractSqlDataBaseLoader<UserCoins> implements Loader<UserCoins> {
+public class UserCoinsSQLDatabaseLoader extends AbstractSqlDataBaseLoader<UserCoins> implements UserCoinsLoader {
+
+    public UserCoinsSQLDatabaseLoader(SQLDatabaseAdapter sqlDatabaseAdapter) {
+        super(sqlDatabaseAdapter);
+    }
 
     /**
      * Loads data from database
@@ -24,15 +28,22 @@ public class UserCoinsSQLDatabaseLoader extends AbstractSqlDataBaseLoader<UserCo
      */
     @Override
     public void load(String tableName) {
-        QueryBuilder queryBuilder = new QueryBuilder();
+        try (ResultSet resultSet = sqlDatabaseAdapter.selectAll(getTableNameWithPrefix())) {
+            while (resultSet.next()) {
+                UserCoins userStats = MiniGame.getUserCoinsFactory().createUserCoins(
+                        UUID.fromString(resultSet.getString("uuid")),
+                        resultSet.getInt("coins")
+                );
 
-        String query = queryBuilder.selectAll(tableName).build();
-
-
+                getData().add(userStats);
+            }
+        } catch (SQLException e) {
+            MiniGameLogger.error(e.getMessage(), e);
+        }
     }
 
     @Override
     protected String getTableName() {
-        return SQLDatabaseUserCoinsAdapter.TABLE_NAME;
+        return SQLDatabaseUserCoins.TABLE_NAME;
     }
 }

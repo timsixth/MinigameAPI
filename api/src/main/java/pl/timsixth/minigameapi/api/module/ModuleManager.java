@@ -1,6 +1,7 @@
 package pl.timsixth.minigameapi.api.module;
 
 import pl.timsixth.minigameapi.api.MiniGame;
+import pl.timsixth.minigameapi.api.logging.MiniGameLogger;
 import pl.timsixth.minigameapi.api.module.exception.ModuleException;
 
 import java.util.Iterator;
@@ -43,6 +44,8 @@ public interface ModuleManager {
             MiniGame.getInstance().getLogger().info("Module " + module.getName() + " disabled!");
 
             iterator.remove();
+
+            MiniGameLogger.info("Successfully unregistered " + module.getName() + " module");
         }
     }
 }
