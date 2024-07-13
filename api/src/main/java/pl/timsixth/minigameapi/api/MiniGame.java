@@ -162,7 +162,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     protected void registerGameListeners() {
-        throw new UnsupportedOperationException("overwrite configure() method to set it");
+        throw new UnsupportedOperationException("listeners are set automatically");
     }
 
     /**
