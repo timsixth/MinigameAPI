@@ -12,6 +12,8 @@ import java.io.File;
 
 /**
  * The class represents every model which is saving in file
+ *
+ * @deprecated there is new models system
  */
 @Deprecated
 abstract class AbstractFileModel implements FileModel, ConfigurationSerializable, InitializableModel {

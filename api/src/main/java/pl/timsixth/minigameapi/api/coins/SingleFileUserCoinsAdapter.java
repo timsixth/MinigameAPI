@@ -19,6 +19,8 @@ import java.util.UUID;
  * @see AbstractUserCoinsAdapter
  * @see UserCoins
  * @see AbstractModelAdapter
+ *
+ * @deprecated there is new models system
  */
 @SingleFile(fileName = "users_coins.yml", primarySection = "users")
 @SerializableAs("SingleFileUserCoinsAdapter")

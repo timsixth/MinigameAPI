@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 /**
  * Addons system will be removed
+ * @deprecated this class is unnecessary
  */
 @UtilityClass
 @Deprecated

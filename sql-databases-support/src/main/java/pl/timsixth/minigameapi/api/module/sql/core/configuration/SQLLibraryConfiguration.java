@@ -15,6 +15,9 @@ import pl.timsixth.minigameapi.api.module.sql.stats.loader.factory.SQLDatabaseUs
 
 import java.util.List;
 
+/**
+ * Presents library configuration for SQL module
+ */
 public class SQLLibraryConfiguration extends LibraryConfiguration {
 
     public SQLLibraryConfiguration(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer) {

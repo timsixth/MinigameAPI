@@ -4,6 +4,9 @@ import org.bukkit.entity.Player;
 import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 
+/**
+ * XPTimer, the countdown is displayed on the player level bar.
+ */
 public abstract class XpGameTimer extends AbstractGameTimer {
 
     public XpGameTimer(Game game, int minPlayers, int time) {

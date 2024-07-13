@@ -7,6 +7,7 @@ import pl.timsixth.minigameapi.api.model.Model;
  * Represents every database model.
  *
  * @see Model
+ * @deprecated use SQL module
  */
 @Deprecated
 public interface DbModel extends Model {

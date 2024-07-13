@@ -22,6 +22,7 @@ import java.util.UUID;
  * </p>
  *
  * @see DbModel
+ * @deprecated use SQL module
  */
 @Deprecated
 public abstract class AbstractDbModel implements DbModel, InitializableModel {
@@ -66,13 +67,7 @@ public abstract class AbstractDbModel implements DbModel, InitializableModel {
      * @param query query to execute
      */
     public void executeUpdate(String query) {
-//        ISQLDataBase sqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
-//
-//        try {
-//            sqlDataBase.getAsyncQuery().update(query);
-//        } catch (ExecutionException | InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
+        throw new UnsupportedOperationException("use SQL module");
     }
 
     /**
@@ -158,45 +153,17 @@ public abstract class AbstractDbModel implements DbModel, InitializableModel {
 
     @Override
     public Object save(Model model) {
-//        updateValues(model);
-//
-//        QueryBuilder queryBuilder = new QueryBuilder();
-//
-//        String query = queryBuilder.insert(getTableNameWithPrefix(), null, data.values()).build();
-//
-//        executeUpdate(query);
-
-        return model;
+        throw new UnsupportedOperationException("use SQL module");
     }
 
     @Override
     public boolean delete(Model model) {
-        updateValues(model);
-
-//        QueryBuilder queryBuilder = new QueryBuilder();
-//
-//        String query = queryBuilder.deleteAll(getTableNameWithPrefix())
-//                .where(idName + " = " + getId().toString())
-//                .build();
-//
-//        executeUpdate(query);
-
-        return true;
+        throw new UnsupportedOperationException("use SQL module");
     }
 
     @Override
     public Object update(Model model) {
-        updateValues(model);
-
-//        QueryBuilder queryBuilder = new QueryBuilder();
-//
-//        String query = queryBuilder.update(getTableNameWithPrefix(), data)
-//                .where(idName + " = " + getId().toString())
-//                .build();
-//
-//        executeUpdate(query);
-
-        return model;
+        throw new UnsupportedOperationException("use SQL module");
     }
 
     @Override

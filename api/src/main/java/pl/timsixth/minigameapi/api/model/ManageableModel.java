@@ -4,6 +4,11 @@ import pl.timsixth.minigameapi.api.storage.Dao;
 
 public interface ManageableModel extends Model, InjectableModel {
 
+    /**
+     * Gets class which has defined save, delete and upodate methods
+     *
+     * @return custom dao
+     */
     Dao getDao();
 
     @Override

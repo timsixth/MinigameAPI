@@ -18,6 +18,8 @@ import java.util.*;
  * @see AbstractUserCosmeticsAdapter
  * @see UserCosmetics
  * @see AbstractModelAdapter
+ *
+ * @deprecated there is new models system
  */
 @SingleFile(fileName = "users_cosmetics.yml", primarySection = "users_cosmetics")
 @SerializableAs("SingleFileUserCosmeticsAdapter")
@@ -39,6 +41,7 @@ public class SingleFileUserCosmeticsAdapter extends AbstractUserCosmeticsAdapter
         return data;
     }
 
+    @SuppressWarnings("unchecked")
     public static SingleFileUserCosmeticsAdapter deserialize(Map<String, Object> args) {
         SingleFileUserCosmeticsAdapter userCosmeticsAdapter = new SingleFileUserCosmeticsAdapter(new SingleFileModelImpl(), UUID.fromString((String) args.get("uuid")));
 

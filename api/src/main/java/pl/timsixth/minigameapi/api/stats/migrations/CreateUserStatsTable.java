@@ -3,6 +3,7 @@ package pl.timsixth.minigameapi.api.stats.migrations;
 /**
  * Creates table users_stats in database
  * More information in T-DataBasesAPI on my GitHub
+ * @deprecated use SQL module
  */
 @Deprecated
 public class CreateUserStatsTable {

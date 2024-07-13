@@ -7,6 +7,8 @@ import java.util.Map;
 /**
  * Implementation of {@link SingleFileModel}
  * This class is necessary, because in adapter design pattern classes use composition instead of inheritance
+ *
+ * @deprecated there is new models system
  */
 @Deprecated
 public class SingleFileModelImpl extends SingleFileModel {

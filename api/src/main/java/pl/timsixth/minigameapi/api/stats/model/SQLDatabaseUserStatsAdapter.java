@@ -14,6 +14,7 @@ import java.util.UUID;
  * @see AbstractUserStatsAdapter
  * @see UserStats
  * @see AbstractModelAdapter
+ * @deprecated use SQL module
  */
 @Table(name = "users_stats")
 @Getter
@@ -22,44 +23,18 @@ public class SQLDatabaseUserStatsAdapter extends AbstractUserStatsAdapter {
 
     public static final String TABLE_NAME = "users_stats";
 
-//    private final ISQLDataBase database;
-//    private final AbstractDbModel abstractDbModel;
-
     public SQLDatabaseUserStatsAdapter(InitializableModel model, UUID uuid, String name, String arenaName, int wins, int defeats) {
         super(model, uuid, name, arenaName, wins, defeats);
         model.init(this);
-
-//        database = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
-//        abstractDbModel = (AbstractDbModel) model;
     }
 
     @Override
     public Object update() {
-//        QueryBuilder queryBuilder = new QueryBuilder();
-//
-//        Map<String, Object> data = new LinkedHashMap<>();
-//        data.put("wins", getWins());
-//        data.put("defeats", getDefeats());
-//
-//        String query = queryBuilder.update(abstractDbModel.getTableNameWithPrefix(), data)
-//                .where("uuid = '" + getUuid() + "' AND arenaName = '" + getArenaName() + "'")
-//                .build();
-//
-//        abstractDbModel.executeUpdate(query);
-
-        return model;
+        throw new UnsupportedOperationException("use SQL module");
     }
 
     @Override
     public boolean delete() {
-//        QueryBuilder queryBuilder = new QueryBuilder();
-//
-//        String query = queryBuilder.deleteAll(abstractDbModel.getTableNameWithPrefix())
-//                .where("uuid = '" + getUuid() + "' AND arenaName = '" + getArenaName() + "'")
-//                .build();
-//
-//        abstractDbModel.executeUpdate(query);
-
-        return true;
+        throw new UnsupportedOperationException("use SQL module");
     }
 }

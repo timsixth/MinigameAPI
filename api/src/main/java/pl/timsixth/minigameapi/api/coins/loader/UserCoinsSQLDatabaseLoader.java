@@ -6,6 +6,7 @@ import pl.timsixth.minigameapi.api.loader.database.AbstractSqlDataBaseLoader;
 
 /**
  * @see AbstractSqlDataBaseLoader
+ * @deprecated use SQL module
  */
 @Deprecated
 public class UserCoinsSQLDatabaseLoader extends AbstractSqlDataBaseLoader<UserCoins> implements UserCoinsLoader {

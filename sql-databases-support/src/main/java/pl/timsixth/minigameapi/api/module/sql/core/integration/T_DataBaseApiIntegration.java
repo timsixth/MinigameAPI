@@ -48,15 +48,6 @@ public class T_DataBaseApiIntegration implements SQLDatabaseAdapter {
     }
 
     @Override
-    public void deleteAll(String tableName) {
-        QueryBuilder queryBuilder = new QueryBuilder();
-
-        String query = queryBuilder.deleteAll(tableName).build();
-
-        executeUpdateAsync(query);
-    }
-
-    @Override
     public void deleteAllWhere(String tableName, String whereCondition) {
         QueryBuilder queryBuilder = new QueryBuilder();
 

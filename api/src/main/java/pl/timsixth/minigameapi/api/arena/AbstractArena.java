@@ -10,6 +10,9 @@ import pl.timsixth.minigameapi.api.util.options.OptionsImpl;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Template method for {@link Arena}
+ */
 @Getter
 @Setter
 public abstract class AbstractArena implements Arena {

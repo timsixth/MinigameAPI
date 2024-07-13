@@ -5,6 +5,7 @@ import pl.timsixth.minigameapi.api.model.AbstractModelAdapter;
 import pl.timsixth.minigameapi.api.model.InitializableModel;
 
 import java.util.UUID;
+
 /**
  * Adapter for UserCoins model which is saving in SQL database
  *
@@ -12,6 +13,7 @@ import java.util.UUID;
  * @see AbstractUserCoinsAdapter
  * @see UserCoins
  * @see AbstractModelAdapter
+ * @deprecated use SQL module
  */
 @Table(name = "users_coins")
 @Deprecated

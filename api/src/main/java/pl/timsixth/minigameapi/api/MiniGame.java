@@ -35,7 +35,6 @@ import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.loader.Loaders;
 import pl.timsixth.minigameapi.api.loader.factory.LoaderFactory;
-import pl.timsixth.minigameapi.api.logging.MiniGameLogger;
 import pl.timsixth.minigameapi.api.module.ModuleManager;
 import pl.timsixth.minigameapi.api.stats.factory.UserStatsFactory;
 import pl.timsixth.minigameapi.api.stats.loader.UserStatsLoader;
@@ -113,16 +112,29 @@ public abstract class MiniGame extends JavaPlugin {
         getModuleManager().disableModules();
     }
 
+    /**
+     * Configures configurators of library
+     *
+     * @return ConfiguratorsInitializer
+     */
     protected ConfiguratorsInitializer loadConfigurators() {
         return ConfiguratorsInitializer.builder().build();
     }
 
+    /**
+     * Configures loaders, managers, factories
+     *
+     * @return LibraryConfiguration
+     */
     protected LibraryConfiguration configure() {
         return new LibraryConfiguration(this, configuratorsInitializer)
                 .builder()
                 .withDefaultConfiguration();
     }
 
+    /**
+     * This method must have initialization of config.yml and other configuration files
+     */
     protected abstract void initConfiguration();
 
     private void initLoaders() {
@@ -150,6 +162,7 @@ public abstract class MiniGame extends JavaPlugin {
 
     @Deprecated
     protected void registerGameListeners() {
+        throw new UnsupportedOperationException("overwrite configure() method to set it");
     }
 
     /**

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementation of {@link ModuleManager}
+ */
 @Getter
 public class ModuleManagerImpl implements ModuleManager {
 

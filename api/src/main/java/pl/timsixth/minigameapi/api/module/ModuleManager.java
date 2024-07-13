@@ -10,14 +10,36 @@ import java.util.Optional;
 
 public interface ModuleManager {
 
+    /**
+     * Registers module
+     *
+     * @param module module to register
+     */
     void registerModule(Module module);
 
+    /**
+     * Unregisters module
+     *
+     * @param module module to unregister
+     */
     void unregisterModule(Module module);
 
+    /**
+     * Gets module by name
+     *
+     * @param name module name
+     * @return optional of module
+     */
     Optional<Module> getModule(String name);
 
+    /**
+     * @return list of modules
+     */
     List<Module> getModules();
 
+    /**
+     * Enables modules
+     */
     default void enableModules() {
         getModules().forEach(module -> {
             String[] requiredModules = module.requiredModules();
@@ -34,6 +56,10 @@ public interface ModuleManager {
         });
     }
 
+    /**
+     * Disables modules, and unregisters modules (Why method do two things? Method do two things because, when I want to remove module when for loop is working,
+     * the remove method throws CurrentModificationException)
+     */
     default void disableModules() {
         Iterator<Module> iterator = getModules().iterator();
 

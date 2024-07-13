@@ -12,6 +12,8 @@ import java.io.File;
  *
  * @see FileModel
  * @see AbstractFileModel
+ *
+ * @deprecated there is new models system
  */
 @Deprecated
 public abstract class ManyFilesModel extends AbstractFileModel {

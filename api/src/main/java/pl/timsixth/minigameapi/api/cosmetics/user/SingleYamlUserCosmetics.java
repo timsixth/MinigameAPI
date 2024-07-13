@@ -12,6 +12,14 @@ import pl.timsixth.minigameapi.api.storage.Dao;
 
 import java.util.*;
 
+/**
+ * Represents UserCosmetics model which is saving in single YAML file
+ *
+ * @see SingleFile
+ * @see AbstractUserCosmetics
+ * @see UserCosmetics
+ * @see SingleYamlFileDao
+ */
 @SingleFile(fileName = "users_cosmetics.yml", primarySection = "users_cosmetics")
 @SerializableAs("SingleYamlUserCosmetics")
 public class SingleYamlUserCosmetics extends AbstractUserCosmetics implements FileModel, ConfigurationSerializable {

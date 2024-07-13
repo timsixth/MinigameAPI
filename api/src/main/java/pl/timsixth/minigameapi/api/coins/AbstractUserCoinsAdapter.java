@@ -14,6 +14,8 @@ import java.util.UUID;
  *
  * @see AbstractModelAdapter
  * @see InitializableModel
+ *
+ * @deprecated there is new models system
  */
 @Getter
 @ToString

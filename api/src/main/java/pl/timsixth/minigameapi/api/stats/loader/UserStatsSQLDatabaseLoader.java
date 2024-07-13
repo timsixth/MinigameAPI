@@ -6,6 +6,7 @@ import pl.timsixth.minigameapi.api.stats.model.UserStats;
 
 /**
  * Loads stats from database
+ * @deprecated use SQL module
  */
 @Deprecated
 public class UserStatsSQLDatabaseLoader extends AbstractSqlDataBaseLoader<UserStats> implements UserStatsLoader {

@@ -8,6 +8,14 @@ import pl.timsixth.minigameapi.api.file.FileModel;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Template method for arenas which will be saved in YAML file
+ *
+ * @see AbstractArena
+ * @see FileModel
+ * @see ArenaImpl
+ * @see MultiFilesArena
+ */
 public abstract class AbstractYamlFileArena extends AbstractArena implements FileModel, ConfigurationSerializable {
 
     public AbstractYamlFileArena(String name, Location lobbyLocation, Map<String, Location> locations) {

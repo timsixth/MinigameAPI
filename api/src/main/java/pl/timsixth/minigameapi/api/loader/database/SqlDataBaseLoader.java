@@ -12,6 +12,7 @@ import pl.timsixth.minigameapi.api.model.Model;
  *
  * @see Loader
  * @see Loaders
+ * @deprecated use SQL module
  */
 @Deprecated
 public interface SqlDataBaseLoader<T extends Model> extends Loader<T> {

@@ -16,6 +16,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * The new way how to manage database models
+ */
 public class SQLDatabaseDao extends AbstractDao {
 
     private final Map<String, Object> data = new LinkedHashMap<>();
@@ -54,8 +57,13 @@ public class SQLDatabaseDao extends AbstractDao {
     }
 
 
-    private void init(Model object) {
-        Field[] declaredFields = ModelUtil.findFields(object);
+    /**
+     * Initializes model data - read values from fields and set Id type
+     *
+     * @param model model which will be initialized
+     */
+    private void init(Model model) {
+        Field[] declaredFields = ModelUtil.findFields(model);
 
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
@@ -68,13 +76,13 @@ public class SQLDatabaseDao extends AbstractDao {
 
                 try {
                     idName = declaredField.getName();
-                    idValue = declaredField.get(object);
+                    idValue = declaredField.get(model);
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }
             }
 
-            setValue(object, declaredField);
+            setValue(model, declaredField);
         }
     }
 

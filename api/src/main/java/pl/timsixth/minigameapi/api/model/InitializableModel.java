@@ -2,6 +2,8 @@ package pl.timsixth.minigameapi.api.model;
 
 /**
  * Represents a initializable model
+ *
+ * @deprecated there is new models system
  */
 @Deprecated
 public interface InitializableModel extends Model, InjectableModel {

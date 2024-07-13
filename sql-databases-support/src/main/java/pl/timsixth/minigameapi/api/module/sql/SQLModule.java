@@ -10,6 +10,10 @@ import pl.timsixth.minigameapi.api.module.sql.core.integration.migrator.SQLDatab
 import pl.timsixth.minigameapi.api.module.sql.cosmetics.migrations.CreateUserCosmeticsTableMigration;
 import pl.timsixth.minigameapi.api.module.sql.stats.migrations.CreateUserStatsTable;
 
+/**
+ * Represents module which supports SQL databases.
+ * When you are using T-DataBaseAPI to integrate with SQL databases, the module supports MySQL and SQLite.
+ */
 public class SQLModule implements Module {
 
     @Getter

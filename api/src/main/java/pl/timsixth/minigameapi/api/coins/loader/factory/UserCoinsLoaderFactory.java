@@ -5,6 +5,9 @@ import pl.timsixth.minigameapi.api.coins.loader.UserCoinsSingleFileLoader;
 import pl.timsixth.minigameapi.api.loader.Loader;
 import pl.timsixth.minigameapi.api.loader.factory.LoaderFactory;
 
+/**
+ * @deprecated From now this class is unnecessary
+ */
 @Deprecated
 public class UserCoinsLoaderFactory implements LoaderFactory<UserCoins> {
     @Override

@@ -3,7 +3,10 @@ package pl.timsixth.minigameapi.api.timers;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.timsixth.minigameapi.api.game.Game;
 
-
+/**
+ * Template method for {@link GameTimer}
+ * This class extends BukkitRunnable
+ */
 public abstract class AbstractGameTimer extends BukkitRunnable implements GameTimer {
 
     protected final Game game;

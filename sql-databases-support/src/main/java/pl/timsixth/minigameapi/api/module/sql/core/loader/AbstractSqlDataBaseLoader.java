@@ -6,6 +6,12 @@ import pl.timsixth.minigameapi.api.loader.AbstractLoader;
 import pl.timsixth.minigameapi.api.model.Model;
 import pl.timsixth.minigameapi.api.module.sql.core.integration.SQLDatabaseAdapter;
 
+/**
+ * @see SqlDataBaseLoader
+ * @see SQLDatabaseAdapter
+ *
+ * @param <T> every class which implemented {@link Model}
+ */
 @RequiredArgsConstructor
 public abstract class AbstractSqlDataBaseLoader<T extends Model> extends AbstractLoader<T> implements SqlDataBaseLoader<T> {
 

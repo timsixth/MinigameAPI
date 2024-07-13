@@ -18,6 +18,8 @@ import java.util.UUID;
  * @see AbstractUserStatsAdapter
  * @see UserStats
  * @see AbstractModelAdapter
+ *
+ * @deprecated there is new models system
  */
 @SingleFile(fileName = "users_stats.yml", primarySection = "users")
 @IgnoreFields

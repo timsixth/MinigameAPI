@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 /**
  * This class is a model adapter.
  * The adapter design pattern is necessary, because some models have the same implementation, but other annotations.
+ *
+ * @deprecated there is new models system
  */
 @RequiredArgsConstructor
 @Getter

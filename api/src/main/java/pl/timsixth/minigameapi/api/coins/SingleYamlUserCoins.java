@@ -12,6 +12,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Represents UserCoins model which is saving in single YAML file
+ *
+ * @see SingleFile
+ * @see UserCoins
+ * @see SingleYamlFileDao
+ */
 @SingleFile(fileName = "users_coins.yml", primarySection = "users")
 @SerializableAs("SingleYamlUserCoins")
 public class SingleYamlUserCoins extends AbstractUserCoins implements FileModel, ConfigurationSerializable {

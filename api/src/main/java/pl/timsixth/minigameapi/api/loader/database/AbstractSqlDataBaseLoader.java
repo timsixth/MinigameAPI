@@ -13,11 +13,10 @@ import pl.timsixth.minigameapi.api.model.Model;
  * @param <T> every class which implemented {@link DbModel}
  * @see Loader
  * @see Loaders
+ * @deprecated use SQL module
  */
 @Deprecated
 public abstract class AbstractSqlDataBaseLoader<T extends Model> extends AbstractLoader<T> implements SqlDataBaseLoader<T> {
-
-    // protected ISQLDataBase currentSqlDataBase = DatabasesApiPlugin.getApi().getCurrentSqlDataBase();
 
     @Override
     public void load() {

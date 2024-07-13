@@ -6,6 +6,9 @@ import pl.timsixth.minigameapi.api.module.sql.core.annotations.Table;
 
 import java.util.UUID;
 
+/**
+ * SQL database implementation of {@link pl.timsixth.minigameapi.api.coins.UserCoins}
+ */
 @Table(name = "users_coins")
 public class SQLDatabaseUserCoins extends AbstractUserCoins implements DbModel {
 
