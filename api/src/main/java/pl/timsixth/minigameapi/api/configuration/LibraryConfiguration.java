@@ -51,6 +51,7 @@ import pl.timsixth.minigameapi.api.stats.model.UserStats;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -112,13 +113,13 @@ public class LibraryConfiguration {
     }
 
     public LibraryConfiguration(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer) {
-        this(plugin, configuratorsInitializer, Collections.emptyList());
+        this(plugin, configuratorsInitializer, Collections::emptyList);
     }
 
-    public LibraryConfiguration(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer, List<Module> modules) {
+    public LibraryConfiguration(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer, Supplier<List<Module>> modulesSupplier) {
         this.plugin = plugin;
         this.configuratorsInitializer = configuratorsInitializer;
-        this.modules = modules;
+        this.modules = modulesSupplier.get();
     }
 
     public Builder builder() {

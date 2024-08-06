@@ -73,7 +73,7 @@ public class ExampleMiniGamePlugin extends MiniGame {
     protected LibraryConfiguration configure() {
         commandsModule = new CommandsModule(this);
         return new SQLLibraryConfiguration(this, getConfiguratorsInitializer(),
-                 Collections.singletonList(new SQLModule())) //you can register modules before others
+                () -> Collections.singletonList(new SQLModule())) //you can register modules before others
                 .builder()
                 .setGameManager(new MyGameManager(this, settings, messages))
                 .registerModules(commandsModule) //new way how to register command module
