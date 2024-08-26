@@ -84,6 +84,7 @@ public abstract class MiniGame extends JavaPlugin {
     @Override
     public void onLoad() {
         configuratorsInitializer = loadConfigurators();
+        onMiniGameLoad();
     }
 
     @Override
@@ -103,10 +104,15 @@ public abstract class MiniGame extends JavaPlugin {
         getModuleManager().enableModules();
 
         loadData();
+
+        onMiniGameEnable();
+
+        getLoaders().loadAll();
     }
 
     @Override
     public void onDisable() {
+        onMiniGameDisable();
         loaders.unregisterLoaders();
 
         getModuleManager().disableModules();
@@ -136,6 +142,23 @@ public abstract class MiniGame extends JavaPlugin {
      * This method must have initialization of config.yml and other configuration files
      */
     protected abstract void initConfiguration();
+
+    /**
+     * This method calls when minigame plugin is enabling
+     */
+    protected abstract void onMiniGameEnable();
+
+    /**
+     * This method calls when minigame plugin is loading
+     */
+    protected void onMiniGameLoad() {
+    }
+
+    /**
+     * This method calls when minigame plugin is disabling
+     */
+    protected void onMiniGameDisable() {
+    }
 
     private void initLoaders() {
         loaders = new Loaders(getPluginConfiguration());

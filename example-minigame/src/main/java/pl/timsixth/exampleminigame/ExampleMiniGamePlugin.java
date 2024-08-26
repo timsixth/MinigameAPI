@@ -33,9 +33,7 @@ public class ExampleMiniGamePlugin extends MiniGame {
     private CommandsModule commandsModule;
 
     @Override
-    public void onEnable() {
-        super.onEnable();
-
+    protected void onMiniGameEnable() {
         registerCommands();
         registerListeners();
 
@@ -44,9 +42,6 @@ public class ExampleMiniGamePlugin extends MiniGame {
                 new HeartParticleCosmetic(),
                 new FireworkCosmetic()
         );
-
-        //loads all data from files or database
-        getLoaders().loadAll();
     }
 
     @Override

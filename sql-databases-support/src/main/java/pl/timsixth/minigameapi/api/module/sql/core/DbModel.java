@@ -37,6 +37,12 @@ public interface DbModel extends ManageableModel {
      * @return table name with plugin's table prefix
      */
     default String getTableNameWithPrefix() {
+        String tableName = getTableName();
+
+        if (tableName.isEmpty()) {
+            throw new IllegalStateException("Cannot get table name. Add @Table annotation or overwrite getTableName method");
+        }
+
         return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + getTableName();
     }
 
