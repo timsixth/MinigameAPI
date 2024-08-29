@@ -31,9 +31,9 @@ https://github.com/timsixth/T-DataBasesAPI/releases
 
 ## Getting started
 
-Tag - current version form GitHub releases section:
-
-https://github.com/timsixth/MinigameAPI/releases
+> [!IMPORTANT]
+> {VERSION} - current version form GitHub releases section:<br>
+> https://github.com/timsixth/MinigameAPI/releases
 
 Maven
 ```xml
@@ -47,14 +47,14 @@ Maven
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>library</artifactId>
-   <version>Tag</version>
+   <version>{VERSION}</version>
 </dependency>
 
 <!-- library-lite module includes only api and runnable plugin-->
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>library-lite</artifactId>
-   <version>Tag</version>
+   <version>{VERSION}</version>
 </dependency>
 
 <!-- api module includes only api and T-DataBasesAPI (It's recommended to use this module 
@@ -62,21 +62,21 @@ to create the minigame)-->
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>api</artifactId>
-   <version>Tag</version>
+   <version>{VERSION}</version>
 </dependency>
 
 <!-- addons-api module includes only api and addons-api-->
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>addons-api</artifactId>
-   <version>Tag</version>
+   <version>{VERSION}</version>
 </dependency>
 
 <!-- example-minigame module includes example usage of minigame-->
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>example-minigame</artifactId>
-   <version>Tag</version>
+   <version>{VERSION}</version>
 </dependency>
 ```
 Gradle
@@ -89,17 +89,16 @@ allprojects {
   
  dependencies {
    //includes all modules
-   implementation 'com.github.timsixth:MinigameAPI:Tag'
+   implementation 'com.github.timsixth:MinigameAPI:{VERSION}'
    //includes only library, api, and addons-api modules
-   implementation 'com.github.timsixth.MinigameAPI:library:Tag'
+   implementation 'com.github.timsixth.MinigameAPI:library:{VERSION}'
    //includes only api and library-lite modules
-   implementation 'com.github.timsixth.MinigameAPI:library-lite:Tag'   
+   implementation 'com.github.timsixth.MinigameAPI:library-lite:{VERSION}'   
    //includes only api module
-   implementation 'com.github.timsixth.MinigameAPI:api:Tag' 
+   implementation 'com.github.timsixth.MinigameAPI:api:{VERSION}' 
    //includes only api and addons-api modules
-   implementation 'com.github.timsixth.MinigameAPI:addons-api:Tag' 
+   implementation 'com.github.timsixth.MinigameAPI:addons-api:{VERSION}' 
    //includes example-minigame module
-   implementation 'com.github.timsixth.MinigameAPI:example-minigame:Tag' 
-   
+   implementation 'com.github.timsixth.MinigameAPI:example-minigame:{VERSION}' 
 }
 ```
