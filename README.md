@@ -1,39 +1,35 @@
 # MinigameAPI
 Flexible, modern and easy to use library to creating minigames in minecraft. <br>
-Library works from 1.13.2 to 1.20.x.
+Library works from 1.13.2 to 1.21.x.
 <br>
 Please report every bugs in issues section.<br>
 
-JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.3.0/ <br>
+JavaDocs: https://timsixth.pl/javadocs/minigame_api/2.0.0-beta1/ <br>
 Documentation: https://timsixths-plugins.gitbook.io/minigameapi-docs/
 
-The library requires T-DataBasesAPI on Paper 1.20.6 and newer versions.
-
-https://github.com/timsixth/T-DataBasesAPI/releases
-
-## Library features:
+## Main library features:
 - Arena management system
 - Game management system
-- Countdown to game start (On player level bar or on the player chat)
 - Game cosmetics system
-- Teams in game
-- Advanced loading system from SQL databases (MySQL or SQLite) or YAML files
+- Teams in-game
+- Advanced loading system from YAML files 
 - Game statistics system
 - Coins system
 - Simple minigame configuration
-- Integration with T-DataBasesAPI (Thanks to this plugin management of SQL databases is really simple)
-- Simple saving, deleting and updating system (You don't have to write query to database or use YAML spigot API to execute these actions)
-- Commands API (You can create parent commands and subcommands in separate classes)
-- Addons system (You can create addon will works with every mini game which is using this library)
+- Simple saving, deleting and updating system (You don't have to write a query to a database or use YAML spigot API to execute these actions)
+- Modules system (You can install modules, which are add more functionality)
+- Rejoin feature
 
-## Addons
-- [Boosters](https://github.com/timsixth/BoostersMiniGameAddon)
+## Features which are included via modules:
+- Advanced loading system from SQL databases (MySQL or SQLite)
+- Integration with T-DataBasesAPI (Thanks to this plugin management of SQL databases is really simple) 
+- Commands API (You can create parent commands and subcommands in separate classes) 
 
 ## Getting started
 
-Tag - current version form GitHub releases section:
-
-https://github.com/timsixth/MinigameAPI/releases
+> [!IMPORTANT]
+> {VERSION} - current version form GitHub releases section:<br>
+> https://github.com/timsixth/MinigameAPI/releases
 
 Maven
 ```xml
@@ -43,42 +39,14 @@ Maven
    <url>https://jitpack.io</url>
   </repository>
 </repositories>
-<!-- library module includes addon system, api, addons-api and runnable plugin-->
-<dependency>
-   <groupId>com.github.timsixth.MinigameAPI</groupId>
-   <artifactId>library</artifactId>
-   <version>Tag</version>
-</dependency>
 
-<!-- library-lite module includes only api and runnable plugin-->
-<dependency>
-   <groupId>com.github.timsixth.MinigameAPI</groupId>
-   <artifactId>library-lite</artifactId>
-   <version>Tag</version>
-</dependency>
-
-<!-- api module includes only api and T-DataBasesAPI (It's recommended to use this module 
-to create the minigame)-->
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>api</artifactId>
-   <version>Tag</version>
-</dependency>
-
-<!-- addons-api module includes only api and addons-api-->
-<dependency>
-   <groupId>com.github.timsixth.MinigameAPI</groupId>
-   <artifactId>addons-api</artifactId>
-   <version>Tag</version>
-</dependency>
-
-<!-- example-minigame module includes example usage of minigame-->
-<dependency>
-   <groupId>com.github.timsixth.MinigameAPI</groupId>
-   <artifactId>example-minigame</artifactId>
-   <version>Tag</version>
+   <version>{VERSION}</version>
 </dependency>
 ```
+
 Gradle
 ```gradle
 allprojects {
@@ -88,18 +56,53 @@ allprojects {
 }
   
  dependencies {
+   implementation 'com.github.timsixth.MinigameAPI:api:{VERSION}' 
+}
+```
+
+Other modules (Maven)
+```xml
+<!-- library module includes addon system, api, addons-api and runnable plugin-->
+<dependency>
+   <groupId>com.github.timsixth.MinigameAPI</groupId>
+   <artifactId>library</artifactId>
+   <version>{VERSION}</version>
+</dependency>
+
+<!-- library-lite module includes only api and runnable plugin-->
+<dependency>
+   <groupId>com.github.timsixth.MinigameAPI</groupId>
+   <artifactId>library-lite</artifactId>
+   <version>{VERSION}</version>
+</dependency>
+
+<!-- addons-api module includes only api and addons-api-->
+<dependency>
+   <groupId>com.github.timsixth.MinigameAPI</groupId>
+   <artifactId>addons-api</artifactId>
+   <version>{VERSION}</version>
+</dependency>
+
+<!-- example-minigame module includes example usage of minigame-->
+<dependency>
+   <groupId>com.github.timsixth.MinigameAPI</groupId>
+   <artifactId>example-minigame</artifactId>
+   <version>{VERSION}</version>
+</dependency>
+```
+
+Other modules (Gradle)
+```gradle  
+ dependencies {
    //includes all modules
-   implementation 'com.github.timsixth:MinigameAPI:Tag'
+   implementation 'com.github.timsixth:MinigameAPI:{VERSION}'
    //includes only library, api, and addons-api modules
-   implementation 'com.github.timsixth.MinigameAPI:library:Tag'
+   implementation 'com.github.timsixth.MinigameAPI:library:{VERSION}'
    //includes only api and library-lite modules
-   implementation 'com.github.timsixth.MinigameAPI:library-lite:Tag'   
-   //includes only api module
-   implementation 'com.github.timsixth.MinigameAPI:api:Tag' 
+   implementation 'com.github.timsixth.MinigameAPI:library-lite:{VERSION}'   
    //includes only api and addons-api modules
-   implementation 'com.github.timsixth.MinigameAPI:addons-api:Tag' 
+   implementation 'com.github.timsixth.MinigameAPI:addons-api:{VERSION}' 
    //includes example-minigame module
-   implementation 'com.github.timsixth.MinigameAPI:example-minigame:Tag' 
-   
+   implementation 'com.github.timsixth.MinigameAPI:example-minigame:{VERSION}'    
 }
 ```
