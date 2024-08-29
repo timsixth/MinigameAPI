@@ -1,11 +1,13 @@
 package pl.timsixth.exampleminigame.model;
 
 import lombok.Getter;
+import lombok.ToString;
 import pl.timsixth.minigameapi.api.game.user.UserGameImpl;
 
 import java.util.UUID;
 
 @Getter
+@ToString
 public class MyUserGame extends UserGameImpl {
 
     private int brokeBlocksAmount;

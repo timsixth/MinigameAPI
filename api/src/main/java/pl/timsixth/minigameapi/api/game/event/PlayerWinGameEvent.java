@@ -9,6 +9,8 @@ import pl.timsixth.minigameapi.api.game.Game;
 
 /**
  * This event must be called to Boosters addon works correctly
+ *
+ * @deprecated use {@link GameWinEvent}
  */
 @Getter
 @Deprecated

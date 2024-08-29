@@ -30,6 +30,7 @@ public class ExampleMiniGameCommand extends ParentCommand {
         addSubCommand(new StatsSubCommand(userCoinsManager, messages, userStatsManager));
         addSubCommand(new JoinSubCommand(arenaManager, gameManager, messages));
         addSubCommand(new CosmeticsSubCommand(userCosmeticsManager, cosmeticsManager, userCoinsManager));
+        addSubCommand(new RejoinSubCommand(gameManager));
     }
 
     @Override

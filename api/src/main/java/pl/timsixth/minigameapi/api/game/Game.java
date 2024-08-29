@@ -6,6 +6,7 @@ import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.game.state.GameState;
 import pl.timsixth.minigameapi.api.game.team.Team;
 import pl.timsixth.minigameapi.api.game.team.TeamImpl;
+import pl.timsixth.minigameapi.api.game.user.RecoverableUserGame;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.game.user.UserGameImpl;
 
@@ -116,7 +117,7 @@ public interface Game {
     }
 
     /**
-     * Creates new user game
+     * Creates new user game, with default implementation
      *
      * @param playerUUID player's uuid
      * @return new user game
@@ -126,7 +127,7 @@ public interface Game {
     }
 
     /**
-     * Creates new team
+     * Creates new team, with default implementation
      *
      * @param name        team name
      * @param displayName team display name
@@ -136,4 +137,33 @@ public interface Game {
     default Team createTeam(String name, String displayName, ChatColor color) {
         return new TeamImpl(name, displayName, color);
     }
+
+    /**
+     * Added new recoverableUserGame
+     *
+     * @param recoverableUserGame user to add
+     */
+    void addRecoverableUserGame(RecoverableUserGame recoverableUserGame);
+
+    /**
+     * Removes recoverableUserGame
+     *
+     * @param recoverableUserGame user to remove
+     */
+    void removeRecoverableUserGame(RecoverableUserGame recoverableUserGame);
+
+    /**
+     * Gets user by uuid
+     *
+     * @param playerUuid user's uuid
+     * @return optional of RecoverableUserGame
+     */
+    Optional<RecoverableUserGame> getRecoverableUserGame(UUID playerUuid);
+
+    /**
+     * Gets list of RecoverableUserGames
+     *
+     * @return list of RecoverableUserGames
+     */
+    List<RecoverableUserGame> getRecoverableUserGames();
 }

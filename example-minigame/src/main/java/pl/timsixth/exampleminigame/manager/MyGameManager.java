@@ -13,6 +13,7 @@ import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.impl.AbstractGameManager;
 import pl.timsixth.minigameapi.api.game.impl.GameImpl;
 import pl.timsixth.minigameapi.api.game.state.GameState;
+import pl.timsixth.minigameapi.api.game.user.RecoverableUserGame;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
@@ -104,6 +105,14 @@ public class MyGameManager extends AbstractGameManager {
 
         UserGame userGame = userGameOptional.get();
         game.removeUserGame(userGame);
+
+        //Store the player to set up the rejoin feature. Remember to do this when a player has a location in the game and items from the game
+        if (game.getState() instanceof PlayingGameState) {
+            MyUserGame myUserGame = (MyUserGame) userGame;
+            RecoverableUserGame recoverableUserGame = getUserGameConverter().convertFromUserGame(myUserGame);
+
+            game.addRecoverableUserGame(recoverableUserGame);
+        }
 
         player.getInventory().clear();
 

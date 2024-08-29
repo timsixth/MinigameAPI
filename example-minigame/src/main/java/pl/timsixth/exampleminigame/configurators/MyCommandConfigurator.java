@@ -2,6 +2,7 @@ package pl.timsixth.exampleminigame.configurators;
 
 import pl.timsixth.minigameapi.api.configuration.configurators.DefaultCommandConfigurator;
 import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
+@Deprecated
 public class MyCommandConfigurator extends DefaultCommandConfigurator {
 
     @Override

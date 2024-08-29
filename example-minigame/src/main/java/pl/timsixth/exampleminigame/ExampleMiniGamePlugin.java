@@ -13,6 +13,8 @@ import pl.timsixth.exampleminigame.cosmetics.FireworkCosmetic;
 import pl.timsixth.exampleminigame.cosmetics.HeartParticleCosmetic;
 import pl.timsixth.exampleminigame.listeners.BlockBreakListener;
 import pl.timsixth.exampleminigame.listeners.PlayerInteractListener;
+import pl.timsixth.exampleminigame.listeners.PlayerKickListener;
+import pl.timsixth.exampleminigame.listeners.PlayerQuitListener;
 import pl.timsixth.exampleminigame.manager.MyGameManager;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.configuration.ConfiguratorsInitializer;
@@ -20,10 +22,6 @@ import pl.timsixth.minigameapi.api.configuration.LibraryConfiguration;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.module.command.CommandRegistration;
 import pl.timsixth.minigameapi.api.module.command.CommandsModule;
-import pl.timsixth.minigameapi.api.module.sql.SQLModule;
-import pl.timsixth.minigameapi.api.module.sql.core.configuration.SQLLibraryConfiguration;
-
-import java.util.Collections;
 
 public class ExampleMiniGamePlugin extends MiniGame {
 
@@ -53,27 +51,28 @@ public class ExampleMiniGamePlugin extends MiniGame {
                 .build();
     }
 
-//    @Override
-//    protected LibraryConfiguration configure() {
-//        commandsModule = new CommandsModule(this);
-//        return new LibraryConfiguration(this, getConfiguratorsInitializer())
-//                .builder()
-//                .setGameManager(new MyGameManager(this, settings, messages))
-//                .registerModules(commandsModule) //new way how to register command module
-//                .build();
-//    }
-
-    //When you want to use SQL databases support
+    //Default library configuration
     @Override
     protected LibraryConfiguration configure() {
         commandsModule = new CommandsModule(this);
-        return new SQLLibraryConfiguration(this, getConfiguratorsInitializer(),
-                () -> Collections.singletonList(new SQLModule())) //you can register modules before others
+        return new LibraryConfiguration(this, getConfiguratorsInitializer())
                 .builder()
                 .setGameManager(new MyGameManager(this, settings, messages))
                 .registerModules(commandsModule) //new way how to register command module
                 .build();
     }
+
+//    //When you want to use SQL databases support
+//    @Override
+//    protected LibraryConfiguration configure() {
+//        commandsModule = new CommandsModule(this);
+//        return new SQLLibraryConfiguration(this, getConfiguratorsInitializer(),
+//                () -> Collections.singletonList(new SQLModule())) //you can register modules before others
+//                .builder()
+//                .setGameManager(new MyGameManager(this, settings, messages))
+//                .registerModules(commandsModule) //new way how to register command module
+//                .build();
+//    }
 
     @Override
     protected void initConfiguration() {
@@ -89,6 +88,8 @@ public class ExampleMiniGamePlugin extends MiniGame {
 
         pluginManager.registerEvents(new BlockBreakListener(settings, getGameManager(), messages, getUserStatsManager(), getUserCoinsManager()), this);
         pluginManager.registerEvents(new PlayerInteractListener(settings, messages, getGameManager()), this);
+        pluginManager.registerEvents(new PlayerQuitListener(getGameManager()), this);
+        pluginManager.registerEvents(new PlayerKickListener(getGameManager()), this);
     }
 
     private void registerCommands() {
