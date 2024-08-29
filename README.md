@@ -7,9 +7,13 @@ Please report every bugs in issues section.<br>
 JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.4.0/ <br>
 Documentation: https://timsixths-plugins.gitbook.io/minigameapi-docs/
 
-The library requires T-DataBasesAPI on Paper 1.20.6 and newer versions.
+> [!IMPORTANT]
+> {VERSION} - current version form GitHub releases section:<br>
+> https://github.com/timsixth/MinigameAPI/releases
 
-https://github.com/timsixth/T-DataBasesAPI/releases
+> [!WARNING]
+> The library requires T-DataBasesAPI on Paper 1.20.6 and newer versions.<br>
+>https://github.com/timsixth/T-DataBasesAPI/releases
 
 ## Library features:
 - Arena management system
