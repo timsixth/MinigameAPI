@@ -1,7 +1,9 @@
 package pl.timsixth.minigameapi.api.game;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.game.state.GameState;
 import pl.timsixth.minigameapi.api.game.team.Team;
@@ -166,4 +168,35 @@ public interface Game {
      * @return list of RecoverableUserGames
      */
     List<RecoverableUserGame> getRecoverableUserGames();
+
+    /**
+     * Hides all online players for user who is playing in the game
+     * The method hides only players who are not in the same game
+     *
+     * @param user user to hide players
+     */
+    default void hidePlayers(UserGame user) {
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            if (getUserGame(onlinePlayer.getUniqueId()).isPresent()) continue;
+
+            Player player = user.toPlayer();
+
+            player.hidePlayer(MiniGame.getInstance(), onlinePlayer);
+        }
+    }
+
+    /**
+     * Show all online players for user who is playing in the game
+     *
+     * @param user user to show players
+     */
+    default void showPlayers(UserGame user) {
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            if (getUserGame(onlinePlayer.getUniqueId()).isPresent()) continue;
+
+            Player player = user.toPlayer();
+
+            player.showPlayer(MiniGame.getInstance(), onlinePlayer);
+        }
+    }
 }

@@ -16,7 +16,7 @@
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>commands</artifactId>
-   <version>v2.0.0-alpha1</version>
+   <version>v2.0.0-beta1</version>
 </dependency>
 ```
 
@@ -28,7 +28,7 @@ allprojects {
 }
   
  dependencies {
-   implementation 'com.github.timsixth.MinigameAPI:commands:v2.0.0-alpha1'    
+   implementation 'com.github.timsixth.MinigameAPI:commands:v2.0.0-beta1'    
 }
 ```
 
