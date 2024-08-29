@@ -7,9 +7,6 @@ Please report every bugs in issues section.<br>
 JavaDocs: https://timsixth.pl/javadocs/minigame_api/1.4.0/ <br>
 Documentation: https://timsixths-plugins.gitbook.io/minigameapi-docs/
 
-> [!CAUTION]
-> This version of library will be not support, use v2.x
-
 > [!WARNING]
 > The library requires T-DataBasesAPI on Paper 1.20.6 and newer versions.<br>
 >https://github.com/timsixth/T-DataBasesAPI/releases
