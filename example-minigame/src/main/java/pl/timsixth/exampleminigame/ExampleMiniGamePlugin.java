@@ -22,6 +22,8 @@ import pl.timsixth.minigameapi.api.configuration.LibraryConfiguration;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.module.command.CommandRegistration;
 import pl.timsixth.minigameapi.api.module.command.CommandsModule;
+import pl.timsixth.minigameapi.api.module.mongodb.MongoDbModule;
+import pl.timsixth.minigameapi.api.module.mongodb.core.configuration.MongoDbLibraryConfiguration;
 
 public class ExampleMiniGamePlugin extends MiniGame {
 
@@ -52,15 +54,15 @@ public class ExampleMiniGamePlugin extends MiniGame {
     }
 
     //Default library configuration
-    @Override
-    protected LibraryConfiguration configure() {
-        commandsModule = new CommandsModule(this);
-        return new LibraryConfiguration(this, getConfiguratorsInitializer())
-                .builder()
-                .setGameManager(new MyGameManager(this, settings, messages))
-                .registerModules(commandsModule) //new way how to register command module
-                .build();
-    }
+//    @Override
+//    protected LibraryConfiguration configure() {
+//        commandsModule = new CommandsModule(this);
+//        return new LibraryConfiguration(this, getConfiguratorsInitializer())
+//                .builder()
+//                .setGameManager(new MyGameManager(this, settings, messages))
+//                .registerModules(commandsModule) //new way how to register command module
+//                .build();
+//    }
 
 //    //When you want to use SQL databases support
 //    @Override
@@ -73,6 +75,18 @@ public class ExampleMiniGamePlugin extends MiniGame {
 //                .registerModules(commandsModule) //new way how to register command module
 //                .build();
 //    }
+
+    //When you want to use MongoDb support
+    @Override
+    protected LibraryConfiguration configure() {
+        commandsModule = new CommandsModule(this);
+        MongoDbModule mongoDbModule = new MongoDbModule();
+        return new MongoDbLibraryConfiguration(this, getConfiguratorsInitializer())
+                .builder()
+                .setGameManager(new MyGameManager(this, settings, messages))
+                .registerModules(mongoDbModule, commandsModule) //new way how to register command module
+                .build();
+    }
 
     @Override
     protected void initConfiguration() {

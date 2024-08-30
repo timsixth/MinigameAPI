@@ -15,7 +15,9 @@ public interface UserCoinsFactory {
      * @param uuid player's uuid
      * @return created user
      */
-    UserCoins createUserCoins(UUID uuid);
+    default UserCoins createUserCoins(UUID uuid) {
+        return createUserCoins(uuid, 0);
+    }
 
     /**
      * Creates user

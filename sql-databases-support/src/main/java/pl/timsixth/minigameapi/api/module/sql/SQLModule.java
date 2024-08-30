@@ -14,10 +14,10 @@ import pl.timsixth.minigameapi.api.module.sql.stats.migrations.CreateUserStatsTa
  * Represents module which supports SQL databases.
  * When you are using T-DataBaseAPI to integrate with SQL databases, the module supports MySQL and SQLite.
  */
+@Getter
 public class SQLModule implements Module {
 
-    @Getter
-    private SQLModuleConfiguration sqlModuleConfiguration;
+    private final SQLModuleConfiguration sqlModuleConfiguration;
 
     @Getter
     private static SQLModule instance;

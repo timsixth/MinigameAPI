@@ -36,6 +36,12 @@
             <artifactId>sql-databases-support</artifactId>
             <version>2.0.0-beta1</version>
         </dependency>
+        <!-- Set this when you want to use MongoDb support-->
+        <dependency>
+            <groupId>pl.timsixth</groupId> <!-- Remember the groupId is not the same, read documentation-->
+            <artifactId>mongodb-support</artifactId>
+            <version>2.0.0-beta1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -61,7 +61,7 @@ public class SQLLibraryConfiguration extends LibraryConfiguration {
 
             if (configuratorsInitializer.getPluginConfiguration().isUseDefaultStatsSystem()) {
                 setUserStatsFactory(new SQLDatabaseUserStatsFactory());
-                setUserStatsLoaderFactory(new SQLDatabaseUserStatsLoaderFactory(sqlDatabaseAdapter));
+
                 UserStatsLoader userStatsLoader = new UserStatsSQLDatabaseLoader(sqlDatabaseAdapter);
                 setUserStatsLoader(userStatsLoader);
                 setUserStatsManager(new UserStatsManagerImpl(userStatsLoader));

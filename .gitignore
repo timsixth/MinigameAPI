@@ -16,3 +16,5 @@
 /sql-databases-support/target/
 /sql-databases-support/sql-databases-support.iml
 /commands/commands.iml
+/mongodb-support.iml
+/mongodb-support/target/

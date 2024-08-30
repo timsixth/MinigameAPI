@@ -8,6 +8,8 @@ import pl.timsixth.minigameapi.api.logging.MiniGameLogger;
 import pl.timsixth.minigameapi.api.module.sql.core.integration.SQLDatabaseAdapter;
 import pl.timsixth.minigameapi.api.module.sql.stats.loader.UserStatsSQLDatabaseLoader;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
+
+@Deprecated
 @RequiredArgsConstructor
 public class SQLDatabaseUserStatsLoaderFactory implements LoaderFactory<UserStats> {
 

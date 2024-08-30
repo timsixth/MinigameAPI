@@ -16,6 +16,7 @@
         <module>addons-api</module>
         <module>commands</module>
         <module>sql-databases-support</module>
+        <module>mongodb-support</module>
     </modules>
     <repositories>
         <repository>
