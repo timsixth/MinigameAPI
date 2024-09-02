@@ -1,7 +1,6 @@
 package pl.timsixth.minigameapi.api.module.mongodb.core.loader;
 
 import com.mongodb.client.MongoDatabase;
-import org.bukkit.Bukkit;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.loader.AbstractLoader;
 import pl.timsixth.minigameapi.api.model.Model;
@@ -11,7 +10,7 @@ public abstract class AbstractMongoDbLoader<T extends Model> extends AbstractLoa
 
     @Override
     public void load() {
-        Bukkit.getScheduler().runTaskAsynchronously(MiniGame.getInstance(), () -> load(getCollectionNameWithPrefix()));
+        load(getCollectionNameWithPrefix());
     }
 
     /**

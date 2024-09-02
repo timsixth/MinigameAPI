@@ -9,13 +9,15 @@ import java.util.UUID;
 
 public class MongoDbUserCoins extends AbstractUserCoins implements MongoDbModel {
 
+    public static final String COLLECTION_NAME = "users_coins";
+
     public MongoDbUserCoins(UUID uuid, double coins) {
         super(uuid, coins);
     }
 
     @Override
     public String getCollectionName() {
-        return "users_coins";
+        return COLLECTION_NAME;
     }
 
     @Override
