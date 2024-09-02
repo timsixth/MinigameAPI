@@ -3,6 +3,8 @@ package pl.timsixth.minigameapi.api.module.mongodb.core.dao;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.DeleteResult;
+import lombok.AccessLevel;
+import lombok.Getter;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import pl.timsixth.minigameapi.api.model.Model;
@@ -28,6 +30,7 @@ public class MongoDbDao extends AbstractDao {
 
     private final MongoDbModel mongoDbModel;
     private final MongoDatabase mongoDatabase;
+    @Getter(AccessLevel.PROTECTED)
     private final MongoCollection<Document> collection;
 
     public MongoDbDao(Model model) {

@@ -1,6 +1,9 @@
 package pl.timsixth.minigameapi.api.module.mongodb.core.loader;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.loader.AbstractLoader;
 import pl.timsixth.minigameapi.api.model.Model;
@@ -31,5 +34,24 @@ public abstract class AbstractMongoDbLoader<T extends Model> extends AbstractLoa
 
     protected MongoDatabase getMongoDatabase() {
         return MongoDbModule.getInstance().getMongoDbConnector().getMongoDatabase();
+    }
+
+    @Override
+    public void load(String collectionName) {
+        MongoDatabase mongoDatabase = getMongoDatabase();
+
+        MongoCollection<Document> collection = mongoDatabase.getCollection(collectionName);
+
+        try (MongoCursor<Document> cursor = collection.find().cursor()) {
+            while (cursor.hasNext()) {
+                Document document = cursor.next();
+
+                loadDocument(document);
+            }
+        }
+    }
+
+    protected void loadDocument(Document document) {
+        throw new UnsupportedOperationException();
     }
 }
