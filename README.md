@@ -23,7 +23,8 @@ Documentation: https://timsixths-plugins.gitbook.io/minigameapi-docs/
 ## Features which are included via modules:
 - Advanced loading system from SQL databases (MySQL or SQLite)
 - Integration with T-DataBasesAPI (Thanks to this plugin management of SQL databases is really simple) 
-- Commands API (You can create parent commands and subcommands in separate classes) 
+- Commands API (You can create parent commands and subcommands in separate classes)
+- MongoDb support
 
 ## Getting started
 
