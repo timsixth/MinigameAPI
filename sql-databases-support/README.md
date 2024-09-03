@@ -5,7 +5,7 @@
 > The SQL Module by default are used [T-DataBaseAPI](https://github.com/timsixth/T-DataBasesAPI/releases) adapter 
 
 > [!WARNING]
-> The documenation is not completed, because this module is in Aplha version.<br>
+> The documenation is not completed, because this module is in Beta version.<br>
 > Please ask for help to developer on [discord](https://discord.com/invite/zKmMy8bK56)
 
 ## Adding dependencies
@@ -21,7 +21,7 @@
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>sql-databases-support</artifactId>
-   <version>v2.0.0-beta1</version>
+   <version>v2.0.0-rc1</version>
 </dependency>
 ```
 
@@ -33,7 +33,7 @@ allprojects {
 }
   
  dependencies {
-   implementation 'com.github.timsixth.MinigameAPI:sql-databases-support:v2.0.0-beta1'    
+   implementation 'com.github.timsixth.MinigameAPI:sql-databases-support:v2.0.0-rc1'    
 }
 ```
 
