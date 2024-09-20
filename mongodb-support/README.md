@@ -1,4 +1,4 @@
-# SQL Module
+# MongoDB Module
 
 > [!CAUTION]
 > Module must be shaded to your JAR file <br>
