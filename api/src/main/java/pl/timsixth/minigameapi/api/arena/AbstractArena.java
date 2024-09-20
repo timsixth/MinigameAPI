@@ -46,11 +46,6 @@ public abstract class AbstractArena implements Arena {
     }
 
     @Override
-    public Options arenaOptions() {
-        return options;
-    }
-
-    @Override
     public Options options() {
         return options;
     }

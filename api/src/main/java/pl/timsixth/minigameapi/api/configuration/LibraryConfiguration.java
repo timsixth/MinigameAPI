@@ -13,20 +13,18 @@ import pl.timsixth.minigameapi.api.arena.loader.ArenaLoader;
 import pl.timsixth.minigameapi.api.arena.loader.factory.ArenaLoaderFactory;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManagerImpl;
-import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.factory.UserCoinsFactory;
 import pl.timsixth.minigameapi.api.coins.factory.UserCoinsFactoryImpl;
 import pl.timsixth.minigameapi.api.coins.loader.UserCoinsLoader;
-import pl.timsixth.minigameapi.api.coins.loader.factory.UserCoinsLoaderFactory;
+import pl.timsixth.minigameapi.api.coins.loader.UserCoinsSingleFileLoader;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManagerImpl;
 import pl.timsixth.minigameapi.api.cosmetics.CosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.impl.CosmeticsManagerImpl;
-import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.factory.UserCosmeticsFactory;
 import pl.timsixth.minigameapi.api.cosmetics.user.factory.UserCosmeticsFactoryImpl;
 import pl.timsixth.minigameapi.api.cosmetics.user.loader.UserCosmeticsLoader;
-import pl.timsixth.minigameapi.api.cosmetics.user.loader.factory.UserCosmeticsLoaderFactory;
+import pl.timsixth.minigameapi.api.cosmetics.user.loader.UserCosmeticsSingleFileLoader;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManagerImpl;
 import pl.timsixth.minigameapi.api.game.GameManager;
@@ -79,9 +77,7 @@ public class LibraryConfiguration {
     private UserStatsFactory userStatsFactory;
     private UserCosmeticsFactory userCosmeticsFactory;
 
-    private LoaderFactory<UserCoins> userCoinsLoaderFactory;
     private LoaderFactory<Arena> arenaLoaderFactory;
-    private LoaderFactory<UserCosmetics> userCosmeticsLoaderFactory;
     private LoaderFactory<UserStats> userStatsLoaderFactory;
 
     protected LibraryConfiguration(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer, Builder builder) {
@@ -106,9 +102,7 @@ public class LibraryConfiguration {
         this.userStatsFactory = builder.userStatsFactory;
         this.userCosmeticsFactory = builder.userCosmeticsFactory;
 
-        this.userCoinsLoaderFactory = builder.userCoinsLoaderFactory;
         this.arenaLoaderFactory = builder.arenaLoaderFactory;
-        this.userCosmeticsLoaderFactory = builder.userCosmeticsLoaderFactory;
         this.userStatsLoaderFactory = builder.userStatsLoaderFactory;
     }
 
@@ -149,9 +143,7 @@ public class LibraryConfiguration {
         private UserStatsFactory userStatsFactory;
         private UserCosmeticsFactory userCosmeticsFactory;
 
-        private LoaderFactory<UserCoins> userCoinsLoaderFactory;
         private LoaderFactory<Arena> arenaLoaderFactory;
-        private LoaderFactory<UserCosmetics> userCosmeticsLoaderFactory;
         private LoaderFactory<UserStats> userStatsLoaderFactory;
 
         public Builder(Plugin plugin, ConfiguratorsInitializer configuratorsInitializer, List<Module> modules) {
@@ -170,14 +162,12 @@ public class LibraryConfiguration {
             if (configuratorsInitializer.getPluginConfiguration().isUseDefaultStatsSystem())
                 this.userStatsFactory = new UserStatsFactoryImpl();
 
-            this.userCoinsLoaderFactory = new UserCoinsLoaderFactory();
             this.arenaLoaderFactory = new ArenaLoaderFactory();
-            this.userCosmeticsLoaderFactory = new UserCosmeticsLoaderFactory();
             this.userStatsLoaderFactory = new UserStatsLoaderFactory();
 
             this.arenaLoader = (ArenaLoader) arenaLoaderFactory.createLoader();
-            this.userCoinsLoader = (UserCoinsLoader) userCoinsLoaderFactory.createLoader();
-            this.userCosmeticsLoader = (UserCosmeticsLoader) userCosmeticsLoaderFactory.createLoader();
+            this.userCoinsLoader = new UserCoinsSingleFileLoader();
+            this.userCosmeticsLoader = new UserCosmeticsSingleFileLoader();
             this.userStatsLoader = (UserStatsLoader) userStatsLoaderFactory.createLoader();
 
             this.arenaManager = new ArenaManagerImpl(arenaLoader);
@@ -300,18 +290,8 @@ public class LibraryConfiguration {
             return this;
         }
 
-        public Builder setUserCoinsLoaderFactory(LoaderFactory<UserCoins> userCoinsLoaderFactory) {
-            this.userCoinsLoaderFactory = userCoinsLoaderFactory;
-            return this;
-        }
-
         public Builder setArenaLoaderFactory(LoaderFactory<Arena> arenaLoaderFactory) {
             this.arenaLoaderFactory = arenaLoaderFactory;
-            return this;
-        }
-
-        public Builder setUserCosmeticsLoaderFactory(LoaderFactory<UserCosmetics> userCosmeticsLoaderFactory) {
-            this.userCosmeticsLoaderFactory = userCosmeticsLoaderFactory;
             return this;
         }
 

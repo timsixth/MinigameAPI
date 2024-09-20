@@ -21,7 +21,7 @@
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>sql-databases-support</artifactId>
-   <version>v2.0.0-rc1</version>
+   <version>v2.0.0</version>
 </dependency>
 ```
 
@@ -33,7 +33,7 @@ allprojects {
 }
   
  dependencies {
-   implementation 'com.github.timsixth.MinigameAPI:sql-databases-support:v2.0.0-rc1'    
+   implementation 'com.github.timsixth.MinigameAPI:sql-databases-support:v2.0.0'    
 }
 ```
 

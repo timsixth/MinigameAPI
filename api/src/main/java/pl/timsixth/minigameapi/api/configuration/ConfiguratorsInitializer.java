@@ -1,10 +1,8 @@
 package pl.timsixth.minigameapi.api.configuration;
 
 import lombok.Getter;
-import pl.timsixth.minigameapi.api.configuration.configurators.DefaultCommandConfigurator;
 import pl.timsixth.minigameapi.api.configuration.configurators.DefaultGameConfigurator;
 import pl.timsixth.minigameapi.api.configuration.configurators.DefaultPluginConfigurator;
-import pl.timsixth.minigameapi.api.configuration.type.CommandConfiguration;
 import pl.timsixth.minigameapi.api.configuration.type.GameConfiguration;
 import pl.timsixth.minigameapi.api.configuration.type.PluginConfiguration;
 
@@ -13,13 +11,10 @@ public final class ConfiguratorsInitializer {
 
     private final Configurator<GameConfiguration> gameConfigurator;
     private final Configurator<PluginConfiguration> pluginConfigurator;
-    @Deprecated
-    private final Configurator<CommandConfiguration> commandConfigurator;
 
     private ConfiguratorsInitializer(Builder builder) {
         this.pluginConfigurator = builder.pluginConfigurator;
         this.gameConfigurator = builder.gameConfigurator;
-        this.commandConfigurator = builder.commandConfigurator;
     }
 
     /**
@@ -36,11 +31,6 @@ public final class ConfiguratorsInitializer {
         return pluginConfigurator.configure();
     }
 
-    @Deprecated
-    public CommandConfiguration getCommandConfiguration() {
-        return commandConfigurator.configure();
-    }
-
     public static Builder builder() {
         return new Builder();
     }
@@ -49,13 +39,9 @@ public final class ConfiguratorsInitializer {
         private Configurator<GameConfiguration> gameConfigurator;
         private Configurator<PluginConfiguration> pluginConfigurator;
 
-        @Deprecated
-        private Configurator<CommandConfiguration> commandConfigurator;
-
         public Builder() {
             this.gameConfigurator = new DefaultGameConfigurator();
             this.pluginConfigurator = new DefaultPluginConfigurator();
-            this.commandConfigurator = new DefaultCommandConfigurator();
         }
 
         public Builder setGameConfigurator(Configurator<GameConfiguration> gameConfigurator) {
@@ -65,12 +51,6 @@ public final class ConfiguratorsInitializer {
 
         public Builder setPluginConfigurator(Configurator<PluginConfiguration> pluginConfigurator) {
             this.pluginConfigurator = pluginConfigurator;
-            return this;
-        }
-
-        @Deprecated
-        public Builder setCommandConfigurator(Configurator<CommandConfiguration> commandConfigurator) {
-            this.commandConfigurator = commandConfigurator;
             return this;
         }
 

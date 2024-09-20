@@ -6,7 +6,7 @@
     <parent>
         <groupId>pl.timsixth</groupId>
         <artifactId>MinigameAPI</artifactId>
-        <version>2.0.0-rc1</version>
+        <version>2.0.0</version>
     </parent>
     <repositories>
         <repository>
@@ -21,26 +21,26 @@
         <dependency>
             <groupId>pl.timsixth</groupId>
             <artifactId>api</artifactId>
-            <version>2.0.0-rc1</version>
+            <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
         <!-- Set this when you want to use commands system-->
         <dependency>
             <groupId>pl.timsixth</groupId> <!-- Remember the groupId is not the same, read documentation-->
             <artifactId>commands</artifactId>
-            <version>2.0.0-rc1</version>
+            <version>2.0.0</version>
         </dependency>
         <!-- Set this when you want to use SQL databases support-->
         <dependency>
             <groupId>pl.timsixth</groupId> <!-- Remember the groupId is not the same, read documentation-->
             <artifactId>sql-databases-support</artifactId>
-            <version>2.0.0-rc1</version>
+            <version>2.0.0</version>
         </dependency>
         <!-- Set this when you want to use MongoDb support-->
         <dependency>
             <groupId>pl.timsixth</groupId> <!-- Remember the groupId is not the same, read documentation-->
             <artifactId>mongodb-support</artifactId>
-            <version>2.0.0-rc1</version>
+            <version>2.0.0</version>
         </dependency>
     </dependencies>
     <build>

@@ -16,7 +16,6 @@ import pl.timsixth.minigameapi.api.module.sql.cosmetics.factory.SQLDatabaseUserC
 import pl.timsixth.minigameapi.api.module.sql.cosmetics.loader.UserCosmeticsSQLDatabaseLoader;
 import pl.timsixth.minigameapi.api.module.sql.stats.factory.SQLDatabaseUserStatsFactory;
 import pl.timsixth.minigameapi.api.module.sql.stats.loader.UserStatsSQLDatabaseLoader;
-import pl.timsixth.minigameapi.api.module.sql.stats.loader.factory.SQLDatabaseUserStatsLoaderFactory;
 import pl.timsixth.minigameapi.api.stats.loader.UserStatsLoader;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManagerImpl;
 

@@ -1,6 +1,5 @@
 package pl.timsixth.minigameapi.api.loader;
 
-import pl.timsixth.minigameapi.api.loader.database.SqlDataBaseLoader;
 import pl.timsixth.minigameapi.api.loader.file.FileLoader;
 import pl.timsixth.minigameapi.api.model.Model;
 
@@ -14,7 +13,6 @@ import java.util.List;
  *
  * @see Loaders
  * @see FileLoader
- * @see SqlDataBaseLoader
  */
 public abstract class AbstractLoader<T extends Model> implements Loader<T> {
 

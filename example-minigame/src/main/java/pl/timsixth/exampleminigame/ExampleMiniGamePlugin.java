@@ -49,7 +49,6 @@ public class ExampleMiniGamePlugin extends MiniGame {
         return ConfiguratorsInitializer.builder()
                 .setGameConfigurator(new MyGameConfigurator())
                 .setPluginConfigurator(new MyPluginConfigurator())
-                //.setCommandConfigurator(new MyCommandConfigurator()) //old way how to register command module
                 .build();
     }
 

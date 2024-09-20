@@ -20,7 +20,7 @@
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
    <artifactId>mongodb-support</artifactId>
-   <version>v2.0.0-rc1</version>
+   <version>v2.0.0</version>
 </dependency>
 ```
 
@@ -32,7 +32,7 @@ allprojects {
 }
   
  dependencies {
-   implementation 'com.github.timsixth.MinigameAPI:mongodb-support:v2.0.0-rc1'    
+   implementation 'com.github.timsixth.MinigameAPI:mongodb-support:v2.0.0'    
 }
 ```
 

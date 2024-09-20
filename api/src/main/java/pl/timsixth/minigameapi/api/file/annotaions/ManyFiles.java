@@ -10,7 +10,6 @@ import java.lang.annotation.Target;
 /**
  * @see FileModel
  * @see SingleFile
- * @see IdSection
  * Every class which is annotated this annotation save every one instance of FileModel to many files.
  * The field which annotated IdSection is a name of file.
  */

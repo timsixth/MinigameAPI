@@ -4,7 +4,7 @@ Library works from 1.13.2 to 1.21.x.
 <br>
 Please report every bugs in issues section.<br>
 
-JavaDocs: https://timsixth.pl/javadocs/minigame_api/2.0.0-rc1/ <br>
+JavaDocs: https://timsixth.pl/javadocs/minigame_api/2.0.0/ <br>
 Documentation: https://timsixths-plugins.gitbook.io/minigameapi-docs/
 
 ## Main library features:
