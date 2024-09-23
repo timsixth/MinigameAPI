@@ -63,24 +63,17 @@ allprojects {
 
 Other modules (Maven)
 ```xml
-<!-- library module includes addon system, api, addons-api and runnable plugin-->
+<!-- includes all modules-->
 <dependency>
-   <groupId>com.github.timsixth.MinigameAPI</groupId>
-   <artifactId>library</artifactId>
+   <groupId>com.github.timsixth</groupId>
+   <artifactId>MinigameAPI</artifactId>
    <version>{VERSION}</version>
 </dependency>
 
 <!-- library-lite module includes only api and runnable plugin-->
 <dependency>
    <groupId>com.github.timsixth.MinigameAPI</groupId>
-   <artifactId>library-lite</artifactId>
-   <version>{VERSION}</version>
-</dependency>
-
-<!-- addons-api module includes only api and addons-api-->
-<dependency>
-   <groupId>com.github.timsixth.MinigameAPI</groupId>
-   <artifactId>addons-api</artifactId>
+   <artifactId>library</artifactId>
    <version>{VERSION}</version>
 </dependency>
 
@@ -99,10 +92,6 @@ Other modules (Gradle)
    implementation 'com.github.timsixth:MinigameAPI:{VERSION}'
    //includes only library, api, and addons-api modules
    implementation 'com.github.timsixth.MinigameAPI:library:{VERSION}'
-   //includes only api and library-lite modules
-   implementation 'com.github.timsixth.MinigameAPI:library-lite:{VERSION}'   
-   //includes only api and addons-api modules
-   implementation 'com.github.timsixth.MinigameAPI:addons-api:{VERSION}' 
    //includes example-minigame module
    implementation 'com.github.timsixth.MinigameAPI:example-minigame:{VERSION}'    
 }
