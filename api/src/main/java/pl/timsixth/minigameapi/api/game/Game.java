@@ -1,10 +1,16 @@
 package pl.timsixth.minigameapi.api.game;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.game.state.GameState;
 import pl.timsixth.minigameapi.api.game.team.Team;
+import pl.timsixth.minigameapi.api.game.team.TeamImpl;
+import pl.timsixth.minigameapi.api.game.user.RecoverableUserGame;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
+import pl.timsixth.minigameapi.api.game.user.UserGameImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -104,4 +110,93 @@ public interface Game {
      * @param userGame user game to remove
      */
     void removeUserGame(UserGame userGame);
+
+    /**
+     * Runes current game state
+     */
+    default void runState() {
+        getState().run();
+    }
+
+    /**
+     * Creates new user game, with default implementation
+     *
+     * @param playerUUID player's uuid
+     * @return new user game
+     */
+    default UserGame createUserGame(UUID playerUUID) {
+        return new UserGameImpl(playerUUID);
+    }
+
+    /**
+     * Creates new team, with default implementation
+     *
+     * @param name        team name
+     * @param displayName team display name
+     * @param color       team color
+     * @return new team
+     */
+    default Team createTeam(String name, String displayName, ChatColor color) {
+        return new TeamImpl(name, displayName, color);
+    }
+
+    /**
+     * Added new recoverableUserGame
+     *
+     * @param recoverableUserGame user to add
+     */
+    void addRecoverableUserGame(RecoverableUserGame recoverableUserGame);
+
+    /**
+     * Removes recoverableUserGame
+     *
+     * @param recoverableUserGame user to remove
+     */
+    void removeRecoverableUserGame(RecoverableUserGame recoverableUserGame);
+
+    /**
+     * Gets user by uuid
+     *
+     * @param playerUuid user's uuid
+     * @return optional of RecoverableUserGame
+     */
+    Optional<RecoverableUserGame> getRecoverableUserGame(UUID playerUuid);
+
+    /**
+     * Gets list of RecoverableUserGames
+     *
+     * @return list of RecoverableUserGames
+     */
+    List<RecoverableUserGame> getRecoverableUserGames();
+
+    /**
+     * Hides all online players for user who is playing in the game
+     * The method hides only players who are not in the same game
+     *
+     * @param user user to hide players
+     */
+    default void hidePlayers(UserGame user) {
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            if (getUserGame(onlinePlayer.getUniqueId()).isPresent()) continue;
+
+            Player player = user.toPlayer();
+
+            player.hidePlayer(MiniGame.getInstance(), onlinePlayer);
+        }
+    }
+
+    /**
+     * Show all online players for user who is playing in the game
+     *
+     * @param user user to show players
+     */
+    default void showPlayers(UserGame user) {
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            if (getUserGame(onlinePlayer.getUniqueId()).isPresent()) continue;
+
+            Player player = user.toPlayer();
+
+            player.showPlayer(MiniGame.getInstance(), onlinePlayer);
+        }
+    }
 }

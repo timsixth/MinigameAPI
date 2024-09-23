@@ -1,12 +1,8 @@
 package pl.timsixth.minigameapi.api.util;
 
 import lombok.experimental.UtilityClass;
-import pl.timsixth.minigameapi.api.database.AbstractDbModel;
-import pl.timsixth.minigameapi.api.database.annoations.Id;
-import pl.timsixth.minigameapi.api.file.ManyFilesModel;
-import pl.timsixth.minigameapi.api.file.SingleFileModel;
-import pl.timsixth.minigameapi.api.file.annotaions.IdSection;
-import pl.timsixth.minigameapi.api.model.annoations.IgnoreFields;
+import pl.timsixth.minigameapi.api.model.annotations.Id;
+import pl.timsixth.minigameapi.api.model.annotations.IgnoreFields;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -15,7 +11,7 @@ import java.util.Arrays;
 @UtilityClass
 public class ModelUtil {
     /**
-     * Finds correct fields for {@link AbstractDbModel#init()} or {@link SingleFileModel#init()}  or {@link ManyFilesModel#init()}  method
+     * Finds correct fields
      *
      * @param object base class to fiend fields
      * @return an array of correct fields or empty array when could not find fields
@@ -61,13 +57,13 @@ public class ModelUtil {
     }
 
     /**
-     * Checks that fields array has fields with {@link Id} or {@link IdSection} annotation
+     * Checks that fields array has fields with {@link Id} annotation
      *
      * @param fields fields array to check
      * @return true if array has fields with Ids annotations, otherwise false
      */
     private static boolean hasIdsFields(Field[] fields) {
         return Arrays.stream(fields)
-                .anyMatch(field -> field.isAnnotationPresent(Id.class) || field.isAnnotationPresent(IdSection.class));
+                .anyMatch(field -> field.isAnnotationPresent(Id.class));
     }
 }

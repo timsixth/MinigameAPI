@@ -4,6 +4,9 @@ import lombok.Setter;
 import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
 
+/**
+ * In the SimpleTimer, the countdown is displayed on the player's chat.
+ */
 @Setter
 public abstract class SimpleGameTimer extends AbstractGameTimer {
 

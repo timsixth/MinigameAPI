@@ -12,7 +12,6 @@ import pl.timsixth.minigameapi.api.configuration.Configuration;
 @Getter
 public class PluginConfiguration implements Configuration {
 
-    private boolean useDataBase;
     private String tablesPrefix;
     private boolean useDefaultStatsSystem;
     private ArenaSaveType arenaSaveType;

@@ -46,6 +46,8 @@ public class SimpleStartGameTimer extends SimpleGameTimer {
             player.getInventory().addItem(getShovel());
 
             player.teleport(game.getArena().getLocationByName("spawn"));
+
+            game.hidePlayers(userGame);
         });
 
         game.setState(new PlayingGameState());

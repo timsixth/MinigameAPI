@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.timsixth.minigameapi.api.arena.Arena;
 import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
-import pl.timsixth.minigameapi.api.command.SubCommand;
+import pl.timsixth.minigameapi.api.module.command.SubCommand;
 import pl.timsixth.exampleminigame.config.Messages;
 
 import java.util.Optional;

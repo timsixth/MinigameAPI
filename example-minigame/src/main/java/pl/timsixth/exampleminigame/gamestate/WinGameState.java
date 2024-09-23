@@ -10,12 +10,13 @@ import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.game.Game;
 import pl.timsixth.minigameapi.api.game.GameManager;
-import pl.timsixth.minigameapi.api.game.event.PlayerWinGameEvent;
+import pl.timsixth.minigameapi.api.game.event.GameWinEvent;
 import pl.timsixth.minigameapi.api.game.state.GameState;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
 
+import java.util.Collections;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -36,6 +37,8 @@ public class WinGameState implements GameState {
             playingUser.setPlaying(false);
             MyUserGame myUserGame = (MyUserGame) playingUser;
             Player player = playingUser.toPlayer();
+
+            game.showPlayers(playingUser);
 
             player.teleport(settings.getLobbyLocation());
             player.getInventory().clear();
@@ -68,7 +71,8 @@ public class WinGameState implements GameState {
         player.sendMessage(messages.getPlayerWon().replace("{NICK}", player.getName()));
 
         //this event call enables boosters addon in your minigame
-        Bukkit.getPluginManager().callEvent(new PlayerWinGameEvent(player, game, settings.getCostOfWin()));
+        Bukkit.getPluginManager().callEvent(new GameWinEvent(game, null,
+                Collections.emptyList(), Collections.singletonList(player.getUniqueId()), null));
     }
 
     private UserGame getWinner(Game game) {

@@ -12,7 +12,6 @@ public class DefaultPluginConfigurator implements Configurator<PluginConfigurati
     @Override
     public PluginConfiguration configure() {
         return PluginConfiguration.builder()
-                .useDataBase(true)
                 .tablesPrefix("minigames_")
                 .useDefaultStatsSystem(false)
                 .arenaSaveType(ArenaSaveType.SINGLE_FILE)
