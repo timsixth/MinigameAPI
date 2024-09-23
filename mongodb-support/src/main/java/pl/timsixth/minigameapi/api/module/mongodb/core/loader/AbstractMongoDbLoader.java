@@ -17,16 +17,16 @@ public abstract class AbstractMongoDbLoader<T extends Model> extends AbstractLoa
     }
 
     /**
-     * Gets table name which loader will load data
+     * Gets collection name which loader will load data
      *
-     * @return table name
+     * @return collection name
      */
     protected abstract String getCollectionName();
 
     /**
-     * Gets table name with minigame tables' prefix
+     * Gets collection name with minigame tables' prefix
      *
-     * @return table name with minigame tables' prefix
+     * @return collection name with minigame tables' prefix
      */
     protected String getCollectionNameWithPrefix() {
         return MiniGame.getInstance().getPluginConfiguration().getTablesPrefix() + getCollectionName();
