@@ -56,4 +56,16 @@ public interface Team {
      * @param userGame user to remove
      */
     void removeUser(UserGame userGame);
+
+    /**
+     * @return team's color as string
+     */
+    String getColorAsString();
+
+    /**
+     * Sets new team's color
+     *
+     * @param color new color as string
+     */
+    void setColor(String color);
 }
